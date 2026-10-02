@@ -63,6 +63,8 @@
       case "연차": return S.연차; case "자녀": return S.자녀; case "나이": return S.나이;
       case "애정도": return S.히로인 ? S.히로인.애정도 : 0; case "팀이동": return S.팀이동;
       case "시기카드": return S.시기턴; case "애정도2": return S.히로인2 ? S.히로인2.애정도 : 0;
+      case "은퇴나이": return S.은퇴나이 || S.나이; case "이별수": return S.지난히로인.length;
+      case "수상수": return S.수상.length; case "총수입": return S.총수입 || 0;
       case "이군기간": return S._강등턴 != null ? S.총턴 - S._강등턴 : 99; case "돈": return S.돈 || 0;
     }
     return 0;
@@ -88,6 +90,7 @@
     if (c.히로인 === "없음" && S.히로인) return false;
     if (c.관계 && (!S.히로인 || arr(c.관계).indexOf(S.히로인.관계) < 0)) return false;
     if (c.양다리 != null && !!S.히로인2 !== c.양다리) return false;
+    if (c.구매 && !arr(c.구매).some(function (n) { return S.구매 && S.구매[n] != null; })) return false;
     if (c.포지션변경가능 && !(E.pos().변경후보 || []).length) return false;
     if (c.수상 && !arr(c.수상).some(function (a) { return S.수상.some(function (x) { return x.이름 === a; }); })) return false;
     if (c.확률 != null && rnd() > c.확률) return false;

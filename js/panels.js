@@ -129,7 +129,9 @@
     $("#app").innerHTML = '<section class="ending deal">' +
       '<div class="bigcard">' + U.art(["hero_retired"], '<span class="posicon">' + U.icon() + "</span>",
         "<b>" + esc(s.이름) + "</b><small>" + esc(p.이름) + " · " + (s.은퇴나이 || s.나이) + '세 은퇴</small><div class="ovstats">성적 ' + en.성적 + " · 행복도 " + en.행복도 + "</div>", "card-art") + "</div>" +
-      '<div class="end-title">' + en.기본.아이콘 + " " + esc(en.기본.이름) + "</div><p>" + br(E.tpl(en.기본.내용)) + "</p>" +
+      (en.특별 ? '<div class="end-title">' + en.특별.아이콘 + " " + esc(en.특별.이름) + "</div><p>" + br(E.tpl(en.특별.내용)) + "</p>" +
+        '<p class="hint" style="text-align:center">인생 유형: ' + en.기본.아이콘 + " " + esc(en.기본.이름) + "</p>"
+       : '<div class="end-title">' + en.기본.아이콘 + " " + esc(en.기본.이름) + "</div><p>" + br(E.tpl(en.기본.내용)) + "</p>") +
       en.칭호.map(function (t) { return '<div class="badge">' + t.아이콘 + " " + esc(t.이름) + "<small>" + esc(E.tpl(t.내용)) + "</small></div>"; }).join("") +
       (en.직업 ? '<div class="badge job">' + en.직업.아이콘 + " 은퇴 후: " + esc(en.직업.이름) + "<small>" + esc(E.tpl(en.직업.내용)) + "</small></div>" : "") +
       "<h3>통산 기록</h3>" + totalsHTML() + '<p class="kv">💰 통산 수입 ' + E.money(s.총수입) + " · 은퇴 때 자산 " + E.money(s.돈) + "</p><h3>수상</h3>" + awardsHTML() +
