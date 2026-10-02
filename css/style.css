@@ -196,3 +196,10 @@ details summary { cursor: pointer; font-weight: 700; margin: 12px 0 4px; }
 html, body { overflow-x: hidden; }
 .table { overflow-x: clip; }
 .mg-ball span { text-shadow: 0 0 6px #fff, 0 0 3px #fff, 0 0 1px #fff; }
+/* 카드 위쪽 인물 그림: 잘리지 않고 전체가 보이게 (양옆은 배경 그림) */
+.banner { height: 48%; min-height: 180px; }
+.banner.small { height: 36%; min-height: 140px; }
+.banner img { object-fit: contain; object-position: center bottom; }
+/* 좁은 휴대폰에서 인생 카드 줄이 화면 밖으로 밀리지 않게 */
+.life { align-items: start; }
+.mini.empty { width: 100%; }
