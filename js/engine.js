@@ -57,7 +57,7 @@
         return E.posStats().filter(function (s) { return S.능력치[s] >= cap; }).length;
       case "연차": return S.연차; case "자녀": return S.자녀; case "나이": return S.나이;
       case "애정도": return S.히로인 ? S.히로인.애정도 : 0; case "팀이동": return S.팀이동;
-      case "시기카드": return S.시기턴;
+      case "시기카드": return S.시기턴; case "돈": return S.돈 || 0;
     }
     return 0;
   }
@@ -106,7 +106,7 @@
     return {
       이름: S.이름, 라이벌: (GD.조연.rival || {}).이름 || "라이벌", 히로인: h ? h.이름 : (S.직전히로인 || "그녀"),
       팀: S.팀 || S.지명팀 || cfg().국내팀[0], 학교: cfg().학교[schoolKey()], 대학: cfg().학교.대학,
-      나이: S.나이 + "", 포지션: S.포지션, 특기: S.특기,
+      나이: S.나이 + "", 연도: String(cfg().시작연도 + S.나이 - 10), 포지션: S.포지션, 특기: S.특기,
       리그: S.시기 === "대학" ? L.대학 : S.시기 === "메이저리그" ? L.해외 : L.국내,
       해외팀: S.시기 === "메이저리그" ? S.팀 : (S.해외팀 || "메이저리그 팀"), 국내팀: S.국내팀 || S.팀 || cfg().국내팀[0]
     };
@@ -138,6 +138,7 @@
       else if (k === "애정도") { if (S.히로인) { var o = S.히로인.애정도; S.히로인.애정도 = clamp(o + v, 0, 100); out.애정도 = S.히로인.애정도 - o; } }
       else if (k === "행복도") { var h = S.행복도; S.행복도 = clamp(h + v, 0, 100); out.행복도 = S.행복도 - h; }
       else if (k === "성적") { S.성적 = Math.max(0, S.성적 + v); out.성적 = v; }
+      else if (k === "돈") { S.돈 = Math.max(0, (S.돈 || 0) + v); if (v > 0) S.총수입 = (S.총수입 || 0) + v; out.돈 = (out.돈 || 0) + v; }
       else addStat(k, v, out);
     });
   }

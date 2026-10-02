@@ -94,7 +94,8 @@
     var mid = '<div class="lifestats">' + '<div class="row">' + stats + "</div>" +
       '<div class="row common"><span>멘탈 <b>' + s.능력치.멘탈 + "</b></span><span>인기 <b>" + s.능력치.인기 + "</b></span><span>컨디션 <b>" + s.능력치.컨디션 + "</b></span>" +
       (s.시기 === "메이저리그" ? "<span>적응 <b>" + s.능력치.적응 + "</b></span>" : "") + "</div>" +
-      '<div class="row"><span>😊 행복도 ' + bar(s.행복도, "happy") + "</span><span>🏅 성적 <b>" + s.성적 + "</b></span>" + status + "</div></div>";
+      '<div class="row"><span>😊 행복도 ' + bar(s.행복도, "happy") + "</span><span>🏅 성적 <b>" + s.성적 + "</b></span>" + status + "</div>" +
+      '<div class="row"><button class="money" onclick="U.openShop()">💰 ' + E.money(s.돈) + ' · 상점</button></div></div>';
     var her = "";
     if (s.히로인) {
       var h = E.heroDef(), rel = s.히로인.관계;
@@ -129,20 +130,24 @@
 
   U.resultHTML = function (r) {
     var chips = Object.keys(r.효과 || {}).filter(function (k) { return r.효과[k]; }).map(function (k) {
-      var v = r.효과[k]; if (k === "부상" || k === "슬럼프") return '<span class="fx bad">' + k + (v > 0 ? " " + v + "장" : " 회복") + "</span>";
+      var v = r.효과[k];
+      if (k === "돈") return '<span class="fx money">💰 ' + (v > 0 ? "+" : "") + E.money(v) + "</span>";
+      if (k === "부상" || k === "슬럼프") return '<span class="fx bad">' + k + (v > 0 ? " " + v + "장" : " 회복") + "</span>";
       return '<span class="fx ' + (v > 0 ? "up" : "down") + '">' + k + " " + (v > 0 ? "+" : "") + v + "</span>";
     }).join("");
     var pic = r.그림 ? U.art([r.그림].concat(U.heroKeys()), U.icon(), "<b>" + esc(E.state().이름) + "</b>", "banner small") : "";
     return pic + '<div class="txt">' + (r.성공 === true ? '<div class="tag ok">성공!</div>' : r.성공 === false ? '<div class="tag ng">실패…</div>' : "") +
       "<p>" + br(r.결과 || "…") + '</p><div class="fxs">' + chips + "</div>" +
-      (r.알림 || []).map(function (n) { return '<div class="note">' + esc(n) + "</div>"; }).join("") + "</div>";
+      (r.알림 || []).map(function (n) { return '<div class="note">' + esc(n) + "</div>"; }).join("") +
+      (r.뉴스 ? '<div class="news"><b>📰 야구 소식</b>' + esc(r.뉴스) + "</div>" : "") + "</div>";
   };
 
   U.renderActions = function () {
     var s = E.state(), c = s.현재카드;
     if (s.단계 === "결과") { $("#actions").innerHTML = '<button class="big next" onclick="U.next()">다음 카드 ▶</button>'; return; }
     $("#actions").innerHTML = s.현재옵션.map(function (oi, i) {
-      return '<button class="opt" onclick="U.choose(' + i + ')">' + esc(E.tpl(c.선택지[oi].글)) + "</button>";
+      var o = c.선택지[oi];
+      return '<button class="opt" onclick="U.choose(' + i + ')">' + esc(E.tpl(o.글)) + (o.비용 ? ' <small class="cost">💰 ' + E.money(o.비용) + "</small>" : "") + "</button>";
     }).join("");
   };
 

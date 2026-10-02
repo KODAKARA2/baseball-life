@@ -146,3 +146,17 @@ details summary { cursor: pointer; font-weight: 700; margin: 12px 0 4px; }
 
 @media (min-height: 760px) { .card3d { min-height: 380px; } }
 @media (prefers-reduced-motion: reduce) { .deal, .discard, .attach, .detach, .card3d { animation: none !important; transition: none !important; } }
+
+/* ---------- 돈 · 뉴스 · 상점 ---------- */
+.money { background: rgba(232,182,74,.18); color: #ffe3a3; border-radius: 10px; padding: 4px 10px; font-size: 12px; font-weight: 700; min-height: 30px; }
+.cost { display: inline-block; margin-left: 6px; color: #9a6b00; font-weight: 700; }
+.fx.money { background: #fff1cc; color: #8a5a00; }
+.news { margin-top: 10px; padding: 10px 12px; background: #eef3fb; border-left: 4px solid #3b6fb6; border-radius: 8px; font-size: 13px; line-height: 1.6; }
+.news b { display: block; font-size: 11px; color: #3b6fb6; margin-bottom: 2px; }
+.shop { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.shop-item { display: grid; grid-template-columns: 36px 1fr auto; gap: 8px; align-items: center; background: #fff; border-radius: 12px; padding: 10px; }
+.shop-item.off { opacity: .55; }
+.si-ic { font-size: 24px; text-align: center; }
+.si-tx b { display: block; font-size: 14px; } .si-tx small { color: var(--muted); font-size: 12px; line-height: 1.4; }
+.shop-item button { background: var(--accent); color: #fff; border-radius: 10px; padding: 10px; min-width: 76px; min-height: 44px; font-weight: 700; font-size: 13px; }
+.shop-item button:disabled { background: #b9b2a3; }

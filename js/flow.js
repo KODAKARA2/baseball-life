@@ -21,7 +21,7 @@
       시기: null, 시기턴: 0, 진입나이: 10, 나이: 10, 은퇴나이: null, 연차: 0, 올해카드: 0, 올해부상카드: 0,
       팀: null, 원래팀: null, 국내팀: null, 지명팀: null, 해외팀: null, 팀이동: 0, 일군: false, 드래프트: null,
       플래그: {}, 본카드: {}, 총턴: 0, 히로인: null, 지난히로인: [], 만난히로인: [], 자녀: 0,
-      기록: [], 수상: [], 순간: [], 대기열: [], 단계: "카드", 현재카드: null, 현재옵션: [], 결과: null, 엔딩: null
+      기록: [], 수상: [], 순간: [], 대기열: [], 돈: 0, 총수입: 0, 구매: {}, 본뉴스: {}, 단계: "카드", 현재카드: null, 현재옵션: [], 결과: null, 엔딩: null
     };
     I.S = s;
     var pos = E.pos(), spec = E.spec();
@@ -101,14 +101,32 @@
     return FALLBACK;
   }
 
+  function computeOptions(c) {
+    var s = S(); s.현재옵션 = [];
+    (c.선택지 || []).forEach(function (o, i) {
+      if ((!o.조건 || E.check(o.조건)) && (!o.비용 || (s.돈 || 0) >= o.비용)) s.현재옵션.push(i);
+    });
+    if (!s.현재옵션.length) { c.선택지 = (c.선택지 || []).concat([{ 글: "계속" }]); s.현재옵션 = [c.선택지.length - 1]; }
+  }
+  E.refreshOptions = function () { var s = S(); if (s.단계 === "카드" && s.현재카드) computeOptions(s.현재카드); };
+
+  // 야구 뉴스: 카드를 넘길 때 가끔 한 줄씩
+  function pickNews() {
+    var s = S(); if (rnd() >= (cfg().뉴스확률 || 0)) return null;
+    var list = (GD.뉴스 || []).filter(function (n) {
+      return !s.본뉴스[n.글] && (!n.시기 || arr(n.시기).indexOf(s.시기) >= 0) && E.check(n.조건);
+    });
+    if (!list.length) return null;
+    var n = I.pick(list); s.본뉴스[n.글] = 1; return E.tpl(n.글);
+  }
+
   E.next = function () {
     var s = S();
     if (s.엔딩) { s.단계 = "엔딩"; E.save(); return; }
     var c = I.clone(drawCard());
     s.현재카드 = c;
     s.현재옵션 = [];
-    (c.선택지 || []).forEach(function (o, i) { if (!o.조건 || E.check(o.조건)) s.현재옵션.push(i); });
-    if (!s.현재옵션.length) { c.선택지 = [{ 글: "계속" }]; s.현재옵션 = [0]; }
+    computeOptions(c);
     s.단계 = "카드"; s.결과 = null;
     E.save();
   };
@@ -118,6 +136,7 @@
     var s = S(), card = s.현재카드, o = card.선택지[s.현재옵션[i]];
     var res = { 효과: {}, 결과: o.결과 || "", 그림: o.그림변경 || null, 알림: [] };
     var out = o;
+    if (o.비용) { s.돈 = Math.max(0, (s.돈 || 0) - o.비용); res.효과.돈 = -o.비용; }
     if (o.확률결과) {
       var ok = rnd() < (o.확률결과.확률 == null ? 0.5 : o.확률결과.확률);
       out = Object.assign({}, o, ok ? o.확률결과.성공 : o.확률결과.실패);
@@ -142,7 +161,7 @@
     arr(out.다음카드).forEach(function (t) { s.대기열.push(t); });
 
     if (card._id) s.본카드[card._id] = s.총턴;
-    if (!card.시스템) res.알림 = res.알림.concat(tick(out, card));
+    if (!card.시스템) { res.알림 = res.알림.concat(tick(out, card)); res.뉴스 = pickNews(); }
     s.총턴++;
 
     if (out.이동) enterStage(out.이동);
