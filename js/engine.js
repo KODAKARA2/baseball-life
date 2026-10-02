@@ -37,8 +37,13 @@
       var id = c.제목 || "카드"; if (seen[id]) id += "#" + (++seen[id]); else seen[id] = 1;
       c._id = id; CARDS.push(c);
     }
-    GD.카드.forEach(add);
+    GD.카드.forEach(function (c) { if (!c.끼어들기) add(c); });
+    var tmpl = GD.카드.filter(function (c) { return c.끼어들기; });
     GD.히로인.forEach(function (h) {
+      tmpl.forEach(function (t) {
+        var m = clone(t); m._끼어들기 = h.아이디; m.시기 = t.시기 || h.만나는시기;
+        m.조건 = Object.assign({}, h.만남조건 || {}, t.조건 || {}); add(m);
+      });
       if (h.만남카드) {
         var m = clone(h.만남카드);
         m.시기 = m.시기 || h.만나는시기; m._만남 = h.아이디;
@@ -57,7 +62,8 @@
         return E.posStats().filter(function (s) { return S.능력치[s] >= cap; }).length;
       case "연차": return S.연차; case "자녀": return S.자녀; case "나이": return S.나이;
       case "애정도": return S.히로인 ? S.히로인.애정도 : 0; case "팀이동": return S.팀이동;
-      case "시기카드": return S.시기턴; case "돈": return S.돈 || 0;
+      case "시기카드": return S.시기턴; case "애정도2": return S.히로인2 ? S.히로인2.애정도 : 0;
+      case "이군기간": return S._강등턴 != null ? S.총턴 - S._강등턴 : 99; case "돈": return S.돈 || 0;
     }
     return 0;
   }
@@ -81,6 +87,8 @@
     if (c.히로인 === "있음" && !S.히로인) return false;
     if (c.히로인 === "없음" && S.히로인) return false;
     if (c.관계 && (!S.히로인 || arr(c.관계).indexOf(S.히로인.관계) < 0)) return false;
+    if (c.양다리 != null && !!S.히로인2 !== c.양다리) return false;
+    if (c.포지션변경가능 && !(E.pos().변경후보 || []).length) return false;
     if (c.수상 && !arr(c.수상).some(function (a) { return S.수상.some(function (x) { return x.이름 === a; }); })) return false;
     if (c.확률 != null && rnd() > c.확률) return false;
     return true;
@@ -90,7 +98,9 @@
   function eligible(c) {
     if (c.시기 && arr(c.시기).indexOf(S.시기) < 0) return false;
     if (c.히로인 === "누구나" && !S.히로인) return false;
-    if (c.히로인 && c.히로인 !== "누구나" && (!S.히로인 || S.히로인.아이디 !== c.히로인)) return false;
+    if (c.히로인 === "양다리" && !S.히로인2) return false;
+    if (c.히로인 && c.히로인 !== "누구나" && c.히로인 !== "양다리" && (!S.히로인 || S.히로인.아이디 !== c.히로인)) return false;
+    if (c._끼어들기 && (!S.히로인 || S.히로인.관계 !== "연인" || S.히로인2 || S.히로인.아이디 === c._끼어들기 || S.만난히로인.indexOf(c._끼어들기) >= 0)) return false;
     if (c._만남 && (S.히로인 || S.만난히로인.indexOf(c._만남) >= 0)) return false;
     var last = S.본카드[c._id];
     if (last != null && (!c.반복 || S.총턴 - last < (c.간격 || 4))) return false;
@@ -102,9 +112,9 @@
   function batchim(w) { var c = (w || "").charCodeAt(w.length - 1); return c >= 0xAC00 && c <= 0xD7A3 && (c - 0xAC00) % 28 !== 0; }
   function schoolKey() { return { 드래프트: "고등학교", 대학드래프트: "대학" }[S.시기] || (cfg().학교[S.시기] ? S.시기 : "고등학교"); }
   function words() {
-    var L = cfg().리그, h = S.히로인 && E.heroDef();
+    var L = cfg().리그, h = S.히로인 && E.heroDef(), h2 = (S.히로인2 || S._상대) && E.heroDef(S.히로인2 ? S.히로인2.아이디 : S._상대);
     return {
-      이름: S.이름, 라이벌: (GD.조연.rival || {}).이름 || "라이벌", 히로인: h ? h.이름 : (S.직전히로인 || "그녀"),
+      이름: S.이름, 라이벌: (GD.조연.rival || {}).이름 || "라이벌", 히로인: h ? h.이름 : (S.직전히로인 || "그녀"), 상대: h2 ? h2.이름 : "그 사람", 새포지션: S._새포지션 || "",
       팀: S.팀 || S.지명팀 || cfg().국내팀[0], 학교: cfg().학교[schoolKey()], 대학: cfg().학교.대학,
       나이: S.나이 + "", 연도: String(cfg().시작연도 + S.나이 - 10), 포지션: S.포지션, 특기: S.특기,
       리그: S.시기 === "대학" ? L.대학 : S.시기 === "메이저리그" ? L.해외 : L.국내,
@@ -131,12 +141,14 @@
   function applyEffects(eff, out) {
     Object.keys(eff || {}).forEach(function (k) {
       var v = eff[k];
+      if (Array.isArray(v)) v = v[0] + Math.floor(rnd() * (v[1] - v[0] + 1));   // [최소, 최대] → 랜덤
       if (k === "모든능력치") E.posStats().forEach(function (s) { addStat(s, v, out); });
       else if (k === "특기능력치") addStat(E.spec().능력치, v, out);
       else if (k === "부상") { S.부상 = v <= 0 ? 0 : Math.max(S.부상, v); out.부상 = v; }
       else if (k === "부상감소") { S.부상 = Math.floor(S.부상 * (100 - v) / 100); out.부상감소 = v; }
       else if (k === "슬럼프감소") { S.슬럼프 = Math.floor(S.슬럼프 * (100 - v) / 100); out.슬럼프감소 = v; }
       else if (k === "슬럼프") { S.슬럼프 = v <= 0 ? 0 : Math.max(S.슬럼프, v); out.슬럼프 = v; }
+      else if (k === "애정도2") { if (S.히로인2) { var o2 = S.히로인2.애정도; S.히로인2.애정도 = clamp(o2 + v, 0, 100); out.애정도2 = S.히로인2.애정도 - o2; } }
       else if (k === "애정도") { if (S.히로인) { var o = S.히로인.애정도; S.히로인.애정도 = clamp(o + v, 0, 100); out.애정도 = S.히로인.애정도 - o; } }
       else if (k === "행복도") { var h = S.행복도; S.행복도 = clamp(h + v, 0, 100); out.행복도 = S.행복도 - h; }
       else if (k === "성적") { S.성적 = Math.max(0, S.성적 + v); out.성적 = v; }
