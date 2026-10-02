@@ -134,6 +134,8 @@
       if (k === "모든능력치") E.posStats().forEach(function (s) { addStat(s, v, out); });
       else if (k === "특기능력치") addStat(E.spec().능력치, v, out);
       else if (k === "부상") { S.부상 = v <= 0 ? 0 : Math.max(S.부상, v); out.부상 = v; }
+      else if (k === "부상감소") { S.부상 = Math.floor(S.부상 * (100 - v) / 100); out.부상감소 = v; }
+      else if (k === "슬럼프감소") { S.슬럼프 = Math.floor(S.슬럼프 * (100 - v) / 100); out.슬럼프감소 = v; }
       else if (k === "슬럼프") { S.슬럼프 = v <= 0 ? 0 : Math.max(S.슬럼프, v); out.슬럼프 = v; }
       else if (k === "애정도") { if (S.히로인) { var o = S.히로인.애정도; S.히로인.애정도 = clamp(o + v, 0, 100); out.애정도 = S.히로인.애정도 - o; } }
       else if (k === "행복도") { var h = S.행복도; S.행복도 = clamp(h + v, 0, 100); out.행복도 = S.행복도 - h; }

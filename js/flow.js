@@ -32,6 +32,7 @@
     s.능력치.멘탈 = C.멘탈; s.능력치.인기 = C.인기; s.능력치.컨디션 = C.컨디션; s.능력치.적응 = 0;
     I.applyEffects(spec.추가보너스 || {}, {});
     enterStage("초등학교");
+    allowance();
     E.next();
     return s;
   };
@@ -93,7 +94,8 @@
       if (hc.length && rnd() < L.히로인카드확률) return I.weighted(hc);
     } else {
       var mc = all.filter(function (c) { return c._만남; });
-      if (mc.length && rnd() < L.만남확률) return I.weighted(mc);
+      var mb = s.만남버프 && s.만남버프.남은 > 0 ? s.만남버프.값 : 0;
+      if (mc.length && rnd() < L.만남확률 + mb) return I.weighted(mc);
     }
     var normal = all.filter(function (c) { return !c.히로인 && !c._만남; });
     if (normal.length) return I.weighted(normal);
@@ -104,10 +106,17 @@
   function computeOptions(c) {
     var s = S(); s.현재옵션 = [];
     (c.선택지 || []).forEach(function (o, i) {
-      if ((!o.조건 || E.check(o.조건)) && (!o.비용 || (s.돈 || 0) >= o.비용)) s.현재옵션.push(i);
+      if ((!o.조건 || E.check(o.조건)) && (!o.비용 || (s.돈 || 0) >= o.비용) && (!o.비용비율 || (s.돈 || 0) > 0)) s.현재옵션.push(i);
     });
     if (!s.현재옵션.length) { c.선택지 = (c.선택지 || []).concat([{ 글: "계속" }]); s.현재옵션 = [c.선택지.length - 1]; }
   }
+  // 학창 시절 용돈: 나이가 바뀔 때마다 한 번
+  function allowance() {
+    var s = S(), M = cfg().돈 || {};
+    if (!M.용돈 || arr(M.용돈시기).indexOf(s.시기) < 0 || s._용돈나이 === s.나이) return 0;
+    s._용돈나이 = s.나이; s.돈 = (s.돈 || 0) + M.용돈; return M.용돈;
+  }
+  E.allowance = allowance;
   E.refreshOptions = function () { var s = S(); if (s.단계 === "카드" && s.현재카드) computeOptions(s.현재카드); };
 
   // 야구 뉴스: 카드를 넘길 때 가끔 한 줄씩
@@ -137,6 +146,7 @@
     var res = { 효과: {}, 결과: o.결과 || "", 그림: o.그림변경 || null, 알림: [] };
     var out = o;
     if (o.비용) { s.돈 = Math.max(0, (s.돈 || 0) - o.비용); res.효과.돈 = -o.비용; }
+    if (o.비용비율) { var pay = Math.floor((s.돈 || 0) * o.비용비율 / 100); s.돈 -= pay; res.효과.돈 = (res.효과.돈 || 0) - pay; }
     if (o.확률결과) {
       var ok = rnd() < (o.확률결과.확률 == null ? 0.5 : o.확률결과.확률);
       out = Object.assign({}, o, ok ? o.확률결과.성공 : o.확률결과.실패);
@@ -175,6 +185,7 @@
       }
       if (I.YEARLY[s.시기] && s.나이 >= 45) enterStage("은퇴");
     }
+    var al = allowance(); if (al) res.알림.push("💰 용돈 " + E.money(al) + "을 받았다");
     res.결과 = E.tpl(res.결과);
     s.결과 = res; s.단계 = "결과";
     E.save();
@@ -205,6 +216,7 @@
     if (s.부상 > 0) { s.부상--; s.올해부상카드++; if (!s.부상) notes.push("🩹 부상에서 회복했다"); }
     else growth();
     if (s.슬럼프 > 0) { s.슬럼프--; if (!s.슬럼프) notes.push("🌤️ 슬럼프에서 벗어났다"); }
+    if (s.만남버프 && s.만남버프.남은 > 0) s.만남버프.남은--;
     s.능력치.컨디션 = clamp(s.능력치.컨디션 + C.매카드회복, 0, 100);
     var H = cfg().행복도 || {};
     if (H.매카드회귀 && s.행복도 > H.기준) s.행복도 = Math.max(H.기준, s.행복도 - H.매카드회귀);

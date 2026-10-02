@@ -92,8 +92,8 @@
   U.openShop = function (msg) {
     U.closeModals();
     var s = E.state();
-    var rows = E.shopList().map(function (e) {
-      var it = e.item, why = e.sold ? "구입 완료" : !e.cond ? (it.잠금설명 || "조건 안 됨") : e.wait ? "카드 " + e.wait + "장 뒤" : (s.돈 || 0) < it.가격 ? "돈 부족" : "";
+    var rows = E.shopList().sort(function (a, b) { return (b.stageOk ? 1 : 0) - (a.stageOk ? 1 : 0); }).map(function (e) {
+      var it = e.item, why = e.sold ? "구입 완료" : !e.stageOk ? (it.시기설명 || "지금은 못 씀") : !e.cond ? (it.잠금설명 || "조건 안 됨") : e.wait ? "카드 " + e.wait + "장 뒤" : (s.돈 || 0) < it.가격 ? "돈 부족" : "";
       return '<div class="shop-item' + (e.ok ? "" : " off") + '"><div class="si-ic">' + (it.아이콘 || "🛍️") + '</div><div class="si-tx"><b>' + esc(it.이름) +
         "</b><small>" + esc(it.설명 || "") + '</small></div><button ' + (e.ok ? "" : "disabled ") + 'data-n="' + esc(it.이름) + '">' + (why || E.money(it.가격)) + "</button></div>";
     }).join("");
@@ -103,7 +103,7 @@
       var b = ev.target.closest("button[data-n]"); if (!b || b.disabled) return;
       var r = E.buy(b.dataset.n); if (!r) return;
       U.renderLife(); if (E.state().단계 === "카드") U.renderActions();
-      var chips = Object.keys(r.효과).map(function (k) { var v = r.효과[k]; return '<span class="fx ' + (v > 0 ? "up" : "down") + '">' + k + " " + (v > 0 ? "+" : "") + v + "</span>"; }).join("");
+      var chips = U.chips(r.효과);
       U.openShop('<div class="note">' + esc(r.결과) + '<div class="fxs">' + chips + "</div></div>");
     };
   };
