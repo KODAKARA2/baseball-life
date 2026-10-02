@@ -73,16 +73,52 @@
   }
   E.fmtLine = fmtLine;
 
+  // 연봉 (단위: 만원) — 한 해에 한 번만 받음
+  function salary(L) {
+    var s = S(), M = (cfg().돈 || {}).연봉 || {}, pay = 0;
+    if (s._연봉연도 === s.나이) return s._연봉;
+    if (s.시기 === "프로") pay = L ? (M.일군기본 || 0) + Math.max(0, L.경기력 - 50) * (M.경기력당 || 0) : (M.이군 || 0);
+    else if (s.시기 === "메이저리그") pay = L ? (M.메이저기본 || 0) + Math.max(0, L.경기력 - 60) * (M.메이저경기력당 || 0) : (M.마이너 || 0);
+    pay = Math.round(pay); s.돈 = (s.돈 || 0) + pay; s.총수입 = (s.총수입 || 0) + pay;
+    s._연봉연도 = s.나이; s._연봉 = pay; return pay;
+  }
+  E.money = function (n) {
+    n = Math.round(n || 0); var sg = n < 0 ? "-" : ""; n = Math.abs(n);
+    if (n >= 10000) return sg + (Math.round(n / 1000) / 10) + "억";
+    return sg + n.toLocaleString("ko-KR") + "만원";
+  };
+
+  // ---------------- 상점 (data/shop.js) ----------------
+  E.shopList = function () {
+    var s = S();
+    return (GD.상점 || []).map(function (it) {
+      var last = (s.구매 || {})[it.이름];
+      var wait = last == null ? 0 : Math.max(0, (it.간격 == null ? 4 : it.간격) - (s.총턴 - last));
+      var sold = !!it.한번만 && last != null, cond = E.check(it.조건);
+      return { item: it, wait: wait, sold: sold, cond: cond, ok: cond && !sold && !wait && (s.돈 || 0) >= it.가격 };
+    });
+  };
+  E.buy = function (name) {
+    var s = S(), e = E.shopList().find(function (x) { return x.item.이름 === name; });
+    if (!e || !e.ok) return null;
+    s.돈 -= e.item.가격; s.구매[name] = s.총턴;
+    var out = {}; E.applyEffects(e.item.효과 || {}, out);
+    if (e.item.기록) s.순간.push({ 나이: s.나이, 글: E.tpl(e.item.기록) });
+    E.refreshOptions(); E.save();
+    return { 결과: E.tpl(e.item.결과 || ""), 효과: out };
+  };
+
   E.endYear = function () {
     var s = S(), L = seasonLine();
     if (L) {
       s.기록.push(L); s.성적 += L.가치;
       var got = awards(L);
-      var lines = [s.팀 + " · " + (L.메이저 ? "메이저리그" : "1군"), fmtLine(L)];
+      var lines = [s.팀 + " · " + (L.메이저 ? "메이저리그" : "1군"), fmtLine(L), "💰 연봉 " + E.money(salary(L))];
       if (got.length) lines.push("🏅 " + got.join(", "));
       s.대기열.unshift({ 시스템: true, 제목: L.연도 + " 시즌 결산", 내용: lines.join("\n"), 그림: got.length ? "hero_victory" : null,
         선택지: [{ 글: "다음 시즌으로" }] });
     }
+    if (!L) salary(null);
     if (s.시기 === "프로") s.연차++;
     s.나이++; s.올해카드 = 0; s.올해부상카드 = 0;
   };
