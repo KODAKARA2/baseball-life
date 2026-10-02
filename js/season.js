@@ -154,6 +154,8 @@
     try {
       var raw = localStorage.getItem(I.SAVE_KEY); if (!raw) return null;
       var s = JSON.parse(raw); if (!s || s.버전 !== 1) return null;
+      // 이전 버전 저장 파일에 없는 항목 채우기
+      s.돈 = s.돈 || 0; s.총수입 = s.총수입 || 0; s.구매 = s.구매 || {}; s.본뉴스 = s.본뉴스 || {};
       I.buildCards(); I.S = s; return s;
     } catch (e) { return null; }
   };
