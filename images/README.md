@@ -7,5 +7,10 @@
 - 히로인: heroine1_meet, heroine1_lover, heroine1_spouse, heroine2_meet, heroine2_lover, heroine2_spouse, heroine3_meet, heroine3_lover, heroine3_spouse
 - 조연: rival, parents, coach_little, coach_high, buddy, manager_pro, agent, child
 - 나중에 추가: interpreter, mlb_teammate, hero_injured, hero_slump, hero_victory
+- 추가 조연: teammate (동료 오재치)
+- 배경 (가로 1200 × 800): bg_stadium (경기장), bg_street (거리), bg_indoor (건물 안)
+
+지금 들어 있는 그림은 임시로 코드로 그린 기본 그림입니다. 같은 이름의 PNG로 덮어쓰면 바로 바뀝니다.
+캐릭터 그림은 배경이 투명하면 뒤에 카드 배경(경기장·거리·실내)이 비쳐 보입니다.
 
 (모두 끝에 `.png`)

@@ -56,6 +56,13 @@
         '<p class="effect ' + (on ? "on" : "") + '">✨ 고유효과 ' + (on ? "(발동 중)" : "(애정도 " + L.도움기준 + " 이상이면 발동)") + "<br>" + esc((h.고유효과 || {}).설명 || "") + "</p>" +
         '<p class="hint">데이트·기념일·고민 들어주기 카드로 애정도가 오릅니다. 훈련이나 원정에만 집중하면 더 빨리 떨어지고, 0이 되면 이별합니다.</p>';
     } else html += '<h2>💗 히로인</h2><p>아직 곁에 있는 사람이 없다. 인연은 시기마다 찾아온다.</p>';
+    if (s.히로인2) {
+      var h2 = E.heroDef(s.히로인2.아이디);
+      html += '<h3>🤫 몰래 만나는 사람</h3><div class="bigcard">' + U.art(U.heroineKeys(h2.아이디, "연인"), "🤫",
+        "<b>" + esc(h2.이름) + "</b><small>비밀 연인</small>", "card-art") + "</div>" +
+        '<div class="sl"><span>애정도</span>' + U.bar(s.히로인2.애정도, "love") + "<b>" + s.히로인2.애정도 + "</b></div>" +
+        '<p class="hint">양다리 중에는 프러포즈를 할 수 없고, 들키면 둘 다 잃을 수도 있습니다.</p>';
+    }
     if (s.지난히로인.length) html += "<h3>지나간 인연</h3>" + s.지난히로인.map(function (x) { return "<p>💔 " + esc(x.이름) + " (" + esc(x.관계) + "에서 이별)</p>"; }).join("");
     if (s.자녀) html += "<p>👶 자녀 " + s.자녀 + "명</p>";
     modal(html);

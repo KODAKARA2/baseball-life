@@ -17,15 +17,31 @@
   U.esc = esc; U.br = br;
 
   // 그림: 파일이 없으면 다음 후보 → 모두 없으면 기본 카드 디자인
-  U.art = function (keys, fallbackIcon, overlay, cls) {
+  U.art = function (keys, fallbackIcon, overlay, cls, bg) {
     keys = I.arr(keys).filter(Boolean);
-    return '<div class="art ' + (cls || "") + '"><div class="art-fallback">' + (fallbackIcon || "⚾") + '</div>' +
+    var st = bg ? ' style="background-image:url(images/' + esc(bg) + '.png),linear-gradient(160deg,#2c5d8f,#173556)"' : "";
+    return '<div class="art ' + (cls || "") + (bg ? " has-bg" : "") + '"' + st + '><div class="art-fallback">' + (fallbackIcon || "⚾") + '</div>' +
       (keys.length ? '<img alt="" data-keys="' + esc(keys.join(",")) + '" src="images/' + esc(keys[0]) + '.png" onerror="U.imgFail(this)">' : "") +
       (overlay ? '<div class="overlay">' + overlay + "</div>" : "") + "</div>";
   };
   U.imgFail = function (img) {
     var keys = img.dataset.keys.split(","), i = keys.indexOf(img.getAttribute("src").replace(/^images\/|\.png$/g, ""));
     if (i >= 0 && i + 1 < keys.length) img.src = "images/" + keys[i + 1] + ".png"; else img.remove();
+  };
+
+  // 카드 배경: 경기 관련은 경기장, 일상은 거리/건물 안 (카드에 배경: "경기장"|"거리"|"실내" 로 직접 정할 수도 있음)
+  var BG = { 경기장: "bg_stadium", 거리: "bg_street", 실내: "bg_indoor" };
+  var BG_RULES = [
+    ["경기장", /경기|마운드|타석|결승|대회|시즌|구장|등판|투구|홈런|안타|삼진|세이브|타자|9회|이닝|불펜|더블헤더|올스타|캠프|훈련|펑고|연습|드래프트|콜업|데뷔|국가대표|대표팀|전광판|관중|더그아웃|그라운드|도루|승부|외야|내야|스트라이크|번트|우천|마이너|빅리그|리그|타율/g],
+    ["실내", /집에|집 앞|집으로|우리 집|병원|재활|사무실|인터뷰|기자회견|라커룸|식당|카페|거실|면회|협상|계약서|단장실|영화관|노래방|PC방|모텔|호텔|센터|훈련소|교실|기숙사|부엌|식탁|클럽하우스|숙소|수술|레스토랑|옥상|성적표/g],
+    ["거리", /거리|공원|한강|골목|놀이공원|여행|바다|데이트|공항|포장마차|매점|버스|산책|소나기|우산|가게|마트|동네|놀이터|해변|바닷가|영화관 앞|대문/g]
+  ];
+  U.bgOf = function (card) {
+    if (!card) return null;
+    if (card.배경) return BG[card.배경] || card.배경;
+    var t = (card.제목 || "") + " " + (card.내용 || ""), best = null, bs = 0;
+    BG_RULES.forEach(function (r) { var m = t.match(r[1]), n = m ? m.length : 0; if (n > bs) { bs = n; best = r[0]; } });
+    return BG[best || (card.히로인 || card._만남 || card._끼어들기 ? "거리" : "경기장")];
   };
 
   U.heroKeys = function () {
@@ -44,7 +60,7 @@
       '<label>주인공 이름<input id="nm" maxlength="8" placeholder="예: 강민준" autocomplete="off"></label>' +
       '<h3>포지션</h3><div class="grid" id="pos"></div><h3>특기</h3><div class="grid" id="spec"><p class="hint">포지션을 먼저 고르세요</p></div>' +
       '<button class="big" id="go" disabled>인생 시작!</button></section>';
-    $("#pos").innerHTML = GD.포지션.map(function (p, i) { return '<button class="chip" data-i="' + i + '">' + esc(p.이름) + "</button>"; }).join("");
+    $("#pos").innerHTML = GD.포지션.map(function (p, i) { return p.시작선택 === false ? "" : '<button class="chip" data-i="' + i + '">' + esc(p.이름) + "</button>"; }).join("");
     function ok() { $("#go").disabled = !(sel.pos && sel.spec && $("#nm").value.trim()); }
     $("#pos").onclick = function (e) {
       var b = e.target.closest("button"); if (!b) return;
@@ -101,13 +117,16 @@
       var h = E.heroDef(), rel = s.히로인.관계;
       her = '<div class="mini heroine-mini ' + (animateHeroine ? "attach" : "") + '" onclick="U.openHeroine()">' +
         U.art(U.heroineKeys(h.아이디, rel), "💗", "<b>" + esc(h.이름) + "</b><small>" + esc(rel) + "</small>", "card-art") +
-        '<div class="aff">❤ ' + s.히로인.애정도 + bar(s.히로인.애정도, "love") + "</div></div>";
+        '<div class="aff">❤ ' + s.히로인.애정도 + bar(s.히로인.애정도, "love") + "</div>" +
+        (s.히로인2 ? '<div class="aff2">🤫 ' + esc(E.heroDef(s.히로인2.아이디).이름) + " ❤" + s.히로인2.애정도 + "</div>" : "") + "</div>";
     } else her = '<div class="mini empty" onclick="U.openHeroine()"><span>💗</span><small>인연을<br>기다리는 중</small></div>';
     $("#life").innerHTML = hero + mid + her;
   };
 
   U.cardArtKeys = function (card) {
     var s = E.state();
+    if (card._끼어들기) { var hi = E.heroDef(card._끼어들기); return { keys: U.heroineKeys(hi.아이디, "만남"), icon: "💗", label: "<b>" + esc(hi.이름) + "</b><small>끼어든 인연</small>" }; }
+    if (card.히로인 === "양다리" && s.히로인2) { var hs = E.heroDef(s.히로인2.아이디); return { keys: U.heroineKeys(hs.아이디, "연인"), icon: "🤫", label: "<b>" + esc(hs.이름) + "</b><small>비밀 연인 · ❤ " + s.히로인2.애정도 + "</small>" }; }
     if (card._만남) return { keys: U.heroineKeys(card._만남, "만남"), icon: "💗", label: "<b>" + esc(E.heroDef(card._만남).이름) + "</b><small>첫 만남</small>" };
     if (card.히로인 && s.히로인) { var h = E.heroDef(); return { keys: U.heroineKeys(h.아이디, s.히로인.관계), icon: "💗", label: "<b>" + esc(h.이름) + "</b><small>" + esc(s.히로인.관계) + " · ❤ " + s.히로인.애정도 + "</small>" }; }
     var g = card.그림;
@@ -121,7 +140,7 @@
     if (!c) return;
     var a = U.cardArtKeys(c), r = s.결과;
     var front = '<div class="face front">' +
-      (a ? U.art(a.keys, a.icon, a.label, "banner") : '<div class="art banner plain"><div class="art-fallback">' + (sd.아이콘 || "⚾") + "</div></div>") +
+      (a ? U.art(a.keys, a.icon, a.label, "banner", U.bgOf(c)) : U.art([], sd.아이콘 || "⚾", null, "banner plain", U.bgOf(c))) +
       '<div class="txt"><div class="tag">' + esc(c.시스템 ? "시즌" : s.시기) + (c.히로인 || c._만남 ? " · 💗" : "") + "</div><h2>" + esc(E.tpl(c.제목)) + "</h2><p>" + br(E.tpl(c.내용)) + "</p></div></div>";
     var back = '<div class="face back">' + (r ? U.resultHTML(r) : "") + "</div>";
     $("#table").innerHTML = '<div class="card3d ' + (r ? "flipped " : "") + (deal ? "deal" : "") + '" id="card">' + front + back + "</div>";
@@ -141,8 +160,9 @@
 
   U.resultHTML = function (r) {
     var chips = U.chips(r.효과);
-    var pic = r.그림 ? U.art([r.그림].concat(U.heroKeys()), U.icon(), "<b>" + esc(E.state().이름) + "</b>", "banner small") : "";
-    return pic + '<div class="txt">' + (r.성공 === true ? '<div class="tag ok">성공!</div>' : r.성공 === false ? '<div class="tag ng">실패…</div>' : "") +
+    var pic = r.그림 ? U.art([r.그림].concat(U.heroKeys()), U.icon(), "<b>" + esc(E.state().이름) + "</b>", "banner small", U.bgOf(E.state().현재카드)) : "";
+    var mg = r.미니게임 ? '<div class="tag">⏱ ' + r.미니게임.타이밍.toFixed(2) + "초 · 성공 확률 " + Math.round(r.미니게임.확률 * 100) + "%</div> " : "";
+    return pic + '<div class="txt">' + mg + (r.성공 === true ? '<div class="tag ok">성공!</div>' : r.성공 === false ? '<div class="tag ng">실패…</div>' : "") +
       "<p>" + br(r.결과 || "…") + '</p><div class="fxs">' + chips + "</div>" +
       (r.알림 || []).map(function (n) { return '<div class="note">' + esc(n) + "</div>"; }).join("") +
       (r.뉴스 ? '<div class="news"><b>📰 야구 소식</b>' + esc(r.뉴스) + "</div>" : "") + "</div>";
@@ -159,17 +179,54 @@
   };
 
   var busy = false;
+  var BALL = '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#fffdf6" stroke="#d8d2c4" stroke-width="2"/>' +
+    '<path d="M24 12C42 30 42 70 24 88M76 12C58 30 58 70 76 88" fill="none" stroke="#d33a2c" stroke-width="3.2" stroke-dasharray="5 4"/></svg>';
+  // 승부의 순간 미니게임: 5초부터 줄어드는 시계를 목표(1.0초)에 가깝게 멈출수록 성공 확률이 높음
+  U.miniGame = function (cb) {
+    var M = GD.설정.미니게임 || {}, start = M.시작초 || 5, target = M.목표초 || 1, top = M.최고확률 || 0.95;
+    var pit = E.pos().분류 === "투수", m = document.createElement("div");
+    m.className = "modal mg-wrap";
+    m.innerHTML = '<div class="mg"><div class="mg-title">⚾ 승부의 순간!</div>' +
+      '<div class="mg-sub">시계가 <b>' + target.toFixed(2) + '초</b>에 가장 가까울 때 공을 누르세요</div>' +
+      '<div class="scoreboard"><span class="mg-time">' + start.toFixed(2) + "</span><small>SEC</small></div>" +
+      '<div class="mg-track"><i class="mg-fill"></i><b class="mg-target" style="left:' + (100 - target / start * 100) + '%"></b></div>' +
+      '<button class="mg-ball">' + BALL + "<span>" + (pit ? "투구!" : "스윙!") + '</span></button><div class="mg-result"></div></div>';
+    document.body.appendChild(m);
+    var t0 = performance.now(), done = false, timeEl = m.querySelector(".mg-time"), fill = m.querySelector(".mg-fill");
+    function left() { return Math.max(0, start - (performance.now() - t0) / 1000); }
+    function finish(t) {
+      if (done) return; done = true;
+      var diff = Math.abs(t - target), p = Math.max(M.최저확률 || 0.05, Math.min(top, top - diff * (M.감소 || 0.7)));
+      timeEl.textContent = t.toFixed(2); m.querySelector(".mg-ball").classList.add(pit ? "throw" : "hit");
+      m.querySelector(".mg-result").innerHTML = (diff <= 0.05 ? "🎯 퍼펙트 타이밍!" : diff <= 0.2 ? "👍 좋은 타이밍!" : diff <= 0.5 ? "😅 조금 빗나갔다" : "😱 타이밍이 크게 어긋났다") +
+        " <b>성공 확률 " + Math.round(p * 100) + "%</b>";
+      setTimeout(function () { m.remove(); cb({ 확률: p, 타이밍: Math.round(t * 100) / 100 }); }, 1200);
+    }
+    (function frame() {
+      if (done) return; var t = left();
+      timeEl.textContent = t.toFixed(2); fill.style.width = ((start - t) / start * 100) + "%";
+      if (t <= 0) finish(0); else requestAnimationFrame(frame);
+    })();
+    m.querySelector(".mg-ball").addEventListener("pointerdown", function (e) { e.preventDefault(); finish(left()); });
+  };
+
   U.choose = function (i) {
+    if (busy) return;
+    var s = E.state(), o = s.현재카드.선택지[s.현재옵션[i]];
+    if (o.미니게임 && o.확률결과) { busy = true; return U.miniGame(function (mg) { busy = false; doChoose(i, mg); }); }
+    doChoose(i);
+  };
+  function doChoose(i, mg) {
     if (busy) return; busy = true;
     var before = E.state().히로인 && E.state().히로인.아이디;
-    var r = E.choose(i);
+    var r = E.choose(i, mg);
     var after = E.state().히로인 && E.state().히로인.아이디;
     var card = $("#card"); card.querySelector(".back").innerHTML = U.resultHTML(r);
     card.classList.remove("deal"); card.classList.add("flipped");
     if (before && !after) { var m = document.querySelector(".heroine-mini"); if (m) m.classList.add("detach"); }
     setTimeout(function () { U.renderTop(); if (!(before && !after)) U.renderLife(!before && after); U.renderActions(); busy = false; }, before && !after ? 700 : 350);
     if (before && !after) setTimeout(function () { U.renderLife(); }, 750);
-  };
+  }
   U.next = function () {
     if (busy) return; busy = true;
     $("#card").classList.add("discard");

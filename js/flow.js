@@ -90,14 +90,14 @@
     }
     var L = cfg().연애;
     if (s.히로인) {
-      var hc = all.filter(function (c) { return c.히로인; });
+      var hc = all.filter(function (c) { return c.히로인 || c._끼어들기; });
       if (hc.length && rnd() < L.히로인카드확률) return I.weighted(hc);
     } else {
       var mc = all.filter(function (c) { return c._만남; });
       var mb = s.만남버프 && s.만남버프.남은 > 0 ? s.만남버프.값 : 0;
       if (mc.length && rnd() < L.만남확률 + mb) return I.weighted(mc);
     }
-    var normal = all.filter(function (c) { return !c.히로인 && !c._만남; });
+    var normal = all.filter(function (c) { return !c.히로인 && !c._만남 && !c._끼어들기; });
     if (normal.length) return I.weighted(normal);
     if (all.length) return I.weighted(all);
     return FALLBACK;
@@ -117,6 +117,26 @@
     s._용돈나이 = s.나이; s.돈 = (s.돈 || 0) + M.용돈; return M.용돈;
   }
   E.allowance = allowance;
+  // ---------------- 양다리 ----------------
+  function startAffair(id) {
+    var s = S(); s.히로인2 = { 아이디: id, 관계: "연인", 애정도: cfg().연애.양다리시작애정도 || 40 }; s.만난히로인.push(id);
+  }
+  function leave(h, why) { var d = E.heroDef(h.아이디); S().지난히로인.push({ 아이디: d.아이디, 이름: d.이름, 관계: h.관계, 결말: why }); return d.이름; }
+  function resolveAffair(mode) {
+    var s = S(), notes = [];
+    if (!s.히로인2) return notes;
+    if (mode === "본처") notes.push("💔 " + leave(s.히로인2, "양다리 끝에 이별") + " 카드가 떨어져 나갔다");
+    else if (mode === "상대") {
+      notes.push("💔 " + leave(s.히로인, "양다리 끝에 이별") + " 카드가 떨어져 나갔다");
+      s.히로인 = { 아이디: s.히로인2.아이디, 관계: "연인", 애정도: s.히로인2.애정도 };
+    } else {
+      notes.push("💔 " + leave(s.히로인, "양다리 발각") + ", " + leave(s.히로인2, "양다리 발각") + " 카드가 모두 떨어져 나갔다");
+      s.히로인 = null;
+    }
+    s.히로인2 = null; E.applyEffects(cfg().연애.이별타격, {});
+    return notes;
+  }
+
   E.refreshOptions = function () { var s = S(); if (s.단계 === "카드" && s.현재카드) computeOptions(s.현재카드); };
 
   // 야구 뉴스: 카드를 넘길 때 가끔 한 줄씩
@@ -133,6 +153,8 @@
     var s = S();
     if (s.엔딩) { s.단계 = "엔딩"; E.save(); return; }
     var c = I.clone(drawCard());
+    s._상대 = c._끼어들기 || null;
+    s._새포지션 = (c.선택지 || []).some(function (o) { return o.포지션변경; }) ? I.pick(E.pos().변경후보 || [s.포지션]) : null;
     s.현재카드 = c;
     s.현재옵션 = [];
     computeOptions(c);
@@ -141,26 +163,40 @@
   };
 
   // ---------------- 선택 ----------------
-  E.choose = function (i) {
+  E.choose = function (i, mg) {
     var s = S(), card = s.현재카드, o = card.선택지[s.현재옵션[i]];
     var res = { 효과: {}, 결과: o.결과 || "", 그림: o.그림변경 || null, 알림: [] };
     var out = o;
     if (o.비용) { s.돈 = Math.max(0, (s.돈 || 0) - o.비용); res.효과.돈 = -o.비용; }
     if (o.비용비율) { var pay = Math.floor((s.돈 || 0) * o.비용비율 / 100); s.돈 -= pay; res.효과.돈 = (res.효과.돈 || 0) - pay; }
     if (o.확률결과) {
-      var ok = rnd() < (o.확률결과.확률 == null ? 0.5 : o.확률결과.확률);
+      var base = o.확률결과.확률 == null ? 0.5 : o.확률결과.확률;
+      var ok = rnd() < (mg && mg.확률 != null ? mg.확률 : base);
+      if (mg) res.미니게임 = mg;
       out = Object.assign({}, o, ok ? o.확률결과.성공 : o.확률결과.실패);
       res.성공 = ok; res.결과 = out.결과 || ""; res.그림 = out.그림변경 || res.그림;
     }
     I.applyEffects(out.효과, res.효과);
     arr(out.플래그).forEach(function (f) { s.플래그[f] = true; });
     arr(out.플래그해제).forEach(function (f) { delete s.플래그[f]; });
-    if (out.일군 != null) s.일군 = out.일군;
+    if (out.일군 != null) { s.일군 = out.일군; if (!out.일군) s._강등턴 = s.총턴; }
     if (out.자녀) s.자녀 += out.자녀;
     if (out.기록) s.순간.push({ 나이: s.나이, 글: E.tpl(out.기록) });
     if (out.수상) I.addAward(out.수상);
     if (out.팀이동) I.changeTeam();
     if (out.인연시작 && card._만남) { I.attachHeroine(card._만남); res.알림.push("💞 " + E.heroDef().이름 + " 카드가 인생 카드 옆에 붙었다"); }
+    if (out.양다리시작 && card._끼어들기) { startAffair(card._끼어들기); res.알림.push("🤫 " + E.heroDef(card._끼어들기).이름 + " 카드가 몰래 붙었다 (양다리)"); }
+    if (out.갈아타기 && card._끼어들기) {
+      var oldName = s.히로인 ? E.heroDef().이름 : "";
+      I.setRelation("이별"); I.attachHeroine(card._끼어들기); s.히로인.관계 = "연인"; s.히로인.애정도 = 50;
+      res.알림.push("💔 " + oldName + " 카드가 떨어지고 💞 " + E.heroDef().이름 + " 카드가 붙었다");
+    }
+    if (out.양다리정리) res.알림 = res.알림.concat(resolveAffair(out.양다리정리));
+    if (out.포지션변경 && s._새포지션 && s._새포지션 !== s.포지션) {
+      var oldPos = s.포지션; s.포지션 = s._새포지션;
+      s.순간.push({ 나이: s.나이, 글: oldPos + "에서 " + s.포지션 + "로 포지션 변경" });
+      res.알림.push("🔄 포지션 변경: " + oldPos + " → " + s.포지션);
+    }
     if (out.관계) {
       var hn = s.히로인 ? E.heroDef().이름 : "";
       I.setRelation(out.관계);
@@ -216,10 +252,20 @@
     if (s.부상 > 0) { s.부상--; s.올해부상카드++; if (!s.부상) notes.push("🩹 부상에서 회복했다"); }
     else growth();
     if (s.슬럼프 > 0) { s.슬럼프--; if (!s.슬럼프) notes.push("🌤️ 슬럼프에서 벗어났다"); }
+    if (s.히로인2 && !card.히로인 && !card._끼어들기) {
+      s.히로인2.애정도 -= L.매카드감소 + (o.집중 ? L.집중감소추가 : 0);
+      if (s.히로인2.애정도 <= 0) { notes.push("💔 " + leave(s.히로인2, "연락이 끊김") + "와(과) 연락이 끊겼다"); s.히로인2 = null; }
+    }
     if (s.만남버프 && s.만남버프.남은 > 0) s.만남버프.남은--;
     s.능력치.컨디션 = clamp(s.능력치.컨디션 + C.매카드회복, 0, 100);
     var H = cfg().행복도 || {};
     if (H.매카드회귀 && s.행복도 > H.기준) s.행복도 = Math.max(H.기준, s.행복도 - H.매카드회귀);
+    // 능력치가 낮은데 부상·슬럼프면 2군(마이너)으로 내려갈 수 있음
+    var D = cfg().강등 || {}, lowStat = E.avg() < E.cap() * (D.기준비율 || 0.8);
+    if ((s.부상 > 0 || s.슬럼프 > 0) && lowStat && rnd() < (D.확률 || 0)) {
+      if (s.시기 === "프로" && s.일군) { s.일군 = false; s._강등턴 = s.총턴; notes.push("⬇️ 몸이 따라 주지 않아 2군으로 내려갔다"); }
+      else if (s.시기 === "메이저리그" && s.플래그.빅리거) { delete s.플래그.빅리거; s.플래그.마이너 = true; s._강등턴 = s.총턴; notes.push("⬇️ 마이너리그로 내려갔다"); }
+    }
     var active = ["고등학교", "대학", "프로", "메이저리그"].indexOf(s.시기) >= 0;
     if (active && !s.부상) {
       var p = C.기본부상확률 + (s.능력치.컨디션 < C.부상위험기준 ? C.부상확률 : 0);
