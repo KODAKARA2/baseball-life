@@ -219,3 +219,5 @@ em.look.hand { background: #ffd6e7; color: #b0185e; }
 em.look.ugly { background: #d9d4c7; color: #4a4236; }
 .bonus { text-align: center; background: rgba(232,182,74,.2); color: #ffe3a3; border-radius: 12px; padding: 10px; font-weight: 700; }
 .big.alt { background: #6a4c93; box-shadow: 0 4px 0 #43305e; margin-top: 12px; }
+.big.alt2 { background: #6b705c; box-shadow: 0 4px 0 #43463a; margin-top: 12px; }
+.big.alt3 { background: #2a9d8f; box-shadow: 0 4px 0 #1b6a61; margin-top: 12px; }
