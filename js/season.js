@@ -45,7 +45,7 @@
 
   function awards(L) {
     var s = S(), A = cfg().수상, P = A.점수, got = [], pit = E.pos().분류 === "투수";
-    function give(n, pts) { got.push(n); I.addAward(n, L.연도); s.성적 += pts || 0; }
+    function give(n, pts) { got.push(n); I.addAward(n, L.연도); s.성적 += E.looksGain(pts || 0, "성적행복"); }
     if (!L.메이저) {
       if (!s.플래그._신인왕체크) { s.플래그._신인왕체크 = true; if (L.경기력 >= A.신인왕) give("신인왕", P.신인왕); }
       if (L.경기력 >= A.MVP && rnd() < 0.5) give("MVP", P.MVP);
@@ -106,6 +106,7 @@
     var fx = Object.assign({}, e.item.효과 || {}), lim = (cfg().상점 || {}).애정도한계;
     if (lim != null && fx.애정도 > lim) fx.애정도 = lim;          // 아이템으로 오르는 애정도는 한계까지만
     var out = {}; E.applyEffects(fx, out);
+    if (lim != null && out.애정도 > lim && s.히로인) { s.히로인.애정도 -= out.애정도 - lim; out.애정도 = lim; }   // 외모 보너스가 있어도 한계까지만
     if (fx.만남확률) { s.만남버프 = { 값: fx.만남확률 / 100, 남은: e.item.지속 || (cfg().상점 || {}).버프지속 || 10 }; out.만남확률 = fx.만남확률; }
     if (e.item.기록) s.순간.push({ 나이: s.나이, 글: E.tpl(e.item.기록) });
     E.refreshOptions(); E.save();
@@ -115,7 +116,7 @@
   E.endYear = function () {
     var s = S(), L = seasonLine();
     if (L) {
-      s.기록.push(L); s.성적 += L.가치;
+      s.기록.push(L); s.성적 += E.looksGain(L.가치, "성적행복");
       var got = awards(L);
       var lines = [s.팀 + " · " + (L.메이저 ? "메이저리그" : "1군"), fmtLine(L), "💰 연봉 " + E.money(salary(L))];
       if (got.length) lines.push("🏅 " + got.join(", "));
@@ -162,6 +163,7 @@
       var s = JSON.parse(raw); if (!s || s.버전 !== 1) return null;
       // 이전 버전 저장 파일에 없는 항목 채우기
       s.돈 = s.돈 || 0; s.총수입 = s.총수입 || 0; s.구매 = s.구매 || {}; s.본뉴스 = s.본뉴스 || {};
+      if (!s.외모) s.외모 = 1 + Math.floor(Math.random() * 10);
       I.buildCards(); I.S = s; return s;
     } catch (e) { return null; }
   };

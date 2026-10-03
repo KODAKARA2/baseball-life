@@ -212,3 +212,10 @@ html, body { overflow-x: hidden; }
 .sheet-close { display: block; width: 100%; margin-top: 18px; padding: 15px; min-height: 52px; border-radius: 14px;
   background: #2b2d42; color: #fff; font-size: 16px; font-weight: 800; }
 .sheet-close:active { transform: translateY(1px); }
+
+/* ---------- 외모 ---------- */
+em.look { font-style: normal; font-weight: 800; font-size: 10px; padding: 1px 6px; border-radius: 8px; }
+em.look.hand { background: #ffd6e7; color: #b0185e; }
+em.look.ugly { background: #d9d4c7; color: #4a4236; }
+.bonus { text-align: center; background: rgba(232,182,74,.2); color: #ffe3a3; border-radius: 12px; padding: 10px; font-weight: 700; }
+.big.alt { background: #6a4c93; box-shadow: 0 4px 0 #43305e; margin-top: 12px; }

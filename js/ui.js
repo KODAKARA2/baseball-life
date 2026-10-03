@@ -44,6 +44,13 @@
     return BG[best || (card.히로인 || card._만남 || card._끼어들기 ? "거리" : "경기장")];
   };
 
+  // 외모 레벨 표시: "외모 9 미남"
+  U.looksTag = function () {
+    var s = E.state(), L = GD.설정.외모 || {}, v = s.외모 || 5;
+    return "외모 <b>" + v + "</b>" + (v >= (L.미남 || 8) ? ' <em class="look hand">미남</em>' : v <= (L.추남 || 3) ? ' <em class="look ugly">추남</em>' : "");
+  };
+  U.BONUS_KEY = "baseball-life-bonus-looks";
+
   U.heroKeys = function () {
     var s = E.state(), base = s.단계 === "엔딩" ? "hero_retired" : (I.sdef(s.시기).그림 || "hero_pro");
     if (s.부상 > 0) return ["hero_injured", base];
@@ -60,6 +67,8 @@
       '<label>주인공 이름<input id="nm" maxlength="8" placeholder="예: 강민준" autocomplete="off"></label>' +
       '<h3>포지션</h3><div class="grid" id="pos"></div><h3>특기</h3><div class="grid" id="spec"><p class="hint">포지션을 먼저 고르세요</p></div>' +
       '<button class="big" id="go" disabled>인생 시작!</button></section>';
+    var bonus = 0; try { bonus = +localStorage.getItem(U.BONUS_KEY) || 0; } catch (e) {}
+    if (bonus) $(".setup .sub").insertAdjacentHTML("afterend", '<p class="bonus">✨ 이번 인생은 외모 레벨 ' + bonus + "에서 시작합니다</p>");
     $("#pos").innerHTML = GD.포지션.map(function (p, i) { return p.시작선택 === false ? "" : '<button class="chip" data-i="' + i + '">' + esc(p.이름) + "</button>"; }).join("");
     function ok() { $("#go").disabled = !(sel.pos && sel.spec && $("#nm").value.trim()); }
     $("#pos").onclick = function (e) {
@@ -75,7 +84,11 @@
       sel.spec = b.dataset.n; [].forEach.call($("#spec").children, function (c) { c.classList.toggle("on", c === b); }); ok();
     };
     $("#nm").oninput = ok;
-    $("#go").onclick = function () { E.newGame($("#nm").value.trim(), sel.pos.이름, sel.spec); U.showGame(); };
+    $("#go").onclick = function () {
+      E.newGame($("#nm").value.trim(), sel.pos.이름, sel.spec, bonus ? { 외모: bonus } : null);
+      try { localStorage.removeItem(U.BONUS_KEY); } catch (e) {}
+      U.showGame();
+    };
   };
 
   // ---------------- 게임 화면 ----------------
@@ -108,7 +121,7 @@
       U.art(U.heroKeys(), '<span class="posicon">' + U.icon() + "</span>",
         "<b>" + esc(s.이름) + '</b><small><span class="pi">' + U.icon() + "</span>" + esc(p.약칭) + "</small>", "card-art") + "</div>";
     var mid = '<div class="lifestats">' + '<div class="row">' + stats + "</div>" +
-      '<div class="row common"><span>멘탈 <b>' + s.능력치.멘탈 + "</b></span><span>인기 <b>" + s.능력치.인기 + "</b></span><span>컨디션 <b>" + s.능력치.컨디션 + "</b></span>" +
+      '<div class="row common"><span>' + U.looksTag() + '</span><span>멘탈 <b>' + s.능력치.멘탈 + "</b></span><span>인기 <b>" + s.능력치.인기 + "</b></span><span>컨디션 <b>" + s.능력치.컨디션 + "</b></span>" +
       (s.시기 === "메이저리그" ? "<span>적응 <b>" + s.능력치.적응 + "</b></span>" : "") + "</div>" +
       '<div class="row"><span>😊 행복도 ' + bar(s.행복도, "happy") + "</span><span>🏅 성적 <b>" + s.성적 + "</b></span>" + status + "</div>" +
       '<div class="row"><button class="money" onclick="U.openShop()">💰 ' + E.money(s.돈) + ' · 상점</button></div></div>';

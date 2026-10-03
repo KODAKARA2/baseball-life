@@ -29,6 +29,20 @@
   E.heroDef = function (id) { return GD.히로인.find(function (h) { return h.아이디 === (id || (S.히로인 && S.히로인.아이디)); }); };
   E.state = function () { return S; };
 
+  // 외모: 1~10. 잘생길수록 히로인·성적·행복도 이득, 못생길수록 능력치가 잘 오름
+  E.looksMult = function (kind) {
+    var L = cfg().외모 || {}, f = S && S.외모 ? (S.외모 - 5.5) / 4.5 : 0;
+    if (kind === "이성") return 1 + (L.이성최대 || 0) * f;
+    if (kind === "성적행복") return 1 + (L.성적행복최대 || 0) * f;
+    if (kind === "능력치") return 1 + (L.능력치최대 || 0) * Math.max(0, -f);
+    return 1;
+  };
+  E.looksGain = function (v, kind) {
+    if (!(v > 0)) return v;
+    var x = v * E.looksMult(kind), n = Math.floor(x);
+    return n + (Math.random() < x - n ? 1 : 0);
+  };
+
   // ---------------- 카드 목록 만들기 ----------------
   var CARDS = [];
   function buildCards() {
@@ -64,7 +78,7 @@
       case "애정도": return S.히로인 ? S.히로인.애정도 : 0; case "팀이동": return S.팀이동;
       case "시기카드": return S.시기턴; case "애정도2": return S.히로인2 ? S.히로인2.애정도 : 0;
       case "은퇴나이": return S.은퇴나이 || S.나이; case "이별수": return S.지난히로인.length;
-      case "수상수": return S.수상.length; case "총수입": return S.총수입 || 0;
+      case "수상수": return S.수상.length; case "총수입": return S.총수입 || 0; case "외모": return S.외모 || 5;
       case "이군기간": return S._강등턴 != null ? S.총턴 - S._강등턴 : 99; case "돈": return S.돈 || 0;
     }
     return 0;
@@ -137,6 +151,7 @@
   function addStat(k, v, out) {
     if (S.능력치[k] == null) return;
     var cur = S.능력치[k], nv;
+    if (E.posStats().indexOf(k) >= 0 && v > 0) v = E.looksGain(v, "능력치");
     if (E.posStats().indexOf(k) >= 0) nv = v > 0 ? (cur >= E.cap() ? cur : Math.min(E.cap(), cur + v)) : Math.max(1, cur + v);
     else nv = clamp(cur + v, 0, 100);
     S.능력치[k] = nv; if (out && nv !== cur) out[k] = (out[k] || 0) + (nv - cur);
@@ -151,10 +166,10 @@
       else if (k === "부상감소") { S.부상 = Math.floor(S.부상 * (100 - v) / 100); out.부상감소 = v; }
       else if (k === "슬럼프감소") { S.슬럼프 = Math.floor(S.슬럼프 * (100 - v) / 100); out.슬럼프감소 = v; }
       else if (k === "슬럼프") { S.슬럼프 = v <= 0 ? 0 : Math.max(S.슬럼프, v); out.슬럼프 = v; }
-      else if (k === "애정도2") { if (S.히로인2) { var o2 = S.히로인2.애정도; S.히로인2.애정도 = clamp(o2 + v, 0, 100); out.애정도2 = S.히로인2.애정도 - o2; } }
-      else if (k === "애정도") { if (S.히로인) { var o = S.히로인.애정도; S.히로인.애정도 = clamp(o + v, 0, 100); out.애정도 = S.히로인.애정도 - o; } }
-      else if (k === "행복도") { var h = S.행복도; S.행복도 = clamp(h + v, 0, 100); out.행복도 = S.행복도 - h; }
-      else if (k === "성적") { S.성적 = Math.max(0, S.성적 + v); out.성적 = v; }
+      else if (k === "애정도2") { v = E.looksGain(v, "이성"); if (S.히로인2) { var o2 = S.히로인2.애정도; S.히로인2.애정도 = clamp(o2 + v, 0, 100); out.애정도2 = S.히로인2.애정도 - o2; } }
+      else if (k === "애정도") { v = E.looksGain(v, "이성"); if (S.히로인) { var o = S.히로인.애정도; S.히로인.애정도 = clamp(o + v, 0, 100); out.애정도 = S.히로인.애정도 - o; } }
+      else if (k === "행복도") { v = E.looksGain(v, "성적행복"); var h = S.행복도; S.행복도 = clamp(h + v, 0, 100); out.행복도 = S.행복도 - h; }
+      else if (k === "성적") { v = E.looksGain(v, "성적행복"); S.성적 = Math.max(0, S.성적 + v); out.성적 = v; }
       else if (k === "돈") { S.돈 = Math.max(0, (S.돈 || 0) + v); if (v > 0) S.총수입 = (S.총수입 || 0) + v; out.돈 = (out.돈 || 0) + v; }
       else addStat(k, v, out);
     });
