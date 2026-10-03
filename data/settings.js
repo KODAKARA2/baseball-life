@@ -127,5 +127,14 @@
   //   상속비율: 아버지 재산 중 프로 입단 때 받을 수 있는 비율 / 외모변동: 아버지 외모에서 ± 이만큼 랜덤
   이세: { 라이벌: "백하준", 능력치보너스: 2, 인기보너스: 10, 상속비율: 0.3, 외모변동: 2 },
 
+  // 그림 출처: 무료 그림(CC 라이선스)을 쓰면 여기에 한 줄 추가하세요. 메뉴 → '그림 출처'에 표시됩니다.
+  그림출처: [
+    { 그림: "bg_classroom", 제목: "Classroom 002", 작가: "Midnight68", 라이선스: "CC0", 주소: "https://opengameart.org/content/classroom-002" },
+    { 그림: "bg_school", 제목: "Anime school background", 작가: "Homunculus", 라이선스: "CC BY 3.0", 주소: "https://opengameart.org/content/anime-school-background" },
+    { 그림: "bg_home, bg_room", 제목: "Visual Novel House Backgrounds", 작가: "Spiral Atlas", 라이선스: "CC BY 4.0", 주소: "https://opengameart.org/content/visual-novel-house-backgrounds" },
+    { 그림: "bg_office", 제목: "Visual Novel Tutorial Set", 작가: "DasBilligeAlien", 라이선스: "CC0", 주소: "https://opengameart.org/content/visual-novel-tutorial-set" },
+    { 그림: "bg_hall", 제목: "Visual Novel Background: Auditorium", 작가: "frances", 라이선스: "CC BY 3.0", 주소: "https://opengameart.org/content/visual-novel-background-auditorium" }
+  ],
+
   뉴스확률: 0.25           // 카드 한 장을 넘길 때 야구 소식(data/news.js)이 나올 확률
 });

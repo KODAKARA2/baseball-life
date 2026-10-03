@@ -20,6 +20,7 @@
       '<button onclick="U.closeModals();U.openCareer()">📊 커리어 기록</button>' +
       '<button onclick="U.closeModals();U.openShop()">💰 지갑 · 상점</button>' +
       '<button onclick="U.closeModals();U.openCollection()">📖 엔딩 도감 · 업적</button>' +
+      '<button onclick="U.closeModals();U.openCredits()">🎨 그림 출처</button>' +
       '<button class="danger" onclick="U.newLife()">🔄 새 인생 시작</button></div>' +
       '<p class="hint">진행 상황은 카드를 넘길 때마다 자동 저장됩니다.</p>');
   };
@@ -167,6 +168,15 @@
     var b = mode === 2 ? { 이어하기: { 아버지: s.이름, 외모: s.외모, 돈: s.돈, 세대: s.세대 || 1 } } : mode === 10 ? { 외모: 10 } : mode === 1 ? { 외모: 1 } : mode === -1 ? { 랜덤보너스: true } : null;
     try { if (b) localStorage.setItem(U.BONUS_KEY, JSON.stringify(b)); else localStorage.removeItem(U.BONUS_KEY); } catch (e) {}
     E.reset(); U.showSetup();
+  };
+
+  // ---------------- 그림 출처 (settings.js 의 그림출처) ----------------
+  var LIC = { "CC0": "https://creativecommons.org/publicdomain/zero/1.0/", "CC BY 3.0": "https://creativecommons.org/licenses/by/3.0/", "CC BY 4.0": "https://creativecommons.org/licenses/by/4.0/" };
+  U.openCredits = function () {
+    modal("<h2>🎨 그림 출처</h2>" + (GD.설정.그림출처 || []).map(function (c) {
+      return '<div class="col-item"><div><b>' + esc(c.제목) + "</b><small>" + esc(c.작가) + " · " + (LIC[c.라이선스] ? '<a href="' + LIC[c.라이선스] + '" target="_blank" rel="noopener">' + esc(c.라이선스) + "</a>" : esc(c.라이선스)) +
+        ' · <a href="' + esc(c.주소) + '" target="_blank" rel="noopener">원본</a><br>사용: ' + esc(c.그림) + "</small></div></div>";
+    }).join("") + '<p class="hint">게임에 맞게 잘라내고 크기를 바꿔 사용했습니다. 그 밖의 그림은 이 게임을 위해 그린 것입니다.</p>');
   };
 
   // ---------------- 엔딩 도감 · 업적 ----------------

@@ -19,7 +19,7 @@
   // 그림: 파일이 없으면 다음 후보 → 모두 없으면 기본 카드 디자인
   U.art = function (keys, fallbackIcon, overlay, cls, bg) {
     keys = I.arr(keys).filter(Boolean);
-    var st = bg ? ' style="background-image:url(images/' + esc(bg) + '.png),linear-gradient(160deg,#2c5d8f,#173556)"' : "";
+    var st = bg ? ' style="background-image:url(images/' + esc(bg) + (/\.\w+$/.test(bg) ? "" : ".png") + '),linear-gradient(160deg,#2c5d8f,#173556)"' : "";
     return '<div class="art ' + (cls || "") + (bg ? " has-bg" : "") + '"' + st + '><div class="art-fallback">' + (fallbackIcon || "⚾") + '</div>' +
       (keys.length ? '<img alt="" data-keys="' + esc(keys.join(",")) + '" src="images/' + esc(keys[0]) + '.png" onerror="U.imgFail(this)">' : "") +
       (overlay ? '<div class="overlay">' + overlay + "</div>" : "") + "</div>";
@@ -29,19 +29,30 @@
     if (i >= 0 && i + 1 < keys.length) img.src = "images/" + keys[i + 1] + ".png"; else img.remove();
   };
 
-  // 카드 배경: 경기 관련은 경기장, 일상은 거리/건물 안 (카드에 배경: "경기장"|"거리"|"실내" 로 직접 정할 수도 있음)
-  var BG = { 경기장: "bg_stadium", 거리: "bg_street", 실내: "bg_indoor" };
+  // 카드 배경: 내용의 낱말을 보고 장소를 고름 (카드에 배경: "경기장"|"거리"|"실내"|"교실"|"학교"|"집"|"방"|"사무실"|"행사장" 으로 직접 정할 수도 있음)
+  var BG = { 경기장: "bg_stadium", 거리: "bg_street", 실내: "bg_indoor", 교실: "bg_classroom.jpg", 학교: "bg_school.jpg",
+    집: "bg_home.jpg", 방: "bg_room.jpg", 사무실: "bg_office.jpg", 행사장: "bg_hall.jpg" };
+  var SCHOOL = ["초등학교", "중학교", "고등학교", "대학", "드래프트", "대학드래프트"];
+  // 위에 있는 장소일수록 낱말 수가 같을 때 먼저 골라짐
   var BG_RULES = [
     ["경기장", /경기|마운드|타석|결승|대회|시즌|구장|등판|투구|홈런|안타|삼진|세이브|타자|9회|이닝|불펜|더블헤더|올스타|캠프|훈련|펑고|연습|드래프트|콜업|데뷔|국가대표|대표팀|전광판|관중|더그아웃|그라운드|도루|승부|외야|내야|스트라이크|번트|우천|마이너|빅리그|리그|타율/g],
-    ["실내", /집에|집 앞|집으로|우리 집|병원|재활|사무실|인터뷰|기자회견|라커룸|식당|카페|거실|면회|협상|계약서|단장실|영화관|노래방|PC방|모텔|호텔|센터|훈련소|교실|기숙사|부엌|식탁|클럽하우스|숙소|수술|레스토랑|옥상|성적표/g],
-    ["거리", /거리|공원|한강|골목|놀이공원|여행|바다|데이트|공항|포장마차|매점|버스|산책|소나기|우산|가게|마트|동네|놀이터|해변|바닷가|영화관 앞|대문/g]
+    ["행사장", /기자회견|시상식|입단식|은퇴식|졸업식|행사|축하연|팬미팅|사인회|발표회|무대/g],
+    ["사무실", /사무실|협상|계약서|계약|단장실|에이전트|프런트|구단주|트레이드/g],
+    ["실내", /병원|재활|인터뷰|라커룸|식당|카페|면회|영화관|노래방|PC방|모텔|호텔|센터|훈련소|기숙사|클럽하우스|숙소|수술|레스토랑|옥상/g],
+    ["교실", /교실|수업|시험|숙제|반장|칠판|성적표|자습|담임|학급|공부|노트|책상/g],
+    ["학교", /교문|운동장|축제|복도|하굣길|등굣길|급식|방과 후|점심시간|학교 앞|매점/g],
+    ["집", /집에|집으로|우리 집|거실|부엌|식탁|부모님|엄마|아빠|아내|명절|가족|밥상|신혼집|소파/g],
+    ["방", /내 방|방에|방 안|침대|새벽|밤새|일기|이불|잠이|잠을|문자/g],
+    ["거리", /거리|공원|한강|골목|놀이공원|여행|바다|데이트|공항|포장마차|버스|산책|소나기|우산|가게|마트|동네|놀이터|해변|바닷가|영화관 앞|대문|집 앞/g]
   ];
   U.bgOf = function (card) {
     if (!card) return null;
     if (card.배경) return BG[card.배경] || card.배경;
     var t = (card.제목 || "") + " " + (card.내용 || ""), best = null, bs = 0;
     BG_RULES.forEach(function (r) { var m = t.match(r[1]), n = m ? m.length : 0; if (n > bs) { bs = n; best = r[0]; } });
-    return BG[best || (card.히로인 || card._만남 || card._끼어들기 ? "거리" : "경기장")];
+    var school = SCHOOL.indexOf((E.state() || {}).시기) >= 0;
+    if ((best === "교실" || best === "학교") && !school) best = best === "교실" ? "실내" : "거리";
+    return BG[best || (card.히로인 || card._만남 || card._끼어들기 ? (school ? "학교" : "거리") : "경기장")];
   };
 
   // 외모 레벨 표시: "외모 9 미남"
