@@ -203,3 +203,12 @@ html, body { overflow-x: hidden; }
 /* 좁은 휴대폰에서 인생 카드 줄이 화면 밖으로 밀리지 않게 */
 .life { align-items: start; }
 .mini.empty { width: 100%; }
+
+/* ---------- 창 닫기 (아이폰 사파리 대응) ---------- */
+.modal { cursor: pointer; }                       /* 사파리는 이게 있어야 바깥을 눌렀을 때 닫힘 */
+.sheet { cursor: auto; max-height: 88vh; max-height: 88dvh; -webkit-overflow-scrolling: touch; }
+.sheet-bar { position: sticky; top: 0; height: 0; z-index: 3; }
+.sheet-bar .close { position: absolute; top: -6px; right: -6px; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+.sheet-close { display: block; width: 100%; margin-top: 18px; padding: 15px; min-height: 52px; border-radius: 14px;
+  background: #2b2d42; color: #fff; font-size: 16px; font-weight: 800; }
+.sheet-close:active { transform: translateY(1px); }

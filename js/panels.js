@@ -3,10 +3,12 @@
   var $ = function (s) { return document.querySelector(s); };
   var esc = U.esc, br = U.br, I = E._internal;
 
-  function modal(html) {
+  // 창: 위쪽 ✕ 버튼은 스크롤해도 따라오고, 맨 아래에 큰 닫기 버튼이 있음 (아이폰 사파리 대응)
+  function modal(html, closeLabel) {
     var m = document.createElement("div"); m.className = "modal";
-    m.innerHTML = '<div class="sheet"><button class="close" aria-label="닫기">✕</button>' + html + "</div>";
-    m.onclick = function (e) { if (e.target === m || e.target.classList.contains("close")) m.remove(); };
+    m.innerHTML = '<div class="sheet"><div class="sheet-bar"><button class="close" aria-label="닫기">✕</button></div>' + html +
+      '<button class="sheet-close">' + (closeLabel || "닫기") + "</button></div>";
+    m.onclick = function (e) { if (e.target === m || e.target.closest(".close, .sheet-close")) m.remove(); };
     document.body.appendChild(m); return m;
   }
   U.closeModals = function () { [].forEach.call(document.querySelectorAll(".modal"), function (m) { m.remove(); }); };
@@ -105,7 +107,7 @@
         "</b><small>" + esc(it.설명 || "") + '</small></div><button ' + (e.ok ? "" : "disabled ") + 'data-n="' + esc(it.이름) + '">' + (why || E.money(it.가격)) + "</button></div>";
     }).join("");
     var m = modal('<h2>💰 지갑 · 상점</h2><p class="kv">가진 돈 <b>' + E.money(s.돈) + "</b> · 통산 수입 " + E.money(s.총수입) + "</p>" +
-      (msg || "") + (s.돈 || s.총수입 ? "" : '<p class="hint">프로 선수가 되면 연봉과 계약금을 받습니다.</p>') + '<div class="shop">' + rows + "</div>");
+      (msg || "") + (s.돈 || s.총수입 ? "" : '<p class="hint">프로 선수가 되면 연봉과 계약금을 받습니다.</p>') + '<div class="shop">' + rows + "</div>", "상점 나가기");
     m.querySelector(".shop").onclick = function (ev) {
       var b = ev.target.closest("button[data-n]"); if (!b || b.disabled) return;
       var r = E.buy(b.dataset.n); if (!r) return;
