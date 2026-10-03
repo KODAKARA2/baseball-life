@@ -67,8 +67,11 @@
       '<label>주인공 이름<input id="nm" maxlength="8" placeholder="예: 강민준" autocomplete="off"></label>' +
       '<h3>포지션</h3><div class="grid" id="pos"></div><h3>특기</h3><div class="grid" id="spec"><p class="hint">포지션을 먼저 고르세요</p></div>' +
       '<button class="big" id="go" disabled>인생 시작!</button></section>';
-    var bonus = 0; try { bonus = +localStorage.getItem(U.BONUS_KEY) || 0; } catch (e) {}
-    if (bonus) $(".setup .sub").insertAdjacentHTML("afterend", '<p class="bonus">✨ 이번 인생은 외모 레벨 ' + bonus + "에서 시작합니다</p>");
+    // 엔딩에서 고른 새 인생 보너스 ({외모: 10} / {외모: 1} / {랜덤보너스: true})
+    var bonus = null;
+    try { var raw = localStorage.getItem(U.BONUS_KEY); if (raw) { bonus = JSON.parse(raw); if (typeof bonus === "number") bonus = { 외모: bonus }; } } catch (e) { bonus = null; }
+    if (bonus) $(".setup .sub").insertAdjacentHTML("afterend", '<p class="bonus">' + (bonus.외모 ? (bonus.외모 >= 10 ? "✨" : "😅") + " 이번 인생은 외모 레벨 " + bonus.외모 + "에서 시작합니다"
+      : "🎁 이번 인생은 랜덤 보너스! 특기 말고도 능력치 하나가 특기만큼 빠르게 자랍니다") + "</p>");
     $("#pos").innerHTML = GD.포지션.map(function (p, i) { return p.시작선택 === false ? "" : '<button class="chip" data-i="' + i + '">' + esc(p.이름) + "</button>"; }).join("");
     function ok() { $("#go").disabled = !(sel.pos && sel.spec && $("#nm").value.trim()); }
     $("#pos").onclick = function (e) {
@@ -85,7 +88,7 @@
     };
     $("#nm").oninput = ok;
     $("#go").onclick = function () {
-      E.newGame($("#nm").value.trim(), sel.pos.이름, sel.spec, bonus ? { 외모: bonus } : null);
+      E.newGame($("#nm").value.trim(), sel.pos.이름, sel.spec, bonus);
       try { localStorage.removeItem(U.BONUS_KEY); } catch (e) {}
       U.showGame();
     };
@@ -115,7 +118,7 @@
 
   U.renderLife = function (animateHeroine) {
     var s = E.state(), p = E.pos();
-    var stats = E.posStats().map(function (k) { return "<span>" + k + " <b>" + s.능력치[k] + "</b></span>"; }).join("");
+    var stats = E.posStats().map(function (k) { return "<span>" + k + (k === s.보조특기 ? "🎁" : "") + " <b>" + s.능력치[k] + "</b></span>"; }).join("");
     var status = (s.부상 > 0 ? '<em class="bad">부상</em>' : "") + (s.슬럼프 > 0 ? '<em class="warn">슬럼프</em>' : "");
     var hero = '<div class="mini hero-mini" onclick="U.openHero()">' +
       U.art(U.heroKeys(), '<span class="posicon">' + U.icon() + "</span>",

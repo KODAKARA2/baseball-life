@@ -30,6 +30,8 @@
       s.능력치[k] = C.포지션 + Math.floor(rnd() * 5) - 2 + ((pos.시작보너스 || {})[k] || 0);
     });
     s.능력치[spec.능력치] += cfg().특기시작보너스;
+    // 랜덤 보너스: 특기 말고도 능력치 하나가 특기만큼 빠르게 성장
+    if (opts && opts.랜덤보너스) s.보조특기 = I.pick(E.posStats().filter(function (k) { return k !== spec.능력치; }));
     s.능력치.멘탈 = C.멘탈; s.능력치.인기 = C.인기; s.능력치.컨디션 = C.컨디션; s.능력치.적응 = 0;
     I.applyEffects(spec.추가보너스 || {}, {});
     enterStage("초등학교");
@@ -279,7 +281,7 @@
   function growth() {
     var s = S(), g = growthRate(s.나이), spec = E.spec().능력치;
     E.posStats().forEach(function (k) {
-      var d = g + (k === spec && g > 0 ? cfg().특기성장보너스 : 0);
+      var d = g + ((k === spec || k === s.보조특기) && g > 0 ? cfg().특기성장보너스 : 0);
       var v = Math.abs(d) * (0.5 + rnd()), n = Math.floor(v) + (rnd() < v % 1 ? 1 : 0);
       if (!n) return;
       if (d > 0) { n = E.looksGain(n, "능력치"); if (s.능력치[k] < E.cap()) s.능력치[k] = Math.min(E.cap(), s.능력치[k] + n); }
