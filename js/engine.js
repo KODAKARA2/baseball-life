@@ -79,6 +79,7 @@
       case "시기카드": return S.시기턴; case "애정도2": return S.히로인2 ? S.히로인2.애정도 : 0;
       case "은퇴나이": return S.은퇴나이 || S.나이; case "이별수": return S.지난히로인.length;
       case "수상수": return S.수상.length; case "총수입": return S.총수입 || 0; case "외모": return S.외모 || 5;
+      case "세대": return S.세대 || 1; case "상속금": return S.상속금 || 0;
       case "이군기간": return S._강등턴 != null ? S.총턴 - S._강등턴 : 99; case "돈": return S.돈 || 0;
     }
     return 0;
@@ -131,7 +132,7 @@
   function words() {
     var L = cfg().리그, h = S.히로인 && E.heroDef(), h2 = (S.히로인2 || S._상대) && E.heroDef(S.히로인2 ? S.히로인2.아이디 : S._상대);
     return {
-      이름: S.이름, 라이벌: (GD.조연.rival || {}).이름 || "라이벌", 히로인: h ? h.이름 : (S.직전히로인 || "그녀"), 상대: h2 ? h2.이름 : "그 사람", 새포지션: S._새포지션 || "",
+      이름: S.이름, 라이벌: S.라이벌이름 || (GD.조연.rival || {}).이름 || "라이벌", 아버지: S.아버지 || "아버지", 히로인: h ? h.이름 : (S.직전히로인 || "그녀"), 상대: h2 ? h2.이름 : "그 사람", 새포지션: S._새포지션 || "",
       팀: S.팀 || S.지명팀 || cfg().국내팀[0], 학교: cfg().학교[schoolKey()], 대학: cfg().학교.대학,
       나이: S.나이 + "", 연도: String(cfg().시작연도 + S.나이 - 10), 포지션: S.포지션, 특기: S.특기,
       리그: S.시기 === "대학" ? L.대학 : S.시기 === "메이저리그" ? L.해외 : L.국내,

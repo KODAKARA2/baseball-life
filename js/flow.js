@@ -24,7 +24,9 @@
       기록: [], 수상: [], 순간: [], 대기열: [], 돈: 0, 총수입: 0, 구매: {}, 본뉴스: {}, 단계: "카드", 현재카드: null, 현재옵션: [], 결과: null, 엔딩: null
     };
     I.S = s;
-    s.외모 = (opts && opts.외모) || 1 + Math.floor(rnd() * 10);
+    var heir = opts && opts.이어하기, G = cfg().이세 || {};
+    s.외모 = heir ? clamp(heir.외모 + Math.floor(rnd() * ((G.외모변동 || 2) * 2 + 1)) - (G.외모변동 || 2), 1, 10)
+                 : (opts && opts.외모) || 1 + Math.floor(rnd() * 10);
     var pos = E.pos(), spec = E.spec();
     E.posStats().forEach(function (k) {
       s.능력치[k] = C.포지션 + Math.floor(rnd() * 5) - 2 + ((pos.시작보너스 || {})[k] || 0);
@@ -32,7 +34,13 @@
     s.능력치[spec.능력치] += cfg().특기시작보너스;
     // 랜덤 보너스: 특기 말고도 능력치 하나가 특기만큼 빠르게 성장
     if (opts && opts.랜덤보너스) s.보조특기 = I.pick(E.posStats().filter(function (k) { return k !== spec.능력치; }));
-    s.능력치.멘탈 = C.멘탈; s.능력치.인기 = C.인기; s.능력치.컨디션 = C.컨디션; s.능력치.적응 = 0;
+    // 2세: 아버지의 피(능력치·인기), 대를 이은 라이벌, 프로 입단 때 받을 유산
+    if (heir) {
+      s.세대 = (heir.세대 || 1) + 1; s.아버지 = heir.아버지; s.라이벌이름 = G.라이벌 || "백하준"; s.플래그.이세 = true;
+      s.상속금 = Math.floor((heir.돈 || 0) * (G.상속비율 || 0.3));
+      E.posStats().forEach(function (k) { s.능력치[k] += G.능력치보너스 || 2; });
+    }
+    s.능력치.멘탈 = C.멘탈; s.능력치.인기 = C.인기 + (heir ? G.인기보너스 || 10 : 0); s.능력치.컨디션 = C.컨디션; s.능력치.적응 = 0;
     I.applyEffects(spec.추가보너스 || {}, {});
     enterStage("초등학교");
     allowance();
@@ -157,6 +165,7 @@
     var s = S();
     if (s.엔딩) { s.단계 = "엔딩"; E.save(); return; }
     var c = I.clone(drawCard());
+    if (c.레어 && E.noteRare) E.noteRare(c.제목);
     s._상대 = c._끼어들기 || null;
     s._새포지션 = (c.선택지 || []).some(function (o) { return o.포지션변경; }) ? I.pick(E.pos().변경후보 || [s.포지션]) : null;
     s.현재카드 = c;
@@ -201,6 +210,7 @@
       s.순간.push({ 나이: s.나이, 글: oldPos + "에서 " + s.포지션 + "로 포지션 변경" });
       res.알림.push("🔄 포지션 변경: " + oldPos + " → " + s.포지션);
     }
+    if (out.상속금받기 && s.상속금) { s.돈 += s.상속금; s.총수입 = (s.총수입 || 0) + s.상속금; res.효과.돈 = (res.효과.돈 || 0) + s.상속금; s.상속금 = 0; }
     if (out.관계) {
       var hn = s.히로인 ? E.heroDef().이름 : "";
       I.setRelation(out.관계);

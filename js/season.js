@@ -152,7 +152,12 @@
     if (s.히로인) { var h = E.heroDef(); heroines.push({ 아이디: h.아이디, 이름: h.이름, 관계: s.히로인.관계, 결말: s.히로인.관계 === "배우자" ? "평생의 반려자" : "함께" }); }
     if (s.히로인2) { var h2 = E.heroDef(s.히로인2.아이디); heroines.push({ 아이디: h2.아이디, 이름: h2.이름, 관계: "연인", 결말: "끝까지 비밀이었던 연인" }); }
     var special = (GD.특별엔딩 || []).find(function (e) { return E.check(e.조건); });
-    return { 특별: special || null, 기본: base, 칭호: titles, 직업: job, 히로인들: heroines, 성적: s.성적, 행복도: s.행복도 };
+    var he = null;
+    if (s.히로인 && s.히로인.관계 === "배우자") {
+      var hd = E.heroDef();
+      if (hd.엔딩) he = { 아이디: hd.아이디, 히로인: hd.이름, 이름: hd.엔딩.이름, 아이콘: hd.엔딩.아이콘 || "💍", 내용: hd.엔딩.내용 };
+    }
+    return { 특별: special || null, 히로인엔딩: he, 기본: base, 칭호: titles, 직업: job, 히로인들: heroines, 성적: s.성적, 행복도: s.행복도 };
   };
 
   // ---------------- 저장 ----------------
@@ -167,5 +172,42 @@
       I.buildCards(); I.S = s; return s;
     } catch (e) { return null; }
   };
+  // ---------------- 도감 (인생이 바뀌어도 남는 기록) ----------------
+  var COL_KEY = "baseball-life-collection";
+  E.collection = function () {
+    var c = null; try { c = JSON.parse(localStorage.getItem(COL_KEY)); } catch (e) {}
+    c = c || {}; c.엔딩 = c.엔딩 || {}; c.업적 = c.업적 || {}; c.레어 = c.레어 || {}; c.인생수 = c.인생수 || 0;
+    return c;
+  };
+  function saveCol(c) { try { localStorage.setItem(COL_KEY, JSON.stringify(c)); } catch (e) {} }
+  function addTo(c, group, key, fresh, label) {
+    if (!c[group][key]) { c[group][key] = { 처음: Date.now(), 횟수: 0 }; if (fresh) fresh.push(label || key); }
+    c[group][key].횟수++;
+  }
+  E.colCounts = function (c) {
+    var k = Object.keys(c.엔딩);
+    return { 인생수: c.인생수, 엔딩수: k.filter(function (x) { return x.indexOf("특별:") === 0; }).length,
+      히로인엔딩: k.filter(function (x) { return x.indexOf("히로인:") === 0; }).length, 레어: Object.keys(c.레어).length, 업적: Object.keys(c.업적).length };
+  };
+  E.noteRare = function (title) { var c = E.collection(); addTo(c, "레어", title); saveCol(c); };
+  // 엔딩을 볼 때 한 번: 엔딩·업적을 도감에 기록하고 새로 발견한 이름들을 돌려줌
+  E.recordLife = function () {
+    var s = S(); if (s._도감) return s._도감새로 || [];
+    var en = s.엔딩 || E.computeEnding(), c = E.collection(), fresh = [];
+    c.인생수++;
+    if (en.특별) addTo(c, "엔딩", "특별:" + en.특별.이름, fresh, en.특별.아이콘 + " " + en.특별.이름);
+    addTo(c, "엔딩", "기본:" + en.기본.이름, fresh, en.기본.아이콘 + " " + en.기본.이름);
+    if (en.직업) addTo(c, "엔딩", "직업:" + en.직업.이름, fresh, en.직업.아이콘 + " " + en.직업.이름);
+    en.칭호.forEach(function (t) { addTo(c, "엔딩", "칭호:" + t.이름, fresh, t.아이콘 + " " + t.이름); });
+    if (en.히로인엔딩) addTo(c, "엔딩", "히로인:" + en.히로인엔딩.아이디, fresh, en.히로인엔딩.아이콘 + " " + en.히로인엔딩.이름);
+    var n = E.colCounts(c);
+    (GD.업적 || []).forEach(function (a) {
+      var ok = E.check(a.조건) && Object.keys(a.도감 || {}).every(function (k) { return (n[k] || 0) >= a.도감[k]; });
+      if (ok) addTo(c, "업적", a.이름, fresh, "🏆 " + a.이름);
+    });
+    saveCol(c); s._도감 = true; s._도감새로 = fresh; E.save();
+    return fresh;
+  };
+
   E.reset = function () { try { localStorage.removeItem(I.SAVE_KEY); } catch (e) {} I.S = null; };
 })();

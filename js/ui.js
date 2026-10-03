@@ -66,12 +66,15 @@
       '<section class="setup"><h1>⚾ ' + esc(GD.설정.게임제목) + '</h1><p class="sub">한 장의 카드로 시작하는 야구 인생</p>' +
       '<label>주인공 이름<input id="nm" maxlength="8" placeholder="예: 강민준" autocomplete="off"></label>' +
       '<h3>포지션</h3><div class="grid" id="pos"></div><h3>특기</h3><div class="grid" id="spec"><p class="hint">포지션을 먼저 고르세요</p></div>' +
-      '<button class="big" id="go" disabled>인생 시작!</button></section>';
-    // 엔딩에서 고른 새 인생 보너스 ({외모: 10} / {외모: 1} / {랜덤보너스: true})
+      '<button class="big" id="go" disabled>인생 시작!</button><button class="link-btn" onclick="U.openCollection()">📖 엔딩 도감 · 업적</button></section>';
+    // 엔딩에서 고른 새 인생 보너스 ({외모: 10} / {외모: 1} / {랜덤보너스: true} / {이어하기: {아버지, 외모, 돈, 세대}})
     var bonus = null;
     try { var raw = localStorage.getItem(U.BONUS_KEY); if (raw) { bonus = JSON.parse(raw); if (typeof bonus === "number") bonus = { 외모: bonus }; } } catch (e) { bonus = null; }
-    if (bonus) $(".setup .sub").insertAdjacentHTML("afterend", '<p class="bonus">' + (bonus.외모 ? (bonus.외모 >= 10 ? "✨" : "😅") + " 이번 인생은 외모 레벨 " + bonus.외모 + "에서 시작합니다"
+    var heir = bonus && bonus.이어하기;
+    if (bonus) $(".setup .sub").insertAdjacentHTML("afterend", '<p class="bonus">' + (heir ? "👶 " + esc(heir.아버지) + "의 아이로 태어났습니다! (" + ((heir.세대 || 1) + 1) + "대째)<br><small>아빠의 재능과 인기를 물려받고, 프로에 입단하면 유산을 받을 수 있어요. 아빠의 라이벌 집안과의 승부도 이어집니다.</small>"
+      : bonus.외모 ? (bonus.외모 >= 10 ? "✨" : "😅") + " 이번 인생은 외모 레벨 " + bonus.외모 + "에서 시작합니다"
       : "🎁 이번 인생은 랜덤 보너스! 특기 말고도 능력치 하나가 특기만큼 빠르게 자랍니다") + "</p>");
+    if (heir) $("#nm").value = String(heir.아버지 || "").charAt(0);
     $("#pos").innerHTML = GD.포지션.map(function (p, i) { return p.시작선택 === false ? "" : '<button class="chip" data-i="' + i + '">' + esc(p.이름) + "</button>"; }).join("");
     function ok() { $("#go").disabled = !(sel.pos && sel.spec && $("#nm").value.trim()); }
     $("#pos").onclick = function (e) {
@@ -155,9 +158,9 @@
     var s = E.state(), c = s.현재카드, sd = I.sdef(s.시기);
     if (!c) return;
     var a = U.cardArtKeys(c), r = s.결과;
-    var front = '<div class="face front">' +
+    var front = '<div class="face front' + (c.레어 ? " rare" : "") + '">' +
       (a ? U.art(a.keys, a.icon, a.label, "banner", U.bgOf(c)) : U.art([], sd.아이콘 || "⚾", null, "banner plain", U.bgOf(c))) +
-      '<div class="txt"><div class="tag">' + esc(c.시스템 ? "시즌" : s.시기) + (c.히로인 || c._만남 ? " · 💗" : "") + "</div><h2>" + esc(E.tpl(c.제목)) + "</h2><p>" + br(E.tpl(c.내용)) + "</p></div></div>";
+      '<div class="txt"><div class="tag">' + (c.레어 ? '<span class="rare-tag">✨ 레어 카드</span> ' : "") + esc(c.시스템 ? "시즌" : s.시기) + (c.히로인 || c._만남 ? " · 💗" : "") + "</div><h2>" + esc(E.tpl(c.제목)) + "</h2><p>" + br(E.tpl(c.내용)) + "</p></div></div>";
     var back = '<div class="face back">' + (r ? U.resultHTML(r) : "") + "</div>";
     $("#table").innerHTML = '<div class="card3d ' + (r ? "flipped " : "") + (deal ? "deal" : "") + '" id="card">' + front + back + "</div>";
     U.renderActions();
@@ -177,7 +180,7 @@
   U.resultHTML = function (r) {
     var chips = U.chips(r.효과);
     var pic = r.그림 ? U.art([r.그림].concat(U.heroKeys()), U.icon(), "<b>" + esc(E.state().이름) + "</b>", "banner small", U.bgOf(E.state().현재카드)) : "";
-    var mg = r.미니게임 ? '<div class="tag">⏱ ' + r.미니게임.타이밍.toFixed(2) + "초 · 성공 확률 " + Math.round(r.미니게임.확률 * 100) + "%</div> " : "";
+    var mg = r.미니게임 ? '<div class="tag">⏱ ' + r.미니게임.타이밍.toFixed(2) + "초" + (r.미니게임.목표 != null ? " (목표 " + r.미니게임.목표.toFixed(1) + "초)" : "") + " · 성공 확률 " + Math.round(r.미니게임.확률 * 100) + "%</div> " : "";
     return pic + '<div class="txt">' + mg + (r.성공 === true ? '<div class="tag ok">성공!</div>' : r.성공 === false ? '<div class="tag ng">실패…</div>' : "") +
       "<p>" + br(r.결과 || "…") + '</p><div class="fxs">' + chips + "</div>" +
       (r.알림 || []).map(function (n) { return '<div class="note">' + esc(n) + "</div>"; }).join("") +
@@ -199,29 +202,33 @@
     '<path d="M24 12C42 30 42 70 24 88M76 12C58 30 58 70 76 88" fill="none" stroke="#d33a2c" stroke-width="3.2" stroke-dasharray="5 4"/></svg>';
   // 승부의 순간 미니게임: 5초부터 줄어드는 시계를 목표(1.0초)에 가깝게 멈출수록 성공 확률이 높음
   U.miniGame = function (cb) {
-    var M = GD.설정.미니게임 || {}, start = M.시작초 || 5, target = M.목표초 || 1, top = M.최고확률 || 0.95;
+    var M = GD.설정.미니게임 || {}, start = M.시작초 || 5, top = M.최고확률 || 0.95;
+    // 목표 시간: 목표최소~목표최대 사이에서 매번 랜덤 (0.1초 단위)
+    var lo = M.목표최소 != null ? M.목표최소 : (M.목표초 || 1), hi = M.목표최대 != null ? M.목표최대 : lo;
+    var target = Math.round((lo + Math.random() * (hi - lo)) * 10) / 10;
     var pit = E.pos().분류 === "투수", m = document.createElement("div");
     m.className = "modal mg-wrap";
     m.innerHTML = '<div class="mg"><div class="mg-title">⚾ 승부의 순간!</div>' +
       '<div class="mg-sub">시계가 <b>' + target.toFixed(2) + '초</b>에 가장 가까울 때 공을 누르세요</div>' +
       '<div class="scoreboard"><span class="mg-time">' + start.toFixed(2) + "</span><small>SEC</small></div>" +
-      '<div class="mg-track"><i class="mg-fill"></i><b class="mg-target" style="left:' + (100 - target / start * 100) + '%"></b></div>' +
+      '<div class="mg-track"><i class="mg-fill"></i><b class="mg-target" data-t="' + target.toFixed(1) + '" style="left:' + (100 - target / start * 100) + '%"></b></div>' +
       '<button class="mg-ball">' + BALL + "<span>" + (pit ? "투구!" : "스윙!") + '</span></button><div class="mg-result"></div></div>';
     document.body.appendChild(m);
     var t0 = performance.now(), done = false, timeEl = m.querySelector(".mg-time"), fill = m.querySelector(".mg-fill");
     function left() { return Math.max(0, start - (performance.now() - t0) / 1000); }
-    function finish(t) {
+    // 시간 초과(0초까지 안 누름)는 헛스윙 → 최저 확률
+    function finish(t, timeout) {
       if (done) return; done = true;
-      var diff = Math.abs(t - target), p = Math.max(M.최저확률 || 0.05, Math.min(top, top - diff * (M.감소 || 0.7)));
+      var diff = Math.abs(t - target), p = timeout ? M.최저확률 || 0.05 : Math.max(M.최저확률 || 0.05, Math.min(top, top - diff * (M.감소 || 0.7)));
       timeEl.textContent = t.toFixed(2); m.querySelector(".mg-ball").classList.add(pit ? "throw" : "hit");
-      m.querySelector(".mg-result").innerHTML = (diff <= 0.05 ? "🎯 퍼펙트 타이밍!" : diff <= 0.2 ? "👍 좋은 타이밍!" : diff <= 0.5 ? "😅 조금 빗나갔다" : "😱 타이밍이 크게 어긋났다") +
+      m.querySelector(".mg-result").innerHTML = (timeout ? "⏰ 시간 초과! 공을 그냥 보냈다" : diff <= 0.05 ? "🎯 퍼펙트 타이밍!" : diff <= 0.2 ? "👍 좋은 타이밍!" : diff <= 0.5 ? "😅 조금 빗나갔다" : "😱 타이밍이 크게 어긋났다") +
         " <b>성공 확률 " + Math.round(p * 100) + "%</b>";
-      setTimeout(function () { m.remove(); cb({ 확률: p, 타이밍: Math.round(t * 100) / 100 }); }, 1200);
+      setTimeout(function () { m.remove(); cb({ 확률: p, 타이밍: Math.round(t * 100) / 100, 목표: target }); }, 1200);
     }
     (function frame() {
       if (done) return; var t = left();
       timeEl.textContent = t.toFixed(2); fill.style.width = ((start - t) / start * 100) + "%";
-      if (t <= 0) finish(0); else requestAnimationFrame(frame);
+      if (t <= 0) finish(0, true); else requestAnimationFrame(frame);
     })();
     m.querySelector(".mg-ball").addEventListener("pointerdown", function (e) { e.preventDefault(); finish(left()); });
   };

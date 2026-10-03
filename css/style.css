@@ -179,7 +179,7 @@ details summary { cursor: pointer; font-weight: 700; margin: 12px 0 4px; }
 .mg-track { position: relative; height: 12px; background: rgba(255,255,255,.18); border-radius: 6px; margin: 16px 6px 22px; overflow: visible; }
 .mg-fill { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #f6e7b0, #ffcf33); border-radius: 6px; }
 .mg-target { position: absolute; top: -6px; width: 4px; height: 24px; background: #e23b2e; border-radius: 2px; transform: translateX(-2px); box-shadow: 0 0 8px #e23b2e; }
-.mg-target::after { content: "1.0"; position: absolute; top: 26px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #ffb3ad; font-weight: 700; }
+.mg-target::after { content: attr(data-t); position: absolute; top: 26px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #ffb3ad; font-weight: 700; }
 .mg-ball { position: relative; width: 150px; height: 150px; border-radius: 50%; background: none; padding: 0; touch-action: manipulation; animation: spin 2.4s linear infinite; }
 .mg-ball svg { width: 100%; height: 100%; filter: drop-shadow(0 8px 14px rgba(0,0,0,.5)); }
 .mg-ball span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 900; color: #c62f22; animation: spin 2.4s linear infinite reverse; }
@@ -221,3 +221,29 @@ em.look.ugly { background: #d9d4c7; color: #4a4236; }
 .big.alt { background: #6a4c93; box-shadow: 0 4px 0 #43305e; margin-top: 12px; }
 .big.alt2 { background: #6b705c; box-shadow: 0 4px 0 #43463a; margin-top: 12px; }
 .big.alt3 { background: #2a9d8f; box-shadow: 0 4px 0 #1b6a61; margin-top: 12px; }
+
+/* ---------- 레어 카드 ---------- */
+.face.front.rare { border-color: #f5c542; box-shadow: 0 0 26px 6px rgba(245,197,66,.7); background: linear-gradient(170deg, #fff8dc, var(--card) 45%); }
+.rare-tag { color: #8a5a00; background: linear-gradient(90deg, #ffe58a, #f5c542); padding: 1px 6px; border-radius: 8px; font-weight: 900; }
+
+/* ---------- 엔딩: 도감 기록 · 히로인 엔딩 · 공유 ---------- */
+.fresh { background: #fff4d4; border: 2px dashed var(--gold); border-radius: 12px; padding: 10px; margin: 12px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.fresh b { width: 100%; } .fresh span { background: #fff; border-radius: 10px; padding: 3px 8px; font-size: 13px; font-weight: 700; }
+.he-end { display: flex; gap: 12px; align-items: flex-start; background: #fde3ec; border-left: 5px solid var(--love); border-radius: 12px; padding: 10px; margin: 10px 0; }
+.he-end > .art { width: 84px; flex: none; border-radius: 10px; border: 2px solid var(--love); }
+.he-end .he-title { font-weight: 900; font-size: 17px; } .he-end small { color: var(--love); font-weight: 700; } .he-end p { margin: 6px 0 0; font-size: 14px; line-height: 1.6; }
+.share-row { display: flex; gap: 8px; margin-top: 24px; } .share-row .big { margin-top: 0; font-size: 16px; padding: 14px 8px; }
+.big.share { background: #3a86ff; box-shadow: 0 4px 0 #2459b0; } .big.share2, a.big.share2 { background: #495867; box-shadow: 0 4px 0 #2f3a44; }
+a.big { text-align: center; text-decoration: none; box-sizing: border-box; }
+.big.alt4 { background: #b5838d; box-shadow: 0 4px 0 #7d5a61; margin-top: 12px; }
+.big.heir { background: #e76f51; box-shadow: 0 4px 0 #a34b35; margin-top: 12px; }
+.result-img { width: 100%; border-radius: 12px; display: block; }
+.link-btn { display: block; margin: 14px auto 0; background: none; color: #ffe3a3; font-weight: 700; font-size: 15px; text-decoration: underline; }
+.bonus small { font-weight: 400; color: #e8dcc0; }
+
+/* ---------- 도감 ---------- */
+.col-sum { display: flex; flex-wrap: wrap; gap: 6px; } .col-sum span { background: #fff4d4; border-radius: 10px; padding: 4px 10px; font-size: 13px; }
+.col-item { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 10px; padding: 8px 10px; margin: 6px 0; }
+.col-item .ci { font-size: 22px; width: 28px; text-align: center; flex: none; }
+.col-item b { display: block; } .col-item small { color: var(--muted); font-size: 12px; } .col-item em { margin-left: auto; font-style: normal; color: var(--muted); font-size: 12px; }
+.col-item.locked { background: #ece6d8; } .col-item.locked b { color: #8b8473; }
