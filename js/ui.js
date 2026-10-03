@@ -66,12 +66,15 @@
       '<section class="setup"><h1>⚾ ' + esc(GD.설정.게임제목) + '</h1><p class="sub">한 장의 카드로 시작하는 야구 인생</p>' +
       '<label>주인공 이름<input id="nm" maxlength="8" placeholder="예: 강민준" autocomplete="off"></label>' +
       '<h3>포지션</h3><div class="grid" id="pos"></div><h3>특기</h3><div class="grid" id="spec"><p class="hint">포지션을 먼저 고르세요</p></div>' +
-      '<button class="big" id="go" disabled>인생 시작!</button></section>';
-    // 엔딩에서 고른 새 인생 보너스 ({외모: 10} / {외모: 1} / {랜덤보너스: true})
+      '<button class="big" id="go" disabled>인생 시작!</button><button class="link-btn" onclick="U.openCollection()">📖 엔딩 도감 · 업적</button></section>';
+    // 엔딩에서 고른 새 인생 보너스 ({외모: 10} / {외모: 1} / {랜덤보너스: true} / {이어하기: {아버지, 외모, 돈, 세대}})
     var bonus = null;
     try { var raw = localStorage.getItem(U.BONUS_KEY); if (raw) { bonus = JSON.parse(raw); if (typeof bonus === "number") bonus = { 외모: bonus }; } } catch (e) { bonus = null; }
-    if (bonus) $(".setup .sub").insertAdjacentHTML("afterend", '<p class="bonus">' + (bonus.외모 ? (bonus.외모 >= 10 ? "✨" : "😅") + " 이번 인생은 외모 레벨 " + bonus.외모 + "에서 시작합니다"
+    var heir = bonus && bonus.이어하기;
+    if (bonus) $(".setup .sub").insertAdjacentHTML("afterend", '<p class="bonus">' + (heir ? "👶 " + esc(heir.아버지) + "의 아이로 태어났습니다! (" + ((heir.세대 || 1) + 1) + "대째)<br><small>아빠의 재능과 인기를 물려받고, 프로에 입단하면 유산을 받을 수 있어요. 아빠의 라이벌 집안과의 승부도 이어집니다.</small>"
+      : bonus.외모 ? (bonus.외모 >= 10 ? "✨" : "😅") + " 이번 인생은 외모 레벨 " + bonus.외모 + "에서 시작합니다"
       : "🎁 이번 인생은 랜덤 보너스! 특기 말고도 능력치 하나가 특기만큼 빠르게 자랍니다") + "</p>");
+    if (heir) $("#nm").value = String(heir.아버지 || "").charAt(0);
     $("#pos").innerHTML = GD.포지션.map(function (p, i) { return p.시작선택 === false ? "" : '<button class="chip" data-i="' + i + '">' + esc(p.이름) + "</button>"; }).join("");
     function ok() { $("#go").disabled = !(sel.pos && sel.spec && $("#nm").value.trim()); }
     $("#pos").onclick = function (e) {
@@ -155,9 +158,9 @@
     var s = E.state(), c = s.현재카드, sd = I.sdef(s.시기);
     if (!c) return;
     var a = U.cardArtKeys(c), r = s.결과;
-    var front = '<div class="face front">' +
+    var front = '<div class="face front' + (c.레어 ? " rare" : "") + '">' +
       (a ? U.art(a.keys, a.icon, a.label, "banner", U.bgOf(c)) : U.art([], sd.아이콘 || "⚾", null, "banner plain", U.bgOf(c))) +
-      '<div class="txt"><div class="tag">' + esc(c.시스템 ? "시즌" : s.시기) + (c.히로인 || c._만남 ? " · 💗" : "") + "</div><h2>" + esc(E.tpl(c.제목)) + "</h2><p>" + br(E.tpl(c.내용)) + "</p></div></div>";
+      '<div class="txt"><div class="tag">' + (c.레어 ? '<span class="rare-tag">✨ 레어 카드</span> ' : "") + esc(c.시스템 ? "시즌" : s.시기) + (c.히로인 || c._만남 ? " · 💗" : "") + "</div><h2>" + esc(E.tpl(c.제목)) + "</h2><p>" + br(E.tpl(c.내용)) + "</p></div></div>";
     var back = '<div class="face back">' + (r ? U.resultHTML(r) : "") + "</div>";
     $("#table").innerHTML = '<div class="card3d ' + (r ? "flipped " : "") + (deal ? "deal" : "") + '" id="card">' + front + back + "</div>";
     U.renderActions();

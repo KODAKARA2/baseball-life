@@ -1,7 +1,7 @@
 // 데이터 파일(data 폴더)에서 쓰는 등록 함수들입니다. 이 파일은 고치지 않아도 됩니다.
 window.GD = {
   설정: {}, 포지션: [], 특기: [], 카드: [], 히로인: [],
-  기본엔딩: [], 직업엔딩: [], 조연: {}, 메이저리그: {}, 뉴스: [], 상점: [], 특별엔딩: []
+  기본엔딩: [], 직업엔딩: [], 조연: {}, 메이저리그: {}, 뉴스: [], 상점: [], 특별엔딩: [], 업적: []
 };
 
 function _병합(대상, 원본) {
@@ -24,3 +24,4 @@ function 직업엔딩() { GD.직업엔딩.push.apply(GD.직업엔딩, arguments)
 function 뉴스() { GD.뉴스.push.apply(GD.뉴스, arguments); }
 function 상점() { GD.상점.push.apply(GD.상점, arguments); }
 function 특별엔딩() { GD.특별엔딩.push.apply(GD.특별엔딩, arguments); }
+function 업적() { GD.업적.push.apply(GD.업적, arguments); }
