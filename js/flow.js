@@ -13,7 +13,7 @@
   };
 
   // ---------------- 새 게임 ----------------
-  E.newGame = function (name, posName, specName) {
+  E.newGame = function (name, posName, specName, opts) {
     I.buildCards();
     var C = cfg().시작능력치;
     var s = {
@@ -24,6 +24,7 @@
       기록: [], 수상: [], 순간: [], 대기열: [], 돈: 0, 총수입: 0, 구매: {}, 본뉴스: {}, 단계: "카드", 현재카드: null, 현재옵션: [], 결과: null, 엔딩: null
     };
     I.S = s;
+    s.외모 = (opts && opts.외모) || 1 + Math.floor(rnd() * 10);
     var pos = E.pos(), spec = E.spec();
     E.posStats().forEach(function (k) {
       s.능력치[k] = C.포지션 + Math.floor(rnd() * 5) - 2 + ((pos.시작보너스 || {})[k] || 0);
@@ -95,7 +96,7 @@
     } else {
       var mc = all.filter(function (c) { return c._만남; });
       var mb = s.만남버프 && s.만남버프.남은 > 0 ? s.만남버프.값 : 0;
-      if (mc.length && rnd() < L.만남확률 + mb) return I.weighted(mc);
+      if (mc.length && rnd() < (L.만남확률 + mb) * E.looksMult("이성")) return I.weighted(mc);
     }
     var normal = all.filter(function (c) { return !c.히로인 && !c._만남 && !c._끼어들기; });
     if (normal.length) return I.weighted(normal);
@@ -125,6 +126,7 @@
   function resolveAffair(mode) {
     var s = S(), notes = [];
     if (!s.히로인2) return notes;
+    if (!s.히로인) { s.히로인 = { 아이디: s.히로인2.아이디, 관계: "연인", 애정도: s.히로인2.애정도 }; s.히로인2 = null; return notes; }
     if (mode === "본처") notes.push("💔 " + leave(s.히로인2, "양다리 끝에 이별") + " 카드가 떨어져 나갔다");
     else if (mode === "상대") {
       notes.push("💔 " + leave(s.히로인, "양다리 끝에 이별") + " 카드가 떨어져 나갔다");
@@ -280,7 +282,7 @@
       var d = g + (k === spec && g > 0 ? cfg().특기성장보너스 : 0);
       var v = Math.abs(d) * (0.5 + rnd()), n = Math.floor(v) + (rnd() < v % 1 ? 1 : 0);
       if (!n) return;
-      if (d > 0) { if (s.능력치[k] < E.cap()) s.능력치[k] = Math.min(E.cap(), s.능력치[k] + n); }
+      if (d > 0) { n = E.looksGain(n, "능력치"); if (s.능력치[k] < E.cap()) s.능력치[k] = Math.min(E.cap(), s.능력치[k] + n); }
       else s.능력치[k] = Math.max(1, s.능력치[k] - n);
     });
   }

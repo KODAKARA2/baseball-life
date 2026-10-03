@@ -33,6 +33,14 @@
     return keys.map(function (k) { return '<div class="sl"><span>' + k + "</span>" + U.bar(s.능력치[k]) + "<b>" + s.능력치[k] + "</b></div>"; }).join("");
   }
 
+  // 외모 효과 설명 (지금 레벨에서 몇 % 이득/손해인지)
+  function looksInfo() {
+    function pct(k) { var v = Math.round((E.looksMult(k) - 1) * 100); return (v > 0 ? "+" : "") + v + "%"; }
+    var t = "히로인 만남·애정도 " + pct("이성") + " · 성적·행복도 " + pct("성적행복");
+    if (E.looksMult("능력치") > 1) t += " · 능력치 성장 " + pct("능력치") + " (눈물)";
+    return '<p class="kv">😎 ' + U.looksTag() + "<br><small>" + t + "</small></p>";
+  }
+
   // 주인공 카드 (그림 아래 1/4에 이름과 능력치)
   U.openHero = function () {
     var s = E.state(), p = E.pos();
@@ -43,7 +51,7 @@
       "<h3>포지션 능력치 <small>(상한 " + E.cap() + ")</small></h3>" + statLines(E.posStats()) +
       "<h3>공통 능력치</h3>" + statLines(["멘탈", "인기", "컨디션"].concat(s.시기 === "메이저리그" || s.능력치.적응 ? ["적응"] : [])) +
       '<div class="sl"><span>행복도</span>' + U.bar(s.행복도, "happy") + "<b>" + s.행복도 + "</b></div>" +
-      '<p class="kv">🏅 성적 점수 <b>' + s.성적 + "</b> · 상태: " + st + "</p>");
+      '<p class="kv">🏅 성적 점수 <b>' + s.성적 + "</b> · 상태: " + st + "</p>" + looksInfo());
   };
 
   // 히로인 카드
@@ -138,7 +146,14 @@
       (en.직업 ? '<div class="badge job">' + en.직업.아이콘 + " 은퇴 후: " + esc(en.직업.이름) + "<small>" + esc(E.tpl(en.직업.내용)) + "</small></div>" : "") +
       "<h3>통산 기록</h3>" + totalsHTML() + '<p class="kv">💰 통산 수입 ' + E.money(s.총수입) + " · 은퇴 때 자산 " + E.money(s.돈) + "</p><h3>수상</h3>" + awardsHTML() +
       "<h3>결정적 순간들</h3>" + momentsHTML(12) + '<h3>함께했던 히로인들</h3><div class="heroines">' + hs + "</div>" + seasonsHTML() +
-      '<button class="big" onclick="E.reset();U.showSetup()">새 인생 시작</button></section>';
+      '<button class="big" onclick="U.restart(false)">새 인생 시작</button>' +
+      ((s.외모 || 0) < 10 ? '<button class="big alt" onclick="U.restart(true)">✨ 새 인생을 외모 레벨 10으로 시작하기</button>' : "") + "</section>";
+  };
+
+  // 엔딩 뒤 새 인생: handsome 이면 다음 인생의 외모를 10으로 고정
+  U.restart = function (handsome) {
+    try { if (handsome) localStorage.setItem(U.BONUS_KEY, "10"); else localStorage.removeItem(U.BONUS_KEY); } catch (e) {}
+    E.reset(); U.showSetup();
   };
 
   // ---------------- 시작 ----------------
