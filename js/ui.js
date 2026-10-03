@@ -180,7 +180,7 @@
   U.resultHTML = function (r) {
     var chips = U.chips(r.효과);
     var pic = r.그림 ? U.art([r.그림].concat(U.heroKeys()), U.icon(), "<b>" + esc(E.state().이름) + "</b>", "banner small", U.bgOf(E.state().현재카드)) : "";
-    var mg = r.미니게임 ? '<div class="tag">⏱ ' + r.미니게임.타이밍.toFixed(2) + "초 · 성공 확률 " + Math.round(r.미니게임.확률 * 100) + "%</div> " : "";
+    var mg = r.미니게임 ? '<div class="tag">⏱ ' + r.미니게임.타이밍.toFixed(2) + "초" + (r.미니게임.목표 != null ? " (목표 " + r.미니게임.목표.toFixed(1) + "초)" : "") + " · 성공 확률 " + Math.round(r.미니게임.확률 * 100) + "%</div> " : "";
     return pic + '<div class="txt">' + mg + (r.성공 === true ? '<div class="tag ok">성공!</div>' : r.성공 === false ? '<div class="tag ng">실패…</div>' : "") +
       "<p>" + br(r.결과 || "…") + '</p><div class="fxs">' + chips + "</div>" +
       (r.알림 || []).map(function (n) { return '<div class="note">' + esc(n) + "</div>"; }).join("") +
@@ -202,29 +202,33 @@
     '<path d="M24 12C42 30 42 70 24 88M76 12C58 30 58 70 76 88" fill="none" stroke="#d33a2c" stroke-width="3.2" stroke-dasharray="5 4"/></svg>';
   // 승부의 순간 미니게임: 5초부터 줄어드는 시계를 목표(1.0초)에 가깝게 멈출수록 성공 확률이 높음
   U.miniGame = function (cb) {
-    var M = GD.설정.미니게임 || {}, start = M.시작초 || 5, target = M.목표초 || 1, top = M.최고확률 || 0.95;
+    var M = GD.설정.미니게임 || {}, start = M.시작초 || 5, top = M.최고확률 || 0.95;
+    // 목표 시간: 목표최소~목표최대 사이에서 매번 랜덤 (0.1초 단위)
+    var lo = M.목표최소 != null ? M.목표최소 : (M.목표초 || 1), hi = M.목표최대 != null ? M.목표최대 : lo;
+    var target = Math.round((lo + Math.random() * (hi - lo)) * 10) / 10;
     var pit = E.pos().분류 === "투수", m = document.createElement("div");
     m.className = "modal mg-wrap";
     m.innerHTML = '<div class="mg"><div class="mg-title">⚾ 승부의 순간!</div>' +
       '<div class="mg-sub">시계가 <b>' + target.toFixed(2) + '초</b>에 가장 가까울 때 공을 누르세요</div>' +
       '<div class="scoreboard"><span class="mg-time">' + start.toFixed(2) + "</span><small>SEC</small></div>" +
-      '<div class="mg-track"><i class="mg-fill"></i><b class="mg-target" style="left:' + (100 - target / start * 100) + '%"></b></div>' +
+      '<div class="mg-track"><i class="mg-fill"></i><b class="mg-target" data-t="' + target.toFixed(1) + '" style="left:' + (100 - target / start * 100) + '%"></b></div>' +
       '<button class="mg-ball">' + BALL + "<span>" + (pit ? "투구!" : "스윙!") + '</span></button><div class="mg-result"></div></div>';
     document.body.appendChild(m);
     var t0 = performance.now(), done = false, timeEl = m.querySelector(".mg-time"), fill = m.querySelector(".mg-fill");
     function left() { return Math.max(0, start - (performance.now() - t0) / 1000); }
-    function finish(t) {
+    // 시간 초과(0초까지 안 누름)는 헛스윙 → 최저 확률
+    function finish(t, timeout) {
       if (done) return; done = true;
-      var diff = Math.abs(t - target), p = Math.max(M.최저확률 || 0.05, Math.min(top, top - diff * (M.감소 || 0.7)));
+      var diff = Math.abs(t - target), p = timeout ? M.최저확률 || 0.05 : Math.max(M.최저확률 || 0.05, Math.min(top, top - diff * (M.감소 || 0.7)));
       timeEl.textContent = t.toFixed(2); m.querySelector(".mg-ball").classList.add(pit ? "throw" : "hit");
-      m.querySelector(".mg-result").innerHTML = (diff <= 0.05 ? "🎯 퍼펙트 타이밍!" : diff <= 0.2 ? "👍 좋은 타이밍!" : diff <= 0.5 ? "😅 조금 빗나갔다" : "😱 타이밍이 크게 어긋났다") +
+      m.querySelector(".mg-result").innerHTML = (timeout ? "⏰ 시간 초과! 공을 그냥 보냈다" : diff <= 0.05 ? "🎯 퍼펙트 타이밍!" : diff <= 0.2 ? "👍 좋은 타이밍!" : diff <= 0.5 ? "😅 조금 빗나갔다" : "😱 타이밍이 크게 어긋났다") +
         " <b>성공 확률 " + Math.round(p * 100) + "%</b>";
-      setTimeout(function () { m.remove(); cb({ 확률: p, 타이밍: Math.round(t * 100) / 100 }); }, 1200);
+      setTimeout(function () { m.remove(); cb({ 확률: p, 타이밍: Math.round(t * 100) / 100, 목표: target }); }, 1200);
     }
     (function frame() {
       if (done) return; var t = left();
       timeEl.textContent = t.toFixed(2); fill.style.width = ((start - t) / start * 100) + "%";
-      if (t <= 0) finish(0); else requestAnimationFrame(frame);
+      if (t <= 0) finish(0, true); else requestAnimationFrame(frame);
     })();
     m.querySelector(".mg-ball").addEventListener("pointerdown", function (e) { e.preventDefault(); finish(left()); });
   };

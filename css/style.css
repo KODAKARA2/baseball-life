@@ -179,7 +179,7 @@ details summary { cursor: pointer; font-weight: 700; margin: 12px 0 4px; }
 .mg-track { position: relative; height: 12px; background: rgba(255,255,255,.18); border-radius: 6px; margin: 16px 6px 22px; overflow: visible; }
 .mg-fill { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #f6e7b0, #ffcf33); border-radius: 6px; }
 .mg-target { position: absolute; top: -6px; width: 4px; height: 24px; background: #e23b2e; border-radius: 2px; transform: translateX(-2px); box-shadow: 0 0 8px #e23b2e; }
-.mg-target::after { content: "1.0"; position: absolute; top: 26px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #ffb3ad; font-weight: 700; }
+.mg-target::after { content: attr(data-t); position: absolute; top: 26px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #ffb3ad; font-weight: 700; }
 .mg-ball { position: relative; width: 150px; height: 150px; border-radius: 50%; background: none; padding: 0; touch-action: manipulation; animation: spin 2.4s linear infinite; }
 .mg-ball svg { width: 100%; height: 100%; filter: drop-shadow(0 8px 14px rgba(0,0,0,.5)); }
 .mg-ball span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 900; color: #c62f22; animation: spin 2.4s linear infinite reverse; }
