@@ -126,6 +126,7 @@
   function resolveAffair(mode) {
     var s = S(), notes = [];
     if (!s.히로인2) return notes;
+    if (!s.히로인) { s.히로인 = { 아이디: s.히로인2.아이디, 관계: "연인", 애정도: s.히로인2.애정도 }; s.히로인2 = null; return notes; }
     if (mode === "본처") notes.push("💔 " + leave(s.히로인2, "양다리 끝에 이별") + " 카드가 떨어져 나갔다");
     else if (mode === "상대") {
       notes.push("💔 " + leave(s.히로인, "양다리 끝에 이별") + " 카드가 떨어져 나갔다");
