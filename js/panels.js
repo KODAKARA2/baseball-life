@@ -248,7 +248,7 @@
     var ix = 80, iy = 150, iw = 400, ih = 600;
     x.save(); rrect(x, ix, iy, iw, ih, 28); x.clip();
     var g2 = x.createLinearGradient(0, iy, 0, iy + ih); g2.addColorStop(0, "#2c5d8f"); g2.addColorStop(1, "#173556"); x.fillStyle = g2; x.fillRect(ix, iy, iw, ih);
-    if (img) x.drawImage(img, ix, iy, iw, ih); else { x.textAlign = "center"; font(180); x.fillText("⚾", ix + iw / 2, iy + ih / 2 + 60); x.textAlign = "left"; }
+    if (img) { x.imageSmoothingEnabled = img.naturalWidth > 400; x.drawImage(img, ix, iy, iw, ih); x.imageSmoothingEnabled = true; } else { x.textAlign = "center"; font(180); x.fillText("⚾", ix + iw / 2, iy + ih / 2 + 60); x.textAlign = "left"; }
     x.restore();
     // 오른쪽: 이름과 기록
     var rx = 520, y = 205;

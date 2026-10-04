@@ -247,3 +247,6 @@ a.big { text-align: center; text-decoration: none; box-sizing: border-box; }
 .col-item .ci { font-size: 22px; width: 28px; text-align: center; flex: none; }
 .col-item b { display: block; } .col-item small { color: var(--muted); font-size: 12px; } .col-item em { margin-left: auto; font-style: normal; color: var(--muted); font-size: 12px; }
 .col-item.locked { background: #ece6d8; } .col-item.locked b { color: #8b8473; }
+
+/* ---------- 픽셀 그림 ---------- */
+.art img.px { image-rendering: pixelated; }

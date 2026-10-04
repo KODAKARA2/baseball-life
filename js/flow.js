@@ -216,7 +216,11 @@
       I.setRelation(out.관계);
       if (out.관계 === "이별") res.알림.push("💔 " + hn + " 카드가 떨어져 나갔다");
       if (out.관계 === "연인") res.알림.push("❤️ " + hn + "와(과) 연인이 되었다");
-      if (out.관계 === "배우자") res.알림.push("💍 " + hn + " 카드가 배우자 카드로 바뀌었다");
+      if (out.관계 === "배우자") {
+        res.알림.push("💍 " + hn + " 카드가 배우자 카드로 바뀌었다");
+        var wd = E.heroDef();   // 결혼식 그림은 결혼하는 이 순간에만, 이후에는 배우자 그림
+        if (wd && wd.그림) res.결혼그림 = { 키: [wd.그림.결혼, wd.그림.배우자, wd.그림.만남].filter(Boolean), 이름: wd.이름 };
+      }
     }
     arr(out.다음카드).forEach(function (t) { s.대기열.push(t); });
 
