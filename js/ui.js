@@ -192,7 +192,8 @@
 
   U.resultHTML = function (r) {
     var chips = U.chips(r.효과);
-    var pic = r.그림 ? U.art([r.그림].concat(U.heroKeys()), U.icon(), "<b>" + esc(E.state().이름) + "</b>", "banner small", U.bgOf(E.state().현재카드)) : "";
+    var pic = r.결혼그림 ? U.art(r.결혼그림.키, "💍", "<b>" + esc(r.결혼그림.이름) + "</b><small>결혼식</small>", "banner", "bg_hall.jpg")
+      : r.그림 ? U.art([r.그림].concat(U.heroKeys()), U.icon(), "<b>" + esc(E.state().이름) + "</b>", "banner small", U.bgOf(E.state().현재카드)) : "";
     var mg = r.미니게임 ? '<div class="tag">⏱ ' + r.미니게임.타이밍.toFixed(2) + "초" + (r.미니게임.목표 != null ? " (목표 " + r.미니게임.목표.toFixed(1) + "초)" : "") + " · 성공 확률 " + Math.round(r.미니게임.확률 * 100) + "%</div> " : "";
     return pic + '<div class="txt">' + mg + (r.성공 === true ? '<div class="tag ok">성공!</div>' : r.성공 === false ? '<div class="tag ng">실패…</div>' : "") +
       "<p>" + br(r.결과 || "…") + '</p><div class="fxs">' + chips + "</div>" +
