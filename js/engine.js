@@ -107,6 +107,7 @@
     if (c.히로인 === "없음" && S.히로인) return false;
     if (c.관계 && (!S.히로인 || arr(c.관계).indexOf(S.히로인.관계) < 0)) return false;
     if (c.양다리 != null && !!S.히로인2 !== c.양다리) return false;
+    if (c.한국인연 != null && E.koreanBond() !== c.한국인연) return false;
     if (c.구매 && !arr(c.구매).some(function (n) { return S.구매 && S.구매[n] != null; })) return false;
     if (c.포지션변경가능 && !(E.pos().변경후보 || []).length) return false;
     if (c.수상 && !arr(c.수상).some(function (a) { return S.수상.some(function (x) { return x.이름 === a; }); })) return false;
@@ -114,6 +115,11 @@
     return true;
   }
   E.check = check;
+  // 한국에서 시작된 인연인지: 메이저리그에서 만났거나 외국인 히로인(외국인: true)이면 아님 (미국행 동행·장거리 연애 카드용)
+  E.koreanBond = function () {
+    var d = S.히로인 && E.heroDef();
+    return !!d && !d.외국인 && S.히로인.만난시기 !== "메이저리그";
+  };
 
   function eligible(c) {
     if (c.시기 && arr(c.시기).indexOf(S.시기) < 0) return false;
@@ -183,7 +189,8 @@
 
   // ---------------- 히로인 ----------------
   function attachHeroine(id) {
-    S.히로인 = { 아이디: id, 관계: "만남", 애정도: cfg().연애.시작애정도 };
+    S.히로인 = { 아이디: id, 관계: "만남", 애정도: cfg().연애.시작애정도, 만난시기: S.시기 };
+    delete S.플래그.장거리;
     S.만난히로인.push(id);
   }
   function setRelation(r) {
@@ -191,9 +198,9 @@
     if (r === "이별") {
       var h = E.heroDef();
       S.지난히로인.push({ 아이디: h.아이디, 이름: h.이름, 관계: S.히로인.관계, 결말: "이별" });
-      S.직전히로인 = h.이름; S.히로인 = null; applyEffects(cfg().연애.이별타격, {});
+      S.직전히로인 = h.이름; S.히로인 = null; delete S.플래그.장거리; applyEffects(cfg().연애.이별타격, {});
       // 양다리 중이었다면 몰래 만나던 사람이 정식 연인이 됨
-      if (S.히로인2) { S.히로인 = { 아이디: S.히로인2.아이디, 관계: "연인", 애정도: S.히로인2.애정도 }; S.히로인2 = null; }
+      if (S.히로인2) { S.히로인 = { 아이디: S.히로인2.아이디, 관계: "연인", 애정도: S.히로인2.애정도, 만난시기: S.히로인2.만난시기 }; S.히로인2 = null; }
     } else S.히로인.관계 = r;
   }
 

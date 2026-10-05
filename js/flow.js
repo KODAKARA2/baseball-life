@@ -130,21 +130,22 @@
   E.allowance = allowance;
   // ---------------- 양다리 ----------------
   function startAffair(id) {
-    var s = S(); s.히로인2 = { 아이디: id, 관계: "연인", 애정도: cfg().연애.양다리시작애정도 || 40 }; s.만난히로인.push(id);
+    var s = S(); s.히로인2 = { 아이디: id, 관계: "연인", 애정도: cfg().연애.양다리시작애정도 || 40, 만난시기: s.시기 }; s.만난히로인.push(id);
   }
   function leave(h, why) { var d = E.heroDef(h.아이디); S().지난히로인.push({ 아이디: d.아이디, 이름: d.이름, 관계: h.관계, 결말: why }); return d.이름; }
   function resolveAffair(mode) {
     var s = S(), notes = [];
     if (!s.히로인2) return notes;
-    if (!s.히로인) { s.히로인 = { 아이디: s.히로인2.아이디, 관계: "연인", 애정도: s.히로인2.애정도 }; s.히로인2 = null; return notes; }
+    if (!s.히로인) { s.히로인 = { 아이디: s.히로인2.아이디, 관계: "연인", 애정도: s.히로인2.애정도, 만난시기: s.히로인2.만난시기 }; s.히로인2 = null; return notes; }
     if (mode === "본처") notes.push("💔 " + leave(s.히로인2, "양다리 끝에 이별") + " 카드가 떨어져 나갔다");
     else if (mode === "상대") {
       notes.push("💔 " + leave(s.히로인, "양다리 끝에 이별") + " 카드가 떨어져 나갔다");
-      s.히로인 = { 아이디: s.히로인2.아이디, 관계: "연인", 애정도: s.히로인2.애정도 };
+      s.히로인 = { 아이디: s.히로인2.아이디, 관계: "연인", 애정도: s.히로인2.애정도, 만난시기: s.히로인2.만난시기 };
     } else {
       notes.push("💔 " + leave(s.히로인, "양다리 발각") + ", " + leave(s.히로인2, "양다리 발각") + " 카드가 모두 떨어져 나갔다");
       s.히로인 = null;
     }
+    if (mode !== "본처") delete s.플래그.장거리;
     s.히로인2 = null; E.applyEffects(cfg().연애.이별타격, {});
     return notes;
   }
