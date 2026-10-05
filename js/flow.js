@@ -189,7 +189,7 @@
       out = Object.assign({}, o, ok ? o.확률결과.성공 : o.확률결과.실패);
       res.성공 = ok; res.결과 = out.결과 || ""; res.그림 = out.그림변경 || res.그림;
     }
-    I.applyEffects(out.효과, res.효과);
+    I.applyEffects(out.효과, res.효과, cfg().능력치상승배율);
     arr(out.플래그).forEach(function (f) { s.플래그[f] = true; });
     arr(out.플래그해제).forEach(function (f) { delete s.플래그[f]; });
     if (out.일군 != null) { s.일군 = out.일군; if (!out.일군) s._강등턴 = s.총턴; }
@@ -293,9 +293,10 @@
     return notes;
   }
   function growth() {
-    var s = S(), g = growthRate(s.나이), spec = E.spec().능력치;
+    var s = S(), g = growthRate(s.나이), spec = E.spec().능력치, m = cfg().능력치상승배율 || 1;
     E.posStats().forEach(function (k) {
       var d = g + ((k === spec || k === s.보조특기) && g > 0 ? cfg().특기성장보너스 : 0);
+      if (d > 0) d *= m;
       var v = Math.abs(d) * (0.5 + rnd()), n = Math.floor(v) + (rnd() < v % 1 ? 1 : 0);
       if (!n) return;
       if (d > 0) { n = E.looksGain(n, "능력치"); if (s.능력치[k] < E.cap()) s.능력치[k] = Math.min(E.cap(), s.능력치[k] + n); }

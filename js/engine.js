@@ -37,6 +37,8 @@
     if (kind === "능력치") return 1 + (L.능력치최대 || 0) * Math.max(0, -f);
     return 1;
   };
+  // 소수는 확률로 반올림 (2.3 → 70%는 2, 30%는 3)
+  E.roundRand = function (x) { var n = Math.floor(x); return n + (Math.random() < x - n ? 1 : 0); };
   E.looksGain = function (v, kind) {
     if (!(v > 0)) return v;
     var x = v * E.looksMult(kind), n = Math.floor(x);
@@ -149,20 +151,22 @@
   E.tpl = tpl;
 
   // ---------------- 능력치 변경 ----------------
-  function addStat(k, v, out) {
+  // mult: 카드 선택으로 오르는 포지션 능력치에 곱하는 배율 (settings.js 능력치상승배율). 상점·히로인 효과는 그대로
+  function addStat(k, v, out, mult) {
     if (S.능력치[k] == null) return;
     var cur = S.능력치[k], nv;
+    if (E.posStats().indexOf(k) >= 0 && v > 0 && mult != null && mult !== 1) v = E.roundRand(v * mult);
     if (E.posStats().indexOf(k) >= 0 && v > 0) v = E.looksGain(v, "능력치");
     if (E.posStats().indexOf(k) >= 0) nv = v > 0 ? (cur >= E.cap() ? cur : Math.min(E.cap(), cur + v)) : Math.max(1, cur + v);
     else nv = clamp(cur + v, 0, 100);
     S.능력치[k] = nv; if (out && nv !== cur) out[k] = (out[k] || 0) + (nv - cur);
   }
-  function applyEffects(eff, out) {
+  function applyEffects(eff, out, mult) {
     Object.keys(eff || {}).forEach(function (k) {
       var v = eff[k];
       if (Array.isArray(v)) v = v[0] + Math.floor(rnd() * (v[1] - v[0] + 1));   // [최소, 최대] → 랜덤
-      if (k === "모든능력치") E.posStats().forEach(function (s) { addStat(s, v, out); });
-      else if (k === "특기능력치") addStat(E.spec().능력치, v, out);
+      if (k === "모든능력치") E.posStats().forEach(function (s) { addStat(s, v, out, mult); });
+      else if (k === "특기능력치") addStat(E.spec().능력치, v, out, mult);
       else if (k === "부상") { S.부상 = v <= 0 ? 0 : Math.max(S.부상, v); out.부상 = v; }
       else if (k === "부상감소") { S.부상 = Math.floor(S.부상 * (100 - v) / 100); out.부상감소 = v; }
       else if (k === "슬럼프감소") { S.슬럼프 = Math.floor(S.슬럼프 * (100 - v) / 100); out.슬럼프감소 = v; }
@@ -172,7 +176,7 @@
       else if (k === "행복도") { v = E.looksGain(v, "성적행복"); var h = S.행복도; S.행복도 = clamp(h + v, 0, 100); out.행복도 = S.행복도 - h; }
       else if (k === "성적") { v = E.looksGain(v, "성적행복"); S.성적 = Math.max(0, S.성적 + v); out.성적 = v; }
       else if (k === "돈") { S.돈 = Math.max(0, (S.돈 || 0) + v); if (v > 0) S.총수입 = (S.총수입 || 0) + v; out.돈 = (out.돈 || 0) + v; }
-      else addStat(k, v, out);
+      else addStat(k, v, out, mult);
     });
   }
   E.applyEffects = applyEffects;

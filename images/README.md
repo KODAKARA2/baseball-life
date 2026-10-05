@@ -5,7 +5,7 @@
 
 - 주인공: hero_elementary, hero_middle, hero_high, hero_college, hero_pro, hero_mlb, hero_retired
 - 주인공 외모별: 위 주인공 그림 이름 + `_plain`(평범, 외모 4~7) / `_ugly`(추남, 외모 1~3). 기본 그림은 미남
-- 히로인 (한 명당 4장): heroineN_meet (만남), heroineN_lover (연인), heroineN_wedding (결혼식 장면에만), heroineN_spouse (결혼 후) — N = 1~5
+- 히로인 (한 명당 4장): heroineN_meet (만남), heroineN_lover (연인), heroineN_wedding (결혼식 장면에만), heroineN_spouse (결혼 후) — N = 1~6 (6은 메이저리그 전용 할리우드 스타)
 - 조연: rival, parents, coach_little, coach_high, buddy, manager_pro, agent, child
 - 나중에 추가: interpreter, mlb_teammate, hero_injured, hero_slump, hero_victory
 - 추가 조연: teammate (동료 오재치)
