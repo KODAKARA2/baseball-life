@@ -89,6 +89,7 @@
   function check(c) {
     if (!c) return true;
     if (c.시기 && arr(c.시기).indexOf(S.시기) < 0) return false;
+    if (c.시기아님 && arr(c.시기아님).indexOf(S.시기) >= 0) return false;
     if (c.포지션 && !arr(c.포지션).some(function (p) { return p === S.포지션 || p === E.pos().분류; })) return false;
     if (c.특기 && arr(c.특기).indexOf(S.특기) < 0) return false;
     if (c.최소나이 != null && S.나이 < c.최소나이) return false;
