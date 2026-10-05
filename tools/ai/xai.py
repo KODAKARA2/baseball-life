@@ -30,7 +30,8 @@ def main():
         path = "/images/edits"
         imgs = [{"type": "image_url", "url": "data:%s;base64,%s" % ("image/png" if r.endswith(".png") else "image/jpeg",
                  base64.b64encode(open(r, "rb").read()).decode())} for r in refs]
-        body["image"] = imgs[0] if len(imgs) == 1 else imgs
+        if len(imgs) == 1: body["image"] = imgs[0]
+        else: body["images"] = imgs   # 여러 장은 images 배열로
     res = call(path, body)
     data = res.get("data") if isinstance(res, dict) else None
     if not data: print("ERROR", json.dumps(res, ensure_ascii=False)[:800]); sys.exit(1)
