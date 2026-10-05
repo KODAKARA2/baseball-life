@@ -17,8 +17,18 @@
   U.esc = esc; U.br = br;
 
   // 그림: 파일이 없으면 다음 후보 → 모두 없으면 기본 카드 디자인
+  // 주인공 그림은 외모 레벨에 맞는 그림을 먼저 찾음: 미남(기본) / 평범 _plain / 추남 _ugly. 없으면 기본 그림
+  U.looksSuffix = function () {
+    var L = GD.설정.외모 || {}, v = (E.state() || {}).외모 || 5;
+    return v >= (L.미남 || 8) ? "" : v <= (L.추남 || 3) ? "_ugly" : "_plain";
+  };
+  U.heroArt = function (keys) {
+    var sx = U.looksSuffix(), out = [];
+    I.arr(keys).forEach(function (k) { if (sx && /^hero_/.test(k)) out.push(k + sx); out.push(k); });
+    return out;
+  };
   U.art = function (keys, fallbackIcon, overlay, cls, bg) {
-    keys = I.arr(keys).filter(Boolean);
+    keys = U.heroArt(I.arr(keys).filter(Boolean));
     var st = bg ? ' style="background-image:url(images/' + esc(bg) + (/\.\w+$/.test(bg) ? "" : ".png") + '),linear-gradient(160deg,#2c5d8f,#173556)"' : "";
     return '<div class="art ' + (cls || "") + (bg ? " has-bg" : "") + '"' + st + '><div class="art-fallback">' + (fallbackIcon || "⚾") + '</div>' +
       (keys.length ? '<img alt="" data-keys="' + esc(keys.join(",")) + '" src="images/' + esc(keys[0]) + '.png" onload="U.imgLoad(this)" onerror="U.imgFail(this)">' : "") +

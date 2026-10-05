@@ -1,6 +1,6 @@
 # AI 그림 프롬프트 목록 (2D 픽셀 · Grok Imagine)
 
-게임의 인물 그림 41장(주인공 10, 히로인 20, 조연 11)을 만든 프롬프트입니다.
+게임의 인물 그림 61장(주인공 10 + 외모별 20, 히로인 20, 조연 11)을 만든 프롬프트입니다.
 xAI 이미지 API(`grok-imagine-image-2.0`, 세로 2:3, 1k, low)로 만들었고, Grok 앱에 그대로 붙여 넣어도 됩니다.
 
 ## 만드는 순서
@@ -79,6 +79,45 @@ Detailed 2D pixel art character sprite in a modern indie visual-novel style, cri
 
 ```
 Detailed 2D pixel art character sprite in a modern indie visual-novel style, crisp hard-edged square pixels, limited color palette, clean dark outlines, no blur, no anti-aliasing. Same person as in the uploaded reference image: now a 40-year-old retired baseball legend, keep the same face with a few gray streaks in his short black hair and gentle smile lines, same pixel art style. He wears a dark navy suit and tie, holding an old signed baseball in one hand, proud and peaceful smile. Single character, knees-up shot, centered, facing slightly toward the viewer, full head visible with a little space above. Plain flat solid green background (#00B140), no shadow, no scenery. No text, no letters, no numbers, no logos. Vertical 2:3.
+```
+
+---
+
+## 1-1. 주인공 외모별 (20장)
+
+기본 주인공 그림은 미남(외모 8~10)입니다. 같은 이름에 `_plain`(평범, 외모 4~7)·`_ugly`(추남, 외모 1~3)를 붙인 그림을 만들면 외모 레벨에 맞춰 자동으로 나옵니다.
+
+1. **기준 얼굴 먼저**: `hero_high_plain`·`hero_high_ugly`를 `hero_high` 원본(`assets/ai_raw/hero_high.jpg`)을 참고 그림으로 넣고 만듭니다.
+2. **나머지 시기**: 참고 그림 2장을 넣습니다. 첫째는 그 시기의 미남 원본(옷·자세 유지), 둘째는 기준 얼굴(`hero_high_plain.jpg` 또는 `hero_high_ugly.jpg`).
+   예: `python tools/ai/xai.py hero_pro_ugly 프롬프트.txt assets/ai_raw/hero_pro.jpg assets/ai_raw/hero_high_ugly.jpg`
+3. 배경 초록이 진하게 나오면 모자·줄무늬까지 지워지므로, 프롬프트 끝의 "밝은 초록 배경" 문구를 꼭 넣습니다.
+
+### hero_high_plain — 평범 기준 얼굴
+참고 그림: `hero_high` (원본 jpg)
+
+```
+Detailed 2D pixel art character sprite, same pixel art style as the uploaded reference image. Keep the exact same outfit with the dark green cap and dark green trim, the same pose, the same glove and the same framing. Only replace the face and head: he is NOT handsome anymore, he is a completely average-looking ordinary Korean teenage boy. Small narrow single-lidded eyes, a wide flat nose, a broad round face with a heavier jaw, thin eyebrows, slightly dull skin, short plain buzz-cut black hair, a neutral mild expression with a small polite smile. Clearly less attractive than the reference, an unremarkable everyday face. Keep the background exactly the same bright vivid chroma-key green (#00B140) as the reference, clearly lighter and brighter than the dark green cap and trim, no shadow, no scenery. No text, no letters, no numbers, no logos. Vertical 2:3.
+```
+
+### hero_high_ugly — 추남 기준 얼굴
+참고 그림: `hero_high` (원본 jpg)
+
+```
+Detailed 2D pixel art character sprite, same pixel art style as the uploaded reference image. Keep the exact same outfit with the dark green cap and dark green trim, the same pose, the same glove and the same framing. Only replace the face and head and make him a little chubby: a comically homely, lovable goofy-looking Korean teenage boy. Tiny beady eyes wide open, thick bushy unibrow, a big round red nose, a wide flat face with chubby cheeks and a few pimples, prominent buck teeth in an awkward grin, messy bowl-cut black hair sticking out under the cap. Funny and endearing, not scary or gross. Keep the background exactly the same bright vivid chroma-key green (#00B140) as the reference, clearly lighter and brighter than the dark green cap and trim, no shadow, no scenery. No text, no letters, no numbers, no logos. Vertical 2:3.
+```
+
+### 나머지 시기 (평범 예: hero_pro_plain)
+참고 그림: `hero_pro` 원본, `hero_high_plain`. 나이 문구(`a 27-year-old version`)만 시기에 맞게 바꿉니다. (초등: `a small 10-year-old child version (child proportions, big head, chubby cheeks)`, 중학 14, 대학 21, 프로·부상·슬럼프·승리 27, 메이저 30, 은퇴 `a 40-year-old version with a few gray streaks in the hair and smile lines`)
+
+```
+Detailed 2D pixel art character sprite, same pixel art style as the uploaded references. Keep EVERYTHING from the FIRST reference image exactly: the same outfit, cap, props, pose, expression mood, framing and age. Only replace the face and hair with the plain, average-looking face of the boy in the SECOND reference image, shown as a 27-year-old version: small narrow single-lidded eyes, a wide flat nose, a broad round face, thin eyebrows, short plain buzz-cut black hair. Clearly not handsome, an unremarkable everyday face. Keep the background exactly the same bright vivid chroma-key green (#00B140) as the first reference, clearly brighter than any dark green clothing, no shadow, no scenery. No text, no letters, no numbers, no logos. Vertical 2:3.
+```
+
+### 나머지 시기 (추남 예: hero_pro_ugly)
+참고 그림: `hero_pro` 원본, `hero_high_ugly`
+
+```
+Detailed 2D pixel art character sprite, same pixel art style as the uploaded references. Keep EVERYTHING from the FIRST reference image exactly: the same outfit, cap, props, pose, expression mood, framing and age. Only replace the face and hair with the comically homely, goofy face of the boy in the SECOND reference image, shown as a 27-year-old version, and make the body a little chubby: tiny beady eyes, thick bushy unibrow, a big round red nose, chubby cheeks with a few pimples, prominent buck teeth, messy bowl-cut black hair. Funny and endearing, not scary or gross. Keep the background exactly the same bright vivid chroma-key green (#00B140) as the first reference, clearly brighter than any dark green clothing, no shadow, no scenery. No text, no letters, no numbers, no logos. Vertical 2:3.
 ```
 
 ---

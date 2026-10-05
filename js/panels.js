@@ -280,8 +280,10 @@
       try { drawResult(img).toBlob(function (b) { if (b) cb(b); else if (img) out(null); else cb(null); }, "image/png"); }
       catch (e) { if (img) out(null); else cb(null); }
     }
-    var im = new Image(); im.onload = function () { out(im); }; im.onerror = function () { out(null); };
-    im.src = "images/hero_retired.png";
+    var keys = U.heroArt(["hero_retired"]);
+    var im = new Image(); im.onload = function () { out(im); };
+    im.onerror = function () { keys.shift(); if (keys.length) im.src = "images/" + keys[0] + ".png"; else out(null); };
+    im.src = "images/" + keys[0] + ".png";
   };
   var resultCache = null;
   U.prepResult = function () { resultCache = null; U.resultBlob(function (b) { resultCache = b; }); };
