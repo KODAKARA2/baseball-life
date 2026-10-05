@@ -1,13 +1,13 @@
 // AI 그림 다듬기: 초록 배경 제거 + 200x300 픽셀 격자로 맞춤 → 투명 PNG
 // 필요: npm i playwright && npx playwright install chromium
-// 사용: node tools/ai/process.js images assets/ai_raw/heroine1_meet.jpg [...]   (이름_wedding 은 베일 초록 번짐까지 제거)
+// 사용: node tools/ai/process.js images assets/ai_raw/heroine1_meet.jpg [...]   (이름_wedding 은 베일 초록 번짐까지 제거, 금발 등은 SPILL=1 을 앞에 붙임)
 const { chromium } = require("playwright"); const fs = require("fs"), path = require("path");
 (async () => { const [outDir, ...files] = process.argv.slice(2);
   const b = await chromium.launch(); const p = await b.newPage();
   for (const f of files) {
     const name = path.basename(f).replace(/(_\d+)?\.(jpg|png)$/, "");
     const data = "data:image/jpeg;base64," + fs.readFileSync(f).toString("base64");
-    const all = /_wedding$/.test(name);   // 웨딩 베일처럼 비치는 부분은 전체 초록 번짐 제거
+    const all = /_wedding$/.test(name) || !!process.env.SPILL;   // 웨딩 베일·금발처럼 비치는 부분은 전체 초록 번짐 제거 (SPILL=1)
     const url = await p.evaluate(async ([d, all]) => {
       const im = new Image(); im.src = d; await im.decode();
       const W = im.width, H = im.height, c = document.createElement("canvas"); c.width = W; c.height = H;

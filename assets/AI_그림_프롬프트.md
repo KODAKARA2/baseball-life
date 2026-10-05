@@ -1,6 +1,6 @@
 # AI 그림 프롬프트 목록 (2D 픽셀 · Grok Imagine)
 
-게임의 인물 그림 61장(주인공 10 + 외모별 20, 히로인 20, 조연 11)을 만든 프롬프트입니다.
+게임의 인물 그림 65장(주인공 10 + 외모별 20, 히로인 24, 조연 11)을 만든 프롬프트입니다.
 xAI 이미지 API(`grok-imagine-image-2.0`, 세로 2:3, 1k, low)로 만들었고, Grok 앱에 그대로 붙여 넣어도 됩니다.
 
 ## 만드는 순서
@@ -122,7 +122,7 @@ Detailed 2D pixel art character sprite, same pixel art style as the uploaded ref
 
 ---
 
-## 2. 히로인 (20장)
+## 2. 히로인 (24장)
 
 #### 히로인 1 — 윤하나 (소꿉친구)
 
@@ -260,6 +260,36 @@ Detailed 2D pixel art character sprite in a modern indie visual-novel style, cri
 
 ```
 Detailed 2D pixel art character sprite in a modern indie visual-novel style, crisp hard-edged square pixels, limited color palette, clean dark outlines, no blur, no anti-aliasing. Same woman as in the uploaded reference image, now about 32 years old and mature: keep the exact same face, round glasses and black hair, now shoulder-length, same pixel art style. Change her outfit completely, NOT a school uniform and NOT a wedding dress: a soft beige knit sweater over a white collared shirt and a long navy skirt, a wedding ring visible on her hand, holding a household account book and a pen, pretending to be stern but smiling softly. Single character, knees-up shot, centered, facing slightly toward the viewer, full head visible with a little space above. Plain flat solid green background (#00B140), no shadow, no scenery. No text, no letters, no numbers, no logos. Vertical 2:3.
+```
+
+#### 히로인 6 — 릴리 하퍼 (할리우드 스타, 메이저리그 전용)
+
+### heroine6_meet — 만남 ⭐ 기준 그림
+금발은 배경 초록이 비쳐 묻기 쉬우므로 다듬을 때 `SPILL=1`을 붙입니다: `SPILL=1 node tools/ai/process.js images assets/ai_raw/heroine6_meet.jpg`
+
+```
+Detailed 2D pixel art character sprite in a modern indie visual-novel style, crisp hard-edged square pixels, limited color palette, clean dark outlines, no blur, no anti-aliasing. A breathtakingly beautiful 27-year-old American Hollywood movie star with long glossy wavy platinum-blonde hair, bright blue eyes, long lashes and glamorous red lipstick, a curvy model figure. She wears a daring crimson red-carpet evening gown with a plunging neckline, bare shoulders and a very high thigh slit showing her long legs, a sparkling diamond necklace, one hand on her hip, a confident dazzling movie-star smile. Glamorous and sexy but tasteful, fully clothed. Single character, knees-up shot, centered, facing slightly toward the viewer, full head visible with a little space above. Plain flat solid bright green background (#00B140), no shadow, no scenery. No green clothing. No text, no letters, no numbers, no logos. Vertical 2:3.
+```
+
+### heroine6_lover — 연인
+참고 그림: `heroine6_meet`
+
+```
+Detailed 2D pixel art character sprite in a modern indie visual-novel style, crisp hard-edged square pixels, limited color palette, clean dark outlines, no blur, no anti-aliasing. Same person as in the uploaded reference image: keep the exact same face, blue eyes and long wavy platinum-blonde hair, same pixel art style. Off duty on a private Malibu beach date, she wears a tiny red string bikini top and low-rise white denim micro shorts with a sheer white beach shirt slipping off her shoulders, big sunglasses pushed up in her hair, holding a pink smoothie, a flirty playful wink. Sexy summer look but tasteful, no nudity. Single character, knees-up shot, centered, facing slightly toward the viewer, full head visible with a little space above. Keep the same plain flat solid bright green background (#00B140) as the reference, no shadow, no scenery. No green clothing. No text, no letters, no numbers, no logos. Vertical 2:3.
+```
+
+### heroine6_wedding — 결혼식 (결혼하는 장면에만)
+참고 그림: `heroine6_meet`
+
+```
+Detailed 2D pixel art character sprite in a modern indie visual-novel style, crisp hard-edged square pixels, limited color palette, clean dark outlines, no blur, no anti-aliasing. Same person as in the uploaded reference image: keep the exact same face, blue eyes and long wavy platinum-blonde hair, same pixel art style. On her wedding day, she wears a glamorous white Hollywood wedding gown with a sheer lace bodice, a deep sweetheart neckline, bare shoulders and a high leg slit, a long sheer white veil, holding a bouquet of white and red roses, tears of joy and a radiant smile. Elegant and sexy but tasteful. Single character, knees-up shot, centered, facing slightly toward the viewer, full head visible with a little space above. Keep the same plain flat solid bright green background (#00B140) as the reference, no shadow, no scenery. No green clothing. No text, no letters, no numbers, no logos. Vertical 2:3.
+```
+
+### heroine6_spouse — 배우자 (결혼 후 계속)
+참고 그림: `heroine6_meet`
+
+```
+Detailed 2D pixel art character sprite in a modern indie visual-novel style, crisp hard-edged square pixels, limited color palette, clean dark outlines, no blur, no anti-aliasing. Same person as in the uploaded reference image: keep the exact same face, blue eyes and long wavy platinum-blonde hair, same pixel art style. A few years into marriage, relaxed at home with a mature warm glow, she wears a fitted off-shoulder cream knit mini sweater dress and a navy baseball cap with no logo, holding a baseball in one hand, a soft loving smile. Single character, knees-up shot, centered, facing slightly toward the viewer, full head visible with a little space above. Keep the same plain flat solid bright green background (#00B140) as the reference, no shadow, no scenery. No green clothing. No text, no letters, no numbers, no logos. Vertical 2:3.
 ```
 
 ---
