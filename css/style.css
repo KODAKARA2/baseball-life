@@ -250,3 +250,40 @@ a.big { text-align: center; text-decoration: none; box-sizing: border-box; }
 
 /* ---------- 픽셀 그림 ---------- */
 .art img.px { image-rendering: pixelated; }
+
+/* ---------- 타격·투구 미니게임 ---------- */
+.mgf { position: relative; height: 270px; margin: 2px 0 6px; border-radius: 14px; overflow: hidden; touch-action: none;
+  -webkit-user-select: none; user-select: none; box-shadow: inset 0 0 0 2px rgba(255,255,255,.15); }
+.mg-ball2 { position: absolute; left: -17px; top: -17px; width: 34px; height: 34px; pointer-events: none; will-change: transform; }
+.mg-ball2 svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 3px 4px rgba(0,0,0,.5)); }
+.mg-pitch { position: absolute; top: 8px; left: 10px; font-size: 12px; font-weight: 800; color: #ffe9a8; background: rgba(0,0,0,.35); padding: 3px 8px; border-radius: 8px; }
+.mg-big { position: absolute; left: 0; right: 0; top: 30%; font-size: 44px; font-weight: 900; color: #ffcf33; pointer-events: none;
+  text-shadow: 0 0 12px rgba(255,170,0,.9), 0 3px 0 #7a4b00; animation: mgpop .5s cubic-bezier(.2,1.6,.4,1) both; }
+.mg-big.bad { color: #ff9b8a; font-size: 38px; text-shadow: 0 0 10px rgba(255,60,40,.8), 0 3px 0 #6b1208; }
+@keyframes mgpop { from { transform: scale(.2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+/* 타격: 위쪽 마운드에서 아래쪽 홈플레이트로 공이 날아옴 */
+.bf { background: linear-gradient(#174d24, #2f8a43); }
+.bf-mound { position: absolute; left: 50%; top: 8%; width: 84px; height: 26px; margin-left: -42px; border-radius: 50%; background: #b98547; box-shadow: inset 0 -3px 0 rgba(0,0,0,.18); }
+.bf-plate { position: absolute; left: 50%; top: 84%; width: 170px; height: 70px; margin-left: -85px; border-radius: 50%; background: #b98547; }
+.bf-plate::after { content: ""; position: absolute; left: 50%; top: 14px; width: 28px; height: 22px; margin-left: -14px; background: #fff;
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%); }
+.bf-zone { position: absolute; left: 8%; right: 8%; top: 78%; border-top: 3px dashed #ffd84a; filter: drop-shadow(0 0 4px rgba(255,216,74,.9)); }
+.bf-bat { position: absolute; right: 6%; top: calc(78% - 12px); width: 52%; height: 24px; transform-origin: 95% 50%; transform: rotate(55deg); transition: transform .11s ease-out; }
+.bf-bat svg { display: block; width: 100%; height: 100%; }
+.bf-bat.swing { transform: rotate(-12deg); }
+/* 투구: 포수 쪽에서 본 스트라이크존 (바깥은 어둡게) */
+.pf { background: radial-gradient(120% 80% at 50% 0%, #29466e, #0f1f38); }
+.pf-zone { position: absolute; left: 27%; width: 46%; top: 16%; height: 58%; border: 3px solid rgba(255,255,255,.9); border-radius: 4px;
+  box-shadow: 0 0 0 999px rgba(0,0,0,.22);
+  background: linear-gradient(90deg, transparent 33%, rgba(255,255,255,.22) 33% 34%, transparent 34% 66%, rgba(255,255,255,.22) 66% 67%, transparent 67%),
+    linear-gradient(transparent 33%, rgba(255,255,255,.22) 33% 34%, transparent 34% 66%, rgba(255,255,255,.22) 66% 67%, transparent 67%); }
+.pf-mitt { position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; pointer-events: none; filter: drop-shadow(0 2px 3px rgba(0,0,0,.5)); }
+.pf-mitt svg { display: block; width: 100%; height: 100%; }
+.pf-mitt.pop { animation: mgpop .4s cubic-bezier(.2,1.6,.4,1); }
+.pf-aim { position: absolute; left: 0; top: 0; width: 40px; height: 40px; margin: -20px 0 0 -20px; border: 3px solid #ff4d4d; border-radius: 50%;
+  box-shadow: 0 0 8px #ff4d4d; pointer-events: none; will-change: transform; }
+.pf-aim::before, .pf-aim::after { content: ""; position: absolute; background: #ff4d4d; }
+.pf-aim::before { left: 50%; top: -8px; bottom: -8px; width: 2px; margin-left: -1px; }
+.pf-aim::after { top: 50%; left: -8px; right: -8px; height: 2px; margin-top: -1px; }
+.pf-time { position: absolute; left: 10px; right: 10px; bottom: 8px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.2); }
+.pf-time i { display: block; height: 100%; width: 100%; border-radius: 3px; background: linear-gradient(90deg, #ffcf33, #f6e7b0); }

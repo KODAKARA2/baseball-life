@@ -204,7 +204,8 @@
     var chips = U.chips(r.효과);
     var pic = r.결혼그림 ? U.art(r.결혼그림.키, "💍", "<b>" + esc(r.결혼그림.이름) + "</b><small>결혼식</small>", "banner", "bg_hall.jpg")
       : r.그림 ? U.art([r.그림].concat(U.heroKeys()), U.icon(), "<b>" + esc(E.state().이름) + "</b>", "banner small", U.bgOf(E.state().현재카드)) : "";
-    var mg = r.미니게임 ? '<div class="tag">⏱ ' + r.미니게임.타이밍.toFixed(2) + "초" + (r.미니게임.목표 != null ? " (목표 " + r.미니게임.목표.toFixed(1) + "초)" : "") + " · 성공 확률 " + Math.round(r.미니게임.확률 * 100) + "%</div> " : "";
+    var g = r.미니게임, mg = g ? '<div class="tag">' + (g.표시 ? esc(g.표시) : "⏱ " + g.타이밍.toFixed(2) + "초" + (g.목표 != null ? " (목표 " + g.목표.toFixed(1) + "초)" : "")) +
+      " · 성공 확률 " + Math.round(g.확률 * 100) + "%</div> " : "";
     return pic + '<div class="txt">' + mg + (r.성공 === true ? '<div class="tag ok">성공!</div>' : r.성공 === false ? '<div class="tag ng">실패…</div>' : "") +
       "<p>" + br(r.결과 || "…") + '</p><div class="fxs">' + chips + "</div>" +
       (r.알림 || []).map(function (n) { return '<div class="note">' + esc(n) + "</div>"; }).join("") +
@@ -224,8 +225,21 @@
   var busy = false;
   var BALL = '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#fffdf6" stroke="#d8d2c4" stroke-width="2"/>' +
     '<path d="M24 12C42 30 42 70 24 88M76 12C58 30 58 70 76 88" fill="none" stroke="#d33a2c" stroke-width="3.2" stroke-dasharray="5 4"/></svg>';
-  // 승부의 순간 미니게임: 5초부터 줄어드는 시계를 목표(1.0초)에 가깝게 멈출수록 성공 확률이 높음
+  var BAT = '<svg viewBox="0 0 200 24"><path d="M8 3C1 3 1 21 8 21L118 16.5 182 14.2V9.8L118 7.5Z" fill="#d9a35b" stroke="#6b4419" stroke-width="2"/>' +
+    '<path d="M150 9.2 182 9.8V14.2L150 14.8Z" fill="#333"/><circle cx="188" cy="12" r="6" fill="#333"/></svg>';
+
+  // ---------------- 승부의 순간 미니게임 ----------------
+  // 시계 게임과 포지션 게임(야수 = 타격, 투수 = 투구)이 랜덤으로 나옴. 같은 게임이 세 번 연속 나오지는 않음
+  var mgLast = [];
   U.miniGame = function (cb) {
+    var M = GD.설정.미니게임 || {}, alt = Math.random() < (M.새게임확률 == null ? 0.5 : M.새게임확률);
+    if (mgLast.length === 2 && mgLast[0] === mgLast[1]) alt = !mgLast[0];
+    mgLast = [alt].concat(mgLast.slice(0, 1));
+    (alt ? (E.pos().분류 === "투수" ? U.miniPitch : U.miniBat) : U.miniTimer)(cb);
+  };
+
+  // 시계 게임: 5초부터 줄어드는 시계를 목표 시간에 가깝게 멈출수록 성공 확률이 높음
+  U.miniTimer = function (cb) {
     var M = GD.설정.미니게임 || {}, start = M.시작초 || 5, top = M.최고확률 || 0.95;
     // 목표 시간: 목표최소~목표최대 사이에서 매번 랜덤 (0.1초 단위)
     var lo = M.목표최소 != null ? M.목표최소 : (M.목표초 || 1), hi = M.목표최대 != null ? M.목표최대 : lo;
@@ -255,6 +269,110 @@
       if (t <= 0) finish(0, true); else requestAnimationFrame(frame);
     })();
     m.querySelector(".mg-ball").addEventListener("pointerdown", function (e) { e.preventDefault(); finish(left()); });
+  };
+
+  // 미니게임 창: 제목·설명·놀이판(.mgf)·결과 칸
+  function mgOpen(title, sub, field, cls) {
+    var m = document.createElement("div"); m.className = "modal mg-wrap";
+    m.innerHTML = '<div class="mg"><div class="mg-title">' + title + '</div><div class="mg-sub">' + sub + "</div>" +
+      '<div class="mgf ' + (cls || "") + '">' + field + '</div><div class="mg-result"></div></div>';
+    document.body.appendChild(m); return m;
+  }
+  // 결과를 보여 준 뒤 창을 닫고 성공 확률을 돌려줌
+  function mgEnd(m, big, bad, msg, p, show, cb) {   // big: 놀이판에 크게 띄우는 글 (bad면 붉은색)
+    if (big) { var b = document.createElement("div"); b.className = "mg-big" + (bad ? " bad" : ""); b.textContent = big; m.querySelector(".mgf").appendChild(b); }
+    m.querySelector(".mg-result").innerHTML = msg + " <b>성공 확률 " + Math.round(p * 100) + "%</b>";
+    setTimeout(function () { m.remove(); cb({ 확률: p, 표시: show }); }, 1600);
+  }
+  // 누른 순간의 시각 (이벤트에 찍힌 시각을 써서 화면 프레임 오차를 줄임)
+  function tapTime(e) { var n = performance.now(), t = e && e.timeStamp; return t && Math.abs(n - t) < 1000 ? t : n; }
+  function rand(a, b) { return a + Math.random() * (b - a); }
+  function move(el, x, y, s, sec, op) {   // sec초 동안 (x, y)로 옮기며 크기를 s로
+    el.style.transition = sec ? "transform " + sec + "s cubic-bezier(.15,.7,.3,1), opacity " + sec + "s" : "none";
+    el.style.transform = "translate(" + x + "px," + y + "px) scale(" + s + ")";
+    if (op != null) el.style.opacity = op;
+  }
+
+  // 타격 게임 (야수): 날아오는 공이 노란 점선(타격 존)에 닿는 순간 화면을 누르면 배트를 휘두름
+  U.miniBat = function (cb) {
+    var M = GD.설정.미니게임 || {}, B = M.타격 || {}, top = M.최고확률 || 0.95, low = M.최저확률 || 0.05;
+    var lo = B.최소초 || 0.6, hi = B.최대초 || 1.2, brk = Math.random() < (B.변화구확률 == null ? 0.35 : B.변화구확률);
+    var T = brk ? rand((lo + hi) / 2, hi) : rand(lo, hi), dir = Math.random() < 0.5 ? -1 : 1;   // 변화구는 느리고 마지막에 휨
+    var kmh = Math.round(160 - (T - lo) / Math.max(0.01, hi - lo) * 45), kind = brk ? I.pick(["커브", "슬라이더", "체인지업"]) : "직구";
+    var m = mgOpen("⚾ 승부의 순간!", "공이 <b>노란 점선</b>에 닿는 순간 화면을 누르세요",
+      '<div class="bf-mound"></div><div class="bf-plate"></div><div class="bf-zone"></div><div class="mg-pitch">와인드업…</div>' +
+      '<div class="bf-bat">' + BAT + '</div><div class="mg-ball2">' + BALL + "</div>", "bf");
+    var f = m.querySelector(".mgf"), ball = m.querySelector(".mg-ball2"), label = m.querySelector(".mg-pitch");
+    var W = f.clientWidth, H = f.clientHeight, x0 = W / 2, y0 = H * 0.13, y1 = H * 0.78, amp = W * 0.16 * dir, end = 1 + 0.3 / T;
+    var t0 = performance.now() + rand(0.6, 1.4) * 1000, done = false, thrown = false;
+    function at(u) {   // 진행도 u (0 = 투수 손, 1 = 타격 존): 원근감으로 점점 커지고, 변화구는 마지막에 휨
+      u = Math.max(0, u);
+      return { x: x0 + (brk ? amp * Math.pow(u, 2.5) : 0), y: y0 + (y1 - y0) * u, s: 0.3 + 0.8 * Math.pow(u, 1.5) };
+    }
+    var p0 = at(0); move(ball, p0.x, p0.y, p0.s, 0);
+    (function frame() {
+      if (done) return;
+      var u = (performance.now() - t0) / (T * 1000);
+      if (u >= 0 && !thrown) { thrown = true; label.textContent = kind + " " + kmh + "km"; }
+      var p = at(u); move(ball, p.x, p.y, p.s, 0);
+      if (u > end) finish(null); else requestAnimationFrame(frame);   // 끝까지 안 휘두르면 루킹 스트라이크
+    })();
+    function finish(tt) {
+      if (done) return; done = true;
+      var now = performance.now(), u = (now - t0) / (T * 1000), last = at(end), rest = Math.max(0.15, (end - Math.max(0, u)) * T);
+      var p = low, big = "헛스윙!", bad = true, flew = false, show, msg;
+      if (tt == null) { big = "스트라이크!"; show = "🏏 루킹 스트라이크"; msg = "⏰ 공을 그냥 보냈다"; }
+      else {
+        m.querySelector(".bf-bat").classList.add("swing");
+        var d = (tt - t0) / 1000 - T - (B.보정 == null ? 0.03 : B.보정), a = Math.abs(d);
+        var when = a < 0.005 ? "" : " (" + a.toFixed(2) + "초 " + (d < 0 ? "빨랐다" : "늦었다") + ")";
+        if (tt < t0) { show = "🏏 성급한 헛스윙"; msg = "😱 공을 던지기도 전에 휘둘렀다"; move(ball, last.x, last.y, last.s, T + (t0 - now) / 1000); rest = T + (t0 - now) / 1000; }
+        else if (a <= (B.퍼펙트 || 0.04)) { p = top; big = "홈런!"; bad = false; flew = true; show = "🏏 홈런" + when; msg = "💥 완벽한 타이밍! 담장을 넘겼다!"; move(ball, x0 + dir * W * 0.25, -H * 0.5, 0.08, 1.1, 0); }
+        else if (a <= (B.좋음 || 0.09)) { p = B.좋음확률 || 0.7; big = "안타!"; bad = false; flew = true; show = "🏏 안타" + when; msg = "👍 좋은 타이밍! 깨끗한 안타!"; move(ball, d < 0 ? W * 0.08 : W * 0.92, H * 0.06, 0.2, 0.8, 0.3); }
+        else if (a <= (B.빗맞음 || 0.16)) { p = B.빗맞음확률 || 0.3; big = "파울!"; flew = true; show = "🏏 빗맞음" + when; msg = "😅 빗맞았다… 파울"; move(ball, d < 0 ? -W * 0.15 : W * 1.15, H * 0.62, 0.5, 0.6, 0); }
+        else { show = "🏏 헛스윙" + when; msg = "😱 타이밍이 크게 어긋났다"; if (u < end) move(ball, last.x, last.y, last.s, rest); }
+      }
+      if (!flew) setTimeout(function () { ball.style.opacity = 0; }, tt == null ? 0 : rest * 1000);
+      mgEnd(m, big, bad, msg, p, show, cb);
+    }
+    m.querySelector(".mg").addEventListener("pointerdown", function (e) { e.preventDefault(); finish(tapTime(e)); });
+  };
+
+  // 투구 게임 (투수): 움직이는 빨간 조준점이 포수 미트에 겹칠 때 화면을 누르면 그곳으로 공을 던짐
+  U.miniPitch = function (cb) {
+    var M = GD.설정.미니게임 || {}, P = M.투구 || {}, top = M.최고확률 || 0.95, low = M.최저확률 || 0.05, lim = (P.제한초 || 6) * 1000;
+    var m = mgOpen("⚾ 승부의 순간!", "빨간 조준점이 <b>포수 미트</b>에 겹칠 때 화면을 누르세요",
+      '<div class="pf-zone"></div><div class="pf-mitt">' + ICON.미트 + '</div><div class="pf-aim"></div><div class="mg-ball2">' + BALL + '</div><div class="pf-time"><i></i></div>', "pf");
+    var f = m.querySelector(".mgf"), z = m.querySelector(".pf-zone"), aim = m.querySelector(".pf-aim"), mitt = m.querySelector(".pf-mitt"),
+      ball = m.querySelector(".mg-ball2"), bar = m.querySelector(".pf-time i");
+    var W = f.clientWidth, H = f.clientHeight, zl = z.offsetLeft, zt = z.offsetTop, zw = z.offsetWidth, zh = z.offsetHeight, cx = zl + zw / 2, cy = zt + zh / 2;
+    var mx = zl + zw * rand(0.15, 0.85), my = zt + zh * rand(0.15, 0.85);   // 포수 미트 위치 (매번 랜덤)
+    var fx = rand(P.속도최소 || 0.35, P.속도최대 || 0.65), fy = fx * rand(1.2, 1.6), px = rand(0, 6.283), py = rand(0, 6.283);
+    var t0 = performance.now(), done = false;
+    mitt.style.left = mx + "px"; mitt.style.top = my + "px"; move(ball, W / 2, H * 0.04, 0.25, 0, 0);
+    function pos(t) {   // 조준점은 스트라이크존 바깥까지 8자 모양으로 움직임
+      var s = (t - t0) / 1000;
+      return { x: cx + zw * 0.72 * Math.sin(6.283 * fx * s + px), y: cy + zh * 0.62 * Math.sin(6.283 * fy * s + py) };
+    }
+    function put(q) { aim.style.transform = "translate(" + q.x + "px," + q.y + "px)"; }
+    (function frame() {
+      if (done) return;
+      var now = performance.now(); put(pos(now)); bar.style.width = Math.max(0, 1 - (now - t0) / lim) * 100 + "%";
+      if (now - t0 >= lim) finish(null); else requestAnimationFrame(frame);
+    })();
+    function finish(tt) {
+      if (done) return; done = true;
+      if (tt == null) return mgEnd(m, "시간 초과!", true, "⏰ 공을 던지지 못했다", low, "🎯 시간 초과", cb);
+      var q = pos(tt), d = Math.sqrt((q.x - mx) * (q.x - mx) + (q.y - my) * (q.y - my)) / zw;
+      var inZone = q.x >= zl && q.x <= zl + zw && q.y >= zt && q.y <= zt + zh, p = low, big = "볼!", bad = true, show, msg;
+      put(q); move(ball, q.x, q.y, 1, 0.35, 1);   // 투수 쪽에서 조준점으로 날아감
+      if (d <= (P.퍼펙트 || 0.12)) { p = top; big = "삼진!"; bad = false; show = "🎯 미트에 정확히"; msg = "💥 포수 미트에 정확히 꽂혔다! 헛스윙 삼진!"; }
+      else if (d <= (P.좋음 || 0.25)) { p = P.좋음확률 || 0.7; big = "스트라이크!"; bad = false; show = "🎯 좋은 코스"; msg = "👍 좋은 코스! 타자가 꼼짝 못 했다"; }
+      else if (inZone) { p = P.존안확률 || 0.3; big = "실투!"; show = "🎯 실투"; msg = "😅 미트에서 벗어났다… 타자가 노리고 있었다"; }
+      else { show = "🎯 볼"; msg = "😱 스트라이크존을 크게 벗어났다"; }
+      setTimeout(function () { if (!bad) mitt.classList.add("pop"); mgEnd(m, big, bad, msg, p, show, cb); }, 350);
+    }
+    m.querySelector(".mg").addEventListener("pointerdown", function (e) { e.preventDefault(); finish(tapTime(e)); });
   };
 
   U.choose = function (i) {
