@@ -1,5 +1,7 @@
 # 일러스트 폴더
 
+새 반실사 버전 74장은 [별도 그림 모음](../assets/semirealistic/README.md)에 저장되어 있습니다. [비교 갤러리](../assets/semirealistic/index.html)에서 볼 수 있으며, 이 폴더의 기존 그림은 보존했습니다.
+
 세로 2:3 비율 PNG(예: 800 × 1200, 픽셀 그림은 200 × 300)를 아래 이름 그대로 넣으면 게임에 자동으로 연결됩니다.
 그림이 없으면 기본 카드 디자인이 대신 보입니다. (자세한 내용은 `../안내서.md` 5장)
 
@@ -14,7 +16,7 @@
   출처: OpenGameArt — Midnight68 (CC0), Homunculus (CC BY 3.0), Spiral Atlas (CC BY 4.0), DasBilligeAlien (CC0), frances (CC BY 3.0).
   자세한 출처는 `data/settings.js`의 `그림출처`와 게임 메뉴의 "🎨 그림 출처"에 있습니다.
 
-인물 그림은 AI(xAI Grok Imagine)로 만든 2D 픽셀 그림입니다. 프롬프트: `../assets/AI_그림_프롬프트.md`. 같은 이름의 PNG로 덮어쓰면 바로 바뀝니다.
+인물 65장은 승인된 윤하나 작은 픽셀 콘셉트를 기준으로 새로 제작한 1024×1536 투명 PNG입니다. 제작 명세와 실제 프롬프트: `../assets/fine-pixel/manifest.json`, `../assets/fine-pixel/progress.json`. 전체 미리보기는 `../assets/fine-pixel/index.html`입니다. 같은 이름의 PNG로 덮어쓰면 바로 바뀝니다.
 캐릭터 그림은 배경이 투명하면 뒤에 카드 배경(경기장·거리·실내)이 비쳐 보입니다.
 
 (모두 끝에 `.png`)

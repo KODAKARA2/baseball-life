@@ -34,8 +34,8 @@
       (keys.length ? '<img alt="" data-keys="' + esc(keys.join(",")) + '" src="images/' + esc(keys[0]) + '.png" onload="U.imgLoad(this)" onerror="U.imgFail(this)">' : "") +
       (overlay ? '<div class="overlay">' + overlay + "</div>" : "") + "</div>";
   };
-  // 작은 픽셀 그림(가로 400 이하)은 확대해도 흐려지지 않게 또렷한 픽셀로 보여 줌
-  U.imgLoad = function (img) { img.classList.toggle("px", img.naturalWidth <= 400); };
+  // 인물은 고해상도로 저장한 작은 픽셀 그림도 선명하게 표시합니다.
+  U.imgLoad = function (img) { img.classList.add("px"); };
   U.imgFail = function (img) {
     var keys = img.dataset.keys.split(","), i = keys.indexOf(img.getAttribute("src").replace(/^images\/|\.png$/g, ""));
     if (i >= 0 && i + 1 < keys.length) img.src = "images/" + keys[i + 1] + ".png"; else img.remove();
@@ -85,11 +85,17 @@
   // ---------------- 시작 화면 ----------------
   U.showSetup = function () {
     var sel = { pos: null, spec: null };
+    $("#app").className = "is-setup";
     $("#app").innerHTML =
-      '<section class="setup"><h1>⚾ ' + esc(GD.설정.게임제목) + '</h1><p class="sub">한 장의 카드로 시작하는 야구 인생</p>' +
+      '<section class="setup"><div class="setup-intro"><span class="eyebrow">BASEBALL LIFE · 나만의 야구 이야기</span><h1>야구는 기록으로,<br>인생은 <em>선택으로.</em></h1>' +
+      '<p class="sub">첫 글러브부터 마지막 은퇴 경기까지.<br>어떤 선수가 되고, 누구와 함께할까요?</p>' +
+      '<div class="journey-art" aria-hidden="true"><div><img src="images/hero_elementary.png" alt=""><span>첫 글러브</span></div><div><img src="images/hero_high.png" alt=""><span>커지는 꿈</span></div><div><img src="images/hero_pro.png" alt=""><span>나만의 전성기</span></div></div>' +
+      '<div class="setup-links"><button onclick="U.openPractice()">⚾ 미니게임 연습장 <span>먼저 체험하기 →</span></button><button onclick="U.openCollection()">📖 엔딩 도감 <span>모아 온 이야기 →</span></button></div>' +
+      '<p class="intro-note">잘하는 야구와 행복한 인생 사이, 정답은 하나가 아닙니다.</p></div>' +
+      '<div class="setup-form"><span class="eyebrow">NEW PLAYER</span><h2>나의 선수 만들기</h2><p class="form-note">이름, 포지션, 특기를 고르면 이야기가 시작됩니다.</p>' +
       '<label>주인공 이름<input id="nm" maxlength="8" placeholder="예: 강민준" autocomplete="off"></label>' +
       '<h3>포지션</h3><div class="grid" id="pos"></div><h3>특기</h3><div class="grid" id="spec"><p class="hint">포지션을 먼저 고르세요</p></div>' +
-      '<button class="big" id="go" disabled>인생 시작!</button><button class="link-btn" onclick="U.openCollection()">📖 엔딩 도감 · 업적</button></section>';
+      '<button class="big" id="go" disabled>나의 야구 인생 시작 →</button><p class="form-note save-note">한 장씩 선택하며 진행 · 자동 저장</p></div></section>';
     // 엔딩에서 고른 새 인생 보너스 ({외모: 10} / {외모: 1} / {랜덤보너스: true} / {이어하기: {아버지, 외모, 돈, 세대}})
     var bonus = null;
     try { var raw = localStorage.getItem(U.BONUS_KEY); if (raw) { bonus = JSON.parse(raw); if (typeof bonus === "number") bonus = { 외모: bonus }; } } catch (e) { bonus = null; }
@@ -98,19 +104,19 @@
       : bonus.외모 ? (bonus.외모 >= 10 ? "✨" : "😅") + " 이번 인생은 외모 레벨 " + bonus.외모 + "에서 시작합니다"
       : "🎁 이번 인생은 랜덤 보너스! 특기 말고도 능력치 하나가 특기만큼 빠르게 자랍니다") + "</p>");
     if (heir) $("#nm").value = String(heir.아버지 || "").charAt(0);
-    $("#pos").innerHTML = GD.포지션.map(function (p, i) { return p.시작선택 === false ? "" : '<button class="chip" data-i="' + i + '">' + esc(p.이름) + "</button>"; }).join("");
+    $("#pos").innerHTML = GD.포지션.map(function (p, i) { return p.시작선택 === false ? "" : '<button class="chip" aria-pressed="false" data-i="' + i + '">' + esc(p.이름) + "</button>"; }).join("");
     function ok() { $("#go").disabled = !(sel.pos && sel.spec && $("#nm").value.trim()); }
     $("#pos").onclick = function (e) {
       var b = e.target.closest("button"); if (!b) return;
       sel.pos = GD.포지션[b.dataset.i]; sel.spec = null;
-      [].forEach.call($("#pos").children, function (c) { c.classList.toggle("on", c === b); });
+      [].forEach.call($("#pos").children, function (c) { c.classList.toggle("on", c === b); c.setAttribute("aria-pressed", c === b); });
       var list = GD.특기.filter(function (t) { return t.분류 === sel.pos.분류; });
-      $("#spec").innerHTML = list.map(function (t) { return '<button class="chip" data-n="' + esc(t.이름) + '"><b>' + esc(t.이름) + "</b><small>" + esc(t.설명) + "</small></button>"; }).join("");
+      $("#spec").innerHTML = list.map(function (t) { return '<button class="chip" aria-pressed="false" data-n="' + esc(t.이름) + '"><b>' + esc(t.이름) + "</b><small>" + esc(t.설명) + "</small></button>"; }).join("");
       ok();
     };
     $("#spec").onclick = function (e) {
       var b = e.target.closest("button"); if (!b) return;
-      sel.spec = b.dataset.n; [].forEach.call($("#spec").children, function (c) { c.classList.toggle("on", c === b); }); ok();
+      sel.spec = b.dataset.n; [].forEach.call($("#spec").children, function (c) { c.classList.toggle("on", c === b); c.setAttribute("aria-pressed", c === b); }); ok();
     };
     $("#nm").oninput = ok;
     $("#go").onclick = function () {
@@ -122,9 +128,11 @@
 
   // ---------------- 게임 화면 ----------------
   U.showGame = function () {
+    $("#app").className = "is-game";
     $("#app").innerHTML = '<header class="top" id="top"></header><section class="life" id="life"></section>' +
-      '<section class="table" id="table"></section><nav class="actions" id="actions"></nav>';
+      '<aside class="chapter" id="chapter"></aside><div class="story-column"><section class="table" id="table"></section><nav class="actions" id="actions" aria-label="이야기의 선택지"></nav></div>';
     U.renderAll(true);
+    window.scrollTo(0, 0);
   };
   U.renderAll = function (deal) {
     var s = E.state();
@@ -137,6 +145,9 @@
     $("#top").innerHTML = '<div class="stage">' + (sd.아이콘 || "⚾") + " <b>" + esc(s.시기) + "</b> · " + s.나이 + "세 · " + yr + "년" +
       (s.팀 && (s.시기 === "프로" || s.시기 === "메이저리그" || s.시기 === "군복무") ? '<small>' + esc(s.팀) + (s.시기 === "프로" ? (s.일군 ? " · 1군" : " · 2군") : s.플래그.마이너 ? " · 마이너" : "") + "</small>" : "") +
       '</div><button class="menu" onclick="U.openMenu()" aria-label="메뉴">☰</button>';
+    var guide = (GD.설정.시기안내 || {})[s.시기] || "기록과 마음을 함께 돌보세요.";
+    var count = sd.카드수 ? "여정 " + Math.min(s.시기턴 + 1, sd.카드수) + " / " + sd.카드수 : "시즌마다 새로운 선택";
+    $("#chapter").innerHTML = '<div><span class="eyebrow">' + esc(count) + '</span><p>' + esc(guide) + '</p></div><button onclick="U.openPractice()" aria-label="미니게임 연습장 열기">⚾ 연습장</button>';
   };
 
   function bar(v, cls) { return '<span class="bar ' + (cls || "") + '"><i style="width:' + Math.max(0, Math.min(100, v)) + '%"></i></span>'; }
@@ -146,22 +157,22 @@
     var s = E.state(), p = E.pos();
     var stats = E.posStats().map(function (k) { return "<span>" + k + (k === s.보조특기 ? "🎁" : "") + " <b>" + s.능력치[k] + "</b></span>"; }).join("");
     var status = (s.부상 > 0 ? '<em class="bad">부상</em>' : "") + (s.슬럼프 > 0 ? '<em class="warn">슬럼프</em>' : "");
-    var hero = '<div class="mini hero-mini" onclick="U.openHero()">' +
+    var hero = '<button class="mini hero-mini" onclick="U.openHero()" aria-label="내 선수 능력치 보기">' +
       U.art(U.heroKeys(), '<span class="posicon">' + U.icon() + "</span>",
-        "<b>" + esc(s.이름) + '</b><small><span class="pi">' + U.icon() + "</span>" + esc(p.약칭) + "</small>", "card-art") + "</div>";
+        "<b>" + esc(s.이름) + '</b><small><span class="pi">' + U.icon() + "</span>" + esc(p.약칭) + "</small>", "card-art") + "</button>";
     var mid = '<div class="lifestats">' + '<div class="row">' + stats + "</div>" +
       '<div class="row common"><span>' + U.looksTag() + '</span><span>멘탈 <b>' + s.능력치.멘탈 + "</b></span><span>인기 <b>" + s.능력치.인기 + "</b></span><span>컨디션 <b>" + s.능력치.컨디션 + "</b></span>" +
       (s.시기 === "메이저리그" ? "<span>적응 <b>" + s.능력치.적응 + "</b></span>" : "") + "</div>" +
-      '<div class="row"><span>😊 행복도 ' + bar(s.행복도, "happy") + "</span><span>🏅 성적 <b>" + s.성적 + "</b></span>" + status + "</div>" +
+      '<div class="row"><span>행복 <b>' + s.행복도 + '</b>' + bar(s.행복도, "happy") + "</span><span>성적 <b>" + s.성적 + "</b></span>" + status + "</div>" +
       '<div class="row"><button class="money" onclick="U.openShop()">💰 ' + E.money(s.돈) + ' · 상점</button></div></div>';
     var her = "";
     if (s.히로인) {
       var h = E.heroDef(), rel = s.히로인.관계;
-      her = '<div class="mini heroine-mini ' + (animateHeroine ? "attach" : "") + '" onclick="U.openHeroine()">' +
+      her = '<button class="mini heroine-mini ' + (animateHeroine ? "attach" : "") + '" onclick="U.openHeroine()" aria-label="인연과 애정도 보기">' +
         U.art(U.heroineKeys(h.아이디, rel), "💗", "<b>" + esc(h.이름) + "</b><small>" + esc(rel) + "</small>", "card-art") +
         '<div class="aff">❤ ' + s.히로인.애정도 + bar(s.히로인.애정도, "love") + "</div>" +
-        (s.히로인2 ? '<div class="aff2">🤫 ' + esc(E.heroDef(s.히로인2.아이디).이름) + " ❤" + s.히로인2.애정도 + "</div>" : "") + "</div>";
-    } else her = '<div class="mini empty" onclick="U.openHeroine()"><span>💗</span><small>인연을<br>기다리는 중</small></div>';
+        (s.히로인2 ? '<div class="aff2">🤫 ' + esc(E.heroDef(s.히로인2.아이디).이름) + " ❤" + s.히로인2.애정도 + "</div>" : "") + "</button>";
+    } else her = '<button class="mini empty" onclick="U.openHeroine()" aria-label="인연 안내 보기"><span>💗</span><small>아직 쓰지 않은<br>인연의 이야기</small></button>';
     $("#life").innerHTML = hero + mid + her;
   };
 
@@ -186,6 +197,7 @@
       '<div class="txt"><div class="tag">' + (c.레어 ? '<span class="rare-tag">✨ 레어 카드</span> ' : "") + esc(c.시스템 ? "시즌" : s.시기) + (c.히로인 || c._만남 ? " · 💗" : "") + "</div><h2>" + esc(E.tpl(c.제목)) + "</h2><p>" + br(E.tpl(c.내용)) + "</p></div></div>";
     var back = '<div class="face back">' + (r ? U.resultHTML(r) : "") + "</div>";
     $("#table").innerHTML = '<div class="card3d ' + (r ? "flipped " : "") + (deal ? "deal" : "") + '" id="card">' + front + back + "</div>";
+    $("#card .front").inert = !!r; $("#card .back").inert = !r;
     U.renderActions();
   };
 
@@ -215,10 +227,16 @@
   U.renderActions = function () {
     var s = E.state(), c = s.현재카드;
     if (s.단계 === "결과") { $("#actions").innerHTML = '<button class="big next" onclick="U.next()">다음 카드 ▶</button>'; return; }
-    $("#actions").innerHTML = s.현재옵션.map(function (oi, i) {
+    $("#actions").innerHTML = '<div class="choice-heading">이번에는 어떤 선택을 할까요?</div>' + s.현재옵션.map(function (oi, i) {
       var o = c.선택지[oi];
-      return '<button class="opt" onclick="U.choose(' + i + ')">' + esc(E.tpl(o.글)) + (o.비용 ? ' <small class="cost">💰 ' + E.money(o.비용) + "</small>" : "") +
-        (o.비용비율 ? ' <small class="cost">💰 가진 돈의 ' + o.비용비율 + "% (" + E.money(Math.floor((E.state().돈 || 0) * o.비용비율 / 100)) + ")</small>" : "") + "</button>";
+      var hints = [];
+      if (o.미니게임 && o.확률결과) hints.push("승부의 순간");
+      else if (o.확률결과) hints.push("결과가 달라질 수 있어요");
+      if (o.관계 === "이별") hints.push("신뢰를 잃을 수 있어요");
+      if (o.효과 && typeof o.효과.행복도 === "number" && o.효과.행복도 <= -15) hints.push("행복을 크게 소모");
+      return '<button class="opt" onclick="U.choose(' + i + ')"><span class="option-no" aria-hidden="true">' + String(i + 1).padStart(2, "0") + '</span><span class="option-body">' + esc(E.tpl(o.글)) + (o.비용 ? ' <small class="cost">💰 ' + E.money(o.비용) + "</small>" : "") +
+        (o.비용비율 ? ' <small class="cost">💰 가진 돈의 ' + o.비용비율 + "% (" + E.money(Math.floor((E.state().돈 || 0) * o.비용비율 / 100)) + ")</small>" : "") +
+        (hints.length ? '<small class="choice-hint">' + hints.join(" · ") + '</small>' : '') + '</span><span class="option-arrow" aria-hidden="true">↗</span></button>';
     }).join("");
   };
 
@@ -244,7 +262,7 @@
     // 목표 시간: 목표최소~목표최대 사이에서 매번 랜덤 (0.1초 단위)
     var lo = M.목표최소 != null ? M.목표최소 : (M.목표초 || 1), hi = M.목표최대 != null ? M.목표최대 : lo;
     var target = Math.round((lo + Math.random() * (hi - lo)) * 10) / 10;
-    var pit = E.pos().분류 === "투수", m = document.createElement("div");
+    var pit = E.state() && E.pos().분류 === "투수", m = document.createElement("div");
     m.className = "modal mg-wrap";
     m.innerHTML = '<div class="mg"><div class="mg-title">⚾ 승부의 순간!</div>' +
       '<div class="mg-sub">시계가 <b>' + target.toFixed(2) + '초</b>에 가장 가까울 때 공을 누르세요</div>' +
@@ -261,15 +279,25 @@
       timeEl.textContent = t.toFixed(2); m.querySelector(".mg-ball").classList.add(pit ? "throw" : "hit");
       m.querySelector(".mg-result").innerHTML = (timeout ? "⏰ 시간 초과! 공을 그냥 보냈다" : diff <= 0.05 ? "🎯 퍼펙트 타이밍!" : diff <= 0.2 ? "👍 좋은 타이밍!" : diff <= 0.5 ? "😅 조금 빗나갔다" : "😱 타이밍이 크게 어긋났다") +
         " <b>성공 확률 " + Math.round(p * 100) + "%</b>";
-      setTimeout(function () { m.remove(); cb({ 확률: p, 타이밍: Math.round(t * 100) / 100, 목표: target }); }, 1200);
+      setTimeout(function () { if (!m.isConnected) return; m.remove(); cb({ 확률: p, 타이밍: Math.round(t * 100) / 100, 목표: target }); }, 1200);
     }
     (function frame() {
-      if (done) return; var t = left();
+      if (done || !m.isConnected) return; var t = left();
       timeEl.textContent = t.toFixed(2); fill.style.width = ((start - t) / start * 100) + "%";
       if (t <= 0) finish(0, true); else requestAnimationFrame(frame);
     })();
-    m.querySelector(".mg-ball").addEventListener("pointerdown", function (e) { e.preventDefault(); finish(left()); });
+    mgInput(m, function () { finish(left()); }, ".mg-ball");
+    return function () { done = true; m.remove(); };
   };
+
+  // 마우스·터치·키보드로 같은 동작을 실행합니다. 종료 버튼은 게임 입력 영역 밖에 둡니다.
+  function mgInput(m, fn, selector) {
+    var box = m.querySelector(".mg"), target = m.querySelector(selector || ".mg");
+    box.tabIndex = 0; box.setAttribute("role", "group"); box.setAttribute("aria-label", "승부의 순간. 스페이스 또는 엔터로 플레이");
+    target.addEventListener("pointerdown", function (e) { if (e.isPrimary === false || (e.button != null && e.button !== 0)) return; e.preventDefault(); fn(e); });
+    box.addEventListener("keydown", function (e) { if ((e.code === "Space" || e.code === "Enter") && !e.repeat) { e.preventDefault(); fn(e); } });
+    box.focus({ preventScroll: true });
+  }
 
   // 미니게임 창: 제목·설명·놀이판(.mgf)·결과 칸
   function mgOpen(title, sub, field, cls) {
@@ -282,7 +310,7 @@
   function mgEnd(m, big, bad, msg, p, show, cb) {   // big: 놀이판에 크게 띄우는 글 (bad면 붉은색)
     if (big) { var b = document.createElement("div"); b.className = "mg-big" + (bad ? " bad" : ""); b.textContent = big; m.querySelector(".mgf").appendChild(b); }
     m.querySelector(".mg-result").innerHTML = msg + " <b>성공 확률 " + Math.round(p * 100) + "%</b>";
-    setTimeout(function () { m.remove(); cb({ 확률: p, 표시: show }); }, 1600);
+    setTimeout(function () { if (!m.isConnected) return; m.remove(); cb({ 확률: p, 표시: show }); }, 1600);
   }
   // 누른 순간의 시각 (이벤트에 찍힌 시각을 써서 화면 프레임 오차를 줄임)
   function tapTime(e) { var n = performance.now(), t = e && e.timeStamp; return t && Math.abs(n - t) < 1000 ? t : n; }
@@ -311,7 +339,7 @@
     }
     var p0 = at(0); move(ball, p0.x, p0.y, p0.s, 0);
     (function frame() {
-      if (done) return;
+      if (done || !m.isConnected) return;
       var u = (performance.now() - t0) / (T * 1000);
       if (u >= 0 && !thrown) { thrown = true; label.textContent = kind + " " + kmh + "km"; }
       var p = at(u); move(ball, p.x, p.y, p.s, 0);
@@ -335,7 +363,8 @@
       if (!flew) setTimeout(function () { ball.style.opacity = 0; }, tt == null ? 0 : rest * 1000);
       mgEnd(m, big, bad, msg, p, show, cb);
     }
-    m.querySelector(".mg").addEventListener("pointerdown", function (e) { e.preventDefault(); finish(tapTime(e)); });
+    mgInput(m, function (e) { finish(tapTime(e)); });
+    return function () { done = true; m.remove(); };
   };
 
   // 투구 게임 (투수): 움직이는 빨간 조준점이 포수 미트에 겹칠 때 화면을 누르면 그곳으로 공을 던짐
@@ -356,7 +385,7 @@
     }
     function put(q) { aim.style.transform = "translate(" + q.x + "px," + q.y + "px)"; }
     (function frame() {
-      if (done) return;
+      if (done || !m.isConnected) return;
       var now = performance.now(); put(pos(now)); bar.style.width = Math.max(0, 1 - (now - t0) / lim) * 100 + "%";
       if (now - t0 >= lim) finish(null); else requestAnimationFrame(frame);
     })();
@@ -370,9 +399,72 @@
       else if (d <= (P.좋음 || 0.25)) { p = P.좋음확률 || 0.7; big = "스트라이크!"; bad = false; show = "🎯 좋은 코스"; msg = "👍 좋은 코스! 타자가 꼼짝 못 했다"; }
       else if (inZone) { p = P.존안확률 || 0.3; big = "실투!"; show = "🎯 실투"; msg = "😅 미트에서 벗어났다… 타자가 노리고 있었다"; }
       else { show = "🎯 볼"; msg = "😱 스트라이크존을 크게 벗어났다"; }
-      setTimeout(function () { if (!bad) mitt.classList.add("pop"); mgEnd(m, big, bad, msg, p, show, cb); }, 350);
+      setTimeout(function () { if (!m.isConnected) return; if (!bad) mitt.classList.add("pop"); mgEnd(m, big, bad, msg, p, show, cb); }, 350);
     }
-    m.querySelector(".mg").addEventListener("pointerdown", function (e) { e.preventDefault(); finish(tapTime(e)); });
+    mgInput(m, function (e) { finish(tapTime(e)); });
+    return function () { done = true; m.remove(); };
+  };
+
+  // 연습은 미니게임 화면만 실행하며 선수 상태·저장·보너스를 변경하지 않습니다.
+  U.openPractice = function () {
+    if (document.querySelector(".practice-modal, .mg-wrap")) return;
+    var opener = document.activeElement, selected = "bat", cancel = null, closed = false, last = null;
+    var app = $("#app"), wasInert = app.inert, oldOverflow = document.body.style.overflow;
+    app.inert = true; document.body.style.overflow = "hidden";
+    var history = { bat: [], pitch: [], timer: [] }, M = GD.설정.미니게임 || {}, B = M.타격 || {}, P = M.투구 || {};
+    function pct(v) { return Math.round(v * 100) + "%"; }
+    var games = {
+      bat: { title: "타격", icon: "🏏", play: U.miniBat, help: "공이 노란 점선에 닿는 순간 눌러, 아래에서 위로 스윙하세요.", levels: "홈런 " + pct(M.최고확률 || 0.95) + " · 안타 " + pct(B.좋음확률 || 0.7) + " · 파울 " + pct(B.빗맞음확률 || 0.3) + " · 헛스윙 " + pct(M.최저확률 || 0.05) },
+      pitch: { title: "투구", icon: "🎯", play: U.miniPitch, help: "빨간 조준점이 갈색 포수 미트와 겹칠 때 누르세요. 제한 시간은 " + (P.제한초 || 6) + "초입니다.", levels: "정확한 투구 " + pct(M.최고확률 || 0.95) + " · 좋은 코스 " + pct(P.좋음확률 || 0.7) + " · 실투 " + pct(P.존안확률 || 0.3) + " · 볼 " + pct(M.최저확률 || 0.05) },
+      timer: { title: "타이밍", icon: "⏱", play: U.miniTimer, help: "줄어드는 시계가 매번 정해지는 목표 시간에 가까워질 때 공을 누르세요.", levels: "목표 시간에 가까울수록 성공 확률이 높아집니다." }
+    };
+    var m = document.createElement("div"); m.className = "modal practice-modal"; m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true"); m.setAttribute("aria-label", "미니게임 연습장");
+    document.body.appendChild(m);
+    function draw() {
+      var g = games[selected], list = history[selected];
+      m.innerHTML = '<div class="sheet practice-sheet"><div class="sheet-bar"><button class="close" aria-label="연습장 닫기">✕</button></div><span class="eyebrow">BULLPEN · 연습장</span><h2>결정적인 순간을 위해.</h2>' +
+        '<p class="hint">부담 없이 감각을 익혀 보세요. 진행 중인 인생에는 영향을 주지 않습니다.</p><div class="practice-tabs" role="group" aria-label="연습 종류">' +
+        Object.keys(games).map(function (key) { return '<button data-game="' + key + '" aria-pressed="' + (selected === key) + '">' + games[key].icon + " " + games[key].title + '</button>'; }).join("") + '</div>' +
+        '<div class="practice-instructions"><span class="practice-icon" aria-hidden="true">' + g.icon + '</span><h3>' + g.title + ' 연습</h3><p>' + esc(g.help) + '</p><small>터치·클릭 또는 스페이스·엔터</small></div>' +
+        '<div class="practice-score" aria-live="polite">' + (list.length ? '<b>이번 연습 ' + list.length + '회</b><span>최고 성공 확률 ' + Math.round(Math.max.apply(null, list.map(function (r) { return r.확률; })) * 100) + '%</span>' : '<b>아직 첫 연습 전이에요</b><span>준비되면 아래 버튼을 누르세요.</span>') + '</div>' +
+        (last ? '<p class="practice-last">' + esc(last) + '</p>' : '') + '<button class="big practice-start">' + (list.length ? '한 번 더 연습하기' : '연습 시작') + ' →</button>' +
+        '<details class="practice-help"><summary>판정과 성공 확률 알아보기</summary><p>' + esc(g.levels) + '</p><p>본게임에서는 이 확률로 카드의 성공·실패를 결정합니다. 홈런·삼진 판정도 이야기의 성공을 보장하지는 않습니다.</p></details>' +
+        '<button class="sheet-close">게임으로 돌아가기</button></div>';
+      m.querySelectorAll("[data-game]").forEach(function (b) { b.onclick = function () { selected = b.dataset.game; last = null; draw(); m.querySelector('[data-game="' + selected + '"]').focus(); }; });
+      m.querySelector(".close").onclick = close; m.querySelector(".sheet-close").onclick = close;
+      m.querySelector(".practice-start").onclick = start;
+    }
+    function close() {
+      closed = true; if (cancel) cancel(); m.remove(); document.removeEventListener("keydown", keys);
+      app.inert = wasInert; document.body.style.overflow = oldOverflow;
+      if (opener && opener.isConnected) opener.focus({ preventScroll: true });
+    }
+    function stop() {
+      if (!cancel) return; cancel(); cancel = null; m.hidden = false; draw(); m.querySelector(".practice-start").focus();
+    }
+    function start() {
+      if (cancel) return; m.hidden = true;
+      cancel = games[selected].play(function (r) {
+        if (closed) return; cancel = null; history[selected].push(r);
+        last = (r.표시 || "⏱ " + r.타이밍.toFixed(2) + "초 / 목표 " + r.목표.toFixed(1) + "초") + " · 성공 확률 " + Math.round(r.확률 * 100) + "%";
+        m.hidden = false; draw(); m.querySelector(".practice-start").focus();
+      });
+      var active = document.querySelector(".mg-wrap"), quit = document.createElement("button");
+      quit.className = "practice-stop"; quit.textContent = "연습 그만하기 · Esc"; quit.onclick = stop; active.appendChild(quit);
+    }
+    function keys(e) {
+      if (e.key === "Escape") { e.preventDefault(); if (cancel) stop(); else close(); return; }
+      // 대기 화면과 플레이 화면 모두 키보드 포커스를 현재 창 안에 유지합니다.
+      if (e.key === "Tab") {
+        var scope = cancel ? document.querySelector(".mg-wrap") : m;
+        if (!scope) return;
+        var nodes = Array.from(scope.querySelectorAll(".mg, button, summary")), first = nodes[0], end = nodes[nodes.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); end.focus(); }
+        else if (!e.shiftKey && document.activeElement === end) { e.preventDefault(); first.focus(); }
+      }
+    }
+    m.onclick = function (e) { if (e.target === m) close(); };
+    document.addEventListener("keydown", keys); draw(); m.querySelector(".practice-start").focus();
   };
 
   U.choose = function (i) {
@@ -388,6 +480,7 @@
     var after = E.state().히로인 && E.state().히로인.아이디;
     var card = $("#card"); card.querySelector(".back").innerHTML = U.resultHTML(r);
     card.classList.remove("deal"); card.classList.add("flipped");
+    card.querySelector(".front").inert = true; card.querySelector(".back").inert = false;
     if (before && !after) { var m = document.querySelector(".heroine-mini"); if (m) m.classList.add("detach"); }
     setTimeout(function () { U.renderTop(); if (!(before && !after)) U.renderLife(!before && after); U.renderActions(); busy = false; }, before && !after ? 700 : 350);
     if (before && !after) setTimeout(function () { U.renderLife(); }, 750);
@@ -395,6 +488,6 @@
   U.next = function () {
     if (busy) return; busy = true;
     $("#card").classList.add("discard");
-    setTimeout(function () { E.next(); busy = false; U.renderAll(true); }, 320);
+    setTimeout(function () { E.next(); busy = false; U.renderAll(true); window.scrollTo(0, 0); }, 320);
   };
 })();

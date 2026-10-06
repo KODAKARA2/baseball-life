@@ -1,0 +1,668 @@
+[
+  {
+    "id": "hero_elementary",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1807657,
+    "sha256": "ABB54ABCB857A79BB5A75DB0F0742349597DC5C3FDE793DBFEEF207579B3A365"
+  },
+  {
+    "id": "hero_elementary_plain",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1717869,
+    "sha256": "734E448433D4285946364C5828241A11319BBE304A0F01303D47F21208D8F40E"
+  },
+  {
+    "id": "hero_elementary_ugly",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1884685,
+    "sha256": "09B653DCB6F72C4495FB3ED2DD726E12C252D04DB42A1573682FA83F1451C422"
+  },
+  {
+    "id": "hero_middle",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1805323,
+    "sha256": "7CE3F76B502E9547C53A794A69C2E211445F41E279978EFA29781A421EDB863F"
+  },
+  {
+    "id": "hero_middle_plain",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1862424,
+    "sha256": "74A51767CBC96CC67530B05265F9E01391A648C3AD9A754E0D29E51969753EC5"
+  },
+  {
+    "id": "hero_middle_ugly",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1795988,
+    "sha256": "41E431EDE8CF301634CCF2F71B077ABB11F803BD80BC66F3B3883AB9F6A4D7C0"
+  },
+  {
+    "id": "hero_high",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 2026178,
+    "sha256": "4A288D401CC400A57FD8E081CC9EF3FDBD5D68DF4A77B320EA0CF0BE2DE731DA"
+  },
+  {
+    "id": "hero_high_plain",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1973140,
+    "sha256": "45A4C86E5FA025579A660418644B92E3733B3901B798D3B1FE248807564F21B2"
+  },
+  {
+    "id": "hero_high_ugly",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 2031081,
+    "sha256": "4FF1AC2A7D18D876D3A132C5339ABAA2D7C14E4765B9148C7195DDC2A1734BE1"
+  },
+  {
+    "id": "hero_college",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1842097,
+    "sha256": "20979ABD063AA39AAE90C02CE3BF03043098E3AC5C5A47B91AE45F11C3C1463C"
+  },
+  {
+    "id": "hero_college_plain",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1801863,
+    "sha256": "F6130B92127A677236A82AB2DEB387FDA2DB9D42289308670093D84B47A5BAC8"
+  },
+  {
+    "id": "hero_college_ugly",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 2011966,
+    "sha256": "A7C9D2C1A658BF341C7AB7D349C88BD988CC39467A3E7459C55BEBFEC2818290"
+  },
+  {
+    "id": "hero_pro",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1936860,
+    "sha256": "A50DEDBFD260E60593D5C207C7E6E8C58E99229AEDA86BEAD8AF46705520EE10"
+  },
+  {
+    "id": "hero_pro_plain",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1938447,
+    "sha256": "7F952E4AFD6828CEB6ABF90540B2EE676D1C1A7274413729E00BFC13DB991BC1"
+  },
+  {
+    "id": "hero_pro_ugly",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 2072774,
+    "sha256": "A0BD7656BA3F7700F5B87E873D823574C0AB6CEE19953772B3769D5DEAB2D74A"
+  },
+  {
+    "id": "hero_mlb",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1909985,
+    "sha256": "60EAD513624C2548B035F23E7E9B9870ADBB6E8206797CDE1AD1638CDE498F85"
+  },
+  {
+    "id": "hero_mlb_plain",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1958885,
+    "sha256": "97E435702EC6A6F665430D0121BFAF4D800344790A10D27089C6BA2DE2DA7E22"
+  },
+  {
+    "id": "hero_mlb_ugly",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1894423,
+    "sha256": "62A4E8014AF5103D45A275F941BD14385F64D2F72D9F9E249E599A29BA79473B"
+  },
+  {
+    "id": "hero_injured",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1820992,
+    "sha256": "7D9BDB7A23B21EB1DC5EEFADBDE82BE0681F344A19E6772F9317D6F62828C4F8"
+  },
+  {
+    "id": "hero_injured_plain",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1870864,
+    "sha256": "607291463899B7C1AEA97049811B81D77729D41BEFD6E6A887AA45636B752B05"
+  },
+  {
+    "id": "hero_injured_ugly",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 2010867,
+    "sha256": "496897B4DD404A0C607F5DFE130A50A0711430B0D3B883CFB944292665292809"
+  },
+  {
+    "id": "hero_slump",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1956558,
+    "sha256": "D539F88331EC33078D6A24B445AF2501590D023D7DA94ECCAF028BF36C42D9F9"
+  },
+  {
+    "id": "hero_slump_plain",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1866398,
+    "sha256": "E1D8B5A80CAD55A886DD0F29CCF9E8981C6A3BA901A143D685DAE676916093D9"
+  },
+  {
+    "id": "hero_slump_ugly",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1976354,
+    "sha256": "EB0B5693C67EF73EE35DA3ED41B457660F6AE3DE7590A4B9C195CD825C621704"
+  },
+  {
+    "id": "hero_victory",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1878246,
+    "sha256": "95C4AF0F55CE1AF68B3F8316CB8AB5BAA9D6E08E8CB8355C2FD7B8395A7258C5"
+  },
+  {
+    "id": "hero_victory_plain",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1857016,
+    "sha256": "7AD1D9BCABF396953385B23BFD5031975185BF1283699C4A12A1706A71A0A515"
+  },
+  {
+    "id": "hero_victory_ugly",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1941272,
+    "sha256": "27FA203D47E36D6D37C35F813734E450FE497685D7EED041331D635DC6038A5E"
+  },
+  {
+    "id": "hero_retired",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1697652,
+    "sha256": "74A7019ACE78A1443028C55C6427FEF93A534B51425A1E61615851DDA0FAE4B7"
+  },
+  {
+    "id": "hero_retired_plain",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1673667,
+    "sha256": "3F5923575492015E5C87F2EEB9AA12FBDA770DACA350957B048BC1454779903D"
+  },
+  {
+    "id": "hero_retired_ugly",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1692007,
+    "sha256": "F44AEFD260F17D9D39B2288A9F0341AFD664A0C2CD18F2D68951FB1A184A7AFD"
+  },
+  {
+    "id": "heroine1_meet",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1876131,
+    "sha256": "B347CEF97653E7D2D147B160A91F0FF20A5BE64935F117A197A9C082CF47789B"
+  },
+  {
+    "id": "heroine1_lover",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1849959,
+    "sha256": "F525D98E5DBA65A10E4B3DAC36CE143ABBFA31DDF25E75D05B8F6356F5A34304"
+  },
+  {
+    "id": "heroine1_wedding",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 2042935,
+    "sha256": "87AA613FDA0D1B4C10F3A5B4919DC762A52D4708585F15AC25629CD1354BF269"
+  },
+  {
+    "id": "heroine1_spouse",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 2053949,
+    "sha256": "AC8536718CABEAD26B20D769A54B32ECB10F8DAA4AB9BA78F5434C1AC4DA9909"
+  },
+  {
+    "id": "heroine2_meet",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1818121,
+    "sha256": "E9484ADA574F8CF248A29DF26AB83E757BD8D60E00AC7CB89CBAB9BE8FF6B822"
+  },
+  {
+    "id": "heroine2_lover",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1929139,
+    "sha256": "4A24ECFF1208D7FBC6C0CF8413DA263B7A58F0DAA9D7E9597E9BE01F8D3682C6"
+  },
+  {
+    "id": "heroine2_wedding",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1949010,
+    "sha256": "1E51BA62F415C8CBA0D277CEBF9D190620905BB68A83E347605A9FCF79B5B879"
+  },
+  {
+    "id": "heroine2_spouse",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1874859,
+    "sha256": "B25231D971D0DF38CA53A779166B75A41F32240034063BE7DAF8D95C0FC5D14F"
+  },
+  {
+    "id": "heroine3_meet",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1633281,
+    "sha256": "02422F9DF82BA7B630B5FCA2214799BEDDE80F5B1E32A619C7430D3843B3090A"
+  },
+  {
+    "id": "heroine3_lover",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1911747,
+    "sha256": "7893D17A9DD382BA017105C7523309ABAB36A6A5F62C65D249F45CF4BF475DE3"
+  },
+  {
+    "id": "heroine3_wedding",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 2376494,
+    "sha256": "965D4B0104E8A62FB40B37577F5D648915D505D64337CCA8968DED89B807E046"
+  },
+  {
+    "id": "heroine3_spouse",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1853100,
+    "sha256": "ACCB9EB8E36C98A62658AB4FC37594BCA2DF0E650F3A22E5F18308D618DA03A4"
+  },
+  {
+    "id": "heroine4_meet",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 2009840,
+    "sha256": "70F382ED6461E68878C822E86999DE95433D4F7617938906DAB39A6A26C39EC4"
+  },
+  {
+    "id": "heroine4_lover",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1891690,
+    "sha256": "CE73B363459E621B8355F7F8E698C5A545899585C99777628B107362510023FF"
+  },
+  {
+    "id": "heroine4_wedding",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 2400700,
+    "sha256": "A8037648A38E99DFD4F4C4A4A3626100AA0197866C03707F5EADB0888502C7E3"
+  },
+  {
+    "id": "heroine4_spouse",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1978721,
+    "sha256": "BFC543B2836478F934823344DCE18293BEDEBBE42C5E6418F271C6386C887064"
+  },
+  {
+    "id": "heroine5_meet",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1952135,
+    "sha256": "F5795709CE13A0FB3BDAF25924B1B312C9A118BE134DE189568CCA3CF8AD8C4F"
+  },
+  {
+    "id": "heroine5_lover",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 2059937,
+    "sha256": "2FC1D99C151D22A87FD40DD38507F9A26B1885EC91116C2F333DB015D1A3F039"
+  },
+  {
+    "id": "heroine5_wedding",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 2300363,
+    "sha256": "B5E5628DB69C56B3EFA3D567981A5632FC5FBCFCCAB9E208C1B1F462E4B25881"
+  },
+  {
+    "id": "heroine5_spouse",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1910726,
+    "sha256": "2EB97D78D59A6A96212AB3E2F290692C7682FF4898861DBFEDDB1DEA24A43B50"
+  },
+  {
+    "id": "heroine6_meet",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1968936,
+    "sha256": "A6A4871CF511BEAC9C8802F07B91D227EA3D29AFBE38DEA694EC31DBEBB2A364"
+  },
+  {
+    "id": "heroine6_lover",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1960528,
+    "sha256": "497FF2D7A4DA14DE66F0D5B48694A25006E1898A79ADA0476AECEFB0EA6D9AB3"
+  },
+  {
+    "id": "heroine6_wedding",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 2093698,
+    "sha256": "95E14894F11281480D44D5F4B7EF544D845F5D98C5C654FE1897620EA309498F"
+  },
+  {
+    "id": "heroine6_spouse",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 2055213,
+    "sha256": "F1F3E573BC75D8D03BD8E0E01AFD2D5634FF41654FC966F9B523F67A3C31C2B7"
+  },
+  {
+    "id": "rival",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1805551,
+    "sha256": "0516E2C5475BB53922063B3DED4F4DD497A3E449E6AFC5B1D0C9773BC245FA61"
+  },
+  {
+    "id": "parents",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 2139177,
+    "sha256": "327FCE7F0A27EB6DB9DE1754D87D6E4BCA7B1E91BC8FA7E2614B72F1D384D6E7"
+  },
+  {
+    "id": "coach_little",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1814405,
+    "sha256": "8868EBC64926EC9C6BACC706A0009CD9F4A3F3402D1DEC0DEEF5A7965D2059E0"
+  },
+  {
+    "id": "coach_high",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1591129,
+    "sha256": "35E177B6AC7758662EB706A41A5C40CC5128B3D4B6D39D84728C837C30CD7348"
+  },
+  {
+    "id": "buddy",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1949032,
+    "sha256": "FC00D279291A9641D881CC515EC2E41CB64AAA0A49081BABFDB7FEE52C89A460"
+  },
+  {
+    "id": "manager_pro",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1747170,
+    "sha256": "D5DA3CE793D4F1171850F3054CDCF86264925257AB6A9EACA24D6A461B737A7B"
+  },
+  {
+    "id": "agent",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 253,
+    "bytes": 1717341,
+    "sha256": "4A18906973D1D25D512094E55575450447351C984E46FADA6D613726CF21680F"
+  },
+  {
+    "id": "child",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1800187,
+    "sha256": "99BEFC7D8949594257251BFB4804D955A1DBAD3729CE7E0605A23D3D9FD83161"
+  },
+  {
+    "id": "interpreter",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1768545,
+    "sha256": "1218B378B1BFE0D718BFD3CAB5E1DF9122B29D04013BA4A5AD9A5EF8E5464D8B"
+  },
+  {
+    "id": "mlb_teammate",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1971534,
+    "sha256": "FC561560215FC1E3F379BFED0A234BF3B6B3D6381DDA7D4B4E8EE12D680F094A"
+  },
+  {
+    "id": "teammate",
+    "width": 1024,
+    "height": 1536,
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "bytes": 1839469,
+    "sha256": "3F2A2EDF6DFFCE52FC55351B1621C32DAF2F42C4662271029A926FC5C509AA01"
+  },
+  {
+    "id": "bg_classroom",
+    "width": 1536,
+    "height": 1024,
+    "minAlpha": 255,
+    "maxAlpha": 255,
+    "bytes": 1975720,
+    "sha256": "CEAE9F9633EB938FCEC73271C05D0D05C37F0503A8A1386BCB90C02F7DB51600"
+  },
+  {
+    "id": "bg_hall",
+    "width": 1536,
+    "height": 1024,
+    "minAlpha": 255,
+    "maxAlpha": 255,
+    "bytes": 1942721,
+    "sha256": "27CB291A702085B82FF51F8718FC029750C6F9B4AAF7C291F1DF7B344F3A9AD3"
+  },
+  {
+    "id": "bg_home",
+    "width": 1536,
+    "height": 1024,
+    "minAlpha": 255,
+    "maxAlpha": 255,
+    "bytes": 2442905,
+    "sha256": "CD1DD772909C91DD657661417A3E9232C6BDDBA7E8CF0519AE52171B4B0E8334"
+  },
+  {
+    "id": "bg_indoor",
+    "width": 1536,
+    "height": 1024,
+    "minAlpha": 255,
+    "maxAlpha": 255,
+    "bytes": 2266323,
+    "sha256": "4252D5673ACCC703481770A6A9C47CDDAE666F79E15C740A257BE9B11B8582A4"
+  },
+  {
+    "id": "bg_office",
+    "width": 1536,
+    "height": 1024,
+    "minAlpha": 255,
+    "maxAlpha": 255,
+    "bytes": 1948437,
+    "sha256": "69BAC0ADF459563D521EDF32685D4630AA64762CF403154734576F2D0465EBB9"
+  },
+  {
+    "id": "bg_room",
+    "width": 1536,
+    "height": 1024,
+    "minAlpha": 255,
+    "maxAlpha": 255,
+    "bytes": 2101748,
+    "sha256": "22641C541E08BEB2B0BF1110A0F6E0E8AE4BB2FF4F8E5F66F7EA83B15256A538"
+  },
+  {
+    "id": "bg_school",
+    "width": 1536,
+    "height": 1024,
+    "minAlpha": 255,
+    "maxAlpha": 255,
+    "bytes": 2507237,
+    "sha256": "4C6BE76A319C2B38CCEEDB0C5D08D47E6B0D161C26F06A9E5FB228821A7344C7"
+  },
+  {
+    "id": "bg_stadium",
+    "width": 1536,
+    "height": 1024,
+    "minAlpha": 255,
+    "maxAlpha": 255,
+    "bytes": 2404589,
+    "sha256": "A10DC81B234915EE9BCF17877443CF38D3C41E1F77ACECFE82924609422C18E5"
+  },
+  {
+    "id": "bg_street",
+    "width": 1536,
+    "height": 1024,
+    "minAlpha": 255,
+    "maxAlpha": 255,
+    "bytes": 2526578,
+    "sha256": "3300771C31B2BB2FF78243F0431D73AFB830AAAEF5424092BA4F183439106691"
+  }
+]

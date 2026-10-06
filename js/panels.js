@@ -20,6 +20,7 @@
       '<button onclick="U.closeModals();U.openCareer()">📊 커리어 기록</button>' +
       '<button onclick="U.closeModals();U.openShop()">💰 지갑 · 상점</button>' +
       '<button onclick="U.closeModals();U.openCollection()">📖 엔딩 도감 · 업적</button>' +
+      '<button onclick="U.closeModals();U.openPractice()">⚾ 미니게임 연습장</button>' +
       '<button onclick="U.closeModals();U.openCredits()">🎨 그림 출처</button>' +
       '<button class="danger" onclick="U.newLife()">🔄 새 인생 시작</button></div>' +
       '<p class="hint">진행 상황은 카드를 넘길 때마다 자동 저장됩니다.</p>');
@@ -67,7 +68,7 @@
         '<div class="sl"><span>애정도</span>' + U.bar(s.히로인.애정도, "love") + "<b>" + s.히로인.애정도 + "</b></div>" +
         '<p class="kv">성격: ' + esc(h.성격) + "</p><p>" + esc(h.소개) + "</p>" +
         '<p class="effect ' + (on ? "on" : "") + '">✨ 고유효과 ' + (on ? "(발동 중)" : "(애정도 " + L.도움기준 + " 이상이면 발동)") + "<br>" + esc((h.고유효과 || {}).설명 || "") + "</p>" +
-        '<p class="hint">데이트·기념일·고민 들어주기 카드로 애정도가 오릅니다. 훈련이나 원정에만 집중하면 더 빨리 떨어지고, 0이 되면 이별합니다.</p>';
+        '<p class="hint">데이트·기념일·고민 들어주기로 마음을 지켜 주세요. 훈련이나 원정에만 집중하면 애정도가 떨어집니다. 중요한 약속을 저버리는 선택은 애정도가 높아도 이별로 이어질 수 있습니다.</p>';
     } else html += '<h2>💗 히로인</h2><p>아직 곁에 있는 사람이 없다. 인연은 시기마다 찾아온다.</p>';
     if (s.히로인2) {
       var h2 = E.heroDef(s.히로인2.아이디);
@@ -115,7 +116,7 @@
     var rows = E.shopList().sort(function (a, b) { return (b.stageOk ? 1 : 0) - (a.stageOk ? 1 : 0); }).map(function (e) {
       var it = e.item, why = e.sold ? "구입 완료" : !e.stageOk ? (it.시기설명 || "지금은 못 씀") : !e.cond ? (it.잠금설명 || "조건 안 됨") : e.wait ? "카드 " + e.wait + "장 뒤" : (s.돈 || 0) < it.가격 ? "돈 부족" : "";
       return '<div class="shop-item' + (e.ok ? "" : " off") + '"><div class="si-ic">' + (it.아이콘 || "🛍️") + '</div><div class="si-tx"><b>' + esc(it.이름) +
-        "</b><small>" + esc(it.설명 || "") + '</small></div><button ' + (e.ok ? "" : "disabled ") + 'data-n="' + esc(it.이름) + '">' + (why || E.money(it.가격)) + "</button></div>";
+        "</b><small>" + esc(it.설명 || "") + '</small><small class="shop-price">' + E.money(it.가격) + (it.한번만 ? ' · 평생 한 번' : '') + '</small></div><button ' + (e.ok ? "" : "disabled ") + 'data-n="' + esc(it.이름) + '">' + (why || "구입") + "</button></div>";
     }).join("");
     var m = modal('<h2>💰 지갑 · 상점</h2><p class="kv">가진 돈 <b>' + E.money(s.돈) + "</b> · 통산 수입 " + E.money(s.총수입) + "</p>" +
       (msg || "") + (s.돈 || s.총수입 ? "" : '<p class="hint">프로 선수가 되면 연봉과 계약금을 받습니다.</p>') + '<div class="shop">' + rows + "</div>", "상점 나가기");
@@ -135,6 +136,7 @@
 
   // ---------------- 은퇴 · 엔딩 ----------------
   U.showEnding = function () {
+    $("#app").className = "is-ending";
     var s = E.state(), en = s.엔딩 || E.computeEnding(), p = E.pos(), fresh = E.recordLife(), he = en.히로인엔딩;
     var hs = en.히로인들.map(function (h) {
       return '<div class="mini">' + U.art(U.heroineKeys(h.아이디, h.관계), "💗", "<b>" + esc(h.이름) + "</b><small>" + esc(h.결말) + "</small>", "card-art") + "</div>";
