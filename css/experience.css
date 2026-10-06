@@ -90,6 +90,36 @@ button.mini { padding: 0; background: transparent; color: inherit; text-align: l
 .practice-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 20px 0; }
 .practice-tabs button { background: #e8ecdf; color: #42563f; border: 1px solid #c7d0bd; border-radius: 7px; padding: 12px 4px; font-size: 13px; }
 .practice-tabs button[aria-pressed="true"] { background: #224e3f; border-color: #224e3f; color: #fff; }
+/* 추가 미니게임: 색과 글자를 함께 써서 신호를 구분합니다. */
+.steal-field { background: linear-gradient(#173e35 45%, #42734d 45%); }
+.steal-route { position: absolute; left: 15%; right: 15%; top: 68%; border-top: 14px solid #bc935e; }
+.steal-base { position: absolute; top: 64%; padding: 6px; background: #fff7df; color: #213d32; border-radius: 3px; font-size: 12px; font-weight: 900; }
+.steal-base.first { left: 10%; } .steal-base.second { right: 10%; }
+.steal-runner { position: absolute; left: 18%; top: 55%; color: #ffd773; font-size: 32px; transition: left .7s ease-out; }
+.steal-runner.running { left: 80%; }
+.steal-signal { position: absolute; left: 6%; right: 6%; top: 15%; border: 2px solid #78988d; border-radius: 10px; padding: 16px 4px; font-size: 21px; font-weight: 900; background: #152f2b; }
+.steal-signal.feint { color: #ffd184; border-color: #ffd184; }
+.steal-signal.go { color: #163323; background: #b9ed9e; border-color: #b9ed9e; }
+.mini-instruction { position: absolute; bottom: 14px; width: 100%; font-size: 12px; color: #e5ecd8; }
+.throw-field { background: repeating-linear-gradient(110deg, #28563d 0 32px, #305f43 32px 64px); }
+.throw-diamond { position: absolute; width: 58%; height: 58%; left: 21%; top: 21%; border: 2px solid #c1a974; transform: rotate(45deg); background: #aa885455; }
+.throw-target { position: absolute; width: 46px; height: 46px; display: grid; place-items: center; transform: translate(-50%, -50%); background: #fff7db; color: #183e32; border: 3px solid #ffd16e; border-radius: 50%; font-weight: 900; box-shadow: 0 0 0 8px #ffd16e33; }
+.throw-x, .throw-y { position: absolute; pointer-events: none; background: #ffd46a; }
+.throw-x { top: 12%; bottom: 12%; width: 3px; transform: translateX(-50%); }
+.throw-y { left: 12%; right: 12%; height: 3px; transform: translateY(-50%); }
+.throw-x.locked { background: #a3e6cc; }
+.throw-dot { position: absolute; width: 14px; height: 14px; border: 3px solid white; border-radius: 50%; transform: translate(-50%, -50%); }
+.throw-ball { position: absolute; left: 50%; top: 95%; width: 26px; height: 26px; opacity: 0; transform: translate(-50%, -50%); transition: left .35s, top .35s, opacity .1s; }
+.throw-ball.thrown { opacity: 1; } .throw-ball svg { width: 100%; }
+.sign-field { background: radial-gradient(ellipse at top, #335271, #142437); padding: 20px 12px; }
+.sign-display { min-height: 66px; display: grid; place-items: center; font-size: 21px; font-weight: 900; color: #ffe0a0; }
+.sign-progress, .sign-slots { font-size: 12px; color: #dfe8ee; min-height: 22px; }
+.sign-answers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 12px 0; }
+.sign-answers button { padding: 10px 2px; min-height: 58px; border-radius: 8px; background: #f1ead6; color: #203a44; font-size: 13px; font-weight: 800; touch-action: manipulation; }
+.sign-answers small { display: block; opacity: .7; margin-bottom: 4px; }
+.sign-answers button:disabled { opacity: .35; }
+.sign-field .mg-big { top: 22%; font-size: 30px; background: #142437ed; padding: 8px 0; }
+@media (prefers-reduced-motion: reduce) { .steal-runner, .throw-ball { transition: none; } }
 .practice-instructions { padding: 20px 16px; border: 1px dashed #a5b39a; border-radius: 10px; text-align: center; background: #f0f1e6; }
 .practice-icon { display: block; font-size: 36px; }
 .practice-instructions p { margin: 8px 0; font-size: 14px; }

@@ -247,13 +247,17 @@
     '<path d="M150 9.2 182 9.8V14.2L150 14.8Z" fill="#333"/><circle cx="188" cy="12" r="6" fill="#333"/></svg>';
 
   // ---------------- 승부의 순간 미니게임 ----------------
-  // 시계 게임과 포지션 게임(야수 = 타격, 투수 = 투구)이 랜덤으로 나옴. 같은 게임이 세 번 연속 나오지는 않음
+  // 시계 게임과 포지션별 게임 묶음 중 추첨. 같은 종류는 세 번 연속 나오지 않음.
   var mgLast = [];
   U.miniGame = function (cb) {
     var M = GD.설정.미니게임 || {}, alt = Math.random() < (M.새게임확률 == null ? 0.5 : M.새게임확률);
-    if (mgLast.length === 2 && mgLast[0] === mgLast[1]) alt = !mgLast[0];
-    mgLast = [alt].concat(mgLast.slice(0, 1));
-    (alt ? (E.pos().분류 === "투수" ? U.miniPitch : U.miniBat) : U.miniTimer)(cb);
+    var pool = E.pos().분류 === "투수" ? ["miniPitch", "miniThrow", "miniSigns"] : ["miniBat", "miniSteal", "miniThrow"];
+    var blocked = mgLast.length === 2 && mgLast[0] === mgLast[1] ? mgLast[0] : null;
+    var choices = alt || blocked === "miniTimer" ? pool : ["miniTimer"];
+    choices = choices.filter(function (key) { return key !== blocked; });
+    var key = choices[Math.floor(Math.random() * choices.length)];
+    mgLast = [key].concat(mgLast.slice(0, 1));
+    return U[key](cb);
   };
 
   // 시계 게임: 5초부터 줄어드는 시계를 목표 시간에 가깝게 멈출수록 성공 확률이 높음
@@ -320,6 +324,8 @@
     el.style.transform = "translate(" + x + "px," + y + "px) scale(" + s + ")";
     if (op != null) el.style.opacity = op;
   }
+
+  U._mini = { open: mgOpen, end: mgEnd, input: mgInput, time: tapTime, ball: BALL };
 
   // 타격 게임 (야수): 날아오는 공이 노란 점선(타격 존)에 닿는 순간 화면을 누르면 배트를 휘두름
   U.miniBat = function (cb) {
@@ -418,6 +424,8 @@
       pitch: { title: "투구", icon: "🎯", play: U.miniPitch, help: "빨간 조준점이 갈색 포수 미트와 겹칠 때 누르세요. 제한 시간은 " + (P.제한초 || 6) + "초입니다.", levels: "정확한 투구 " + pct(M.최고확률 || 0.95) + " · 좋은 코스 " + pct(P.좋음확률 || 0.7) + " · 실투 " + pct(P.존안확률 || 0.3) + " · 볼 " + pct(M.최저확률 || 0.05) },
       timer: { title: "타이밍", icon: "⏱", play: U.miniTimer, help: "줄어드는 시계가 매번 정해지는 목표 시간에 가까워질 때 공을 누르세요.", levels: "목표 시간에 가까울수록 성공 확률이 높아집니다." }
     };
+    Object.assign(games, U.extraPracticeGames());
+    Object.keys(games).forEach(function (key) { if (!history[key]) history[key] = []; });
     var m = document.createElement("div"); m.className = "modal practice-modal"; m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true"); m.setAttribute("aria-label", "미니게임 연습장");
     document.body.appendChild(m);
     function draw() {
@@ -425,7 +433,7 @@
       m.innerHTML = '<div class="sheet practice-sheet"><div class="sheet-bar"><button class="close" aria-label="연습장 닫기">✕</button></div><span class="eyebrow">BULLPEN · 연습장</span><h2>결정적인 순간을 위해.</h2>' +
         '<p class="hint">부담 없이 감각을 익혀 보세요. 진행 중인 인생에는 영향을 주지 않습니다.</p><div class="practice-tabs" role="group" aria-label="연습 종류">' +
         Object.keys(games).map(function (key) { return '<button data-game="' + key + '" aria-pressed="' + (selected === key) + '">' + games[key].icon + " " + games[key].title + '</button>'; }).join("") + '</div>' +
-        '<div class="practice-instructions"><span class="practice-icon" aria-hidden="true">' + g.icon + '</span><h3>' + g.title + ' 연습</h3><p>' + esc(g.help) + '</p><small>터치·클릭 또는 스페이스·엔터</small></div>' +
+        '<div class="practice-instructions"><span class="practice-icon" aria-hidden="true">' + g.icon + '</span><h3>' + g.title + ' 연습</h3><p>' + esc(g.help) + '</p><small>' + esc(g.keys || "터치·클릭 또는 스페이스·엔터") + '</small></div>' +
         '<div class="practice-score" aria-live="polite">' + (list.length ? '<b>이번 연습 ' + list.length + '회</b><span>최고 성공 확률 ' + Math.round(Math.max.apply(null, list.map(function (r) { return r.확률; })) * 100) + '%</span>' : '<b>아직 첫 연습 전이에요</b><span>준비되면 아래 버튼을 누르세요.</span>') + '</div>' +
         (last ? '<p class="practice-last">' + esc(last) + '</p>' : '') + '<button class="big practice-start">' + (list.length ? '한 번 더 연습하기' : '연습 시작') + ' →</button>' +
         '<details class="practice-help"><summary>판정과 성공 확률 알아보기</summary><p>' + esc(g.levels) + '</p><p>본게임에서는 이 확률로 카드의 성공·실패를 결정합니다. 홈런·삼진 판정도 이야기의 성공을 보장하지는 않습니다.</p></details>' +
