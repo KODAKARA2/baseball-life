@@ -18,7 +18,8 @@ for (let g = 0; g < N; g++) {
     while (S.단계 !== "엔딩" && t < 600) { if (S.현재카드.레어) rare++; E.choose(Math.floor(Math.random() * S.현재옵션.length)); E.next(); t++; }
     if (S.단계 !== "엔딩") throw new Error("끝나지 않는 인생 (" + t + "장)");
     E.recordLife();
-    const en = S.엔딩, k = en.특별 ? en.특별.이름 : "(기본) " + en.기본.이름; ends[k] = (ends[k] || 0) + 1;
+    if (GD.진로.length) E.chooseCareer(GD.진로[Math.floor(Math.random() * GD.진로.length)].아이디);
+    const en = S.엔딩, k = en.기본.이름; ends[k] = (ends[k] || 0) + 1;
     if (S.히로인 && S.히로인.관계 === "배우자") married++;
     if (S.자녀 > 0) kids++;
   } catch (e) { errs++; if (errs <= 3) console.log("오류:", e.stack.split("\n").slice(0, 3).join(" | ")); }

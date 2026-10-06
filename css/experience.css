@@ -158,6 +158,26 @@ button.mini { padding: 0; background: transparent; color: inherit; text-align: l
 .fx { font-weight: 550; border-radius: 6px; }
 .news, .note { border-radius: 10px; font-weight: 400; }
 .ending .end-title { font-weight: 650; }
+.ending-story { margin: 24px 0; }
+.ending-story .eyebrow, .career-summary .eyebrow { color: #6b795c; text-align: center; }
+.ending-story p { font-size: 16px; line-height: 1.9; word-break: keep-all; overflow-wrap: anywhere; color: #42534e; }
+.ending-highlight { padding: 4px 14px; margin: 18px 0; background: #edf2eb; border-radius: 12px; }
+.ending-highlight summary { font-size: 14px; font-weight: 550; }
+.ending-highlight p { font-size: 14px; line-height: 1.8; }
+.career-invite, .career-summary { padding: 20px; margin: 24px 0; border: 1px solid #d9e4d8; border-radius: 14px; background: #f0f5ed; }
+.career-invite p { font-size: 14px; line-height: 1.8; color: #556951; }
+.career-invite .big { margin: 16px 0 12px; border-radius: 12px; font-size: 15px; font-weight: 600; box-shadow: none; }
+.career-invite > small { display: block; font-size: 12px; color: #677960; }
+.career-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 22px 0; }
+.career-choice { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; padding: 16px 12px; border: 1px solid #dbe4da; border-radius: 13px; background: #fff; color: var(--ink); text-align: left; word-break: keep-all; overflow-wrap: anywhere; }
+.career-icon { font-size: 24px; } .career-choice b { font-size: 15px; }
+.career-choice small { font-size: 13px; color: #647463; line-height: 1.7; }
+.career-choice em { font-style: normal; font-size: 11px; color: #536b46; background: #edf3e5; border-radius: 5px; padding: 3px 5px; }
+.career-pick { margin-top: auto; padding-top: 8px; font-size: 12px; color: #28665c; font-weight: 600; }
+.career-choice:hover { border-color: #638f7c; background: #f7faf4; }
+.career-summary small { line-height: 1.9; font-size: 14px; word-break: keep-all; overflow-wrap: anywhere; }
+.career-summary .eyebrow { text-align: left; margin-bottom: 9px; }
+@media (max-width: 359px) { .career-grid { grid-template-columns: 1fr; } }
 @media (hover: hover) {
   .opt:hover { background: #f2f7ef; border-color: #8da793; box-shadow: 0 4px 16px #0001; }
   .setup-links button:hover, .chapter button:hover { background: #ffffff16; }

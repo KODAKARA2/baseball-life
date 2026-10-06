@@ -62,6 +62,7 @@
     var nd = sdef(name);
     if (nd.시작나이) s.나이 = nd.시작나이;
     s.시기 = name; s.시기턴 = 0; s.진입나이 = s.나이; s.올해카드 = 0; s.올해부상카드 = 0;
+    if (s.새인연 && arr(E.heroDef(s.새인연.아이디).만나는시기).indexOf(name) < 0) delete s.새인연;
     if (nd.시작플래그) s.플래그[nd.시작플래그] = true;
     if (name === "드래프트" || name === "대학드래프트") {
       var D = (name === "대학드래프트" && cfg().대학드래프트) || cfg().드래프트, score = E.avg() + s.능력치.인기 * D.인기반영 + rnd() * 4 - 2;
@@ -203,7 +204,10 @@
     if (out.기록) s.순간.push({ 나이: s.나이, 글: E.tpl(out.기록) });
     if (out.수상) I.addAward(out.수상);
     if (out.팀이동) I.changeTeam();
-    if (out.인연시작 && card._만남) { I.attachHeroine(card._만남); res.알림.push("💞 " + E.heroDef().이름 + " 카드가 인생 카드 옆에 붙었다"); }
+    if (out.인연시작 && card._만남) { I.attachHeroine(card._만남); res.알림.push("🌱 " + E.heroDef().이름 + "와(과) 알아가는 중 · 대화를 쌓으면 고백할 수 있습니다"); }
+    if (card.알아가기 && out.교류 && s.히로인 && s.히로인.관계 === "만남") s.히로인.교류횟수 = (s.히로인.교류횟수 || 0) + 1;
+    if (out.새인연연락 && card._끼어들기) s.새인연 = { 아이디: card._끼어들기, 기존인연: s.히로인.아이디, 등장턴: s.총턴 };
+    if (card.교제제안) delete s.새인연;
     if (out.양다리시작 && card._끼어들기) { startAffair(card._끼어들기); res.알림.push("🤫 " + E.heroDef(card._끼어들기).이름 + " 카드가 몰래 붙었다 (양다리)"); }
     if (out.갈아타기 && card._끼어들기) {
       var oldName = s.히로인 ? E.heroDef().이름 : "";
@@ -218,9 +222,9 @@
     }
     if (out.상속금받기 && s.상속금) { s.돈 += s.상속금; s.총수입 = (s.총수입 || 0) + s.상속금; res.효과.돈 = (res.효과.돈 || 0) + s.상속금; s.상속금 = 0; }
     if (out.관계) {
-      var hn = s.히로인 ? E.heroDef().이름 : "";
+      var hn = s.히로인 ? E.heroDef().이름 : "", wasAcquaintance = s.히로인 && s.히로인.관계 === "만남";
       I.setRelation(out.관계);
-      if (out.관계 === "이별") res.알림.push("💔 " + hn + " 카드가 떨어져 나갔다");
+      if (out.관계 === "이별") res.알림.push((wasAcquaintance ? "🌿 " : "💔 ") + hn + (wasAcquaintance ? "와(과) 각자의 일상으로 돌아갔다" : " 카드가 떨어져 나갔다"));
       if (out.관계 === "연인") res.알림.push("❤️ " + hn + "와(과) 연인이 되었다");
       if (out.관계 === "배우자") {
         res.알림.push("💍 " + hn + " 카드가 배우자 카드로 바뀌었다");
@@ -262,10 +266,10 @@
     if (s.히로인) {
       var h = E.heroDef();
       if (!card.히로인 && !card._만남) {
-        var dec = L.매카드감소 + (o.집중 ? L.집중감소추가 : 0) + (s.플래그.장거리 && s.시기 === "메이저리그" ? L.장거리감소추가 : 0);
+        var dec = s.히로인.관계 === "만남" ? L.알아가기감소 : L.매카드감소 + (o.집중 ? L.집중감소추가 : 0) + (s.플래그.장거리 && s.시기 === "메이저리그" ? L.장거리감소추가 : 0);
         s.히로인.애정도 = clamp(s.히로인.애정도 - dec, 0, 100);
       }
-      if (s.히로인.애정도 >= L.도움기준) {
+      if (s.히로인.관계 !== "만남" && s.히로인.애정도 >= L.도움기준) {
         var fx = h.고유효과 || {};
         E.applyEffects(fx.매카드 || {}, {});
         s.행복도 = clamp(s.행복도 + L.도움행복도, 0, 100);

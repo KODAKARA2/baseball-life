@@ -145,7 +145,8 @@
   E.computeEnding = function () {
     var s = S(), C = cfg().엔딩기준;
     var ph = s.성적 >= C.성적높음, hh = s.행복도 >= C.행복도높음;
-    var base = GD.기본엔딩.find(function (e) { return (e.성적 === "높음") === ph && (e.행복도 === "높음") === hh; }) || GD.기본엔딩[0];
+    var base = GD.기본엔딩.find(function (e) { return e.조건 && E.check(e.조건); }) ||
+      GD.기본엔딩.find(function (e) { return !e.조건 && (e.성적 === "높음") === ph && (e.행복도 === "높음") === hh; }) || GD.기본엔딩[0];
     var titles = GD.직업엔딩.filter(function (e) { return e.종류 === "칭호" && E.check(e.조건); });
     var job = GD.직업엔딩.find(function (e) { return e.종류 !== "칭호" && E.check(e.조건); });
     var heroines = s.지난히로인.slice();
@@ -169,7 +170,18 @@
       // 이전 버전 저장 파일에 없는 항목 채우기
       s.돈 = s.돈 || 0; s.총수입 = s.총수입 || 0; s.구매 = s.구매 || {}; s.본뉴스 = s.본뉴스 || {};
       if (!s.외모) s.외모 = 1 + Math.floor(Math.random() * 10);
-      I.buildCards(); I.S = s; return s;
+      if (s.히로인 && s.히로인.관계 === "만남") {
+        if (s.히로인.만남턴 == null) s.히로인.만남턴 = s.총턴;
+        if (s.히로인.교류횟수 == null) s.히로인.교류횟수 = 0;
+      }
+      I.buildCards(); I.S = s;
+      // 이전 저장의 고백·커플 카드나 즉시 교제 선택지를 그대로 실행하지 않도록 갱신합니다.
+      if (s.단계 === "카드" && s.현재카드 && (s.현재카드._끼어들기 || (s.히로인 && s.히로인.관계 === "만남" && s.현재카드.히로인))) {
+        var current = I.CARDS().find(function (c) { return c._id === s.현재카드._id; });
+        if (current && I.eligible(current)) { s.현재카드 = I.clone(current); E.refreshOptions(); }
+        else E.next();
+      }
+      return s;
     } catch (e) { return null; }
   };
   // ---------------- 도감 (인생이 바뀌어도 남는 기록) ----------------
@@ -197,7 +209,7 @@
     c.인생수++;
     if (en.특별) addTo(c, "엔딩", "특별:" + en.특별.이름, fresh, en.특별.아이콘 + " " + en.특별.이름);
     addTo(c, "엔딩", "기본:" + en.기본.이름, fresh, en.기본.아이콘 + " " + en.기본.이름);
-    if (en.직업) addTo(c, "엔딩", "직업:" + en.직업.이름, fresh, en.직업.아이콘 + " " + en.직업.이름);
+    if (en.직업 && s.진로확정) addTo(c, "엔딩", "직업:" + en.직업.이름, fresh, en.직업.아이콘 + " " + en.직업.이름);
     en.칭호.forEach(function (t) { addTo(c, "엔딩", "칭호:" + t.이름, fresh, t.아이콘 + " " + t.이름); });
     if (en.히로인엔딩) addTo(c, "엔딩", "히로인:" + en.히로인엔딩.아이디, fresh, en.히로인엔딩.아이콘 + " " + en.히로인엔딩.이름);
     var n = E.colCounts(c);
@@ -207,6 +219,22 @@
     });
     saveCol(c); s._도감 = true; s._도감새로 = fresh; E.save();
     return fresh;
+  };
+
+  // 엔딩에서 한 번만 진로 확정. 인생 수나 기존 엔딩의 획득 횟수는 다시 올리지 않습니다.
+  E.chooseCareer = function (id) {
+    var s = S(); if (!s || s.단계 !== "엔딩" || s.진로확정) return false;
+    var career = GD.진로.find(function (c) { return c.아이디 === id; });
+    if (!career) return false;
+    E.recordLife();
+    Object.keys(s.플래그).forEach(function (key) { if (key.indexOf("진로_") === 0) delete s.플래그[key]; });
+    s.플래그[career.플래그] = true; s.진로확정 = id;
+    var ending = E.computeEnding();
+    if (s.엔딩) s.엔딩.직업 = ending.직업; else s.엔딩 = ending;
+    var collection = E.collection(), fresh = [];
+    addTo(collection, "엔딩", "직업:" + ending.직업.이름, fresh, ending.직업.아이콘 + " " + ending.직업.이름);
+    saveCol(collection); s._도감새로 = (s._도감새로 || []).concat(fresh); E.save();
+    return true;
   };
 
   E.reset = function () { try { localStorage.removeItem(I.SAVE_KEY); } catch (e) {} I.S = null; };
