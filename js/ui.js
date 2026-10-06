@@ -34,8 +34,8 @@
       (keys.length ? '<img alt="" data-keys="' + esc(keys.join(",")) + '" src="images/' + esc(keys[0]) + '.png" onload="U.imgLoad(this)" onerror="U.imgFail(this)">' : "") +
       (overlay ? '<div class="overlay">' + overlay + "</div>" : "") + "</div>";
   };
-  // 작은 픽셀 그림(가로 400 이하)은 확대해도 흐려지지 않게 또렷한 픽셀로 보여 줌
-  U.imgLoad = function (img) { img.classList.toggle("px", img.naturalWidth <= 400); };
+  // 인물은 고해상도로 저장한 작은 픽셀 그림도 선명하게 표시합니다.
+  U.imgLoad = function (img) { img.classList.add("px"); };
   U.imgFail = function (img) {
     var keys = img.dataset.keys.split(","), i = keys.indexOf(img.getAttribute("src").replace(/^images\/|\.png$/g, ""));
     if (i >= 0 && i + 1 < keys.length) img.src = "images/" + keys[i + 1] + ".png"; else img.remove();

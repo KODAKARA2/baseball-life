@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>야구 인생 · 작은 픽셀 인물</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf3ed;color:#20332a;font:16px/1.6 system-ui,sans-serif}header,main{max-width:1200px;margin:auto;padding:24px}h1{font-size:clamp(25px,4vw,40px);margin:8px 0}a{color:#246342}nav{display:flex;gap:12px;flex-wrap:wrap}input,select{font:inherit;padding:10px 12px;border:1px solid #b8c9be;border-radius:10px;background:white;max-width:100%}#search{flex:1;min-width:160px}#count{color:#526b5d}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:18px}figure{margin:0;background:white;border:1px solid #d3e1d8;border-radius:16px;overflow:hidden}.portrait{display:block;background:repeating-conic-gradient(#e5ebe6 0% 25%,#f6f8f6 0% 50%) 0/20px 20px}img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:contain;image-rendering:pixelated}figcaption{padding:12px;font-size:14px}small{display:block;color:#607468;overflow-wrap:anywhere}footer{padding:24px;text-align:center}button{font:inherit} @media(max-width:400px){header,main{padding:16px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+</style>
+<header>
+<a href="../../index.html">← 게임으로 돌아가기</a>
+<h1>작은 픽셀로 다시 만나는 야구 인생</h1>
+<p>주인공 30장 · 히로인 24장 · 조연 11장. 게임에 연결된 인물 그림 전체를 볼 수 있습니다.</p>
+<nav><input id="search" type="search" placeholder="이름 또는 그림 찾기" aria-label="인물 검색"><select id="group" aria-label="인물 분류"><option value="">모든 인물</option><option>주인공</option><option>히로인</option><option>조연</option></select></nav>
+<p id="count" aria-live="polite"></p>
+</header>
+<main class="grid" id="gallery"></main>
+<footer>그림을 누르면 원본 PNG를 볼 수 있습니다.</footer>
+<script src="catalog.js"></script>
+<script>
+const search=document.querySelector('#search'),group=document.querySelector('#group'),gallery=document.querySelector('#gallery');
+function render(){const q=search.value.trim().toLowerCase();const list=CHARACTERS.filter(x=>(!group.value||x.group===group.value)&&(!q||(x.label+' '+x.id).toLowerCase().includes(q)));gallery.replaceChildren(...list.map(x=>{const figure=document.createElement('figure'),a=document.createElement('a'),img=document.createElement('img'),caption=document.createElement('figcaption'),detail=document.createElement('small');a.href='../../'+x.target;a.className='portrait';img.src=a.href;img.alt=x.label;img.loading='lazy';img.width=1024;img.height=1536;a.append(img);caption.append(x.label);detail.textContent=x.id;caption.append(detail);figure.append(a,caption);return figure}));document.querySelector('#count').textContent=list.length+' / '+CHARACTERS.length+'장';}
+search.value=new URLSearchParams(location.search).get('q')||'';search.addEventListener('input',render);group.addEventListener('change',render);render();
+</script>
+</html>
