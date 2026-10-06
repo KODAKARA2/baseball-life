@@ -62,13 +62,15 @@
   U.openHeroine = function () {
     var s = E.state(), html = "";
     if (s.히로인) {
-      var h = E.heroDef(), r = s.히로인.관계, L = GD.설정.연애, on = s.히로인.애정도 >= L.도움기준;
+      var h = E.heroDef(), r = s.히로인.관계, L = GD.설정.연애, on = r !== "만남" && s.히로인.애정도 >= L.도움기준;
+      var label = r === "만남" ? "호감" : "애정도";
       html += '<div class="bigcard">' + U.art(U.heroineKeys(h.아이디, r), "💗",
-        "<b>" + esc(h.이름) + "</b><small>" + esc(r) + " · " + esc(h.유형) + '</small><div class="ovstats">❤ 애정도 ' + s.히로인.애정도 + " / 100</div>", "card-art") + "</div>" +
-        '<div class="sl"><span>애정도</span>' + U.bar(s.히로인.애정도, "love") + "<b>" + s.히로인.애정도 + "</b></div>" +
+        "<b>" + esc(h.이름) + "</b><small>" + esc(r === "만남" ? "알아가는 중" : r) + " · " + esc(h.유형) + '</small><div class="ovstats">' + label + " " + s.히로인.애정도 + " / 100</div>", "card-art") + "</div>" +
+        '<div class="sl"><span>' + label + '</span>' + U.bar(s.히로인.애정도, "love") + "<b>" + s.히로인.애정도 + "</b></div>" +
         '<p class="kv">성격: ' + esc(h.성격) + "</p><p>" + esc(h.소개) + "</p>" +
-        '<p class="effect ' + (on ? "on" : "") + '">✨ 고유효과 ' + (on ? "(발동 중)" : "(애정도 " + L.도움기준 + " 이상이면 발동)") + "<br>" + esc((h.고유효과 || {}).설명 || "") + "</p>" +
-        '<p class="hint">데이트·기념일·고민 들어주기로 마음을 지켜 주세요. 훈련이나 원정에만 집중하면 애정도가 떨어집니다. 중요한 약속을 저버리는 선택은 애정도가 높아도 이별로 이어질 수 있습니다.</p>';
+        '<p class="effect ' + (on ? "on" : "") + '">✨ 고유효과 ' + (on ? "(발동 중)" : "(교제 후 애정도 " + L.도움기준 + " 이상이면 발동)") + "<br>" + esc((h.고유효과 || {}).설명 || "") + "</p>" +
+        (r === "만남" ? '<p class="hint">마음을 나눈 대화 ' + Math.min(s.히로인.교류횟수 || 0, L.고백최소교류) + ' / ' + L.고백최소교류 + '회 · 호감 ' + L.연인기준 + ' 이상<br>첫 만남 이후 카드 ' + L.고백최소간격 + '장이 지나고 조건을 채우면 고백 카드가 나타납니다. 고백을 선택하면 연인이 되고 데이트가 열립니다.</p>' :
+        '<p class="hint">데이트·기념일·고민 들어주기로 마음을 지켜 주세요. 훈련이나 원정에만 집중하면 애정도가 떨어집니다. 중요한 약속을 저버리는 선택은 애정도가 높아도 이별로 이어질 수 있습니다.</p>');
     } else html += '<h2>💗 히로인</h2><p>아직 곁에 있는 사람이 없다. 인연은 시기마다 찾아온다.</p>';
     if (s.히로인2) {
       var h2 = E.heroDef(s.히로인2.아이디);
@@ -77,7 +79,7 @@
         '<div class="sl"><span>애정도</span>' + U.bar(s.히로인2.애정도, "love") + "<b>" + s.히로인2.애정도 + "</b></div>" +
         '<p class="hint">양다리 중에는 프러포즈를 할 수 없고, 들키면 둘 다 잃을 수도 있습니다.</p>';
     }
-    if (s.지난히로인.length) html += "<h3>지나간 인연</h3>" + s.지난히로인.map(function (x) { return "<p>💔 " + esc(x.이름) + " (" + esc(x.관계) + "에서 이별)</p>"; }).join("");
+    if (s.지난히로인.length) html += "<h3>지나간 인연</h3>" + s.지난히로인.map(function (x) { return "<p>" + (x.관계 === "만남" ? "🌿 " : "💔 ") + esc(x.이름) + " (" + esc(x.관계 === "만남" ? "알아가던 사이 · 연락이 뜸해짐" : x.결말 || "이별") + ")</p>"; }).join("");
     if (s.자녀) html += "<p>👶 자녀 " + s.자녀 + "명</p>";
     modal(html);
   };
@@ -137,7 +139,7 @@
   // ---------------- 은퇴 · 엔딩 ----------------
   U.showEnding = function () {
     $("#app").className = "is-ending";
-    var s = E.state(), en = s.엔딩 || E.computeEnding(), p = E.pos(), fresh = E.recordLife(), he = en.히로인엔딩;
+    var s = E.state(), en = s.엔딩 || (s.엔딩 = E.computeEnding()), p = E.pos(), fresh = E.recordLife(), he = en.히로인엔딩;
     var hs = en.히로인들.map(function (h) {
       return '<div class="mini">' + U.art(U.heroineKeys(h.아이디, h.관계), "💗", "<b>" + esc(h.이름) + "</b><small>" + esc(h.결말) + "</small>", "card-art") + "</div>";
     }).join("") || "<p>함께한 히로인이 없습니다.</p>";
@@ -145,13 +147,13 @@
       '<div class="bigcard">' + U.art(["hero_retired"], '<span class="posicon">' + U.icon() + "</span>",
         "<b>" + esc(s.이름) + "</b><small>" + esc(p.이름) + " · " + (s.은퇴나이 || s.나이) + '세 은퇴</small><div class="ovstats">성적 ' + en.성적 + " · 행복도 " + en.행복도 + "</div>", "card-art") + "</div>" +
       (fresh.length ? '<div class="fresh"><b>📖 도감에 새로 기록!</b>' + fresh.map(function (f) { return "<span>" + esc(f) + "</span>"; }).join("") + "</div>" : "") +
-      (en.특별 ? '<div class="end-title">' + en.특별.아이콘 + " " + esc(en.특별.이름) + "</div><p>" + br(E.tpl(en.특별.내용)) + "</p>" +
-        '<p class="hint" style="text-align:center">인생 유형: ' + en.기본.아이콘 + " " + esc(en.기본.이름) + "</p>"
-       : '<div class="end-title">' + en.기본.아이콘 + " " + esc(en.기본.이름) + "</div><p>" + br(E.tpl(en.기본.내용)) + "</p>") +
+      '<div class="ending-story"><span class="eyebrow">나의 야구 인생</span><div class="end-title">' + en.기본.아이콘 + " " + esc(en.기본.이름) + "</div><p>" + br(E.tpl(en.기본.내용)) + "</p></div>" +
+      (en.특별 ? '<details class="ending-highlight"><summary>커리어 하이라이트 · ' + en.특별.아이콘 + " " + esc(en.특별.이름) + "</summary><p>" + br(E.tpl(en.특별.내용)) + "</p></details>" : "") +
       (he ? '<div class="he-end">' + U.art(U.heroineKeys(he.아이디, "배우자"), "💍", null, "card-art") + '<div><div class="he-title">' + he.아이콘 + " " + esc(he.이름) +
         "</div><small>" + esc(he.히로인) + " 전용 엔딩</small><p>" + br(E.tpl(he.내용)) + "</p></div></div>" : "") +
       en.칭호.map(function (t) { return '<div class="badge">' + t.아이콘 + " " + esc(t.이름) + "<small>" + esc(E.tpl(t.내용)) + "</small></div>"; }).join("") +
-      (en.직업 ? '<div class="badge job">' + en.직업.아이콘 + " 은퇴 후: " + esc(en.직업.이름) + "<small>" + esc(E.tpl(en.직업.내용)) + "</small></div>" : "") +
+      (s.진로확정 && en.직업 ? '<div class="badge job career-summary" tabindex="-1"><span class="eyebrow">내가 선택한 다음 장</span>' + en.직업.아이콘 + " " + esc(en.직업.이름) + "<small>" + esc(E.tpl(en.직업.내용)) + "</small></div>" :
+        '<div class="career-invite"><h3>다음 장은 어떤 모습일까요?</h3><p>선수 생활은 끝났지만 이야기는 계속됩니다. 10가지 진로 중 하나를 고르면, 후일담과 도감에 남습니다.</p><button class="big" onclick="U.openCareer()">은퇴 후 진로 선택하기 →</button><small>한 인생에서 한 번 확정합니다. 성적과 행복도는 바뀌지 않습니다.</small></div>') +
       "<h3>통산 기록</h3>" + totalsHTML() + '<p class="kv">💰 통산 수입 ' + E.money(s.총수입) + " · 은퇴 때 자산 " + E.money(s.돈) + "</p><h3>수상</h3>" + awardsHTML() +
       "<h3>결정적 순간들</h3>" + momentsHTML(12) + '<h3>함께했던 히로인들</h3><div class="heroines">' + hs + "</div>" + seasonsHTML() +
       '<div class="share-row"><button class="big share" onclick="U.shareResult()">📤 결과 카드 공유</button><button class="big share2" onclick="U.saveResult()">💾 이미지 저장</button></div>' +
@@ -162,6 +164,21 @@
       ((s.외모 || 0) > 1 ? '<button class="big alt2" onclick="U.restart(1)">😅 새 인생을 외모 레벨 1로 시작하기</button>' : "") +
       '<button class="big alt3" onclick="U.restart(-1)">🎁 랜덤 보너스를 받고 새 인생 시작하기</button>' + "</section>";
     U.prepResult();
+  };
+
+  U.openCareer = function () {
+    var s = E.state(); if (!s || s.단계 !== "엔딩" || s.진로확정) return;
+    var m = modal('<h2>나의 다음 진로</h2><p class="hint">어떤 길이든 처음부터 배워 갈 수 있습니다. 한 가지를 선택하면 그 길의 후일담이 열립니다.</p><div class="career-grid">' +
+      GD.진로.map(function (c) {
+        return '<button class="career-choice" data-career="' + esc(c.아이디) + '"><span class="career-icon" aria-hidden="true">' + c.아이콘 + '</span><b>' + esc(c.이름) + '</b><small>' + esc(c.설명) +
+          '</small>' + (s.플래그[c.플래그] ? '<em>은퇴 때 관심을 둔 길</em>' : '') + '<span class="career-pick">이 진로로 시작 →</span></button>';
+      }).join("") + '</div><p class="hint">진로는 확정 후 바꿀 수 없습니다. 다음 인생에서는 다른 길을 선택할 수 있습니다.</p>', "조금 더 생각하기");
+    m.querySelectorAll("[data-career]").forEach(function (button) {
+      button.onclick = function () {
+        if (!E.chooseCareer(button.dataset.career)) return;
+        U.closeModals(); U.showEnding(); $(".career-summary").focus();
+      };
+    });
   };
 
   // 엔딩 뒤 새 인생: mode 10 → 외모 10, 1 → 외모 1, -1 → 랜덤 보너스, 2 → 2세 이어하기, 0 → 보너스 없음
@@ -210,7 +227,7 @@
       "<h3>🏆 업적</h3>" + GD.업적.map(function (a) { var g = c.업적[a.이름];
         return '<div class="col-item' + (g ? "" : " locked") + '"><span class="ci">' + (g ? a.아이콘 : "🔒") + "</span><div><b>" + esc(a.이름) + "</b><small>" + esc(a.설명) + "</small></div></div>"; }).join("") +
       "<h3>✨ 레어 카드</h3>" + rares.map(function (x) { return row(c.레어[x.제목], "✨", x.제목, ""); }).join("") +
-      "<h3>🌈 인생 유형</h3>" + GD.기본엔딩.map(function (e) { return row(got["기본:" + e.이름], e.아이콘, e.이름, "성적 " + e.성적 + " · 행복도 " + e.행복도); }).join("") +
+      "<h3>🌈 인생 유형</h3>" + GD.기본엔딩.map(function (e) { return row(got["기본:" + e.이름], e.아이콘, e.이름, e.판정안내 || "성적 " + e.성적 + " · 행복도 " + e.행복도); }).join("") +
       "<h3>🎖️ 칭호 · 은퇴 후 직업</h3>" + GD.직업엔딩.map(function (e) { var ch = e.종류 === "칭호", g = got[(ch ? "칭호:" : "직업:") + e.이름];
         return row(g, e.아이콘, e.이름, sub(ch ? "칭호" : "은퇴 후 직업", g ? "" : hint(e.조건))); }).join("") +
       '<p class="hint">도감은 이 기기(브라우저)에 저장되어, 새 인생을 시작해도 사라지지 않습니다.</p>');
@@ -238,7 +255,7 @@
     return y + lines.length * lh;
   }
   function drawResult(img) {
-    var s = E.state(), en = s.엔딩 || E.computeEnding(), p = E.pos(), he = en.히로인엔딩, main = en.특별 || en.기본, L = GD.설정.외모 || {};
+    var s = E.state(), en = s.엔딩 || E.computeEnding(), p = E.pos(), he = en.히로인엔딩, main = en.기본, L = GD.설정.외모 || {};
     var W = 1080, H = 1350, cv = document.createElement("canvas"); cv.width = W; cv.height = H;
     var x = cv.getContext("2d"), FF = 'px "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif';
     function font(sz, b, color) { x.font = (b ? "bold " : "") + sz + FF; x.fillStyle = color || "#fff"; }
@@ -265,7 +282,9 @@
     x.textAlign = "center"; y = 830;
     font(50, true, "#ffe08a"); y = wrap(x, main.아이콘 + " " + main.이름, 540, y, 900, 62, 2) + 8;
     font(29, false, "#dfe8f3"); y = wrap(x, E.tpl(main.내용), 540, y, 900, 42, 4) + 14;
-    var tj = en.칭호.map(function (t) { return t.아이콘 + " " + t.이름; }); if (en.직업) tj.push(en.직업.아이콘 + " " + en.직업.이름);
+    var tj = en.칭호.map(function (t) { return t.아이콘 + " " + t.이름; });
+    if (en.특별) tj.unshift(en.특별.아이콘 + " " + en.특별.이름);
+    if (s.진로확정 && en.직업) tj.unshift(en.직업.아이콘 + " " + en.직업.이름);
     if (tj.length) { font(30, true, "#e8c15a"); y = wrap(x, tj.join("  ·  "), 540, y, 900, 42, 2) + 6; }
     var love = he ? "💍 " + he.히로인 + " — 「" + he.이름 + "」" : en.히로인들.length ? "💗 " + en.히로인들.map(function (h) { return h.이름; }).join(", ") : "";
     if (love) { font(30, false, "#ffc4d6"); y = wrap(x, love, 540, y, 900, 42, 1) + 6; }
@@ -287,8 +306,8 @@
     im.onerror = function () { keys.shift(); if (keys.length) im.src = "images/" + keys[0] + ".png"; else out(null); };
     im.src = "images/" + keys[0] + ".png";
   };
-  var resultCache = null;
-  U.prepResult = function () { resultCache = null; U.resultBlob(function (b) { resultCache = b; }); };
+  var resultCache = null, resultVersion = 0;
+  U.prepResult = function () { var version = ++resultVersion; resultCache = null; U.resultBlob(function (b) { if (version === resultVersion) resultCache = b; }); };
   function withResult(cb) { if (resultCache) cb(resultCache); else U.resultBlob(function (b) { resultCache = b; cb(b); }); }
   function resultName() { return "야구인생_" + (E.state().이름 || "카드") + ".png"; }
   // 저장: 이미지를 창에 띄워 길게 눌러 저장(휴대폰)하거나 파일로 내려받기
@@ -303,7 +322,7 @@
   // 공유: 휴대폰 공유창(카톡·인스타 등)으로 이미지 보내기. 안 되는 브라우저면 저장 창을 띄움
   U.shareResult = function () {
     withResult(function (b) {
-      var s = E.state(), en = s.엔딩 || E.computeEnding(), main = en.특별 || en.기본;
+      var s = E.state(), en = s.엔딩 || E.computeEnding(), main = en.기본;
       var text = "⚾ " + s.이름 + "의 야구 인생: " + main.아이콘 + " " + main.이름, url = /^https?:/.test(location.protocol) ? location.href.split("#")[0] : "";
       var f = null; try { f = b ? new File([b], resultName(), { type: "image/png" }) : null; } catch (e) {}
       if (f && navigator.canShare && navigator.canShare({ files: [f] })) navigator.share({ files: [f], title: "야구 인생 카드", text: text + (url ? "\n" + url : "") }).catch(function () {});

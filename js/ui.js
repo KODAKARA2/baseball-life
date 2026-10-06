@@ -169,8 +169,8 @@
     if (s.히로인) {
       var h = E.heroDef(), rel = s.히로인.관계;
       her = '<button class="mini heroine-mini ' + (animateHeroine ? "attach" : "") + '" onclick="U.openHeroine()" aria-label="인연과 애정도 보기">' +
-        U.art(U.heroineKeys(h.아이디, rel), "💗", "<b>" + esc(h.이름) + "</b><small>" + esc(rel) + "</small>", "card-art") +
-        '<div class="aff">❤ ' + s.히로인.애정도 + bar(s.히로인.애정도, "love") + "</div>" +
+        U.art(U.heroineKeys(h.아이디, rel), "💗", "<b>" + esc(h.이름) + "</b><small>" + esc(rel === "만남" ? "알아가는 중" : rel) + "</small>", "card-art") +
+        '<div class="aff">' + (rel === "만남" ? "호감 " : "❤ ") + s.히로인.애정도 + bar(s.히로인.애정도, "love") + "</div>" +
         (s.히로인2 ? '<div class="aff2">🤫 ' + esc(E.heroDef(s.히로인2.아이디).이름) + " ❤" + s.히로인2.애정도 + "</div>" : "") + "</button>";
     } else her = '<button class="mini empty" onclick="U.openHeroine()" aria-label="인연 안내 보기"><span>💗</span><small>아직 쓰지 않은<br>인연의 이야기</small></button>';
     $("#life").innerHTML = hero + mid + her;
@@ -181,7 +181,7 @@
     if (card._끼어들기) { var hi = E.heroDef(card._끼어들기); return { keys: U.heroineKeys(hi.아이디, "만남"), icon: "💗", label: "<b>" + esc(hi.이름) + "</b><small>끼어든 인연</small>" }; }
     if (card.히로인 === "양다리" && s.히로인2) { var hs = E.heroDef(s.히로인2.아이디); return { keys: U.heroineKeys(hs.아이디, "연인"), icon: "🤫", label: "<b>" + esc(hs.이름) + "</b><small>비밀 연인 · ❤ " + s.히로인2.애정도 + "</small>" }; }
     if (card._만남) return { keys: U.heroineKeys(card._만남, "만남"), icon: "💗", label: "<b>" + esc(E.heroDef(card._만남).이름) + "</b><small>첫 만남</small>" };
-    if (card.히로인 && s.히로인) { var h = E.heroDef(); return { keys: U.heroineKeys(h.아이디, s.히로인.관계), icon: "💗", label: "<b>" + esc(h.이름) + "</b><small>" + esc(s.히로인.관계) + " · ❤ " + s.히로인.애정도 + "</small>" }; }
+    if (card.히로인 && s.히로인) { var h = E.heroDef(); return { keys: U.heroineKeys(h.아이디, s.히로인.관계), icon: "💗", label: "<b>" + esc(h.이름) + "</b><small>" + (s.히로인.관계 === "만남" ? "알아가는 중 · 호감 " : esc(s.히로인.관계) + " · ❤ ") + s.히로인.애정도 + "</small>" }; }
     var g = card.그림;
     if (g && GD.조연[g]) return { keys: [g], icon: EMOJI[g] || "👤", label: "<b>" + esc(GD.조연[g].이름) + "</b><small>" + esc(GD.조연[g].역할) + "</small>" };
     if (g && /^hero/.test(g)) return { keys: [g].concat(U.heroKeys()), icon: U.icon(), label: "<b>" + esc(s.이름) + "</b>" };
@@ -208,7 +208,8 @@
       if (k === "부상감소" || k === "슬럼프감소") return '<span class="fx up">' + k.replace("감소", "") + " 기간 -" + v + "%</span>";
       if (k === "만남확률") return '<span class="fx up">💗 만남 확률 +' + v + "%</span>";
       if (k === "부상" || k === "슬럼프") return '<span class="fx bad">' + k + (v > 0 ? " " + v + "장" : " 회복") + "</span>";
-      return '<span class="fx ' + (v > 0 ? "up" : "down") + '">' + k + " " + (v > 0 ? "+" : "") + v + "</span>";
+      var label = k === "애정도" && E.state().히로인 && E.state().히로인.관계 === "만남" ? "호감" : k;
+      return '<span class="fx ' + (v > 0 ? "up" : "down") + '">' + label + " " + (v > 0 ? "+" : "") + v + "</span>";
     }).join("");
   };
 

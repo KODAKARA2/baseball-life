@@ -28,6 +28,11 @@
   E.cap = function () { return sdef(S.시기).능력치상한 || 99; };
   E.heroDef = function (id) { return GD.히로인.find(function (h) { return h.아이디 === (id || (S.히로인 && S.히로인.아이디)); }); };
   E.state = function () { return S; };
+  E.canConfess = function () {
+    var h = S.히로인, L = cfg().연애;
+    return !!h && h.관계 === "만남" && !S.플래그.외국인작별 && h.애정도 >= L.연인기준 &&
+      (h.교류횟수 || 0) >= L.고백최소교류 && h.만남턴 != null && S.총턴 - h.만남턴 >= L.고백최소간격;
+  };
 
   // 외모: 1~10. 잘생길수록 히로인·성적·행복도 이득, 못생길수록 능력치가 잘 오름
   E.looksMult = function (kind) {
@@ -58,7 +63,7 @@
     GD.히로인.forEach(function (h) {
       tmpl.forEach(function (t) {
         var m = clone(t); m._끼어들기 = h.아이디; m.시기 = t.시기 || h.만나는시기;
-        m.조건 = Object.assign({}, h.만남조건 || {}, t.조건 || {}); add(m);
+        m.조건 = Object.assign({}, t.교제제안 ? {} : h.만남조건 || {}, t.조건 || {}); add(m);
       });
       if (h.만남카드) {
         var m = clone(h.만남카드);
@@ -79,7 +84,7 @@
       case "연차": return S.연차; case "자녀": return S.자녀; case "나이": return S.나이;
       case "애정도": return S.히로인 ? S.히로인.애정도 : 0; case "팀이동": return S.팀이동;
       case "시기카드": return S.시기턴; case "애정도2": return S.히로인2 ? S.히로인2.애정도 : 0;
-      case "은퇴나이": return S.은퇴나이 || S.나이; case "이별수": return S.지난히로인.length;
+      case "은퇴나이": return S.은퇴나이 || S.나이; case "이별수": return S.지난히로인.filter(function (h) { return h.관계 !== "만남"; }).length;
       case "수상수": return S.수상.length; case "총수입": return S.총수입 || 0; case "외모": return S.외모 || 5;
       case "세대": return S.세대 || 1; case "상속금": return S.상속금 || 0;
       case "이군기간": return S._강등턴 != null ? S.총턴 - S._강등턴 : 99; case "돈": return S.돈 || 0;
@@ -107,6 +112,7 @@
     if (c.히로인 === "있음" && !S.히로인) return false;
     if (c.히로인 === "없음" && S.히로인) return false;
     if (c.관계 && (!S.히로인 || arr(c.관계).indexOf(S.히로인.관계) < 0)) return false;
+    if (c.고백가능 != null && E.canConfess() !== c.고백가능) return false;
     if (c.양다리 != null && !!S.히로인2 !== c.양다리) return false;
     if (c.한국인연 != null && E.koreanBond() !== c.한국인연) return false;
     if (c.구매 && !arr(c.구매).some(function (n) { return S.구매 && S.구매[n] != null; })) return false;
@@ -128,6 +134,10 @@
     if (c.히로인 === "양다리" && !S.히로인2) return false;
     if (c.히로인 && c.히로인 !== "누구나" && c.히로인 !== "양다리" && (!S.히로인 || S.히로인.아이디 !== c.히로인)) return false;
     if (c._끼어들기 && (!S.히로인 || S.히로인.관계 !== "연인" || S.히로인2 || S.히로인.아이디 === c._끼어들기 || S.만난히로인.indexOf(c._끼어들기) >= 0)) return false;
+    if (c._끼어들기 && c.교제제안 && (!S.새인연 || S.새인연.아이디 !== c._끼어들기 || S.새인연.기존인연 !== S.히로인.아이디 || S.총턴 - S.새인연.등장턴 < cfg().연애.고백최소간격)) return false;
+    if (c._끼어들기 && !c.교제제안 && S.새인연) return false;
+    // 고백 전에는 알아가기·고백·연락 정리 카드만 허용합니다.
+    if (c.히로인 && S.히로인 && S.히로인.관계 === "만남" && !c.알아가기 && !c.고백카드 && !c.인연정리) return false;
     if (c._만남 && (S.히로인 || S.만난히로인.indexOf(c._만남) >= 0)) return false;
     var last = S.본카드[c._id];
     if (last != null && (!c.반복 || S.총턴 - last < (c.간격 || 4))) return false;
@@ -190,19 +200,20 @@
 
   // ---------------- 히로인 ----------------
   function attachHeroine(id) {
-    S.히로인 = { 아이디: id, 관계: "만남", 애정도: cfg().연애.시작애정도, 만난시기: S.시기 };
-    delete S.플래그.장거리;
+    S.히로인 = { 아이디: id, 관계: "만남", 애정도: cfg().연애.시작애정도, 만난시기: S.시기, 만남턴: S.총턴, 교류횟수: 0 };
+    delete S.플래그.장거리; delete S.플래그.동행결정; delete S.새인연;
     S.만난히로인.push(id);
   }
   function setRelation(r) {
     if (!S.히로인) return;
     if (r === "이별") {
-      var h = E.heroDef();
-      S.지난히로인.push({ 아이디: h.아이디, 이름: h.이름, 관계: S.히로인.관계, 결말: "이별" });
-      S.직전히로인 = h.이름; S.히로인 = null; delete S.플래그.장거리; applyEffects(cfg().연애.이별타격, {});
+      var h = E.heroDef(), acquaintance = S.히로인.관계 === "만남";
+      S.지난히로인.push({ 아이디: h.아이디, 이름: h.이름, 관계: S.히로인.관계, 결말: acquaintance ? "연락이 뜸해짐" : "이별" });
+      S.직전히로인 = h.이름; S.히로인 = null; delete S.플래그.장거리; delete S.새인연;
+      if (!acquaintance) applyEffects(cfg().연애.이별타격, {});
       // 양다리 중이었다면 몰래 만나던 사람이 정식 연인이 됨
       if (S.히로인2) { S.히로인 = { 아이디: S.히로인2.아이디, 관계: "연인", 애정도: S.히로인2.애정도, 만난시기: S.히로인2.만난시기 }; S.히로인2 = null; }
-    } else S.히로인.관계 = r;
+    } else { S.히로인.관계 = r; if (r === "배우자") delete S.새인연; }
   }
 
   // ---------------- 수상과 팀 ----------------
