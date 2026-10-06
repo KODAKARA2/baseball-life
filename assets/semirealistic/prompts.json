@@ -1,0 +1,1169 @@
+{
+  "title": "야구 인생 반실사 그림",
+  "created": "2026-10-06",
+  "generator": "Built-in image_gen",
+  "style": "사용자가 승인한 주인공·릴리 하퍼 반실사 샘플 기준",
+  "total": 74,
+  "portraits": 65,
+  "backgrounds": 9,
+  "pathBase": "이 파일이 있는 폴더",
+  "assets": [
+    {
+      "id": "hero_elementary",
+      "label": "초등학생 · 미남",
+      "group": "주인공",
+      "source": "../../images/hero_elementary.png",
+      "output": "images/hero_elementary.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 10. Clearly age-appropriate child/adolescent face and build; fully clothed ordinary baseball portrait. Keep the protagonist's recognizable black-haired face. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_elementary.png",
+        "images/hero_pro.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "hero_elementary_plain",
+      "label": "초등학생 · 평범",
+      "group": "주인공",
+      "source": "../../images/hero_elementary_plain.png",
+      "output": "images/hero_elementary_plain.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 10. Clearly age-appropriate child/adolescent face and build; fully clothed ordinary baseball portrait. Average-looking variant: preserve the original broad round face, modest narrow eyes and ordinary approachable features; avoid idealized model features. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_elementary_plain.png",
+        "images/hero_pro.png",
+        "images/hero_pro_plain.png"
+      ]
+    },
+    {
+      "id": "hero_elementary_ugly",
+      "label": "초등학생 · 개성",
+      "group": "주인공",
+      "source": "../../images/hero_elementary_ugly.png",
+      "output": "images/hero_elementary_ugly.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 10. Clearly age-appropriate child/adolescent face and build; fully clothed ordinary baseball portrait. Distinctive goofy-looking variant: preserve the original broad cheeks, prominent ears/nose, bushy brows, imperfect teeth and friendly awkward grin. Make these natural human proportions, affectionate and recognizable rather than grotesque. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_elementary_ugly.png",
+        "images/hero_pro.png",
+        "images/hero_pro_ugly.png"
+      ]
+    },
+    {
+      "id": "hero_middle",
+      "label": "중학생 · 미남",
+      "group": "주인공",
+      "source": "../../images/hero_middle.png",
+      "output": "images/hero_middle.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 14. Clearly age-appropriate child/adolescent face and build; fully clothed ordinary baseball portrait. Keep the protagonist's recognizable black-haired face. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_middle.png",
+        "images/hero_pro.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "hero_middle_plain",
+      "label": "중학생 · 평범",
+      "group": "주인공",
+      "source": "../../images/hero_middle_plain.png",
+      "output": "images/hero_middle_plain.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 14. Clearly age-appropriate child/adolescent face and build; fully clothed ordinary baseball portrait. Average-looking variant: preserve the original broad round face, modest narrow eyes and ordinary approachable features; avoid idealized model features. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_middle_plain.png",
+        "images/hero_pro.png",
+        "images/hero_pro_plain.png"
+      ]
+    },
+    {
+      "id": "hero_middle_ugly",
+      "label": "중학생 · 개성",
+      "group": "주인공",
+      "source": "../../images/hero_middle_ugly.png",
+      "output": "images/hero_middle_ugly.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 14. Clearly age-appropriate child/adolescent face and build; fully clothed ordinary baseball portrait. Distinctive goofy-looking variant: preserve the original broad cheeks, prominent ears/nose, bushy brows, imperfect teeth and friendly awkward grin. Make these natural human proportions, affectionate and recognizable rather than grotesque. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_middle_ugly.png",
+        "images/hero_pro.png",
+        "images/hero_pro_ugly.png"
+      ]
+    },
+    {
+      "id": "hero_high",
+      "label": "고등학생 · 미남",
+      "group": "주인공",
+      "source": "../../images/hero_high.png",
+      "output": "images/hero_high.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 17. Clearly age-appropriate child/adolescent face and build; fully clothed ordinary baseball portrait. Keep the protagonist's recognizable black-haired face. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_high.png",
+        "images/hero_pro.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "hero_high_plain",
+      "label": "고등학생 · 평범",
+      "group": "주인공",
+      "source": "../../images/hero_high_plain.png",
+      "output": "images/hero_high_plain.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 17. Clearly age-appropriate child/adolescent face and build; fully clothed ordinary baseball portrait. Average-looking variant: preserve the original broad round face, modest narrow eyes and ordinary approachable features; avoid idealized model features. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_high_plain.png",
+        "images/hero_pro.png",
+        "images/hero_pro_plain.png"
+      ]
+    },
+    {
+      "id": "hero_high_ugly",
+      "label": "고등학생 · 개성",
+      "group": "주인공",
+      "source": "../../images/hero_high_ugly.png",
+      "output": "images/hero_high_ugly.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 17. Clearly age-appropriate child/adolescent face and build; fully clothed ordinary baseball portrait. Distinctive goofy-looking variant: preserve the original broad cheeks, prominent ears/nose, bushy brows, imperfect teeth and friendly awkward grin. Make these natural human proportions, affectionate and recognizable rather than grotesque. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_high_ugly.png",
+        "images/hero_pro.png",
+        "images/hero_pro_ugly.png"
+      ]
+    },
+    {
+      "id": "hero_college",
+      "label": "대학생 · 미남",
+      "group": "주인공",
+      "source": "../../images/hero_college.png",
+      "output": "images/hero_college.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 21. Adult, athletic build. Keep the protagonist's recognizable black-haired face. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_college.png",
+        "images/hero_pro.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "hero_college_plain",
+      "label": "대학생 · 평범",
+      "group": "주인공",
+      "source": "../../images/hero_college_plain.png",
+      "output": "images/hero_college_plain.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 21. Adult, athletic build. Average-looking variant: preserve the original broad round face, modest narrow eyes and ordinary approachable features; avoid idealized model features. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_college_plain.png",
+        "images/hero_pro.png",
+        "images/hero_pro_plain.png"
+      ]
+    },
+    {
+      "id": "hero_college_ugly",
+      "label": "대학생 · 개성",
+      "group": "주인공",
+      "source": "../../images/hero_college_ugly.png",
+      "output": "images/hero_college_ugly.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 21. Adult, athletic build. Distinctive goofy-looking variant: preserve the original broad cheeks, prominent ears/nose, bushy brows, imperfect teeth and friendly awkward grin. Make these natural human proportions, affectionate and recognizable rather than grotesque. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_college_ugly.png",
+        "images/hero_pro.png",
+        "images/hero_pro_ugly.png"
+      ]
+    },
+    {
+      "id": "hero_pro",
+      "label": "프로 선수 · 미남",
+      "group": "주인공",
+      "source": "../../images/hero_pro.png",
+      "output": "images/hero_pro.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer\nAsset type: semi-realistic character portrait for a Korean baseball life simulation game; a style study of an existing character.\nInput image 1: edit target, the existing illustrated professional baseball protagonist.\nPrimary request: Redraw this same character a little more realistically, transitioning from pixel/retro illustration to refined semi-realistic game illustration. Keep it warm, appealing and recognizably illustrated, with believable facial anatomy, subtle skin texture, individual hair strands and convincing fabric folds.\nSubject: fictional handsome Korean male professional baseball player, age 27, short black hair under a navy baseball cap, clean-shaven, friendly confident subtle smile.\nPreserve: his identity and expression, slim athletic build, standing pose, navy cap, white short-sleeved navy pinstripe uniform, navy belt, brown glove at his side, other hand in pocket. Match the source's head-to-knees framing and centered silhouette. No extra equipment.\nComposition: vertical portrait, clean cutout, full cap visible with a small margin at top, crop near knees like the source.\nLighting: soft natural studio light with gentle dimensional shading.\nBackdrop: genuinely transparent alpha background, no backdrop scene, no ground shadow, no checkerboard drawn into the image.\nAvoid: anime eyes, pixelated edges, doll-like skin, hypermuscular anatomy, glossy plastic 3D, text, logos, watermarks. Preserve clothing, pose and color scheme; change rendering style only.",
+      "references": [
+        "../../images/hero_pro.png"
+      ],
+      "reusedApprovedSample": true
+    },
+    {
+      "id": "hero_pro_plain",
+      "label": "프로 선수 · 평범",
+      "group": "주인공",
+      "source": "../../images/hero_pro_plain.png",
+      "output": "images/hero_pro_plain.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 27. Adult, athletic build. Average-looking variant: preserve the original broad round face, modest narrow eyes and ordinary approachable features; avoid idealized model features. ",
+      "references": [
+        "../../images/hero_pro_plain.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "hero_pro_ugly",
+      "label": "프로 선수 · 개성",
+      "group": "주인공",
+      "source": "../../images/hero_pro_ugly.png",
+      "output": "images/hero_pro_ugly.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 27. Adult, athletic build. Distinctive goofy-looking variant: preserve the original broad cheeks, prominent ears/nose, bushy brows, imperfect teeth and friendly awkward grin. Make these natural human proportions, affectionate and recognizable rather than grotesque. ",
+      "references": [
+        "../../images/hero_pro_ugly.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "hero_mlb",
+      "label": "메이저리거 · 미남",
+      "group": "주인공",
+      "source": "../../images/hero_mlb.png",
+      "output": "images/hero_mlb.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 30. Adult, athletic build. Keep the protagonist's recognizable black-haired face. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_mlb.png",
+        "images/hero_pro.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "hero_mlb_plain",
+      "label": "메이저리거 · 평범",
+      "group": "주인공",
+      "source": "../../images/hero_mlb_plain.png",
+      "output": "images/hero_mlb_plain.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 30. Adult, athletic build. Average-looking variant: preserve the original broad round face, modest narrow eyes and ordinary approachable features; avoid idealized model features. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_mlb_plain.png",
+        "images/hero_pro.png",
+        "images/hero_pro_plain.png"
+      ]
+    },
+    {
+      "id": "hero_mlb_ugly",
+      "label": "메이저리거 · 개성",
+      "group": "주인공",
+      "source": "../../images/hero_mlb_ugly.png",
+      "output": "images/hero_mlb_ugly.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 30. Adult, athletic build. Distinctive goofy-looking variant: preserve the original broad cheeks, prominent ears/nose, bushy brows, imperfect teeth and friendly awkward grin. Make these natural human proportions, affectionate and recognizable rather than grotesque. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_mlb_ugly.png",
+        "images/hero_pro.png",
+        "images/hero_pro_ugly.png"
+      ]
+    },
+    {
+      "id": "hero_injured",
+      "label": "부상 · 미남",
+      "group": "주인공",
+      "source": "../../images/hero_injured.png",
+      "output": "images/hero_injured.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 27. Adult, athletic build. Keep the protagonist's recognizable black-haired face. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_injured.png",
+        "images/hero_pro.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "hero_injured_plain",
+      "label": "부상 · 평범",
+      "group": "주인공",
+      "source": "../../images/hero_injured_plain.png",
+      "output": "images/hero_injured_plain.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 27. Adult, athletic build. Average-looking variant: preserve the original broad round face, modest narrow eyes and ordinary approachable features; avoid idealized model features. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_injured_plain.png",
+        "images/hero_pro.png",
+        "images/hero_pro_plain.png"
+      ]
+    },
+    {
+      "id": "hero_injured_ugly",
+      "label": "부상 · 개성",
+      "group": "주인공",
+      "source": "../../images/hero_injured_ugly.png",
+      "output": "images/hero_injured_ugly.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 27. Adult, athletic build. Distinctive goofy-looking variant: preserve the original broad cheeks, prominent ears/nose, bushy brows, imperfect teeth and friendly awkward grin. Make these natural human proportions, affectionate and recognizable rather than grotesque. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_injured_ugly.png",
+        "images/hero_pro.png",
+        "images/hero_pro_ugly.png"
+      ]
+    },
+    {
+      "id": "hero_slump",
+      "label": "슬럼프 · 미남",
+      "group": "주인공",
+      "source": "../../images/hero_slump.png",
+      "output": "images/hero_slump.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 27. Adult, athletic build. Keep the protagonist's recognizable black-haired face. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_slump.png",
+        "images/hero_pro.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "hero_slump_plain",
+      "label": "슬럼프 · 평범",
+      "group": "주인공",
+      "source": "../../images/hero_slump_plain.png",
+      "output": "images/hero_slump_plain.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 27. Adult, athletic build. Average-looking variant: preserve the original broad round face, modest narrow eyes and ordinary approachable features; avoid idealized model features. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_slump_plain.png",
+        "images/hero_pro.png",
+        "images/hero_pro_plain.png"
+      ]
+    },
+    {
+      "id": "hero_slump_ugly",
+      "label": "슬럼프 · 개성",
+      "group": "주인공",
+      "source": "../../images/hero_slump_ugly.png",
+      "output": "images/hero_slump_ugly.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 27. Adult, athletic build. Distinctive goofy-looking variant: preserve the original broad cheeks, prominent ears/nose, bushy brows, imperfect teeth and friendly awkward grin. Make these natural human proportions, affectionate and recognizable rather than grotesque. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_slump_ugly.png",
+        "images/hero_pro.png",
+        "images/hero_pro_ugly.png"
+      ]
+    },
+    {
+      "id": "hero_victory",
+      "label": "승리 · 미남",
+      "group": "주인공",
+      "source": "../../images/hero_victory.png",
+      "output": "images/hero_victory.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 27. Adult, athletic build. Keep the protagonist's recognizable black-haired face. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_victory.png",
+        "images/hero_pro.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "hero_victory_plain",
+      "label": "승리 · 평범",
+      "group": "주인공",
+      "source": "../../images/hero_victory_plain.png",
+      "output": "images/hero_victory_plain.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 27. Adult, athletic build. Average-looking variant: preserve the original broad round face, modest narrow eyes and ordinary approachable features; avoid idealized model features. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_victory_plain.png",
+        "images/hero_pro.png",
+        "images/hero_pro_plain.png"
+      ]
+    },
+    {
+      "id": "hero_victory_ugly",
+      "label": "승리 · 개성",
+      "group": "주인공",
+      "source": "../../images/hero_victory_ugly.png",
+      "output": "images/hero_victory_ugly.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 27. Adult, athletic build. Distinctive goofy-looking variant: preserve the original broad cheeks, prominent ears/nose, bushy brows, imperfect teeth and friendly awkward grin. Make these natural human proportions, affectionate and recognizable rather than grotesque. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_victory_ugly.png",
+        "images/hero_pro.png",
+        "images/hero_pro_ugly.png"
+      ]
+    },
+    {
+      "id": "hero_retired",
+      "label": "은퇴 · 미남",
+      "group": "주인공",
+      "source": "../../images/hero_retired.png",
+      "output": "images/hero_retired.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 40. Adult, athletic build. Keep the protagonist's recognizable black-haired face. Keep the mature age, subtle gray hair and civilian suit.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_retired.png",
+        "images/hero_pro.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "hero_retired_plain",
+      "label": "은퇴 · 평범",
+      "group": "주인공",
+      "source": "../../images/hero_retired_plain.png",
+      "output": "images/hero_retired_plain.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 40. Adult, athletic build. Average-looking variant: preserve the original broad round face, modest narrow eyes and ordinary approachable features; avoid idealized model features. Keep the mature age, subtle gray hair and civilian suit.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_retired_plain.png",
+        "images/hero_pro.png",
+        "images/hero_pro_plain.png"
+      ]
+    },
+    {
+      "id": "hero_retired_ugly",
+      "label": "은퇴 · 개성",
+      "group": "주인공",
+      "source": "../../images/hero_retired_ugly.png",
+      "output": "images/hero_retired_ugly.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: the Korean male protagonist at age 40. Adult, athletic build. Distinctive goofy-looking variant: preserve the original broad cheeks, prominent ears/nose, bushy brows, imperfect teeth and friendly awkward grin. Make these natural human proportions, affectionate and recognizable rather than grotesque. Keep the mature age, subtle gray hair and civilian suit.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/hero_retired_ugly.png",
+        "images/hero_pro.png",
+        "images/hero_pro_ugly.png"
+      ]
+    },
+    {
+      "id": "heroine1_meet",
+      "label": "윤하나 · 만남",
+      "group": "히로인",
+      "source": "../../images/heroine1_meet.png",
+      "output": "images/heroine1_meet.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 윤하나, a fictional Korean female character, age 17. Age-appropriate adolescent school portrait, modest fully clothed original uniform, no adult glamour makeup or sexualization. Relationship stage: meet. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. ",
+      "references": [
+        "../../images/heroine1_meet.png",
+        "images/heroine6_meet.png"
+      ]
+    },
+    {
+      "id": "heroine1_lover",
+      "label": "윤하나 · 연인",
+      "group": "히로인",
+      "source": "../../images/heroine1_lover.png",
+      "output": "images/heroine1_lover.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 윤하나, a fictional Korean female character, age 22. Adult woman. Keep the original degree of clothing coverage. Relationship stage: lover. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine1_lover.png",
+        "images/heroine6_meet.png",
+        "images/heroine1_meet.png"
+      ]
+    },
+    {
+      "id": "heroine1_wedding",
+      "label": "윤하나 · 결혼식",
+      "group": "히로인",
+      "source": "../../images/heroine1_wedding.png",
+      "output": "images/heroine1_wedding.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 윤하나, a fictional Korean female character, age 28. Adult woman. Keep the original degree of clothing coverage. Relationship stage: wedding. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine1_wedding.png",
+        "images/heroine6_meet.png",
+        "images/heroine1_meet.png"
+      ]
+    },
+    {
+      "id": "heroine1_spouse",
+      "label": "윤하나 · 배우자",
+      "group": "히로인",
+      "source": "../../images/heroine1_spouse.png",
+      "output": "images/heroine1_spouse.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 윤하나, a fictional Korean female character, age 33. Adult woman. Keep the original degree of clothing coverage. Relationship stage: spouse. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. Mature everyday spouse outfit, not a wedding gown.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine1_spouse.png",
+        "images/heroine6_meet.png",
+        "images/heroine1_meet.png"
+      ]
+    },
+    {
+      "id": "heroine2_meet",
+      "label": "서지안 · 만남",
+      "group": "히로인",
+      "source": "../../images/heroine2_meet.png",
+      "output": "images/heroine2_meet.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 서지안, a fictional Korean female character, age 26. Adult woman. Keep the original degree of clothing coverage. Relationship stage: meet. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. ",
+      "references": [
+        "../../images/heroine2_meet.png",
+        "images/heroine6_meet.png"
+      ]
+    },
+    {
+      "id": "heroine2_lover",
+      "label": "서지안 · 연인",
+      "group": "히로인",
+      "source": "../../images/heroine2_lover.png",
+      "output": "images/heroine2_lover.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 서지안, a fictional Korean female character, age 27. Adult woman. Keep the original degree of clothing coverage. Relationship stage: lover. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine2_lover.png",
+        "images/heroine6_meet.png",
+        "images/heroine2_meet.png"
+      ]
+    },
+    {
+      "id": "heroine2_wedding",
+      "label": "서지안 · 결혼식",
+      "group": "히로인",
+      "source": "../../images/heroine2_wedding.png",
+      "output": "images/heroine2_wedding.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 서지안, a fictional Korean female character, age 28. Adult woman. Keep the original degree of clothing coverage. Relationship stage: wedding. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine2_wedding.png",
+        "images/heroine6_meet.png",
+        "images/heroine2_meet.png"
+      ]
+    },
+    {
+      "id": "heroine2_spouse",
+      "label": "서지안 · 배우자",
+      "group": "히로인",
+      "source": "../../images/heroine2_spouse.png",
+      "output": "images/heroine2_spouse.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 서지안, a fictional Korean female character, age 33. Adult woman. Keep the original degree of clothing coverage. Relationship stage: spouse. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. Mature everyday spouse outfit, not a wedding gown.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine2_spouse.png",
+        "images/heroine6_meet.png",
+        "images/heroine2_meet.png"
+      ]
+    },
+    {
+      "id": "heroine3_meet",
+      "label": "한채윤 · 만남",
+      "group": "히로인",
+      "source": "../../images/heroine3_meet.png",
+      "output": "images/heroine3_meet.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 한채윤, a fictional Korean female character, age 25. Adult woman. Keep the original degree of clothing coverage. Relationship stage: meet. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. ",
+      "references": [
+        "../../images/heroine3_meet.png",
+        "images/heroine6_meet.png"
+      ]
+    },
+    {
+      "id": "heroine3_lover",
+      "label": "한채윤 · 연인",
+      "group": "히로인",
+      "source": "../../images/heroine3_lover.png",
+      "output": "images/heroine3_lover.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 한채윤, a fictional Korean female character, age 26. Adult woman. Keep the original degree of clothing coverage. Relationship stage: lover. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine3_lover.png",
+        "images/heroine6_meet.png",
+        "images/heroine3_meet.png"
+      ]
+    },
+    {
+      "id": "heroine3_wedding",
+      "label": "한채윤 · 결혼식",
+      "group": "히로인",
+      "source": "../../images/heroine3_wedding.png",
+      "output": "images/heroine3_wedding.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 한채윤, a fictional Korean female character, age 28. Adult woman. Keep the original degree of clothing coverage. Relationship stage: wedding. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine3_wedding.png",
+        "images/heroine6_meet.png",
+        "images/heroine3_meet.png"
+      ]
+    },
+    {
+      "id": "heroine3_spouse",
+      "label": "한채윤 · 배우자",
+      "group": "히로인",
+      "source": "../../images/heroine3_spouse.png",
+      "output": "images/heroine3_spouse.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 한채윤, a fictional Korean female character, age 33. Adult woman. Keep the original degree of clothing coverage. Relationship stage: spouse. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. Mature everyday spouse outfit, not a wedding gown.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine3_spouse.png",
+        "images/heroine6_meet.png",
+        "images/heroine3_meet.png"
+      ]
+    },
+    {
+      "id": "heroine4_meet",
+      "label": "유하린 · 만남",
+      "group": "히로인",
+      "source": "../../images/heroine4_meet.png",
+      "output": "images/heroine4_meet.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 유하린, a fictional Korean female character, age 18. Adult woman. Keep the original degree of clothing coverage. Relationship stage: meet. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. ",
+      "references": [
+        "../../images/heroine4_meet.png",
+        "images/heroine6_meet.png"
+      ]
+    },
+    {
+      "id": "heroine4_lover",
+      "label": "유하린 · 연인",
+      "group": "히로인",
+      "source": "../../images/heroine4_lover.png",
+      "output": "images/heroine4_lover.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 유하린, a fictional Korean female character, age 21. Adult woman. Keep the original degree of clothing coverage. Relationship stage: lover. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine4_lover.png",
+        "images/heroine6_meet.png",
+        "images/heroine4_meet.png"
+      ]
+    },
+    {
+      "id": "heroine4_wedding",
+      "label": "유하린 · 결혼식",
+      "group": "히로인",
+      "source": "../../images/heroine4_wedding.png",
+      "output": "images/heroine4_wedding.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 유하린, a fictional Korean female character, age 28. Adult woman. Keep the original degree of clothing coverage. Relationship stage: wedding. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine4_wedding.png",
+        "images/heroine6_meet.png",
+        "images/heroine4_meet.png"
+      ]
+    },
+    {
+      "id": "heroine4_spouse",
+      "label": "유하린 · 배우자",
+      "group": "히로인",
+      "source": "../../images/heroine4_spouse.png",
+      "output": "images/heroine4_spouse.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 유하린, a fictional Korean female character, age 33. Adult woman. Keep the original degree of clothing coverage. Relationship stage: spouse. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. Mature everyday spouse outfit, not a wedding gown.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine4_spouse.png",
+        "images/heroine6_meet.png",
+        "images/heroine4_meet.png"
+      ]
+    },
+    {
+      "id": "heroine5_meet",
+      "label": "최다온 · 만남",
+      "group": "히로인",
+      "source": "../../images/heroine5_meet.png",
+      "output": "images/heroine5_meet.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 최다온, a fictional Korean female character, age 17. Age-appropriate adolescent school portrait, modest fully clothed original uniform, no adult glamour makeup or sexualization. Relationship stage: meet. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. ",
+      "references": [
+        "../../images/heroine5_meet.png",
+        "images/heroine6_meet.png"
+      ]
+    },
+    {
+      "id": "heroine5_lover",
+      "label": "최다온 · 연인",
+      "group": "히로인",
+      "source": "../../images/heroine5_lover.png",
+      "output": "images/heroine5_lover.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 최다온, a fictional Korean female character, age 22. Adult woman. Keep the original degree of clothing coverage. Relationship stage: lover. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine5_lover.png",
+        "images/heroine6_meet.png",
+        "images/heroine5_meet.png"
+      ]
+    },
+    {
+      "id": "heroine5_wedding",
+      "label": "최다온 · 결혼식",
+      "group": "히로인",
+      "source": "../../images/heroine5_wedding.png",
+      "output": "images/heroine5_wedding.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 최다온, a fictional Korean female character, age 28. Adult woman. Keep the original degree of clothing coverage. Relationship stage: wedding. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine5_wedding.png",
+        "images/heroine6_meet.png",
+        "images/heroine5_meet.png"
+      ]
+    },
+    {
+      "id": "heroine5_spouse",
+      "label": "최다온 · 배우자",
+      "group": "히로인",
+      "source": "../../images/heroine5_spouse.png",
+      "output": "images/heroine5_spouse.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 최다온, a fictional Korean female character, age 33. Adult woman. Keep the original degree of clothing coverage. Relationship stage: spouse. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. Mature everyday spouse outfit, not a wedding gown.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine5_spouse.png",
+        "images/heroine6_meet.png",
+        "images/heroine5_meet.png"
+      ]
+    },
+    {
+      "id": "heroine6_meet",
+      "label": "릴리 하퍼 · 만남",
+      "group": "히로인",
+      "source": "../../images/heroine6_meet.png",
+      "output": "images/heroine6_meet.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer\nAsset type: semi-realistic character portrait for a Korean baseball life simulation game; a style study of an existing character.\nInput image 1: edit target, the existing illustrated Lily Harper character.\nPrimary request: Redraw this same character a little more realistically, transitioning from pixel/retro illustration to refined semi-realistic game illustration. Keep it warm, appealing and recognizably illustrated, with believable facial anatomy, subtle skin texture, individual hair strands and convincing fabric folds.\nSubject: Lily Harper, a fictional American Hollywood actress, explicitly an adult woman age 28. Long wavy pale-golden blonde hair, blue eyes, red lipstick, cheerful confident smile.\nPreserve: her identity and expression, elegant standing pose with one hand on her hip, red evening gown with its existing neckline and side slit, silver necklace, hair silhouette and colors. Keep the original gown design and degree of coverage. Same centered head-to-knees framing and relaxed silhouette. No other people or objects.\nComposition: vertical portrait, clean cutout, all hair visible with a small margin at top, crop near knees like the source.\nLighting: soft natural studio light with gentle dimensional shading.\nMaterials: delicately highlighted blonde waves, natural skin, flowing crimson silk/satin folds, subtle jewelry sparkle.\nBackdrop: genuinely transparent alpha background with clean edges around the character. No colored or black backdrop, no vignette, no halo, no ground shadow, no checkerboard painted into the picture.\nAvoid: anime eyes, pixelated edges, doll-like skin, exaggerated anatomy, glossy plastic 3D, text, logos, watermarks. Preserve clothing, pose and color scheme; change rendering style only.",
+      "references": [
+        "../../images/heroine6_meet.png"
+      ],
+      "reusedApprovedSample": true
+    },
+    {
+      "id": "heroine6_lover",
+      "label": "릴리 하퍼 · 연인",
+      "group": "히로인",
+      "source": "../../images/heroine6_lover.png",
+      "output": "images/heroine6_lover.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 릴리 하퍼, a fictional American woman, blonde hair and blue eyes, age 28. Adult woman. Keep the original degree of clothing coverage. Relationship stage: lover. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine6_lover.png",
+        "images/heroine6_meet.png",
+        "images/heroine6_meet.png"
+      ]
+    },
+    {
+      "id": "heroine6_wedding",
+      "label": "릴리 하퍼 · 결혼식",
+      "group": "히로인",
+      "source": "../../images/heroine6_wedding.png",
+      "output": "images/heroine6_wedding.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nCreate a tasteful semi-realistic game character illustration of Lily Harper, a fictional adult American actress, age 33. IMAGE 1 is the original character and pose reference; IMAGE 2 guides the approved painterly technique and adult blonde face. Keep her long wavy blonde hair, blue eyes, friendly smile and character identity.\nChange the clothing from IMAGE 1 to this more modest design: an elegant fully opaque, fully lined white satin wedding gown with a high boat neckline, short lace sleeves over opaque lining, full floor-length skirt WITHOUT a slit, long white veil, holding a bouquet of red and white roses. A joyful formal wedding portrait.\nVertical 2:3, centered head-to-knees portrait, whole head visible. Natural adult anatomy, refined hand-painted shading, fine hair and fabric detail. Genuinely transparent alpha background, clean cutout. No scenery, vignette, halo, text, logos or watermark.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine6_wedding.png",
+        "images/heroine6_meet.png",
+        "images/heroine6_meet.png"
+      ],
+      "adjustment": "생성 필터 거부 후 의상을 단정하게 변경: 결혼식은 안감 있는 높은 목선 드레스·슬릿 제거, 배우자는 높은 목선·무릎 길이 니트 원피스."
+    },
+    {
+      "id": "heroine6_spouse",
+      "label": "릴리 하퍼 · 배우자",
+      "group": "히로인",
+      "source": "../../images/heroine6_spouse.png",
+      "output": "images/heroine6_spouse.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nCreate a tasteful semi-realistic game character illustration of Lily Harper, a fictional adult American actress, age 33. IMAGE 1 is the original character and pose reference; IMAGE 2 guides the approved painterly technique and adult blonde face. Keep her long wavy blonde hair, blue eyes, friendly smile and character identity.\nChange the clothing from IMAGE 1 to this more modest design: a comfortable opaque cream knit sweater dress with long sleeves, a high round neckline and a loose knee-length hem. Keep the plain navy baseball cap and baseball held in one hand. A warm casual family portrait.\nVertical 2:3, centered head-to-knees portrait, whole head visible. Natural adult anatomy, refined hand-painted shading, fine hair and fabric detail. Genuinely transparent alpha background, clean cutout. No scenery, vignette, halo, text, logos or watermark.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "references": [
+        "../../images/heroine6_spouse.png",
+        "images/heroine6_meet.png",
+        "images/heroine6_meet.png"
+      ],
+      "adjustment": "생성 필터 거부 후 의상을 단정하게 변경: 결혼식은 안감 있는 높은 목선 드레스·슬릿 제거, 배우자는 높은 목선·무릎 길이 니트 원피스."
+    },
+    {
+      "id": "rival",
+      "label": "백도윤 · 라이벌",
+      "group": "조연",
+      "source": "../../images/rival.png",
+      "output": "images/rival.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 18-year-old Korean male ace, distinctive confident rival.",
+      "references": [
+        "../../images/rival.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "parents",
+      "label": "부모님",
+      "group": "조연",
+      "source": "../../images/parents.png",
+      "output": "images/parents.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: Two Korean parents in their mid-40s, both must be present together; preserve lunch box and supportive expressions.",
+      "references": [
+        "../../images/parents.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "coach_little",
+      "label": "오만석 · 리틀야구 감독",
+      "group": "조연",
+      "source": "../../images/coach_little.png",
+      "output": "images/coach_little.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: Korean male coach age 50s.",
+      "references": [
+        "../../images/coach_little.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "coach_high",
+      "label": "구태환 · 고교 감독",
+      "group": "조연",
+      "source": "../../images/coach_high.png",
+      "output": "images/coach_high.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: Korean male high school coach age 50s.",
+      "references": [
+        "../../images/coach_high.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "buddy",
+      "label": "장두식 · 단짝",
+      "group": "조연",
+      "source": "../../images/buddy.png",
+      "output": "images/buddy.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 18-year-old Korean male friend, cheerful and slightly chubby.",
+      "references": [
+        "../../images/buddy.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "manager_pro",
+      "label": "마철웅 · 프로 감독",
+      "group": "조연",
+      "source": "../../images/manager_pro.png",
+      "output": "images/manager_pro.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: Korean male manager age 60s; gray hair and age lines.",
+      "references": [
+        "../../images/manager_pro.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "agent",
+      "label": "제이슨 리 · 에이전트",
+      "group": "조연",
+      "source": "../../images/agent.png",
+      "output": "images/agent.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: Korean-American adult male agent age 40s.",
+      "references": [
+        "../../images/agent.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "child",
+      "label": "우리 아이",
+      "group": "조연",
+      "source": "../../images/child.png",
+      "output": "images/child.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 6-year-old Korean child. Clearly small child proportions, round cheeks and tiny baseball uniform; age-appropriate and fully clothed.",
+      "references": [
+        "../../images/child.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "interpreter",
+      "label": "송유진 · 통역",
+      "group": "조연",
+      "source": "../../images/interpreter.png",
+      "output": "images/interpreter.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: Korean adult woman interpreter age late 20s.",
+      "references": [
+        "../../images/interpreter.png",
+        "images/heroine6_meet.png"
+      ]
+    },
+    {
+      "id": "mlb_teammate",
+      "label": "마커스 벨 · 빅리그 동료",
+      "group": "조연",
+      "source": "../../images/mlb_teammate.png",
+      "output": "images/mlb_teammate.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: African-American adult male baseball player age 30; retain his ethnicity, broad strong build and welcoming expression.",
+      "references": [
+        "../../images/mlb_teammate.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "teammate",
+      "label": "오재치 · 동료",
+      "group": "조연",
+      "source": "../../images/teammate.png",
+      "output": "images/teammate.png",
+      "width": 1024,
+      "height": 1536,
+      "transparent": true,
+      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: Korean adult male teammate age late 20s, playful face and V sign.",
+      "references": [
+        "../../images/teammate.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "bg_classroom",
+      "label": "교실",
+      "group": "배경",
+      "source": "../../images/bg_classroom.jpg",
+      "output": "images/bg_classroom.png",
+      "width": 1536,
+      "height": 1024,
+      "transparent": false,
+      "prompt": "Use case: style-transfer.\nAsset type: landscape location background for a Korean baseball life game.\nIMAGE 1 is the original location edit target; preserve its recognizable location, architecture, major objects, viewpoint and mood. IMAGE 2 is a character illustration used ONLY for semi-realistic rendering style: realistic surfaces, refined painterly shading, warm natural light and appealing visual-novel atmosphere. Do not copy its character or uniform into this scene.\nRedraw the 교실 setting in the same polished semi-realistic illustration family, believable perspective and materials, quietly atmospheric. Landscape 3:2, full-bleed opaque scene, sharp enough behind a game portrait but visually calm. Preserve clear space near center for a foreground character. No foreground people, no portraits, no readable lettering, no logos or watermarks, no pixelated outlines. Keep the original location type and recognizable composition.",
+      "references": [
+        "../../images/bg_classroom.jpg",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "bg_hall",
+      "label": "행사장",
+      "group": "배경",
+      "source": "../../images/bg_hall.jpg",
+      "output": "images/bg_hall.png",
+      "width": 1536,
+      "height": 1024,
+      "transparent": false,
+      "prompt": "Use case: style-transfer.\nAsset type: landscape location background for a Korean baseball life game.\nIMAGE 1 is the original location edit target; preserve its recognizable location, architecture, major objects, viewpoint and mood. IMAGE 2 is a character illustration used ONLY for semi-realistic rendering style: realistic surfaces, refined painterly shading, warm natural light and appealing visual-novel atmosphere. Do not copy its character or uniform into this scene.\nRedraw the 행사장 setting in the same polished semi-realistic illustration family, believable perspective and materials, quietly atmospheric. Landscape 3:2, full-bleed opaque scene, sharp enough behind a game portrait but visually calm. Preserve clear space near center for a foreground character. No foreground people, no portraits, no readable lettering, no logos or watermarks, no pixelated outlines. Keep the original location type and recognizable composition.",
+      "references": [
+        "../../images/bg_hall.jpg",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "bg_home",
+      "label": "집 거실",
+      "group": "배경",
+      "source": "../../images/bg_home.jpg",
+      "output": "images/bg_home.png",
+      "width": 1536,
+      "height": 1024,
+      "transparent": false,
+      "prompt": "Use case: style-transfer.\nAsset type: landscape location background for a Korean baseball life game.\nIMAGE 1 is the original location edit target; preserve its recognizable location, architecture, major objects, viewpoint and mood. IMAGE 2 is a character illustration used ONLY for semi-realistic rendering style: realistic surfaces, refined painterly shading, warm natural light and appealing visual-novel atmosphere. Do not copy its character or uniform into this scene.\nRedraw the 집 거실 setting in the same polished semi-realistic illustration family, believable perspective and materials, quietly atmospheric. Landscape 3:2, full-bleed opaque scene, sharp enough behind a game portrait but visually calm. Preserve clear space near center for a foreground character. No foreground people, no portraits, no readable lettering, no logos or watermarks, no pixelated outlines. Keep the original location type and recognizable composition.",
+      "references": [
+        "../../images/bg_home.jpg",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "bg_indoor",
+      "label": "건물 안",
+      "group": "배경",
+      "source": "../../images/bg_indoor.png",
+      "output": "images/bg_indoor.png",
+      "width": 1536,
+      "height": 1024,
+      "transparent": false,
+      "prompt": "Use case: style-transfer.\nAsset type: landscape location background for a Korean baseball life game.\nIMAGE 1 is the original location edit target; preserve its recognizable location, architecture, major objects, viewpoint and mood. IMAGE 2 is a character illustration used ONLY for semi-realistic rendering style: realistic surfaces, refined painterly shading, warm natural light and appealing visual-novel atmosphere. Do not copy its character or uniform into this scene.\nRedraw the 건물 안 setting in the same polished semi-realistic illustration family, believable perspective and materials, quietly atmospheric. Landscape 3:2, full-bleed opaque scene, sharp enough behind a game portrait but visually calm. Preserve clear space near center for a foreground character. No foreground people, no portraits, no readable lettering, no logos or watermarks, no pixelated outlines. Keep the original location type and recognizable composition.",
+      "references": [
+        "../../images/bg_indoor.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "bg_office",
+      "label": "사무실",
+      "group": "배경",
+      "source": "../../images/bg_office.jpg",
+      "output": "images/bg_office.png",
+      "width": 1536,
+      "height": 1024,
+      "transparent": false,
+      "prompt": "Use case: style-transfer.\nAsset type: landscape location background for a Korean baseball life game.\nIMAGE 1 is the original location edit target; preserve its recognizable location, architecture, major objects, viewpoint and mood. IMAGE 2 is a character illustration used ONLY for semi-realistic rendering style: realistic surfaces, refined painterly shading, warm natural light and appealing visual-novel atmosphere. Do not copy its character or uniform into this scene.\nRedraw the 사무실 setting in the same polished semi-realistic illustration family, believable perspective and materials, quietly atmospheric. Landscape 3:2, full-bleed opaque scene, sharp enough behind a game portrait but visually calm. Preserve clear space near center for a foreground character. No foreground people, no portraits, no readable lettering, no logos or watermarks, no pixelated outlines. Keep the original location type and recognizable composition.",
+      "references": [
+        "../../images/bg_office.jpg",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "bg_room",
+      "label": "내 방",
+      "group": "배경",
+      "source": "../../images/bg_room.jpg",
+      "output": "images/bg_room.png",
+      "width": 1536,
+      "height": 1024,
+      "transparent": false,
+      "prompt": "Use case: style-transfer.\nAsset type: landscape location background for a Korean baseball life game.\nIMAGE 1 is the original location edit target; preserve its recognizable location, architecture, major objects, viewpoint and mood. IMAGE 2 is a character illustration used ONLY for semi-realistic rendering style: realistic surfaces, refined painterly shading, warm natural light and appealing visual-novel atmosphere. Do not copy its character or uniform into this scene.\nRedraw the 내 방 setting in the same polished semi-realistic illustration family, believable perspective and materials, quietly atmospheric. Landscape 3:2, full-bleed opaque scene, sharp enough behind a game portrait but visually calm. Preserve clear space near center for a foreground character. No foreground people, no portraits, no readable lettering, no logos or watermarks, no pixelated outlines. Keep the original location type and recognizable composition.",
+      "references": [
+        "../../images/bg_room.jpg",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "bg_school",
+      "label": "학교",
+      "group": "배경",
+      "source": "../../images/bg_school.jpg",
+      "output": "images/bg_school.png",
+      "width": 1536,
+      "height": 1024,
+      "transparent": false,
+      "prompt": "Use case: style-transfer.\nAsset type: landscape location background for a Korean baseball life game.\nIMAGE 1 is the original location edit target; preserve its recognizable location, architecture, major objects, viewpoint and mood. IMAGE 2 is a character illustration used ONLY for semi-realistic rendering style: realistic surfaces, refined painterly shading, warm natural light and appealing visual-novel atmosphere. Do not copy its character or uniform into this scene.\nRedraw the 학교 setting in the same polished semi-realistic illustration family, believable perspective and materials, quietly atmospheric. Landscape 3:2, full-bleed opaque scene, sharp enough behind a game portrait but visually calm. Preserve clear space near center for a foreground character. No foreground people, no portraits, no readable lettering, no logos or watermarks, no pixelated outlines. Keep the original location type and recognizable composition.",
+      "references": [
+        "../../images/bg_school.jpg",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "bg_stadium",
+      "label": "야구장",
+      "group": "배경",
+      "source": "../../images/bg_stadium.png",
+      "output": "images/bg_stadium.png",
+      "width": 1536,
+      "height": 1024,
+      "transparent": false,
+      "prompt": "Use case: style-transfer.\nAsset type: landscape location background for a Korean baseball life game.\nIMAGE 1 is the original location edit target; preserve its recognizable location, architecture, major objects, viewpoint and mood. IMAGE 2 is a character illustration used ONLY for semi-realistic rendering style: realistic surfaces, refined painterly shading, warm natural light and appealing visual-novel atmosphere. Do not copy its character or uniform into this scene.\nRedraw the 야구장 setting in the same polished semi-realistic illustration family, believable perspective and materials, quietly atmospheric. Landscape 3:2, full-bleed opaque scene, sharp enough behind a game portrait but visually calm. Preserve clear space near center for a foreground character. No foreground people, no portraits, no readable lettering, no logos or watermarks, no pixelated outlines. Keep the original location type and recognizable composition.",
+      "references": [
+        "../../images/bg_stadium.png",
+        "images/hero_pro.png"
+      ]
+    },
+    {
+      "id": "bg_street",
+      "label": "거리",
+      "group": "배경",
+      "source": "../../images/bg_street.png",
+      "output": "images/bg_street.png",
+      "width": 1536,
+      "height": 1024,
+      "transparent": false,
+      "prompt": "Use case: style-transfer.\nAsset type: landscape location background for a Korean baseball life game.\nIMAGE 1 is the original location edit target; preserve its recognizable location, architecture, major objects, viewpoint and mood. IMAGE 2 is a character illustration used ONLY for semi-realistic rendering style: realistic surfaces, refined painterly shading, warm natural light and appealing visual-novel atmosphere. Do not copy its character or uniform into this scene.\nRedraw the 거리 setting in the same polished semi-realistic illustration family, believable perspective and materials, quietly atmospheric. Landscape 3:2, full-bleed opaque scene, sharp enough behind a game portrait but visually calm. Preserve clear space near center for a foreground character. No foreground people, no portraits, no readable lettering, no logos or watermarks, no pixelated outlines. Keep the original location type and recognizable composition.",
+      "references": [
+        "../../images/bg_street.png",
+        "images/hero_pro.png"
+      ]
+    }
+  ]
+}

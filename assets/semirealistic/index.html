@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>야구 인생 — 반실사 아트 갤러리</title>
+<style>
+:root{color-scheme:dark;--bg:#10191a;--panel:#182426;--ink:#f2f4ec;--muted:#a7b8b1;--line:#314443;--accent:#cceb88}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif}
+main{max-width:1440px;margin:auto;padding:44px 32px 24px}
+a{color:inherit;text-underline-offset:4px}
+.eyebrow{color:var(--accent);font-size:12px;letter-spacing:.17em;font-weight:750}
+h1{font-size:clamp(28px,5vw,48px);letter-spacing:-.045em;margin:12px 0}
+.intro{color:var(--muted);line-height:1.8;margin:0;max-width:760px}
+.stats{display:flex;gap:24px;margin:24px 0 30px;color:var(--muted);font-size:13px}
+.stats b{color:var(--ink);font-size:23px;margin-right:5px}
+.toolbar{padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+button,input{font:inherit}
+button{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:24px;padding:9px 15px;cursor:pointer}
+button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#203026;font-weight:700}
+button:hover{border-color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:13px}
+.controls label{display:flex;align-items:center;gap:7px;cursor:pointer}
+input[type=checkbox]{accent-color:var(--accent);width:17px;height:17px}
+input[type=search]{background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:10px 12px;border-radius:8px;max-width:100%;width:215px}
+.count{font-size:13px;color:var(--muted);margin:20px 0}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.card{min-width:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.card[hidden]{display:none}
+.art{display:block;aspect-ratio:2/3;background:#e8e8df;overflow:hidden}
+.art img{display:block;width:100%;height:100%;object-fit:contain}
+.dark-art .art{background:#243330}
+.card.background .art{aspect-ratio:3/2}
+.grid.backgrounds{grid-template-columns:repeat(2,minmax(0,1fr))}
+.original .art img{image-rendering:auto}
+.original .card:not(.background) .art img{image-rendering:pixelated}
+.info{padding:15px}
+.group{font-size:11px;color:var(--accent);letter-spacing:.04em}
+h2{font-size:16px;line-height:1.45;margin:5px 0 6px;word-break:keep-all}
+.filename{color:var(--muted);font-size:11px;overflow-wrap:anywhere;margin:0 0 15px}
+.actions{display:flex;gap:18px;font-size:12px}
+.actions a{color:var(--muted)}
+.actions a:hover{color:var(--ink)}
+.empty{padding:45px 0;color:var(--muted);text-align:center}
+footer{margin:36px 0 12px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.9}
+footer a{margin-right:16px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){main{padding:28px 16px 16px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.info{padding:12px}h2{font-size:14px}.grid.backgrounds{grid-template-columns:1fr}.controls{width:100%}.controls input[type=search]{width:100%}.search{width:100%}.stats{gap:18px}}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">BASEBALL LIFE · ART COLLECTION</div>
+<h1>익숙한 인물, 새로운 그림.</h1>
+<p class="intro">야구 인생의 모든 인물과 장소를 반실사로 다시 그렸습니다.<br>기존 그림과 비교하며 살펴보고, 마음에 드는 그림을 원본 크기로 저장하세요.</p>
+<div class="stats"><span><b>74</b>전체 그림</span><span><b>65</b>인물</span><span><b>9</b>장소</span></div>
+<div class="toolbar">
+<nav class="filters" aria-label="그림 분류">
+<button type="button" data-group="전체" aria-pressed="true">전체</button>
+<button type="button" data-group="주인공" aria-pressed="false">주인공</button>
+<button type="button" data-group="히로인" aria-pressed="false">히로인</button>
+<button type="button" data-group="조연" aria-pressed="false">조연</button>
+<button type="button" data-group="배경" aria-pressed="false">배경</button>
+</nav>
+<div class="controls">
+<label class="search"><input id="search" type="search" aria-label="이름 또는 파일명 검색" placeholder="이름 또는 파일명 검색"></label>
+<label><input id="original" type="checkbox">기존 그림 보기</label>
+<label><input id="dark" type="checkbox">어두운 배경</label>
+</div>
+</div>
+<p id="count" class="count" role="status"></p>
+<section id="grid" class="grid" aria-label="그림 목록"></section>
+<p id="empty" class="empty" hidden>검색 결과가 없습니다.</p>
+<footer>새 그림은 별도 폴더에 저장했습니다. 게임에 사용 중인 그림은 보존되어 있습니다.<br>
+<a href="README.md">그림 안내·출처</a><a href="prompts.json">생성 프롬프트</a><a href="../../index.html">게임으로 돌아가기</a>
+</footer>
+</main>
+<script src="catalog.js"></script>
+<script>
+"use strict";
+const catalog=window.ART_CATALOG;
+const grid=document.getElementById("grid");
+const search=document.getElementById("search");
+const original=document.getElementById("original");
+let selected="전체";
+const cards=catalog.map(asset=>{
+  const card=document.createElement("article");
+  card.className="card"+(asset.group==="배경"?" background":"");
+  card.dataset.id=asset.id;
+  const art=document.createElement("a");
+  art.className="art";art.href=asset.output;art.target="_blank";art.rel="noopener";
+  art.setAttribute("aria-label",asset.label+" 크게 보기");
+  const img=document.createElement("img");
+  img.src=asset.output;img.alt=asset.label;img.width=asset.width;img.height=asset.height;
+  img.loading="lazy";img.decoding="async";art.append(img);
+  const info=document.createElement("div");info.className="info";
+  const group=document.createElement("span");group.className="group";group.textContent=asset.group;
+  const title=document.createElement("h2");title.textContent=asset.label;
+  const name=document.createElement("p");name.className="filename";name.textContent=asset.id+".png";
+  const actions=document.createElement("div");actions.className="actions";
+  const view=document.createElement("a");view.href=asset.output;view.target="_blank";view.rel="noopener";view.textContent="크게 보기";
+  const save=document.createElement("a");save.href=asset.output;save.download=asset.id+".png";save.textContent="새 그림 저장";
+  actions.append(view,save);info.append(group,title,name,actions);card.append(art,info);grid.append(card);
+  return {asset,card,img,art,view};
+});
+function render(){
+  const term=search.value.trim().toLocaleLowerCase("ko");
+  let count=0;
+  cards.forEach(({asset,card})=>{
+    card.hidden=(selected!=="전체"&&asset.group!==selected)||!(asset.label+" "+asset.id).toLocaleLowerCase("ko").includes(term);
+    if(!card.hidden) count++;
+  });
+  grid.classList.toggle("backgrounds",selected==="배경");
+  document.getElementById("count").textContent=count+"장의 "+(original.checked?"기존 그림":"새 그림");
+  document.getElementById("empty").hidden=count>0;
+}
+document.querySelectorAll("[data-group]").forEach(button=>button.addEventListener("click",()=>{
+  selected=button.dataset.group;
+  document.querySelectorAll("[data-group]").forEach(b=>b.setAttribute("aria-pressed",String(b===button)));
+  render();
+}));
+search.addEventListener("input",render);
+original.addEventListener("change",()=>{
+  document.body.classList.toggle("original",original.checked);
+  cards.forEach(({asset,img,art,view})=>{
+    img.src=original.checked?asset.source:asset.output;art.href=img.getAttribute("src");view.href=art.href;
+  });
+  render();
+});
+document.getElementById("dark").addEventListener("change",event=>document.body.classList.toggle("dark-art",event.target.checked));
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+{
+  "total": 74,
+  "completed": 74,
+  "assets": [
+    {
+      "id": "hero_elementary",
+      "file": "images/hero_elementary.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_elementary_plain",
+      "file": "images/hero_elementary_plain.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_elementary_ugly",
+      "file": "images/hero_elementary_ugly.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_middle",
+      "file": "images/hero_middle.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_middle_plain",
+      "file": "images/hero_middle_plain.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_middle_ugly",
+      "file": "images/hero_middle_ugly.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_high",
+      "file": "images/hero_high.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_high_plain",
+      "file": "images/hero_high_plain.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_high_ugly",
+      "file": "images/hero_high_ugly.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_college",
+      "file": "images/hero_college.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_college_plain",
+      "file": "images/hero_college_plain.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_college_ugly",
+      "file": "images/hero_college_ugly.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_pro",
+      "file": "images/hero_pro.png",
+      "status": "complete",
+      "reusedApprovedSample": true
+    },
+    {
+      "id": "hero_pro_plain",
+      "file": "images/hero_pro_plain.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_pro_ugly",
+      "file": "images/hero_pro_ugly.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_mlb",
+      "file": "images/hero_mlb.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_mlb_plain",
+      "file": "images/hero_mlb_plain.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_mlb_ugly",
+      "file": "images/hero_mlb_ugly.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_injured",
+      "file": "images/hero_injured.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_injured_plain",
+      "file": "images/hero_injured_plain.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_injured_ugly",
+      "file": "images/hero_injured_ugly.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_slump",
+      "file": "images/hero_slump.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_slump_plain",
+      "file": "images/hero_slump_plain.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_slump_ugly",
+      "file": "images/hero_slump_ugly.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_victory",
+      "file": "images/hero_victory.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_victory_plain",
+      "file": "images/hero_victory_plain.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_victory_ugly",
+      "file": "images/hero_victory_ugly.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_retired",
+      "file": "images/hero_retired.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_retired_plain",
+      "file": "images/hero_retired_plain.png",
+      "status": "complete"
+    },
+    {
+      "id": "hero_retired_ugly",
+      "file": "images/hero_retired_ugly.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine1_meet",
+      "file": "images/heroine1_meet.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine1_lover",
+      "file": "images/heroine1_lover.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine1_wedding",
+      "file": "images/heroine1_wedding.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine1_spouse",
+      "file": "images/heroine1_spouse.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine2_meet",
+      "file": "images/heroine2_meet.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine2_lover",
+      "file": "images/heroine2_lover.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine2_wedding",
+      "file": "images/heroine2_wedding.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine2_spouse",
+      "file": "images/heroine2_spouse.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine3_meet",
+      "file": "images/heroine3_meet.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine3_lover",
+      "file": "images/heroine3_lover.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine3_wedding",
+      "file": "images/heroine3_wedding.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine3_spouse",
+      "file": "images/heroine3_spouse.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine4_meet",
+      "file": "images/heroine4_meet.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine4_lover",
+      "file": "images/heroine4_lover.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine4_wedding",
+      "file": "images/heroine4_wedding.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine4_spouse",
+      "file": "images/heroine4_spouse.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine5_meet",
+      "file": "images/heroine5_meet.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine5_lover",
+      "file": "images/heroine5_lover.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine5_wedding",
+      "file": "images/heroine5_wedding.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine5_spouse",
+      "file": "images/heroine5_spouse.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine6_meet",
+      "file": "images/heroine6_meet.png",
+      "status": "complete",
+      "reusedApprovedSample": true
+    },
+    {
+      "id": "heroine6_lover",
+      "file": "images/heroine6_lover.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine6_wedding",
+      "file": "images/heroine6_wedding.png",
+      "status": "complete"
+    },
+    {
+      "id": "heroine6_spouse",
+      "file": "images/heroine6_spouse.png",
+      "status": "complete"
+    },
+    {
+      "id": "rival",
+      "file": "images/rival.png",
+      "status": "complete"
+    },
+    {
+      "id": "parents",
+      "file": "images/parents.png",
+      "status": "complete"
+    },
+    {
+      "id": "coach_little",
+      "file": "images/coach_little.png",
+      "status": "complete"
+    },
+    {
+      "id": "coach_high",
+      "file": "images/coach_high.png",
+      "status": "complete"
+    },
+    {
+      "id": "buddy",
+      "file": "images/buddy.png",
+      "status": "complete"
+    },
+    {
+      "id": "manager_pro",
+      "file": "images/manager_pro.png",
+      "status": "complete"
+    },
+    {
+      "id": "agent",
+      "file": "images/agent.png",
+      "status": "complete"
+    },
+    {
+      "id": "child",
+      "file": "images/child.png",
+      "status": "complete"
+    },
+    {
+      "id": "interpreter",
+      "file": "images/interpreter.png",
+      "status": "complete"
+    },
+    {
+      "id": "mlb_teammate",
+      "file": "images/mlb_teammate.png",
+      "status": "complete"
+    },
+    {
+      "id": "teammate",
+      "file": "images/teammate.png",
+      "status": "complete"
+    },
+    {
+      "id": "bg_classroom",
+      "file": "images/bg_classroom.png",
+      "status": "complete"
+    },
+    {
+      "id": "bg_hall",
+      "file": "images/bg_hall.png",
+      "status": "complete"
+    },
+    {
+      "id": "bg_home",
+      "file": "images/bg_home.png",
+      "status": "complete"
+    },
+    {
+      "id": "bg_indoor",
+      "file": "images/bg_indoor.png",
+      "status": "complete"
+    },
+    {
+      "id": "bg_office",
+      "file": "images/bg_office.png",
+      "status": "complete"
+    },
+    {
+      "id": "bg_room",
+      "file": "images/bg_room.png",
+      "status": "complete"
+    },
+    {
+      "id": "bg_school",
+      "file": "images/bg_school.png",
+      "status": "complete"
+    },
+    {
+      "id": "bg_stadium",
+      "file": "images/bg_stadium.png",
+      "status": "complete"
+    },
+    {
+      "id": "bg_street",
+      "file": "images/bg_street.png",
+      "status": "complete"
+    }
+  ]
+}
