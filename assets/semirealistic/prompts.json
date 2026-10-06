@@ -809,11 +809,38 @@
       "width": 1024,
       "height": 1536,
       "transparent": true,
-      "prompt": "Use case: style-transfer\nAsset type: semi-realistic character portrait for a Korean baseball life simulation game; a style study of an existing character.\nInput image 1: edit target, the existing illustrated Lily Harper character.\nPrimary request: Redraw this same character a little more realistically, transitioning from pixel/retro illustration to refined semi-realistic game illustration. Keep it warm, appealing and recognizably illustrated, with believable facial anatomy, subtle skin texture, individual hair strands and convincing fabric folds.\nSubject: Lily Harper, a fictional American Hollywood actress, explicitly an adult woman age 28. Long wavy pale-golden blonde hair, blue eyes, red lipstick, cheerful confident smile.\nPreserve: her identity and expression, elegant standing pose with one hand on her hip, red evening gown with its existing neckline and side slit, silver necklace, hair silhouette and colors. Keep the original gown design and degree of coverage. Same centered head-to-knees framing and relaxed silhouette. No other people or objects.\nComposition: vertical portrait, clean cutout, all hair visible with a small margin at top, crop near knees like the source.\nLighting: soft natural studio light with gentle dimensional shading.\nMaterials: delicately highlighted blonde waves, natural skin, flowing crimson silk/satin folds, subtle jewelry sparkle.\nBackdrop: genuinely transparent alpha background with clean edges around the character. No colored or black backdrop, no vignette, no halo, no ground shadow, no checkerboard painted into the picture.\nAvoid: anime eyes, pixelated edges, doll-like skin, exaggerated anatomy, glossy plastic 3D, text, logos, watermarks. Preserve clothing, pose and color scheme; change rendering style only.",
+      "prompt": "Use case: precise-object-edit.\nAsset type: semi-realistic transparent game portrait.\nInput image 1 is the EDIT TARGET: Lily Harper, a fictional American adult woman age 25.\nPrimary request: remove the aging-looking dimples and deep smile-fold shadows from her face. This is a specific face and expression correction.\nRetouch BOTH cheeks into smooth, softly rounded, continuous surfaces with absolutely NO dimples, cheek pits, cheek hollows or pinched depressions at the mouth corners. Remove the visible dark nasolabial crease shadows beside the nose and mouth and under-eye crease shading. Keep subtle natural skin texture and gentle dimensional lighting, not waxy or blurred skin.\nChange the wide toothy smile to a small, relaxed CLOSED-MOUTH smile: lips gently together, no teeth visible, corners only very slightly lifted, cheek muscles relaxed, no grin-induced folds. Natural soft pink lips, light everyday makeup, open friendly blue eyes of normal adult size. Her expression should feel fresh, sweet and approachable.\nPreserve her unmistakably ADULT age-25 appearance and adult body proportions, recognizable identity, fair complexion, pale golden long hair, necklace, standing pose and framing. Keep the semi-realistic illustration style.\nMatch original vertical 1024x1536 composition with full head visible. Genuine transparent alpha background and clean edges; no backdrop, halo, gradient, vignette, ground shadow, text or watermark.\nScene: keep the red satin evening-dress color and elegant hand-on-hip standing pose. Change the outfit to a fully opaque, lined red satin gown with a HIGH BOAT NECKLINE covering the chest completely, short cap sleeves, and a continuous ankle-length skirt without any slit. No cleavage, no sheer fabric, no exposed thigh. Keep the silver necklace worn above the closed neckline. Modest fashion portrait. Smooth cheeks without dimples and a small closed-mouth smile are the principal facial changes.",
       "references": [
-        "../../images/heroine6_meet.png"
+        "images/heroine6_meet.png"
       ],
-      "reusedApprovedSample": true
+      "referenceVersions": [
+        {
+          "path": "images/heroine6_meet.png",
+          "role": "edit target",
+          "generationId": "exec-03a40329-cd8c-4eaf-8995-f0fedb63cd96.png"
+        }
+      ],
+      "revision": 3,
+      "revisionNote": "보조개·입가의 깊은 음영을 줄이고 입을 다문 미소로 수정. 성인 설정 유지.",
+      "history": [
+        {
+          "revision": 2,
+          "prompt": "Use case: identity-preserve.\nAsset type: transparent semi-realistic character portrait for a baseball life simulation game.\nPrimary request: refresh Lily Harper's face, makeup, hair styling and expression to give her a fresh, sweet, approachable young-adult look. She is a fictional American Hollywood actress, unmistakably an ADULT woman aged 25, with fully adult facial anatomy and body proportions.\nFacial direction: soft oval face, gently full natural cheeks, relaxed brows, clear blue eyes of realistic adult size, delicate natural nose, soft peach-pink lips, a bright relaxed smile, subtle rosy blush, minimal eyeliner and very light natural makeup. Fair naturally lit skin, soft even shading, subtle realistic texture. Avoid strong contour makeup, heavy lipstick, exaggerated lashes or harsh sculpted cheek shadows.\nHair: keep her recognizable long pale golden-blonde hair, but make its waves airy, soft and casually flowing, with natural face-framing wisps. Keep the color and approximate length.\nStyle: refined semi-realistic digital game illustration matching the input, believable adult anatomy, soft dimensional lighting, finely drawn hair and fabric. Not a photograph, not anime, not a doll.\nComposition: one character only, centered vertical 2:3, 1024x1536 portrait, full head visible, same crop and camera angle as the edit target.\nBackground: genuinely transparent alpha with clean subject edges, transparent gaps between arms and body. No scenery, halo, colored backdrop, gradient, vignette, checkerboard or ground shadow.\nConstraints: preserve the edit target's fully adult body proportions, pose, outfit design and coverage, props, jewelry and color palette. Change facial styling, hair styling and expression only. No text, logo or watermark.\nInput image 1: EDIT TARGET, the current Lily Harper first-meeting portrait.\nScene invariants: keep the red satin evening gown, silver necklace, one hand on hip and other arm relaxed, original neckline and slit, head-to-knees portrait composition. Friendly, sweet and fresh-faced adult expression with a natural smile.",
+          "references": [
+            "images/heroine6_meet.png"
+          ],
+          "referenceVersions": [
+            {
+              "path": "images/heroine6_meet.png",
+              "revision": "85f3737",
+              "role": "edit target"
+            }
+          ],
+          "generationId": "exec-03a40329-cd8c-4eaf-8995-f0fedb63cd96.png"
+        }
+      ],
+      "generationId": "exec-c40491fa-8d76-4805-977e-d5a9db6cc5b5.png",
+      "adjustment": "출력 안전 필터로 인해 만남 의상을 가슴을 덮는 보트넥과 짧은 소매, 트임 없는 빨간 드레스로 조정."
     },
     {
       "id": "heroine6_lover",
@@ -824,12 +851,49 @@
       "width": 1024,
       "height": 1536,
       "transparent": true,
-      "prompt": "Use case: style-transfer.\nAsset type: Korean baseball life game portrait. Restyle IMAGE 1, the edit target, in the refined semi-realistic digital illustration style of IMAGE 2, the approved style reference. Warm believable facial anatomy, subtle skin texture, detailed hair and fabric, soft dimensional lighting, smooth painterly edges. Recognizably illustrated, slightly realistic, matching the approved examples.\nPreserve IMAGE 1's subject identity, ethnicity, outfit design and colors, pose, props, expression, relationship stage and age. IMAGE 2 guides technique only; never transfer its outfit, age, gender or body type. Do not turn every face into the style-reference person.\nVertical 2:3 portrait, centered head-to-knees composition, full head and hair visible with breathing space. Genuine transparent alpha background, clean cutout edges, NO backdrop, halo, vignette, ground shadow, gradients or scenery outside the subject. Preserve any gaps between arms and torso as transparent. No text, letters, logos or watermark. No pixel art, no anime eyes, no plastic doll skin.\nSubject: 릴리 하퍼, a fictional American woman, blonde hair and blue eyes, age 28. Adult woman. Keep the original degree of clothing coverage. Relationship stage: lover. Preserve this exact character's hairstyle, accessories, pose and personality from IMAGE 1. \nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "prompt": "Use case: precise-object-edit.\nAsset type: semi-realistic transparent game portrait.\nInput image 1 is the EDIT TARGET: Lily Harper, a fictional American adult woman age 25.\nPrimary request: remove the aging-looking dimples and deep smile-fold shadows from her face. This is a specific face and expression correction.\nRetouch BOTH cheeks into smooth, softly rounded, continuous surfaces with absolutely NO dimples, cheek pits, cheek hollows or pinched depressions at the mouth corners. Remove the visible dark nasolabial crease shadows beside the nose and mouth and under-eye crease shading. Keep subtle natural skin texture and gentle dimensional lighting, not waxy or blurred skin.\nChange the wide toothy smile to a small, relaxed CLOSED-MOUTH smile: lips gently together, no teeth visible, corners only very slightly lifted, cheek muscles relaxed, no grin-induced folds. Natural soft pink lips, light everyday makeup, open friendly blue eyes of normal adult size. Her expression should feel fresh, sweet and approachable.\nPreserve her unmistakably ADULT age-25 appearance and adult body proportions, recognizable identity, fair complexion, pale golden long hair, existing sunglasses and drink, standing pose and framing. Keep the semi-realistic illustration style.\nMatch original vertical 1024x1536 composition with full head visible. Genuine transparent alpha background and clean edges; no backdrop, halo, gradient, vignette, ground shadow, text or watermark.\nInput image 2 is the corrected adult FACE REFERENCE. Match her small closed-mouth smile, smooth cheeks without dimples and soft natural makeup.\nScene: a cheerful ADULT woman's casual vacation portrait. Retain the white shorts, sunglasses atop her head, pink smoothie cup and straw, and the original pose with a playful wink.\nChange the clothing to a fully opaque WHITE LINEN SHIRT BUTTONED CLOSED FROM COLLARBONE TO HEM, loose fit with long sleeves rolled to the forearms. The shirt completely covers her chest, torso and waist; the swimsuit beneath is entirely concealed. Shorts remain fully opaque and ordinary casual white denim. No cleavage or midriff visible. Keep the shirt casually untucked.\nSame semi-realistic rendering and genuine transparent background. No dress or necklace from image 2.",
       "references": [
-        "../../images/heroine6_lover.png",
-        "images/heroine6_meet.png",
+        "images/heroine6_lover.png",
         "images/heroine6_meet.png"
-      ]
+      ],
+      "referenceVersions": [
+        {
+          "path": "images/heroine6_lover.png",
+          "role": "edit target",
+          "generationId": "exec-e7deba69-3b2c-4e80-9ada-9c6c6a17b3cd.png"
+        },
+        {
+          "path": "images/heroine6_meet.png",
+          "role": "corrected face reference",
+          "generationId": "exec-c40491fa-8d76-4805-977e-d5a9db6cc5b5.png"
+        }
+      ],
+      "revision": 3,
+      "revisionNote": "보조개·입가의 깊은 음영을 줄이고 입을 다문 미소로 수정. 성인 설정 유지.",
+      "history": [
+        {
+          "revision": 2,
+          "prompt": "Use case: identity-preserve.\nAsset type: transparent semi-realistic character portrait for a baseball life simulation game.\nPrimary request: refresh Lily Harper's face, makeup, hair styling and expression to give her a fresh, sweet, approachable young-adult look. She is a fictional American Hollywood actress, unmistakably an ADULT woman aged 25, with fully adult facial anatomy and body proportions.\nFacial direction: soft oval face, gently full natural cheeks, relaxed brows, clear blue eyes of realistic adult size, delicate natural nose, soft peach-pink lips, a bright relaxed smile, subtle rosy blush, minimal eyeliner and very light natural makeup. Fair naturally lit skin, soft even shading, subtle realistic texture. Avoid strong contour makeup, heavy lipstick, exaggerated lashes or harsh sculpted cheek shadows.\nHair: keep her recognizable long pale golden-blonde hair, but make its waves airy, soft and casually flowing, with natural face-framing wisps. Keep the color and approximate length.\nStyle: refined semi-realistic digital game illustration matching the input, believable adult anatomy, soft dimensional lighting, finely drawn hair and fabric. Not a photograph, not anime, not a doll.\nComposition: one character only, centered vertical 2:3, 1024x1536 portrait, full head visible, same crop and camera angle as the edit target.\nBackground: genuinely transparent alpha with clean subject edges, transparent gaps between arms and body. No scenery, halo, colored backdrop, gradient, vignette, checkerboard or ground shadow.\nConstraints: preserve the edit target's fully adult body proportions, pose, outfit design and coverage, props, jewelry and color palette. Change facial styling, hair styling and expression only. No text, logo or watermark.\nInput image 1: EDIT TARGET. Keep its existing clothing, pose, props and composition.\nInput image 2: NEW FACE AND HAIR IDENTITY REFERENCE for the same adult Lily Harper, age 25. Match her new fresh-faced adult appearance, softer cheeks, light makeup, pink lips and natural golden waves exactly. Image 2 guides the face and hair only; do not transfer its dress, necklace or pose.\nScene invariants: sunny casual vacation portrait; original red swimsuit top under open white overshirt and white denim shorts, sunglasses on top of her head, holding the pink drink and straw. Keep the original outfit coverage and a friendly playful wink. Same adult body proportions as image 1.",
+          "references": [
+            "images/heroine6_lover.png",
+            "images/heroine6_meet.png"
+          ],
+          "referenceVersions": [
+            {
+              "path": "images/heroine6_lover.png",
+              "revision": "85f3737",
+              "role": "edit target"
+            },
+            {
+              "path": "images/heroine6_meet.png",
+              "role": "new face and hair identity reference"
+            }
+          ],
+          "generationId": "exec-e7deba69-3b2c-4e80-9ada-9c6c6a17b3cd.png"
+        }
+      ],
+      "generationId": "exec-9808730e-c801-4baf-a2bc-0ade056d3835.png",
+      "adjustment": "출력 안전 필터로 인해 연인 의상을 가슴과 배를 덮도록 여민 흰 셔츠와 기존 흰 반바지로 조정."
     },
     {
       "id": "heroine6_wedding",
@@ -840,13 +904,49 @@
       "width": 1024,
       "height": 1536,
       "transparent": true,
-      "prompt": "Use case: style-transfer.\nCreate a tasteful semi-realistic game character illustration of Lily Harper, a fictional adult American actress, age 33. IMAGE 1 is the original character and pose reference; IMAGE 2 guides the approved painterly technique and adult blonde face. Keep her long wavy blonde hair, blue eyes, friendly smile and character identity.\nChange the clothing from IMAGE 1 to this more modest design: an elegant fully opaque, fully lined white satin wedding gown with a high boat neckline, short lace sleeves over opaque lining, full floor-length skirt WITHOUT a slit, long white veil, holding a bouquet of red and white roses. A joyful formal wedding portrait.\nVertical 2:3, centered head-to-knees portrait, whole head visible. Natural adult anatomy, refined hand-painted shading, fine hair and fabric detail. Genuinely transparent alpha background, clean cutout. No scenery, vignette, halo, text, logos or watermark.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "prompt": "Use case: precise-object-edit.\nAsset type: semi-realistic transparent game portrait.\nInput image 1 is the EDIT TARGET: Lily Harper, a fictional American adult woman age 25.\nPrimary request: remove the aging-looking dimples and deep smile-fold shadows from her face. This is a specific face and expression correction.\nRetouch BOTH cheeks into smooth, softly rounded, continuous surfaces with absolutely NO dimples, cheek pits, cheek hollows or pinched depressions at the mouth corners. Remove the visible dark nasolabial crease shadows beside the nose and mouth and under-eye crease shading. Keep subtle natural skin texture and gentle dimensional lighting, not waxy or blurred skin.\nChange the wide toothy smile to a small, relaxed CLOSED-MOUTH smile: lips gently together, no teeth visible, corners only very slightly lifted, cheek muscles relaxed, no grin-induced folds. Natural soft pink lips, light everyday makeup, open friendly blue eyes of normal adult size. Her expression should feel fresh, sweet and approachable.\nPreserve her unmistakably ADULT age-25 appearance and adult body proportions, recognizable identity, fair complexion, pale golden long hair, exact outfit and coverage, necklace, standing pose and framing. Keep the semi-realistic illustration style.\nMatch original vertical 1024x1536 composition with full head visible. Genuine transparent alpha background and clean edges; no backdrop, halo, gradient, vignette, ground shadow, text or watermark.\nInput image 2 is the newly corrected FACE REFERENCE. Match her closed-mouth smile and smooth un-dimpled cheeks exactly, with no dark nasolabial folds. Preserve image 1's outfit and props. All subjects are the same adult woman age 25.\nKeep the opaque white boat-neck wedding gown, lace sleeves, veil and bouquet from image 1. A small CLOSED-MOUTH smile and relaxed smooth cheeks without dimples. Do not transfer the red dress or necklace from image 2.",
       "references": [
-        "../../images/heroine6_wedding.png",
-        "images/heroine6_meet.png",
+        "images/heroine6_wedding.png",
         "images/heroine6_meet.png"
       ],
-      "adjustment": "생성 필터 거부 후 의상을 단정하게 변경: 결혼식은 안감 있는 높은 목선 드레스·슬릿 제거, 배우자는 높은 목선·무릎 길이 니트 원피스."
+      "adjustment": "생성 필터 거부 후 의상을 단정하게 변경: 결혼식은 안감 있는 높은 목선 드레스·슬릿 제거, 배우자는 높은 목선·무릎 길이 니트 원피스.",
+      "referenceVersions": [
+        {
+          "path": "images/heroine6_wedding.png",
+          "role": "edit target",
+          "generationId": "exec-0f57d56d-35b4-4dc8-bbbf-09ab5b974644.png"
+        },
+        {
+          "path": "images/heroine6_meet.png",
+          "role": "corrected face reference",
+          "generationId": "exec-c40491fa-8d76-4805-977e-d5a9db6cc5b5.png"
+        }
+      ],
+      "revision": 3,
+      "revisionNote": "보조개·입가의 깊은 음영을 줄이고 입을 다문 미소로 수정. 성인 설정 유지.",
+      "history": [
+        {
+          "revision": 2,
+          "prompt": "Use case: identity-preserve.\nAsset type: transparent semi-realistic character portrait for a baseball life simulation game.\nPrimary request: refresh Lily Harper's face, makeup, hair styling and expression to give her a fresh, sweet, approachable young-adult look. She is a fictional American Hollywood actress, unmistakably an ADULT woman aged 25, with fully adult facial anatomy and body proportions.\nFacial direction: soft oval face, gently full natural cheeks, relaxed brows, clear blue eyes of realistic adult size, delicate natural nose, soft peach-pink lips, a bright relaxed smile, subtle rosy blush, minimal eyeliner and very light natural makeup. Fair naturally lit skin, soft even shading, subtle realistic texture. Avoid strong contour makeup, heavy lipstick, exaggerated lashes or harsh sculpted cheek shadows.\nHair: keep her recognizable long pale golden-blonde hair, but make its waves airy, soft and casually flowing, with natural face-framing wisps. Keep the color and approximate length.\nStyle: refined semi-realistic digital game illustration matching the input, believable adult anatomy, soft dimensional lighting, finely drawn hair and fabric. Not a photograph, not anime, not a doll.\nComposition: one character only, centered vertical 2:3, 1024x1536 portrait, full head visible, same crop and camera angle as the edit target.\nBackground: genuinely transparent alpha with clean subject edges, transparent gaps between arms and body. No scenery, halo, colored backdrop, gradient, vignette, checkerboard or ground shadow.\nConstraints: preserve the edit target's fully adult body proportions, pose, outfit design and coverage, props, jewelry and color palette. Change facial styling, hair styling and expression only. No text, logo or watermark.\nInput image 1: EDIT TARGET. Keep its existing clothing, pose, props and composition.\nInput image 2: NEW FACE AND HAIR IDENTITY REFERENCE for the same adult Lily Harper, age 25. Match her new fresh-faced adult appearance, softer cheeks, light makeup, pink lips and natural golden waves exactly. Image 2 guides the face and hair only; do not transfer its dress, necklace or pose.\nScene invariants: bridal portrait wearing the existing opaque white boat-neck wedding gown, lace short sleeves, white veil, holding the red and white rose bouquet. Keep the fully lined dress design and coverage exactly. Fresh warm smile, same adult body proportions as image 1.",
+          "references": [
+            "images/heroine6_wedding.png",
+            "images/heroine6_meet.png"
+          ],
+          "referenceVersions": [
+            {
+              "path": "images/heroine6_wedding.png",
+              "revision": "85f3737",
+              "role": "edit target"
+            },
+            {
+              "path": "images/heroine6_meet.png",
+              "role": "new face and hair identity reference"
+            }
+          ],
+          "generationId": "exec-0f57d56d-35b4-4dc8-bbbf-09ab5b974644.png"
+        }
+      ],
+      "generationId": "exec-4f7d89d6-1905-483b-a0a0-b4c84d49ab71.png"
     },
     {
       "id": "heroine6_spouse",
@@ -857,13 +957,49 @@
       "width": 1024,
       "height": 1536,
       "transparent": true,
-      "prompt": "Use case: style-transfer.\nCreate a tasteful semi-realistic game character illustration of Lily Harper, a fictional adult American actress, age 33. IMAGE 1 is the original character and pose reference; IMAGE 2 guides the approved painterly technique and adult blonde face. Keep her long wavy blonde hair, blue eyes, friendly smile and character identity.\nChange the clothing from IMAGE 1 to this more modest design: a comfortable opaque cream knit sweater dress with long sleeves, a high round neckline and a loose knee-length hem. Keep the plain navy baseball cap and baseball held in one hand. A warm casual family portrait.\nVertical 2:3, centered head-to-knees portrait, whole head visible. Natural adult anatomy, refined hand-painted shading, fine hair and fabric detail. Genuinely transparent alpha background, clean cutout. No scenery, vignette, halo, text, logos or watermark.\nIMAGE 3 is the approved face/identity anchor for this same character. Preserve that identity while keeping IMAGE 1's target age, pose, clothing and life stage. Do not copy the anchor's clothing or age.",
+      "prompt": "Use case: precise-object-edit.\nAsset type: semi-realistic transparent game portrait.\nInput image 1 is the EDIT TARGET: Lily Harper, a fictional American adult woman age 25.\nPrimary request: remove the aging-looking dimples and deep smile-fold shadows from her face. This is a specific face and expression correction.\nRetouch BOTH cheeks into smooth, softly rounded, continuous surfaces with absolutely NO dimples, cheek pits, cheek hollows or pinched depressions at the mouth corners. Remove the visible dark nasolabial crease shadows beside the nose and mouth and under-eye crease shading. Keep subtle natural skin texture and gentle dimensional lighting, not waxy or blurred skin.\nChange the wide toothy smile to a small, relaxed CLOSED-MOUTH smile: lips gently together, no teeth visible, corners only very slightly lifted, cheek muscles relaxed, no grin-induced folds. Natural soft pink lips, light everyday makeup, open friendly blue eyes of normal adult size. Her expression should feel fresh, sweet and approachable.\nPreserve her unmistakably ADULT age-25 appearance and adult body proportions, recognizable identity, fair complexion, pale golden long hair, exact outfit and coverage, necklace, standing pose and framing. Keep the semi-realistic illustration style.\nMatch original vertical 1024x1536 composition with full head visible. Genuine transparent alpha background and clean edges; no backdrop, halo, gradient, vignette, ground shadow, text or watermark.\nInput image 2 is the newly corrected FACE REFERENCE. Match her closed-mouth smile and smooth un-dimpled cheeks exactly, with no dark nasolabial folds. Preserve image 1's outfit and props. All subjects are the same adult woman age 25.\nKeep the opaque cream knit sweater dress, navy cap and baseball from image 1. A small CLOSED-MOUTH smile and relaxed smooth cheeks without dimples. Do not transfer the red dress or necklace from image 2.",
       "references": [
-        "../../images/heroine6_spouse.png",
-        "images/heroine6_meet.png",
+        "images/heroine6_spouse.png",
         "images/heroine6_meet.png"
       ],
-      "adjustment": "생성 필터 거부 후 의상을 단정하게 변경: 결혼식은 안감 있는 높은 목선 드레스·슬릿 제거, 배우자는 높은 목선·무릎 길이 니트 원피스."
+      "adjustment": "생성 필터 거부 후 의상을 단정하게 변경: 결혼식은 안감 있는 높은 목선 드레스·슬릿 제거, 배우자는 높은 목선·무릎 길이 니트 원피스.",
+      "referenceVersions": [
+        {
+          "path": "images/heroine6_spouse.png",
+          "role": "edit target",
+          "generationId": "exec-0b8387a0-a0c1-4f45-9421-8b7d4cc31fd6.png"
+        },
+        {
+          "path": "images/heroine6_meet.png",
+          "role": "corrected face reference",
+          "generationId": "exec-c40491fa-8d76-4805-977e-d5a9db6cc5b5.png"
+        }
+      ],
+      "revision": 3,
+      "revisionNote": "보조개·입가의 깊은 음영을 줄이고 입을 다문 미소로 수정. 성인 설정 유지.",
+      "history": [
+        {
+          "revision": 2,
+          "prompt": "Use case: identity-preserve.\nAsset type: transparent semi-realistic character portrait for a baseball life simulation game.\nPrimary request: refresh Lily Harper's face, makeup, hair styling and expression to give her a fresh, sweet, approachable young-adult look. She is a fictional American Hollywood actress, unmistakably an ADULT woman aged 25, with fully adult facial anatomy and body proportions.\nFacial direction: soft oval face, gently full natural cheeks, relaxed brows, clear blue eyes of realistic adult size, delicate natural nose, soft peach-pink lips, a bright relaxed smile, subtle rosy blush, minimal eyeliner and very light natural makeup. Fair naturally lit skin, soft even shading, subtle realistic texture. Avoid strong contour makeup, heavy lipstick, exaggerated lashes or harsh sculpted cheek shadows.\nHair: keep her recognizable long pale golden-blonde hair, but make its waves airy, soft and casually flowing, with natural face-framing wisps. Keep the color and approximate length.\nStyle: refined semi-realistic digital game illustration matching the input, believable adult anatomy, soft dimensional lighting, finely drawn hair and fabric. Not a photograph, not anime, not a doll.\nComposition: one character only, centered vertical 2:3, 1024x1536 portrait, full head visible, same crop and camera angle as the edit target.\nBackground: genuinely transparent alpha with clean subject edges, transparent gaps between arms and body. No scenery, halo, colored backdrop, gradient, vignette, checkerboard or ground shadow.\nConstraints: preserve the edit target's fully adult body proportions, pose, outfit design and coverage, props, jewelry and color palette. Change facial styling, hair styling and expression only. No text, logo or watermark.\nInput image 1: EDIT TARGET. Keep its existing clothing, pose, props and composition.\nInput image 2: NEW FACE AND HAIR IDENTITY REFERENCE for the same adult Lily Harper, age 25. Match her new fresh-faced adult appearance, softer cheeks, light makeup, pink lips and natural golden waves exactly. Image 2 guides the face and hair only; do not transfer its dress, necklace or pose.\nScene invariants: warm everyday portrait wearing the existing opaque long-sleeved cream knit sweater dress and navy baseball cap, holding a baseball. Keep the sweater's high round neckline, loose fit and existing length. Fresh cheerful smile, same adult body proportions as image 1.",
+          "references": [
+            "images/heroine6_spouse.png",
+            "images/heroine6_meet.png"
+          ],
+          "referenceVersions": [
+            {
+              "path": "images/heroine6_spouse.png",
+              "revision": "85f3737",
+              "role": "edit target"
+            },
+            {
+              "path": "images/heroine6_meet.png",
+              "role": "new face and hair identity reference"
+            }
+          ],
+          "generationId": "exec-0b8387a0-a0c1-4f45-9421-8b7d4cc31fd6.png"
+        }
+      ],
+      "generationId": "exec-353c6a42-a8ea-4ff5-b04d-b443f6e18415.png"
     },
     {
       "id": "rival",
@@ -1165,5 +1301,6 @@
         "images/hero_pro.png"
       ]
     }
-  ]
+  ],
+  "updated": "2026-10-06"
 }

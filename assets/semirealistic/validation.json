@@ -455,17 +455,17 @@
     "height": 1536,
     "minAlpha": 0,
     "maxAlpha": 253,
-    "bytes": 2044655,
-    "sha256": "E9E1F03A8A7B16F27B95DDAF1E3D2B0A13002F1C6DC03A3FE0DD2918CC43A4B7"
+    "bytes": 1968936,
+    "sha256": "A6A4871CF511BEAC9C8802F07B91D227EA3D29AFBE38DEA694EC31DBEBB2A364"
   },
   {
     "id": "heroine6_lover",
     "width": 1024,
     "height": 1536,
     "minAlpha": 0,
-    "maxAlpha": 253,
-    "bytes": 1960223,
-    "sha256": "EB235BE5ED3344052C0ACA5E36CD199635B28E86BFDB48451D88DEDC27D82738"
+    "maxAlpha": 254,
+    "bytes": 1960528,
+    "sha256": "497FF2D7A4DA14DE66F0D5B48694A25006E1898A79ADA0476AECEFB0EA6D9AB3"
   },
   {
     "id": "heroine6_wedding",
@@ -473,8 +473,8 @@
     "height": 1536,
     "minAlpha": 0,
     "maxAlpha": 254,
-    "bytes": 2228803,
-    "sha256": "CDE324AEF1A38E9A9ABABC1D3F3659144A324C00F06F90F3F75510A19B21936F"
+    "bytes": 2093698,
+    "sha256": "95E14894F11281480D44D5F4B7EF544D845F5D98C5C654FE1897620EA309498F"
   },
   {
     "id": "heroine6_spouse",
@@ -482,8 +482,8 @@
     "height": 1536,
     "minAlpha": 0,
     "maxAlpha": 254,
-    "bytes": 2097341,
-    "sha256": "08A1E50C4246A12EB2965E79837EE07F77A42C287BB22A4B042182CED0685BB5"
+    "bytes": 2055213,
+    "sha256": "F1F3E573BC75D8D03BD8E0E01AFD2D5634FF41654FC966F9B523F67A3C31C2B7"
   },
   {
     "id": "rival",

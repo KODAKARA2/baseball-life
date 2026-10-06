@@ -257,22 +257,25 @@
       "id": "heroine6_meet",
       "file": "images/heroine6_meet.png",
       "status": "complete",
-      "reusedApprovedSample": true
+      "revision": 3
     },
     {
       "id": "heroine6_lover",
       "file": "images/heroine6_lover.png",
-      "status": "complete"
+      "status": "complete",
+      "revision": 3
     },
     {
       "id": "heroine6_wedding",
       "file": "images/heroine6_wedding.png",
-      "status": "complete"
+      "status": "complete",
+      "revision": 3
     },
     {
       "id": "heroine6_spouse",
       "file": "images/heroine6_spouse.png",
-      "status": "complete"
+      "status": "complete",
+      "revision": 3
     },
     {
       "id": "rival",

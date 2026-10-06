@@ -84,6 +84,7 @@ footer a{margin-right:16px}
 const catalog=window.ART_CATALOG;
 const grid=document.getElementById("grid");
 const search=document.getElementById("search");
+search.value=new URLSearchParams(location.search).get("q")||"";
 const original=document.getElementById("original");
 let selected="전체";
 const cards=catalog.map(asset=>{
