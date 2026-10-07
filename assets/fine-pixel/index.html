@@ -9,8 +9,8 @@
 <header>
 <a href="../../index.html">← 게임으로 돌아가기</a>
 <h1>작은 픽셀로 다시 만나는 야구 인생</h1>
-<p>주인공 30장 · 히로인 24장 · 조연 11장. 게임에 연결된 인물 그림 전체를 볼 수 있습니다.</p>
-<nav><input id="search" type="search" placeholder="이름 또는 그림 찾기" aria-label="인물 검색"><select id="group" aria-label="인물 분류"><option value="">모든 인물</option><option>주인공</option><option>히로인</option><option>조연</option></select></nav>
+<p>주인공 30장 · 히로인 33장 · 조연 11장. 새 히로인 9명은 대표 그림 한 장씩 사용합니다.</p>
+<nav><input id="search" type="search" placeholder="이름 또는 그림 찾기" aria-label="인물 검색"><select id="group" aria-label="인물 분류"><option value="">모든 인물</option><option>주인공</option><option>히로인</option><option value="신규">새 히로인 9명</option><option>조연</option></select></nav>
 <p id="count" aria-live="polite"></p>
 </header>
 <main class="grid" id="gallery"></main>
@@ -18,7 +18,7 @@
 <script src="catalog.js"></script>
 <script>
 const search=document.querySelector('#search'),group=document.querySelector('#group'),gallery=document.querySelector('#gallery');
-function render(){const q=search.value.trim().toLowerCase();const list=CHARACTERS.filter(x=>(!group.value||x.group===group.value)&&(!q||(x.label+' '+x.id).toLowerCase().includes(q)));gallery.replaceChildren(...list.map(x=>{const figure=document.createElement('figure'),a=document.createElement('a'),img=document.createElement('img'),caption=document.createElement('figcaption'),detail=document.createElement('small');a.href='../../'+x.target;a.className='portrait';img.src=a.href;img.alt=x.label;img.loading='lazy';img.width=1024;img.height=1536;a.append(img);caption.append(x.label);detail.textContent=x.id;caption.append(detail);figure.append(a,caption);return figure}));document.querySelector('#count').textContent=list.length+' / '+CHARACTERS.length+'장';}
-search.value=new URLSearchParams(location.search).get('q')||'';search.addEventListener('input',render);group.addEventListener('change',render);render();
+function render(){const q=search.value.trim().toLowerCase();const list=CHARACTERS.filter(x=>(!group.value||(group.value==='신규'?x.new:x.group===group.value))&&(!q||(x.label+' '+x.id).toLowerCase().includes(q)));gallery.replaceChildren(...list.map(x=>{const figure=document.createElement('figure'),a=document.createElement('a'),img=document.createElement('img'),caption=document.createElement('figcaption'),detail=document.createElement('small');a.href='../../'+x.target;a.className='portrait';img.src=a.href;img.alt=x.label;img.loading='lazy';img.width=1024;img.height=1536;a.append(img);caption.append(x.label);detail.textContent=x.id;caption.append(detail);figure.append(a,caption);return figure}));document.querySelector('#count').textContent=list.length+' / '+CHARACTERS.length+'장';}
+const params=new URLSearchParams(location.search);search.value=params.get('q')||'';group.value=params.get('group')||'';search.addEventListener('input',render);group.addEventListener('change',render);render();
 </script>
 </html>

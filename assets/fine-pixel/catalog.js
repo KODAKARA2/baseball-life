@@ -325,7 +325,7 @@ const CHARACTERS = [
   },
   {
     "id": "rival",
-    "label": "백도윤 · 라이벌",
+    "label": "백도현 · 라이벌",
     "group": "조연",
     "target": "images/rival.png"
   },
@@ -388,5 +388,68 @@ const CHARACTERS = [
     "label": "오재치 · 동료",
     "group": "조연",
     "target": "images/teammate.png"
+  },
+  {
+    "id": "heroine7",
+    "label": "한지우 · 대표",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine7.png"
+  },
+  {
+    "id": "heroine8",
+    "label": "서미래 · 대표",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine8.png"
+  },
+  {
+    "id": "heroine9",
+    "label": "윤채아 · 대표",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine9.png"
+  },
+  {
+    "id": "heroine10",
+    "label": "강민서 · 대표",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine10.png"
+  },
+  {
+    "id": "heroine11",
+    "label": "백소율 · 대표",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine11.png"
+  },
+  {
+    "id": "heroine12",
+    "label": "오하린 · 대표",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine12.png"
+  },
+  {
+    "id": "heroine13",
+    "label": "정예린 · 대표",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine13.png"
+  },
+  {
+    "id": "heroine14",
+    "label": "에밀리 워커 · 대표",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine14.png"
+  },
+  {
+    "id": "heroine15",
+    "label": "제이든 박 · 대표",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine15.png"
   }
 ];

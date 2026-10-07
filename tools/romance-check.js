@@ -82,4 +82,4 @@ for (const choice of [0, 1, 2]) {
   s.히로인.교류횟수 = 2; s.단계 = '결과'; E.save(); E.load();
   assert.equal(E.state().히로인.교류횟수, 2); assert.equal(E.state().히로인.만남턴, 100);
 }
-console.log('PASS: 히로인 6명 첫 등장·대화·고백, 재시도, 커플 카드 차단, 연락 정리, 새 인연 3갈래, 저장 호환');
+console.log('PASS: 히로인 '+GD.히로인.length+'명 첫 등장·대화·고백, 재시도, 커플 카드 차단, 연락 정리, 새 인연 3갈래, 저장 호환');

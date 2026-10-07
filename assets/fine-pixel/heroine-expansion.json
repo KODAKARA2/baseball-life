@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-07",
+  "style": "작은 픽셀·귀여운 기존 비율 유지. 머리색·눈매·소품으로 인물 구분.",
+  "characters": [
+    {
+      "id": "heroine7",
+      "name": "한지우",
+      "target": "images/heroine7.png",
+      "prompt": "Edit the attached chibi pixel illustration of Han Jiwoo. STYLE LOCK: preserve EXACTLY this image's cute super-deformed body proportions, large head size, short body and legs, fine square pixel density, stepped outlines, restrained shading and navy-white palette. The head must occupy the same approximately 38% of total character height as in this source. Keep her navy-white tracksuit, clipboard, pencil, watch, black bob and full-body framing. Do NOT turn this into a taller, realistic, adult-proportioned figure. Only redesign identity and pose within this SAME chibi style: (1) head perfectly upright facing straight at viewer, shoulders level, no sideways tilt; (2) face a soft short rounded SQUARE with fuller lower cheeks and a flatter rounded chin, noticeably different from the source's tapering face but still cute; (3) large expressive chibi eyes with horizontally flatter upper eyelids and dark irises, calm observant slightly sleepy gaze, straight brows; maintain the original stylized eye scale, do not shrink them into realistic eyes; (4) tiny neutral mouth, subtle warmth, no pout; (5) clean straight blunt fringe above brows; (6) clipboard at waist, one hand supports it and the other writes with pencil, feet parallel. This is a thoughtful, quietly caring high-school baseball manager, fully clothed, nonsexual. Everything else stays in the exact cute fine-pixel art direction of the attached image. Transparent background with true alpha, no halo, no glow, no background scene, no floor shadow, no text or logo. Vertical 1024x1536."
+    },
+    {
+      "id": "heroine8",
+      "name": "서미래",
+      "target": "images/heroine8.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep reddish auburn high ponytail, burgundy varsity jacket, red scouting notebook. Make eyes sharply upturned catlike chibi eyes with amber irises and confident angled brows, small mischievous closed smirk. Turn head mildly toward screen RIGHT, no sideways tilt, one hand on hip. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos."
+    },
+    {
+      "id": "heroine9",
+      "name": "윤채아",
+      "target": "images/heroine9.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep long straight hair, round glasses, cream sweater and hugged statistics notebook. Color hair distinct very dark indigo blue with cool violet highlights, large softly drooping eyes with slate-blue irises and reserved closed mouth. Chin slightly down and looking up through glasses; shy thoughtful, same cute large head. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos."
+    },
+    {
+      "id": "heroine10",
+      "name": "강민서",
+      "target": "images/heroine10.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep green shop apron, sports drink and triangular rice snack, warm chestnut low side bun. Give warm honey-brown drooping puppy eyes, crescent lower eyelids and a broad friendly smile with soft round cheeks. Head upright, nearly frontal, shoulders relaxed. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos."
+    },
+    {
+      "id": "heroine11",
+      "name": "백소율",
+      "target": "images/heroine11.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep oversized orange hoodie, orange clip, cap and short wavy hair. Color hair dark plum-brown with subtle burgundy highlights. Give slanted lively amber chibi eyes, one brow raised, tiny pouting cat-shaped mouth and puffed round cheeks. Face toward screen LEFT slightly; playful finger pointing, still cute. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos."
+    },
+    {
+      "id": "heroine12",
+      "name": "오하린",
+      "target": "images/heroine12.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep white-gold tracksuit, bottle and ice pack. Color high ponytail rich honey-caramel rather than dark brown, with gold-white ribbon. Give long upward curved eyelash silhouette, bright hazel eyes and a confident wink in one eye, poised smile. Head upright turned slightly screen RIGHT. She is an adult professional cheerleading captain age25 in existing chibi art style, not changed age. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos."
+    },
+    {
+      "id": "heroine13",
+      "name": "정예린",
+      "target": "images/heroine13.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep navy business suit, lavender blouse, tablet and binder. Color neat shoulder-length hair cool ash-brown with muted taupe highlights, clear side part. Give narrower elegant almond shaped chibi eyes with dark violet-gray irises, composed brows, small slightly nervous closed smile. Head perfectly upright and frontal. Adult woman age24 represented in existing chibi style. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos."
+    },
+    {
+      "id": "heroine14",
+      "name": "에밀리 워커",
+      "target": "images/heroine14.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep strawberry blonde ponytail, backwards baseball cap and brown glove, navy varsity jacket. Give emerald GREEN confident catlike eyes, slightly thicker brows, a few very subtle freckles, wide playful grin. Turn head slightly toward screen RIGHT and raise chin a touch, do not tilt sideways. Adult American woman age24 in existing chibi style. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos."
+    },
+    {
+      "id": "heroine15",
+      "name": "제이든 박",
+      "target": "images/heroine15.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep wavy short bob, mint jacket, square transparent glasses, map phone and tote. Color bob deep espresso black with a more visible COPPER fringe streak. Give warm brown cheerful crescent smiling eyes and a broad open smile, round cheeks. Head slightly turned LEFT while waving with the free hand instead of gripping bag. Adult Korean-American woman age24 in existing chibi style. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos."
+    }
+  ]
+}

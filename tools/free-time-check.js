@@ -49,7 +49,7 @@ for (const action of ['연습','취미','휴식']) {
   const s = setup(); show(); const turn = s.총턴, next = s.다음자유나이;
   for (let n=0;n<6;n++) { choose('이동'); E.next(); assert.equal(s.자유시간.화면,'데이트'); E.choose(s.현재옵션.length-1); E.next(); }
   assert.equal(s.총턴,turn); assert.equal(s.다음자유나이,next);
-  show('찾기'); assert.deepEqual(Array.from(E.freeTimeCandidates(),h=>h.아이디),['heroine1','heroine4','heroine5']);
+  show('찾기'); assert.deepEqual(Array.from(E.freeTimeCandidates(),h=>h.아이디),['heroine1','heroine4','heroine5','heroine7','heroine8','heroine9','heroine10','heroine11']);
   choose('이동','heroine4'); E.next(); assert.equal(s.히로인,null);
   E.save(); E.load(); assert.equal(E.state().자유시간.대상,'heroine4'); assert.equal(E.state().현재카드._만남,'heroine4');
   choose('만남','heroine4'); const now=E.state(); assert.equal(now.히로인.관계,'만남'); assert.equal(now.히로인.교류횟수,0); assert.equal(E.canConfess(),false);
@@ -80,8 +80,9 @@ for (const rel of ['만남','연인','배우자']) {
   E.enterStage('프로'); assert.equal(E.acquaintances().some(h=>h.아이디==='heroine6'),false);
 }
 {
-  const s=setup('프로'); assert.equal(E.freeTimeCandidates().length,0); s.일군=true; assert.equal(E.freeTimeCandidates()[0].아이디,'heroine2');
-  s.부상=2; assert.equal(E.freeTimeCandidates().length,2); s.시기='메이저리그'; assert.deepEqual(Array.from(E.freeTimeCandidates(),h=>h.아이디),['heroine3','heroine6']);
+  const s=setup('프로'); assert.deepEqual(Array.from(E.freeTimeCandidates(),h=>h.아이디),['heroine13']);
+  s.일군=true; assert.deepEqual(Array.from(E.freeTimeCandidates(),h=>h.아이디),['heroine2','heroine12','heroine13']);
+  s.부상=2; assert.equal(E.freeTimeCandidates().length,4); s.시기='메이저리그'; assert.deepEqual(Array.from(E.freeTimeCandidates(),h=>h.아이디),['heroine3','heroine6','heroine14','heroine15']);
   s.히로인2={아이디:'heroine1'}; assert.equal(E.freeTimeCandidates().length,0); delete s.히로인2;
   show('만남','heroine6'); choose('만남','heroine6'); assert.equal(s.히로인.만난시기,'메이저리그'); assert.equal(E.koreanBond(),false);
 }
@@ -92,4 +93,4 @@ for (const rel of ['만남','연인','배우자']) {
 const hobbies = new Set();
 for(let n=0;n<6;n++) { const s=setup('프로'); show(); roll=(n+0.1)/6; hobbies.add(choose('취미').결과.split('\n')[0]); }
 assert.equal(hobbies.size,6);
-console.log('PASS: 1~2년 주기·시기 제한·시즌 순서, 4행동, 6히로인 후보, 관계 교체/취소, 회복 1턴, 중복 방지·메뉴/결과 저장 호환');
+console.log('PASS: 1~2년 주기·시기 제한·시즌 순서, 4행동, 15히로인 후보, 관계 교체/취소, 회복 1턴, 중복 방지·메뉴/결과 저장 호환');
