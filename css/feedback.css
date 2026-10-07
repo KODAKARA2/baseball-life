@@ -1,0 +1,12 @@
+/* Small feedback without replacing card/ball transforms or adding clipped particles. */
+.opt:active { translate: 0 1px; scale: .992; }
+.feedback-settings { width: min(420px, calc(100% - 32px)); box-sizing: border-box; max-height: 90dvh; overflow: auto; border: 1px solid #c4b9a4; border-radius: 20px; padding: 24px; color: #29271f; background: #fffaf0; }
+.feedback-settings::backdrop { background: #17241999; }
+.feedback-settings h2 { margin-top: 0; font-size: 21px; }
+.feedback-settings label { display: flex; align-items: center; gap: 12px; margin: 22px 0; }
+.feedback-settings input[type=checkbox] { width: 22px; height: 22px; }
+.feedback-settings .volume-label { flex-wrap: wrap; }
+.feedback-settings input[type=range] { width: 100%; min-height: 32px; }
+.feedback-settings p { font-size: 13px; line-height: 1.6; }
+html[data-reduced-motion=true] *, html[data-reduced-motion=true] *::before, html[data-reduced-motion=true] *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+html[data-reduced-motion=true] .opt:active { translate: none; scale: none; }
