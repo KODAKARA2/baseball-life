@@ -101,12 +101,12 @@ fs.mkdirSync(out, { recursive: true });
     const draws = await page.evaluate(() => {
       const names = ["miniTimer", "miniBat", "miniPitch", "miniSteal", "miniThrow", "miniSigns"];
       const originals = {}; let picked, seed = 123;
-      names.forEach(n => { originals[n] = U[n]; U[n] = () => { picked = n; }; });
+      names.forEach(n => { originals[n] = U[n]; U[n] = () => { picked = n; const m = document.createElement("div"); m.className = "mg-wrap"; document.body.appendChild(m); return () => m.remove(); }; });
       Math.random = () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296);
       const output = {};
       for (const pos of ["유격수", "선발투수"]) {
         E.newGame("추첨검사", pos, pos === "유격수" ? "수비" : "제구력");
-        output[pos] = Array.from({ length: 200 }, () => { U.miniGame(() => {}); return picked; });
+        output[pos] = Array.from({ length: 200 }, () => { U.miniGame(() => {})(); return picked; });
       }
       names.forEach(n => { U[n] = originals[n]; });
       return output;
