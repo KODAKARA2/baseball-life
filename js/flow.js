@@ -20,7 +20,7 @@
       버전: 1, 이름: name, 포지션: posName, 특기: specName, 능력치: {}, 행복도: C.행복도, 성적: 0, 부상: 0, 슬럼프: 0,
       시기: null, 시기턴: 0, 진입나이: 10, 나이: 10, 은퇴나이: null, 연차: 0, 올해카드: 0, 올해부상카드: 0,
       팀: null, 원래팀: null, 국내팀: null, 지명팀: null, 해외팀: null, 팀이동: 0, 일군: false, 드래프트: null,
-      플래그: {}, 본카드: {}, 총턴: 0, 히로인: null, 지난히로인: [], 만난히로인: [], 자녀: 0,
+      플래그: {}, 본카드: {}, 총턴: 0, 히로인: null, 알아가는인연: [], 지난히로인: [], 만난히로인: [], 자녀: 0,
       기록: [], 수상: [], 순간: [], 대기열: [], 돈: 0, 총수입: 0, 구매: {}, 본뉴스: {}, 단계: "카드", 현재카드: null, 현재옵션: [], 결과: null, 엔딩: null
     };
     I.S = s;
@@ -43,6 +43,7 @@
     s.능력치.멘탈 = C.멘탈; s.능력치.인기 = C.인기 + (heir ? G.인기보너스 || 10 : 0); s.능력치.컨디션 = C.컨디션; s.능력치.적응 = 0;
     I.applyEffects(spec.추가보너스 || {}, {});
     enterStage("초등학교");
+    E.initFreeTime();
     allowance();
     E.next();
     return s;
@@ -75,6 +76,11 @@
         // 외국인 히로인은 한국으로 따라오지 않음: 몰래 만나던 사람은 바로 떠나고, 연인·배우자는 작별 카드가 바로 나옴
         if (s.히로인2 && E.heroDef(s.히로인2.아이디).외국인) { leave(s.히로인2, "국내 복귀로 이별"); s.히로인2 = null; }
         if (s.히로인 && E.heroDef().외국인) s.플래그.외국인작별 = true;
+        s.알아가는인연 = (s.알아가는인연 || []).filter(function (h) {
+          var d = E.heroDef(h.아이디);
+          if (!d.외국인) return true;
+          s.지난히로인.push({ 아이디: h.아이디, 이름: d.이름, 관계: "만남", 결말: "국내 복귀 후 연락이 뜸해짐" }); return false;
+        });
       }
       else if (!s.팀) { s.팀 = s.지명팀 || I.pick(cfg().국내팀); s.원래팀 = s.팀; s.일군 = false; }
     }
@@ -100,6 +106,7 @@
       return (prio(b) - prio(a)) || ((b.시기 ? 1 : 0) - (a.시기 ? 1 : 0));
     });
     if (pri.length) return pri[0];
+    if (E.freeTimeDue()) { s.자유시간 = { 화면: "메뉴" }; return E.freeTimeCard(); }
     var sd = sdef(s.시기);
     if (sd.카드수) {
       var must = all.filter(function (c) { return c.필수; });
@@ -107,7 +114,7 @@
     }
     var L = cfg().연애;
     if (s.히로인) {
-      var hc = all.filter(function (c) { return c.히로인 || c._끼어들기; });
+      var hc = all.filter(function (c) { return c.히로인 || c._끼어들기 || (s.히로인.관계 === "만남" && c._만남); });
       if (hc.length && rnd() < L.히로인카드확률) return I.weighted(hc);
     } else {
       var mc = all.filter(function (c) { return c._만남; });
@@ -171,7 +178,7 @@
   E.next = function () {
     var s = S();
     if (s.엔딩) { s.단계 = "엔딩"; E.save(); return; }
-    var c = I.clone(drawCard());
+    var c = I.clone(s.자유시간 ? E.freeTimeCard() : drawCard());
     if (c.레어 && E.noteRare) E.noteRare(c.제목);
     s._상대 = c._끼어들기 || null;
     s._새포지션 = (c.선택지 || []).some(function (o) { return o.포지션변경; }) ? I.pick(E.pos().변경후보 || [s.포지션]) : null;
@@ -184,6 +191,7 @@
 
   // ---------------- 선택 ----------------
   E.choose = function (i, mg) {
+    if (S().현재카드.자유행동) return E.chooseFreeTime(i);
     var s = S(), card = s.현재카드, o = card.선택지[s.현재옵션[i]];
     var res = { 효과: {}, 결과: o.결과 || "", 그림: o.그림변경 || null, 알림: [] };
     var out = o;

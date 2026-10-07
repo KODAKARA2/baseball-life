@@ -171,6 +171,7 @@
       her = '<button class="mini heroine-mini ' + (animateHeroine ? "attach" : "") + '" onclick="U.openHeroine()" aria-label="인연과 애정도 보기">' +
         U.art(U.heroineKeys(h.아이디, rel), "💗", "<b>" + esc(h.이름) + "</b><small>" + esc(rel === "만남" ? "알아가는 중" : rel) + "</small>", "card-art") +
         '<div class="aff">' + (rel === "만남" ? "호감 " : "❤ ") + s.히로인.애정도 + bar(s.히로인.애정도, "love") + "</div>" +
+        ((s.알아가는인연 || []).length ? '<div class="aff2">🌱 알아가는 인연 ' + E.acquaintances().length + '명</div>' : '') +
         (s.히로인2 ? '<div class="aff2">🤫 ' + esc(E.heroDef(s.히로인2.아이디).이름) + " ❤" + s.히로인2.애정도 + "</div>" : "") + "</button>";
     } else her = '<button class="mini empty" onclick="U.openHeroine()" aria-label="인연 안내 보기"><span>💗</span><small>아직 쓰지 않은<br>인연의 이야기</small></button>';
     $("#life").innerHTML = hero + mid + her;
@@ -194,7 +195,7 @@
     var a = U.cardArtKeys(c), r = s.결과;
     var front = '<div class="face front' + (c.레어 ? " rare" : "") + '">' +
       (a ? U.art(a.keys, a.icon, a.label, "banner", U.bgOf(c)) : U.art([], sd.아이콘 || "⚾", null, "banner plain", U.bgOf(c))) +
-      '<div class="txt"><div class="tag">' + (c.레어 ? '<span class="rare-tag">✨ 레어 카드</span> ' : "") + esc(c.시스템 ? "시즌" : s.시기) + (c.히로인 || c._만남 ? " · 💗" : "") + "</div><h2>" + esc(E.tpl(c.제목)) + "</h2><p>" + br(E.tpl(c.내용)) + "</p></div></div>";
+      '<div class="txt"><div class="tag">' + (c.레어 ? '<span class="rare-tag">✨ 레어 카드</span> ' : "") + esc(c.자유행동 ? "자유행동" : c.시스템 ? "시즌" : s.시기) + (c.히로인 || c._만남 ? " · 💗" : "") + "</div><h2>" + esc(E.tpl(c.제목)) + "</h2><p>" + br(E.tpl(c.내용)) + "</p></div></div>";
     var back = '<div class="face back">' + (r ? U.resultHTML(r) : "") + "</div>";
     $("#table").innerHTML = '<div class="card3d ' + (r ? "flipped " : "") + (deal ? "deal" : "") + '" id="card">' + front + back + "</div>";
     $("#card .front").inert = !!r; $("#card .back").inert = !r;
@@ -479,6 +480,9 @@
   U.choose = function (i) {
     if (busy) return;
     var s = E.state(), o = s.현재카드.선택지[s.현재옵션[i]];
+    if (s.현재카드.자유행동 && o.자유선택 === "이동") {
+      E.choose(i); E.next(); U.renderAll(); return;
+    }
     if (o.미니게임 && o.확률결과) { busy = true; return U.miniGame(function (mg) { busy = false; doChoose(i, mg); }); }
     doChoose(i);
   };
