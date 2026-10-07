@@ -194,7 +194,7 @@
     var a = U.cardArtKeys(c), r = s.결과;
     var front = '<div class="face front' + (c.레어 ? " rare" : "") + '">' +
       (a ? U.art(a.keys, a.icon, a.label, "banner", U.bgOf(c)) : U.art([], sd.아이콘 || "⚾", null, "banner plain", U.bgOf(c))) +
-      '<div class="txt"><div class="tag">' + (c.레어 ? '<span class="rare-tag">✨ 레어 카드</span> ' : "") + esc(c.시스템 ? "시즌" : s.시기) + (c.히로인 || c._만남 ? " · 💗" : "") + "</div><h2>" + esc(E.tpl(c.제목)) + "</h2><p>" + br(E.tpl(c.내용)) + "</p></div></div>";
+      '<div class="txt"><div class="tag">' + (c.레어 ? '<span class="rare-tag">✨ 레어 카드</span> ' : "") + esc(c.자유행동 ? "자유행동" : c.시스템 ? "시즌" : s.시기) + (c.히로인 || c._만남 ? " · 💗" : "") + "</div><h2>" + esc(E.tpl(c.제목)) + "</h2><p>" + br(E.tpl(c.내용)) + "</p></div></div>";
     var back = '<div class="face back">' + (r ? U.resultHTML(r) : "") + "</div>";
     $("#table").innerHTML = '<div class="card3d ' + (r ? "flipped " : "") + (deal ? "deal" : "") + '" id="card">' + front + back + "</div>";
     $("#card .front").inert = !!r; $("#card .back").inert = !r;
@@ -479,6 +479,9 @@
   U.choose = function (i) {
     if (busy) return;
     var s = E.state(), o = s.현재카드.선택지[s.현재옵션[i]];
+    if (s.현재카드.자유행동 && o.자유선택 === "이동") {
+      E.choose(i); E.next(); U.renderAll(); return;
+    }
     if (o.미니게임 && o.확률결과) { busy = true; return U.miniGame(function (mg) { busy = false; doChoose(i, mg); }); }
     doChoose(i);
   };

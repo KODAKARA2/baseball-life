@@ -43,6 +43,7 @@
     s.능력치.멘탈 = C.멘탈; s.능력치.인기 = C.인기 + (heir ? G.인기보너스 || 10 : 0); s.능력치.컨디션 = C.컨디션; s.능력치.적응 = 0;
     I.applyEffects(spec.추가보너스 || {}, {});
     enterStage("초등학교");
+    E.initFreeTime();
     allowance();
     E.next();
     return s;
@@ -100,6 +101,7 @@
       return (prio(b) - prio(a)) || ((b.시기 ? 1 : 0) - (a.시기 ? 1 : 0));
     });
     if (pri.length) return pri[0];
+    if (E.freeTimeDue()) { s.자유시간 = { 화면: "메뉴" }; return E.freeTimeCard(); }
     var sd = sdef(s.시기);
     if (sd.카드수) {
       var must = all.filter(function (c) { return c.필수; });
@@ -171,7 +173,7 @@
   E.next = function () {
     var s = S();
     if (s.엔딩) { s.단계 = "엔딩"; E.save(); return; }
-    var c = I.clone(drawCard());
+    var c = I.clone(s.자유시간 ? E.freeTimeCard() : drawCard());
     if (c.레어 && E.noteRare) E.noteRare(c.제목);
     s._상대 = c._끼어들기 || null;
     s._새포지션 = (c.선택지 || []).some(function (o) { return o.포지션변경; }) ? I.pick(E.pos().변경후보 || [s.포지션]) : null;
@@ -184,6 +186,7 @@
 
   // ---------------- 선택 ----------------
   E.choose = function (i, mg) {
+    if (S().현재카드.자유행동) return E.chooseFreeTime(i);
     var s = S(), card = s.현재카드, o = card.선택지[s.현재옵션[i]];
     var res = { 효과: {}, 결과: o.결과 || "", 그림: o.그림변경 || null, 알림: [] };
     var out = o;

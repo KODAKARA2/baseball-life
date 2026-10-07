@@ -175,8 +175,9 @@
         if (s.히로인.교류횟수 == null) s.히로인.교류횟수 = 0;
       }
       I.buildCards(); I.S = s;
+      E.initFreeTime();
       // 이전 저장의 고백·커플 카드나 즉시 교제 선택지를 그대로 실행하지 않도록 갱신합니다.
-      if (s.단계 === "카드" && s.현재카드 && (s.현재카드._끼어들기 || (s.히로인 && s.히로인.관계 === "만남" && s.현재카드.히로인))) {
+      if (s.단계 === "카드" && s.현재카드 && !s.현재카드.자유행동 && (s.현재카드._끼어들기 || (s.히로인 && s.히로인.관계 === "만남" && s.현재카드.히로인))) {
         var current = I.CARDS().find(function (c) { return c._id === s.현재카드._id; });
         if (current && I.eligible(current)) { s.현재카드 = I.clone(current); E.refreshOptions(); }
         else E.next();
