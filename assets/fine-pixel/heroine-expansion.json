@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-07",
+  "style": "작은 픽셀·귀여운 기존 비율 유지. 머리색·눈매·소품으로 인물 구분.",
+  "characters": [
+    {
+      "id": "heroine7",
+      "name": "한지우",
+      "target": "images/heroine7.png",
+      "prompt": "Edit the attached chibi pixel illustration of Han Jiwoo. STYLE LOCK: preserve EXACTLY this image's cute super-deformed body proportions, large head size, short body and legs, fine square pixel density, stepped outlines, restrained shading and navy-white palette. The head must occupy the same approximately 38% of total character height as in this source. Keep her navy-white tracksuit, clipboard, pencil, watch, black bob and full-body framing. Do NOT turn this into a taller, realistic, adult-proportioned figure. Only redesign identity and pose within this SAME chibi style: (1) head perfectly upright facing straight at viewer, shoulders level, no sideways tilt; (2) face a soft short rounded SQUARE with fuller lower cheeks and a flatter rounded chin, noticeably different from the source's tapering face but still cute; (3) large expressive chibi eyes with horizontally flatter upper eyelids and dark irises, calm observant slightly sleepy gaze, straight brows; maintain the original stylized eye scale, do not shrink them into realistic eyes; (4) tiny neutral mouth, subtle warmth, no pout; (5) clean straight blunt fringe above brows; (6) clipboard at waist, one hand supports it and the other writes with pencil, feet parallel. This is a thoughtful, quietly caring high-school baseball manager, fully clothed, nonsexual. Everything else stays in the exact cute fine-pixel art direction of the attached image. Transparent background with true alpha, no halo, no glow, no background scene, no floor shadow, no text or logo. Vertical 1024x1536."
+    },
+    {
+      "id": "heroine8",
+      "name": "서미래",
+      "target": "images/heroine8.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep reddish auburn high ponytail, burgundy varsity jacket, red scouting notebook. Make eyes sharply upturned catlike chibi eyes with amber irises and confident angled brows, small mischievous closed smirk. Turn head mildly toward screen RIGHT, no sideways tilt, one hand on hip. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos.",
+      "edits": [
+        {
+          "date": "2026-10-07",
+          "description": "붉은 갈색 포니테일을 높은 올림머리로 변경",
+          "prompt": "Edit ONLY the hairstyle in the attached full-body character portrait. STRICT STYLE LOCK: exact same cute fine-pixel RPG sprite aesthetic, 2.5-head-tall chibi proportions, large head size, pixel density, jagged outlines, palette and shading. Preserve entire composition, face, expression, clothes, props, hands, shoes, body proportions and pose. Replace the long high ponytail entirely with a compact HIGH MESSY ROUND BUN / topknot at the crown, tied with the same red hair tie. No ponytail or long hair hanging behind. Keep her rich reddish-auburn color. Two short pointed cheek-length locks frame the face, with slightly swept bangs. The bun silhouette must read clearly at small game-card size. Her sharp amber eyes, challenging smirk, face, body pose, burgundy jacket, notebook and all other features remain unchanged. Retain transparent alpha background and 1024x1536 portrait dimensions. Full head/hair and shoes must fit inside the canvas with margin. Remove hair from its former ponytail area cleanly to transparency. Fully clothed nonsexual image. Do not add words, new objects, background or realistic rendering."
+        },
+        {
+          "date": "2026-10-07",
+          "description": "앞머리 구분: 이마를 드러낸 깔끔한 올림머리",
+          "prompt": "Edit ONLY front bangs / fringe hairstyle of this exact attached character. The user says too many characters have identical V-shaped pointed bangs. Make the specified bang silhouette clearly different at thumbnail size. STYLE AND IDENTITY LOCK: preserve EXACTLY the attached cute 2.5-head-tall fine-pixel RPG illustration, head/body scale, pixel texture, shading, face shape, eyes, expression, pose, outfit, accessories, props, hair color and back hairstyle. Never lengthen body, never change to realistic or smooth art. Keep the high round messy bun and red tie EXACTLY as now. Remove ALL the pointed bangs across the forehead. Sweep front hair smoothly BACK from a clean curved hairline into the bun, exposing the entire forehead and both eyebrows. Only two short thin sideburn wisps outside the forehead near ears. Distinct slicked-back sporty forehead silhouette, no center V lock, no curtain bangs. Full body, same 1024x1536 canvas, true transparent alpha background. Fully clothed nonsexual design. No text, no new objects, no scene. Hair edits only."
+        }
+      ]
+    },
+    {
+      "id": "heroine9",
+      "name": "윤채아",
+      "target": "images/heroine9.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep long straight hair, round glasses, cream sweater and hugged statistics notebook. Color hair distinct very dark indigo blue with cool violet highlights, large softly drooping eyes with slate-blue irises and reserved closed mouth. Chin slightly down and looking up through glasses; shy thoughtful, same cute large head. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos.",
+      "edits": [
+        {
+          "date": "2026-10-07",
+          "description": "앞머리 구분: 둥근 풀뱅",
+          "prompt": "Edit ONLY front bangs / fringe hairstyle of this exact attached character. The user says too many characters have identical V-shaped pointed bangs. Make the specified bang silhouette clearly different at thumbnail size. STYLE AND IDENTITY LOCK: preserve EXACTLY the attached cute 2.5-head-tall fine-pixel RPG illustration, head/body scale, pixel texture, shading, face shape, eyes, expression, pose, outfit, accessories, props, hair color and back hairstyle. Never lengthen body, never change to realistic or smooth art. Keep the long indigo hair, glasses and body unchanged. Replace current parted pointed fringe with a THICK CONTINUOUS ROUNDED FULL FRINGE. A single softly curved U-shaped lower edge just above the glasses, shortest at middle brow and longer at temples; smooth rounded doll-like bang silhouette, tiny vertical pixel strands, NO part, NO triangular gaps, NO long central pointed lock. This is curved full bangs, not side-swept. Full body, same 1024x1536 canvas, true transparent alpha background. Fully clothed nonsexual design. No text, no new objects, no scene. Hair edits only."
+        }
+      ]
+    },
+    {
+      "id": "heroine10",
+      "name": "강민서",
+      "target": "images/heroine10.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep green shop apron, sports drink and triangular rice snack, warm chestnut low side bun. Give warm honey-brown drooping puppy eyes, crescent lower eyelids and a broad friendly smile with soft round cheeks. Head upright, nearly frontal, shoulders relaxed. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos.",
+      "edits": [
+        {
+          "date": "2026-10-07",
+          "description": "앞머리 구분: 가벼운 시스루뱅",
+          "prompt": "Edit ONLY front bangs / fringe hairstyle of this exact attached character. The user says too many characters have identical V-shaped pointed bangs. Make the specified bang silhouette clearly different at thumbnail size. STYLE AND IDENTITY LOCK: preserve EXACTLY the attached cute 2.5-head-tall fine-pixel RPG illustration, head/body scale, pixel texture, shading, face shape, eyes, expression, pose, outfit, accessories, props, hair color and back hairstyle. Never lengthen body, never change to realistic or smooth art. Keep chestnut low side bun and all props. Replace dense pointed center fringe with LIGHT AIRY SEE-THROUGH BANGS: only five or six very THIN separated wisps ending just above brows, plenty of visible skin between them. No large solid bangs across forehead. Open and light forehead with delicate separated strands, not a chunky V-shaped central lock. Preserve side bun. Full body, same 1024x1536 canvas, true transparent alpha background. Fully clothed nonsexual design. No text, no new objects, no scene. Hair edits only."
+        }
+      ]
+    },
+    {
+      "id": "heroine11",
+      "name": "백소율",
+      "target": "images/heroine11.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep oversized orange hoodie, orange clip, cap and short wavy hair. Color hair dark plum-brown with subtle burgundy highlights. Give slanted lively amber chibi eyes, one brow raised, tiny pouting cat-shaped mouth and puffed round cheeks. Face toward screen LEFT slightly; playful finger pointing, still cute. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos.",
+      "edits": [
+        {
+          "date": "2026-10-07",
+          "description": "앞머리 구분: 짧고 불규칙한 앞머리",
+          "prompt": "Edit ONLY front bangs / fringe hairstyle of this exact attached character. The user says too many characters have identical V-shaped pointed bangs. Make the specified bang silhouette clearly different at thumbnail size. STYLE AND IDENTITY LOCK: preserve EXACTLY the attached cute 2.5-head-tall fine-pixel RPG illustration, head/body scale, pixel texture, shading, face shape, eyes, expression, pose, outfit, accessories, props, hair color and back hairstyle. Never lengthen body, never change to realistic or smooth art. Keep short plum-brown wavy bob and orange clip. Replace long center fringe with VERY SHORT JAGGED BABY BANGS ending well ABOVE the eyebrows, tiny irregular blunt-cut tufts at different lengths, clear horizontal band of forehead skin above brows. Playful slightly messy asymmetrical micro fringe. No strand reaches eyebrows or between eyes. Preserve her defiant face and bob silhouette. Full body, same 1024x1536 canvas, true transparent alpha background. Fully clothed nonsexual design. No text, no new objects, no scene. Hair edits only."
+        }
+      ]
+    },
+    {
+      "id": "heroine12",
+      "name": "오하린",
+      "target": "images/heroine12.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep white-gold tracksuit, bottle and ice pack. Color high ponytail rich honey-caramel rather than dark brown, with gold-white ribbon. Give long upward curved eyelash silhouette, bright hazel eyes and a confident wink in one eye, poised smile. Head upright turned slightly screen RIGHT. She is an adult professional cheerleading captain age25 in existing chibi art style, not changed age. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos.",
+      "edits": [
+        {
+          "date": "2026-10-07",
+          "description": "밝은 갈색 포니테일을 옆머리 땋은 단발로 변경",
+          "prompt": "Edit ONLY the hairstyle in the attached full-body character portrait. STRICT STYLE LOCK: exact same cute fine-pixel RPG sprite aesthetic, 2.5-head-tall chibi proportions, large head size, pixel density, jagged outlines, palette and shading. Preserve entire composition, face, expression, clothes, props, hands, shoes, body proportions and pose. Replace the entire long high ponytail with a CHIN-LENGTH HONEY-CARAMEL BOB, softly curled outward at the ends, broad asymmetrical side part. Add one small neat braid along her left temple pinned above the ear with a small white-and-gold ribbon clip (relocate ribbon from ponytail to side). No bun, no ponytail, no long locks behind shoulders. Clear short rounded hair silhouette visible at small game-card size. Keep her wink, cheerful smile, face, honey-brown eyes, body pose, white-and-gold tracksuit, water bottle and blue ice pack EXACTLY unchanged. Retain transparent alpha background and 1024x1536 portrait dimensions. Full head/hair and shoes must fit inside the canvas with margin. Remove hair from its former ponytail area cleanly to transparency. Fully clothed nonsexual image. Do not add words, new objects, background or realistic rendering."
+        }
+      ]
+    },
+    {
+      "id": "heroine13",
+      "name": "정예린",
+      "target": "images/heroine13.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep navy business suit, lavender blouse, tablet and binder. Color neat shoulder-length hair cool ash-brown with muted taupe highlights, clear side part. Give narrower elegant almond shaped chibi eyes with dark violet-gray irises, composed brows, small slightly nervous closed smile. Head perfectly upright and frontal. Adult woman age24 represented in existing chibi style. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos."
+    },
+    {
+      "id": "heroine14",
+      "name": "에밀리 워커",
+      "target": "images/heroine14.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep strawberry blonde ponytail, backwards baseball cap and brown glove, navy varsity jacket. Give emerald GREEN confident catlike eyes, slightly thicker brows, a few very subtle freckles, wide playful grin. Turn head slightly toward screen RIGHT and raise chin a touch, do not tilt sideways. Adult American woman age24 in existing chibi style. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos.",
+      "edits": [
+        {
+          "date": "2026-10-07",
+          "description": "앞머리 구분: 모자 아래 뒤로 넘긴 앞머리",
+          "prompt": "Edit ONLY front bangs / fringe hairstyle of this exact attached character. The user says too many characters have identical V-shaped pointed bangs. Make the specified bang silhouette clearly different at thumbnail size. STYLE AND IDENTITY LOCK: preserve EXACTLY the attached cute 2.5-head-tall fine-pixel RPG illustration, head/body scale, pixel texture, shading, face shape, eyes, expression, pose, outfit, accessories, props, hair color and back hairstyle. Never lengthen body, never change to realistic or smooth art. Keep strawberry-blonde high ponytail, backwards baseball cap and all props. REMOVE every long pointed fringe lock below the cap. Tuck the front hair BACK UNDER THE CAP, exposing full forehead and both eyebrows with natural clean rounded hairline and only two very short fine baby-hair marks at temples. No side-swept bangs, no center lock. Backwards cap with front adjustable strap remains exactly in place, ponytail stays. Full body, same 1024x1536 canvas, true transparent alpha background. Fully clothed nonsexual design. No text, no new objects, no scene. Hair edits only."
+        },
+        {
+          "date": "2026-10-07",
+          "description": "사용자 선택으로 앞머리를 내린 버전 복원. 이후 관계 차분의 기준 그림.",
+          "restoredFrom": "134efbb"
+        }
+      ]
+    },
+    {
+      "id": "heroine15",
+      "name": "제이든 박",
+      "target": "images/heroine15.png",
+      "prompt": "Edit the attached character portrait. STRICT STYLE LOCK: preserve the exact cute super-deformed fine-pixel RPG illustration style, 2.5-head-tall body, very large head occupying about 38% of full height, large expressive chibi eyes, short arms and legs, fine square pixel density and stepped outlines of the reference. Do not become taller, realistic or smooth painted. Preserve full-body framing, outfit and identity. Make ONLY these character-specific refinements to distinguish this person: Keep wavy short bob, mint jacket, square transparent glasses, map phone and tote. Color bob deep espresso black with a more visible COPPER fringe streak. Give warm brown cheerful crescent smiling eyes and a broad open smile, round cheeks. Head slightly turned LEFT while waving with the free hand instead of gripping bag. Adult Korean-American woman age24 in existing chibi style. All other aspects retain the original reference style. Fully clothed nonsexual design. True transparent alpha background, no glow or halo outside character, no scene, no floor shadow. Vertical 1024x1536 PNG, whole head and shoes visible. No text or added logos.",
+      "edits": [
+        {
+          "date": "2026-10-07",
+          "description": "앞머리 구분: 비대칭 곱슬 앞머리",
+          "prompt": "Edit ONLY front bangs / fringe hairstyle of this exact attached character. The user says too many characters have identical V-shaped pointed bangs. Make the specified bang silhouette clearly different at thumbnail size. STYLE AND IDENTITY LOCK: preserve EXACTLY the attached cute 2.5-head-tall fine-pixel RPG illustration, head/body scale, pixel texture, shading, face shape, eyes, expression, pose, outfit, accessories, props, hair color and back hairstyle. Never lengthen body, never change to realistic or smooth art. Keep short black wavy bob, copper streak and square glasses. Replace smooth pointed center fringe with SHORT SOFT CURLY FORELOCKS: three clearly rounded small S-shaped curls across upper forehead, asymmetrically spaced, one COPPER curl on the side. Hairline partly visible, curls do NOT reach glasses. Rounded curly cloud-like edge rather than long straight pointed locks, no large central V-shaped strand. Preserve her smiling eyes, mouth, mint jacket, phone, tote and wave. Full body, same 1024x1536 canvas, true transparent alpha background. Fully clothed nonsexual design. No text, no new objects, no scene. Hair edits only."
+        }
+      ]
+    }
+  ]
+}

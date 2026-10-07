@@ -191,6 +191,7 @@
 
   // ---------------- 선택 ----------------
   E.choose = function (i, mg) {
+    if (S().단계 !== "카드" || !S().현재카드 || S().현재옵션[i] == null) return S().결과;
     if (S().현재카드.자유행동) return E.chooseFreeTime(i);
     var s = S(), card = s.현재카드, o = card.선택지[s.현재옵션[i]];
     var res = { 효과: {}, 결과: o.결과 || "", 그림: o.그림변경 || null, 알림: [] };
@@ -244,6 +245,7 @@
 
     if (card._id) s.본카드[card._id] = s.총턴;
     if (!card.시스템) { res.알림 = res.알림.concat(tick(out, card)); res.뉴스 = pickNews(); }
+    E.growHeroineAffection();
     s.총턴++;
 
     if (out.이동) enterStage(out.이동);
@@ -274,7 +276,8 @@
     if (s.히로인) {
       var h = E.heroDef();
       if (!card.히로인 && !card._만남) {
-        var dec = s.히로인.관계 === "만남" ? L.알아가기감소 : L.매카드감소 + (o.집중 ? L.집중감소추가 : 0) + (s.플래그.장거리 && s.시기 === "메이저리그" ? L.장거리감소추가 : 0);
+        var base = E.passiveAffectionGain() ? 0 : (s.히로인.관계 === "만남" ? L.알아가기감소 : L.매카드감소);
+        var dec = base + (s.히로인.관계 === "만남" ? 0 : (o.집중 ? L.집중감소추가 : 0) + (s.플래그.장거리 && s.시기 === "메이저리그" ? L.장거리감소추가 : 0));
         s.히로인.애정도 = clamp(s.히로인.애정도 - dec, 0, 100);
       }
       if (s.히로인.관계 !== "만남" && s.히로인.애정도 >= L.도움기준) {
@@ -289,7 +292,7 @@
     else growth();
     if (s.슬럼프 > 0) { s.슬럼프--; if (!s.슬럼프) notes.push("🌤️ 슬럼프에서 벗어났다"); }
     if (s.히로인2 && !card.히로인 && !card._끼어들기) {
-      s.히로인2.애정도 -= L.매카드감소 + (o.집중 ? L.집중감소추가 : 0);
+      s.히로인2.애정도 -= (E.passiveAffectionGain() ? 0 : L.매카드감소) + (o.집중 ? L.집중감소추가 : 0);
       if (s.히로인2.애정도 <= 0) { notes.push("💔 " + leave(s.히로인2, "연락이 끊김") + "와(과) 연락이 끊겼다"); s.히로인2 = null; }
     }
     if (s.만남버프 && s.만남버프.남은 > 0) s.만남버프.남은--;

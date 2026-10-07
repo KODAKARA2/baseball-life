@@ -1,0 +1,457 @@
+{
+  "date": "2026-10-07",
+  "sourceRevision": "4899a03ea76246b0ba1d1a7de8926ace491f7780",
+  "note": "Same content at both multipliers; profiles and PRNG seeds paired; choices can diverge as game state changes. Each rate counts lives at least once, so posting and FA may overlap.",
+  "results": [
+    {
+      "multiplier": 0.9,
+      "seed": 20261007,
+      "policy": "random-except-accept-overseas; no-shop-or-heir; default-minigame-odds",
+      "lives": 1000,
+      "pro": {
+        "count": 953,
+        "percent": 95.3,
+        "ci95": [
+          93.8,
+          96.4
+        ]
+      },
+      "eligible": {
+        "count": 263,
+        "percent": 26.3,
+        "ci95": [
+          23.7,
+          29.1
+        ]
+      },
+      "posting": {
+        "count": 263,
+        "percent": 26.3,
+        "ci95": [
+          23.7,
+          29.1
+        ]
+      },
+      "fa": {
+        "count": 44,
+        "percent": 4.4,
+        "ci95": [
+          3.3,
+          5.9
+        ]
+      },
+      "mlb": {
+        "count": 306,
+        "percent": 30.6,
+        "ci95": [
+          27.8,
+          33.5
+        ]
+      },
+      "roster": {
+        "count": 306,
+        "percent": 30.6,
+        "ci95": [
+          27.8,
+          33.5
+        ]
+      },
+      "meanPeak": 78.85,
+      "meanScore": 467.7,
+      "postingAmongPros": 27.6,
+      "medianPostingAge": 27,
+      "byLooks": {
+        "1-3": {
+          "lives": 317,
+          "pro": {
+            "count": 317,
+            "percent": 100,
+            "ci95": [
+              98.8,
+              100
+            ]
+          },
+          "eligible": {
+            "count": 221,
+            "percent": 69.7,
+            "ci95": [
+              64.4,
+              74.5
+            ]
+          },
+          "posting": {
+            "count": 221,
+            "percent": 69.7,
+            "ci95": [
+              64.4,
+              74.5
+            ]
+          },
+          "fa": {
+            "count": 29,
+            "percent": 9.1,
+            "ci95": [
+              6.4,
+              12.8
+            ]
+          },
+          "mlb": {
+            "count": 249,
+            "percent": 78.5,
+            "ci95": [
+              73.7,
+              82.7
+            ]
+          },
+          "roster": {
+            "count": 249,
+            "percent": 78.5,
+            "ci95": [
+              73.7,
+              82.7
+            ]
+          },
+          "meanPeak": 89.1,
+          "meanScore": 539.7,
+          "postingAmongPros": 69.7,
+          "medianPostingAge": 26
+        },
+        "4-7": {
+          "lives": 393,
+          "pro": {
+            "count": 371,
+            "percent": 94.4,
+            "ci95": [
+              91.7,
+              96.3
+            ]
+          },
+          "eligible": {
+            "count": 42,
+            "percent": 10.7,
+            "ci95": [
+              8,
+              14.1
+            ]
+          },
+          "posting": {
+            "count": 42,
+            "percent": 10.7,
+            "ci95": [
+              8,
+              14.1
+            ]
+          },
+          "fa": {
+            "count": 13,
+            "percent": 3.3,
+            "ci95": [
+              1.9,
+              5.6
+            ]
+          },
+          "mlb": {
+            "count": 55,
+            "percent": 14,
+            "ci95": [
+              10.9,
+              17.8
+            ]
+          },
+          "roster": {
+            "count": 55,
+            "percent": 14,
+            "ci95": [
+              10.9,
+              17.8
+            ]
+          },
+          "meanPeak": 75.63,
+          "meanScore": 432.2,
+          "postingAmongPros": 11.3,
+          "medianPostingAge": 30
+        },
+        "8-10": {
+          "lives": 290,
+          "pro": {
+            "count": 265,
+            "percent": 91.4,
+            "ci95": [
+              87.6,
+              94.1
+            ]
+          },
+          "eligible": {
+            "count": 0,
+            "percent": 0,
+            "ci95": [
+              0,
+              1.3
+            ]
+          },
+          "posting": {
+            "count": 0,
+            "percent": 0,
+            "ci95": [
+              0,
+              1.3
+            ]
+          },
+          "fa": {
+            "count": 2,
+            "percent": 0.7,
+            "ci95": [
+              0.2,
+              2.5
+            ]
+          },
+          "mlb": {
+            "count": 2,
+            "percent": 0.7,
+            "ci95": [
+              0.2,
+              2.5
+            ]
+          },
+          "roster": {
+            "count": 2,
+            "percent": 0.7,
+            "ci95": [
+              0.2,
+              2.5
+            ]
+          },
+          "meanPeak": 71.99,
+          "meanScore": 437.1,
+          "postingAmongPros": 0,
+          "medianPostingAge": null
+        }
+      }
+    },
+    {
+      "multiplier": 0.8,
+      "seed": 20261007,
+      "policy": "random-except-accept-overseas; no-shop-or-heir; default-minigame-odds",
+      "lives": 1000,
+      "pro": {
+        "count": 901,
+        "percent": 90.1,
+        "ci95": [
+          88.1,
+          91.8
+        ]
+      },
+      "eligible": {
+        "count": 146,
+        "percent": 14.6,
+        "ci95": [
+          12.5,
+          16.9
+        ]
+      },
+      "posting": {
+        "count": 146,
+        "percent": 14.6,
+        "ci95": [
+          12.5,
+          16.9
+        ]
+      },
+      "fa": {
+        "count": 33,
+        "percent": 3.3,
+        "ci95": [
+          2.4,
+          4.6
+        ]
+      },
+      "mlb": {
+        "count": 179,
+        "percent": 17.9,
+        "ci95": [
+          15.6,
+          20.4
+        ]
+      },
+      "roster": {
+        "count": 179,
+        "percent": 17.9,
+        "ci95": [
+          15.6,
+          20.4
+        ]
+      },
+      "meanPeak": 73.38,
+      "meanScore": 303.3,
+      "postingAmongPros": 16.2,
+      "medianPostingAge": 28,
+      "byLooks": {
+        "1-3": {
+          "lives": 317,
+          "pro": {
+            "count": 317,
+            "percent": 100,
+            "ci95": [
+              98.8,
+              100
+            ]
+          },
+          "eligible": {
+            "count": 136,
+            "percent": 42.9,
+            "ci95": [
+              37.6,
+              48.4
+            ]
+          },
+          "posting": {
+            "count": 136,
+            "percent": 42.9,
+            "ci95": [
+              37.6,
+              48.4
+            ]
+          },
+          "fa": {
+            "count": 32,
+            "percent": 10.1,
+            "ci95": [
+              7.2,
+              13.9
+            ]
+          },
+          "mlb": {
+            "count": 168,
+            "percent": 53,
+            "ci95": [
+              47.5,
+              58.4
+            ]
+          },
+          "roster": {
+            "count": 168,
+            "percent": 53,
+            "ci95": [
+              47.5,
+              58.4
+            ]
+          },
+          "meanPeak": 83.45,
+          "meanScore": 467.1,
+          "postingAmongPros": 42.9,
+          "medianPostingAge": 28
+        },
+        "4-7": {
+          "lives": 393,
+          "pro": {
+            "count": 352,
+            "percent": 89.6,
+            "ci95": [
+              86.2,
+              92.2
+            ]
+          },
+          "eligible": {
+            "count": 10,
+            "percent": 2.5,
+            "ci95": [
+              1.4,
+              4.6
+            ]
+          },
+          "posting": {
+            "count": 10,
+            "percent": 2.5,
+            "ci95": [
+              1.4,
+              4.6
+            ]
+          },
+          "fa": {
+            "count": 1,
+            "percent": 0.3,
+            "ci95": [
+              0,
+              1.4
+            ]
+          },
+          "mlb": {
+            "count": 11,
+            "percent": 2.8,
+            "ci95": [
+              1.6,
+              4.9
+            ]
+          },
+          "roster": {
+            "count": 11,
+            "percent": 2.8,
+            "ci95": [
+              1.6,
+              4.9
+            ]
+          },
+          "meanPeak": 70.36,
+          "meanScore": 250,
+          "postingAmongPros": 2.8,
+          "medianPostingAge": 30
+        },
+        "8-10": {
+          "lives": 290,
+          "pro": {
+            "count": 232,
+            "percent": 80,
+            "ci95": [
+              75,
+              84.2
+            ]
+          },
+          "eligible": {
+            "count": 0,
+            "percent": 0,
+            "ci95": [
+              0,
+              1.3
+            ]
+          },
+          "posting": {
+            "count": 0,
+            "percent": 0,
+            "ci95": [
+              0,
+              1.3
+            ]
+          },
+          "fa": {
+            "count": 0,
+            "percent": 0,
+            "ci95": [
+              0,
+              1.3
+            ]
+          },
+          "mlb": {
+            "count": 0,
+            "percent": 0,
+            "ci95": [
+              0,
+              1.3
+            ]
+          },
+          "roster": {
+            "count": 0,
+            "percent": 0,
+            "ci95": [
+              0,
+              1.3
+            ]
+          },
+          "meanPeak": 66.47,
+          "meanScore": 196.5,
+          "postingAmongPros": 0,
+          "medianPostingAge": null
+        }
+      }
+    }
+  ]
+}

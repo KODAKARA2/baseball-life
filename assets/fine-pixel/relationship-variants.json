@@ -1,0 +1,250 @@
+{
+  "date": "2026-10-07",
+  "method": "built-in image_gen",
+  "firstMeeting": "Approved images/heroine7.png through heroine15.png retained; Emily restored from 134efbb.",
+  "jobs": [
+    {
+      "id": "heroine7_lover",
+      "heroine": "heroine7",
+      "name": "한지우",
+      "stage": "연인",
+      "ref": "C:/1/baseball-life/images/heroine7.png",
+      "target": "images/heroine7_lover.png",
+      "prompt": "Use case: identity-preserve. Create ONE 연인 relationship-stage variant of the attached game character 한지우. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: black blunt-bang bob, dark eyes, calm upright head, quiet meticulous demeanor. Change outfit, prop, expression and modest hand pose as follows: navy cardigan over white blouse, simple knee-length skirt and sneakers, holds a small wrapped lunchbox with both hands, tiny shy closed smile. Wholesome fully clothed everyday dating portrait, appropriate to the reference character's age. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine7_wedding",
+      "heroine": "heroine7",
+      "name": "한지우",
+      "stage": "결혼식",
+      "ref": "C:/1/baseball-life/images/heroine7.png",
+      "target": "images/heroine7_wedding.png",
+      "prompt": "Use case: identity-preserve. Create ONE 결혼식 relationship-stage variant of the attached game character 한지우. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: black blunt-bang bob, dark eyes, calm upright head, quiet meticulous demeanor. Change outfit, prop, expression and modest hand pose as follows: simple ivory short-sleeve A-line bridal gown, small white floral headband above UNCHANGED black bangs, petite blue-white bouquet, serene smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine7_wife",
+      "heroine": "heroine7",
+      "name": "한지우",
+      "stage": "배우자",
+      "ref": "C:/1/baseball-life/images/heroine7.png",
+      "target": "images/heroine7_wife.png",
+      "prompt": "Use case: identity-preserve. Create ONE 배우자 relationship-stage variant of the attached game character 한지우. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: black blunt-bang bob, dark eyes, calm upright head, quiet meticulous demeanor. Change outfit, prop, expression and modest hand pose as follows: soft blue shirt and navy relaxed trousers, wristwatch, holding a mug and a small household notebook, affectionate quiet smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine8_lover",
+      "heroine": "heroine8",
+      "name": "서미래",
+      "stage": "연인",
+      "ref": "C:/1/baseball-life/images/heroine8.png",
+      "target": "images/heroine8_lover.png",
+      "prompt": "Use case: identity-preserve. Create ONE 연인 relationship-stage variant of the attached game character 서미래. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: reddish auburn high round bun, slicked-back front with exposed forehead, sharp amber eyes, confident angled brows. Change outfit, prop, expression and modest hand pose as follows: burgundy zip hoodie over cream T-shirt and jeans, red tie on high bun, holding two baseball tickets, playful embarrassed smirk. Wholesome fully clothed everyday dating portrait, appropriate to the reference character's age. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine8_wedding",
+      "heroine": "heroine8",
+      "name": "서미래",
+      "stage": "결혼식",
+      "ref": "C:/1/baseball-life/images/heroine8.png",
+      "target": "images/heroine8_wedding.png",
+      "prompt": "Use case: identity-preserve. Create ONE 결혼식 relationship-stage variant of the attached game character 서미래. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: reddish auburn high round bun, slicked-back front with exposed forehead, sharp amber eyes, confident angled brows. Change outfit, prop, expression and modest hand pose as follows: ivory bridal gown with simple square neckline and short sleeves, burgundy ribbon on small rose bouquet, tiny flowers around existing high bun, proud happy smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine8_wife",
+      "heroine": "heroine8",
+      "name": "서미래",
+      "stage": "배우자",
+      "ref": "C:/1/baseball-life/images/heroine8.png",
+      "target": "images/heroine8_wife.png",
+      "prompt": "Use case: identity-preserve. Create ONE 배우자 relationship-stage variant of the attached game character 서미래. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: reddish auburn high round bun, slicked-back front with exposed forehead, sharp amber eyes, confident angled brows. Change outfit, prop, expression and modest hand pose as follows: burgundy casual cardigan and cream trousers, holding a baseball and score notebook at waist, competitive affectionate grin. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine9_lover",
+      "heroine": "heroine9",
+      "name": "윤채아",
+      "stage": "연인",
+      "ref": "C:/1/baseball-life/images/heroine9.png",
+      "target": "images/heroine9_lover.png",
+      "prompt": "Use case: identity-preserve. Create ONE 연인 relationship-stage variant of the attached game character 윤채아. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: long deep indigo hair, rounded full fringe, ROUND thin glasses, cool blue-gray eyes, reserved expression. Change outfit, prop, expression and modest hand pose as follows: pale lavender cardigan and navy midi skirt, round glasses, closed book hugged near waist, gentle shy smile. Wholesome fully clothed everyday dating portrait, appropriate to the reference character's age. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine9_wedding",
+      "heroine": "heroine9",
+      "name": "윤채아",
+      "stage": "결혼식",
+      "ref": "C:/1/baseball-life/images/heroine9.png",
+      "target": "images/heroine9_wedding.png",
+      "prompt": "Use case: identity-preserve. Create ONE 결혼식 relationship-stage variant of the attached game character 윤채아. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: long deep indigo hair, rounded full fringe, ROUND thin glasses, cool blue-gray eyes, reserved expression. Change outfit, prop, expression and modest hand pose as follows: ivory long-sleeve bridal gown with delicate modest lace collar, round glasses retained, veil behind unchanged long indigo hair and rounded fringe, pale lavender flower bouquet, small sincere smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine9_wife",
+      "heroine": "heroine9",
+      "name": "윤채아",
+      "stage": "배우자",
+      "ref": "C:/1/baseball-life/images/heroine9.png",
+      "target": "images/heroine9_wife.png",
+      "prompt": "Use case: identity-preserve. Create ONE 배우자 relationship-stage variant of the attached game character 윤채아. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: long deep indigo hair, rounded full fringe, ROUND thin glasses, cool blue-gray eyes, reserved expression. Change outfit, prop, expression and modest hand pose as follows: cream cable sweater and denim trousers, round glasses, holding an open statistics notebook and pen, relaxed thoughtful smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine10_lover",
+      "heroine": "heroine10",
+      "name": "강민서",
+      "stage": "연인",
+      "ref": "C:/1/baseball-life/images/heroine10.png",
+      "target": "images/heroine10_lover.png",
+      "prompt": "Use case: identity-preserve. Create ONE 연인 relationship-stage variant of the attached game character 강민서. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: chestnut low SIDE bun, thin see-through wispy bangs, warm brown eyes and cheerful caring face. Change outfit, prop, expression and modest hand pose as follows: sage green cardigan over cream blouse and jeans, small crossbody bag, offering a wrapped snack, bright gentle smile. Wholesome fully clothed everyday dating portrait, appropriate to the reference character's age. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine10_wedding",
+      "heroine": "heroine10",
+      "name": "강민서",
+      "stage": "결혼식",
+      "ref": "C:/1/baseball-life/images/heroine10.png",
+      "target": "images/heroine10_wedding.png",
+      "prompt": "Use case: identity-preserve. Create ONE 결혼식 relationship-stage variant of the attached game character 강민서. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: chestnut low SIDE bun, thin see-through wispy bangs, warm brown eyes and cheerful caring face. Change outfit, prop, expression and modest hand pose as follows: ivory short-sleeve bridal gown, tiny daisy pins near unchanged low side bun and wispy fringe, small daisy bouquet, warm happy smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine10_wife",
+      "heroine": "heroine10",
+      "name": "강민서",
+      "stage": "배우자",
+      "ref": "C:/1/baseball-life/images/heroine10.png",
+      "target": "images/heroine10_wife.png",
+      "prompt": "Use case: identity-preserve. Create ONE 배우자 relationship-stage variant of the attached game character 강민서. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: chestnut low SIDE bun, thin see-through wispy bangs, warm brown eyes and cheerful caring face. Change outfit, prop, expression and modest hand pose as follows: sage apron over cream casual sweater and jeans, offering a warm mug with both hands, easy comforting smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine11_lover",
+      "heroine": "heroine11",
+      "name": "백소율",
+      "stage": "연인",
+      "ref": "C:/1/baseball-life/images/heroine11.png",
+      "target": "images/heroine11_lover.png",
+      "prompt": "Use case: identity-preserve. Create ONE 연인 relationship-stage variant of the attached game character 백소율. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: plum-brown short wavy bob, SHORT jagged baby bangs, orange side hairclip, large amber eyes, spirited brows. Change outfit, prop, expression and modest hand pose as follows: orange knit cardigan over white T-shirt and denim knee-length skirt with sneakers, holding a small baseball keyring, blushing stubborn half-smile, no pointing at viewer. Wholesome fully clothed everyday dating portrait, appropriate to the reference character's age. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine11_wedding",
+      "heroine": "heroine11",
+      "name": "백소율",
+      "stage": "결혼식",
+      "ref": "C:/1/baseball-life/images/heroine11.png",
+      "target": "images/heroine11_wedding.png",
+      "prompt": "Use case: identity-preserve. Create ONE 결혼식 relationship-stage variant of the attached game character 백소율. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: plum-brown short wavy bob, SHORT jagged baby bangs, orange side hairclip, large amber eyes, spirited brows. Change outfit, prop, expression and modest hand pose as follows: adult future version age25 of this same character, ivory bridal gown with modest high neckline and puff sleeves, orange flower hairpin, keep short jagged baby bangs and plum bob, peach bouquet, bashful broad smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine11_wife",
+      "heroine": "heroine11",
+      "name": "백소율",
+      "stage": "배우자",
+      "ref": "C:/1/baseball-life/images/heroine11.png",
+      "target": "images/heroine11_wife.png",
+      "prompt": "Use case: identity-preserve. Create ONE 배우자 relationship-stage variant of the attached game character 백소율. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: plum-brown short wavy bob, SHORT jagged baby bangs, orange side hairclip, large amber eyes, spirited brows. Change outfit, prop, expression and modest hand pose as follows: adult age28, apricot sweatshirt and navy comfortable trousers, orange hairclip and unchanged short bangs, holding a folded baseball jersey, teasing warm smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine12_lover",
+      "heroine": "heroine12",
+      "name": "오하린",
+      "stage": "연인",
+      "ref": "C:/1/baseball-life/images/heroine12.png",
+      "target": "images/heroine12_lover.png",
+      "prompt": "Use case: identity-preserve. Create ONE 연인 relationship-stage variant of the attached game character 오하린. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: honey-caramel CHIN-LENGTH BOB, visible SIDE BRAID, white-gold ribbon clip, amber eyes, confident bright smile. Change outfit, prop, expression and modest hand pose as follows: white cropped-to-waist cardigan over modest golden yellow knee-length dress and flats, small shoulder bag, one hand lightly waves, warm off-duty smile. Wholesome fully clothed everyday dating portrait, appropriate to the reference character's age. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine12_wedding",
+      "heroine": "heroine12",
+      "name": "오하린",
+      "stage": "결혼식",
+      "ref": "C:/1/baseball-life/images/heroine12.png",
+      "target": "images/heroine12_wedding.png",
+      "prompt": "Use case: identity-preserve. Create ONE 결혼식 relationship-stage variant of the attached game character 오하린. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: honey-caramel CHIN-LENGTH BOB, visible SIDE BRAID, white-gold ribbon clip, amber eyes, confident bright smile. Change outfit, prop, expression and modest hand pose as follows: ivory bridal gown with short lace sleeves and gold waist ribbon, preserve chin-length bob and side braid with small white floral clip, ivory rose bouquet, beaming smile with both eyes open. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine12_wife",
+      "heroine": "heroine12",
+      "name": "오하린",
+      "stage": "배우자",
+      "ref": "C:/1/baseball-life/images/heroine12.png",
+      "target": "images/heroine12_wife.png",
+      "prompt": "Use case: identity-preserve. Create ONE 배우자 relationship-stage variant of the attached game character 오하린. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: honey-caramel CHIN-LENGTH BOB, visible SIDE BRAID, white-gold ribbon clip, amber eyes, confident bright smile. Change outfit, prop, expression and modest hand pose as follows: white and ochre casual knit top with navy trousers, short braided bob and ribbon retained, holding a water bottle and small towel, relaxed supportive smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine13_lover",
+      "heroine": "heroine13",
+      "name": "정예린",
+      "stage": "연인",
+      "ref": "C:/1/baseball-life/images/heroine13.png",
+      "target": "images/heroine13_lover.png",
+      "prompt": "Use case: identity-preserve. Create ONE 연인 relationship-stage variant of the attached game character 정예린. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: ash-brown smooth side-parted bob exposing part of forehead, muted purple-gray eyes, composed gentle expression. Change outfit, prop, expression and modest hand pose as follows: lavender cardigan over white blouse and charcoal midi skirt, small beige purse, holding two takeaway coffees, soft slightly shy smile. Wholesome fully clothed everyday dating portrait, appropriate to the reference character's age. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine13_wedding",
+      "heroine": "heroine13",
+      "name": "정예린",
+      "stage": "결혼식",
+      "ref": "C:/1/baseball-life/images/heroine13.png",
+      "target": "images/heroine13_wedding.png",
+      "prompt": "Use case: identity-preserve. Create ONE 결혼식 relationship-stage variant of the attached game character 정예린. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: ash-brown smooth side-parted bob exposing part of forehead, muted purple-gray eyes, composed gentle expression. Change outfit, prop, expression and modest hand pose as follows: elegant ivory bridal gown with clean boat neckline and elbow-length sleeves, slim pearl pin at side of unchanged ash-brown bob, lavender-white bouquet, tender composed smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine13_wife",
+      "heroine": "heroine13",
+      "name": "정예린",
+      "stage": "배우자",
+      "ref": "C:/1/baseball-life/images/heroine13.png",
+      "target": "images/heroine13_wife.png",
+      "prompt": "Use case: identity-preserve. Create ONE 배우자 relationship-stage variant of the attached game character 정예린. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: ash-brown smooth side-parted bob exposing part of forehead, muted purple-gray eyes, composed gentle expression. Change outfit, prop, expression and modest hand pose as follows: lavender knit sweater and charcoal relaxed trousers, same side-parted bob, closed planner tucked under one arm and ceramic mug in other hand, content natural smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine14_lover",
+      "heroine": "heroine14",
+      "name": "에밀리 워커",
+      "stage": "연인",
+      "ref": "C:/1/baseball-life/images/heroine14.png",
+      "target": "images/heroine14_lover.png",
+      "prompt": "Use case: identity-preserve. Create ONE 연인 relationship-stage variant of the attached game character 에밀리 워커. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: strawberry-blonde ponytail, GREEN eyes, freckles, playful confident face. KEEP ORIGINAL BANGS DOWN over forehead; never slick back front hair. Change outfit, prop, expression and modest hand pose as follows: navy baseball cap worn backward with SAME DOWNWARD BANGS, forest-green casual jacket over white tee and jeans, glove removed, holds two stadium drink cups, playful warm grin. Wholesome fully clothed everyday dating portrait, appropriate to the reference character's age. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine14_wedding",
+      "heroine": "heroine14",
+      "name": "에밀리 워커",
+      "stage": "결혼식",
+      "ref": "C:/1/baseball-life/images/heroine14.png",
+      "target": "images/heroine14_wedding.png",
+      "prompt": "Use case: identity-preserve. Create ONE 결혼식 relationship-stage variant of the attached game character 에밀리 워커. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: strawberry-blonde ponytail, GREEN eyes, freckles, playful confident face. KEEP ORIGINAL BANGS DOWN over forehead; never slick back front hair. Change outfit, prop, expression and modest hand pose as follows: adult age26, ivory bridal gown with modest square neckline and cap sleeves, no baseball cap, keep strawberry-blonde ponytail and same DOWNWARD SWEEPING BANGS framing face, veil BEHIND ponytail, peach-white bouquet, confident delighted smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine14_wife",
+      "heroine": "heroine14",
+      "name": "에밀리 워커",
+      "stage": "배우자",
+      "ref": "C:/1/baseball-life/images/heroine14.png",
+      "target": "images/heroine14_wife.png",
+      "prompt": "Use case: identity-preserve. Create ONE 배우자 relationship-stage variant of the attached game character 에밀리 워커. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: strawberry-blonde ponytail, GREEN eyes, freckles, playful confident face. KEEP ORIGINAL BANGS DOWN over forehead; never slick back front hair. Change outfit, prop, expression and modest hand pose as follows: adult age28, navy open cardigan over cream tee and denim trousers, strawberry-blonde ponytail with same DOWNWARD BANGS, no cap, holding a baseball glove at waist and waving, affectionate playful grin. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine15_lover",
+      "heroine": "heroine15",
+      "name": "제이든 박",
+      "stage": "연인",
+      "ref": "C:/1/baseball-life/images/heroine15.png",
+      "target": "images/heroine15_lover.png",
+      "prompt": "Use case: identity-preserve. Create ONE 연인 relationship-stage variant of the attached game character 제이든 박. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: espresso-black short wavy bob with COPPER curl streak, asymmetric S-shaped curly forelocks, SQUARE clear glasses, cheerful crescent eyes. Change outfit, prop, expression and modest hand pose as follows: mint cardigan over cream top and jeans, square glasses, map phone tucked in cream tote, holding a small bakery paper bag, joyful open smile. Wholesome fully clothed everyday dating portrait, appropriate to the reference character's age. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine15_wedding",
+      "heroine": "heroine15",
+      "name": "제이든 박",
+      "stage": "결혼식",
+      "ref": "C:/1/baseball-life/images/heroine15.png",
+      "target": "images/heroine15_wedding.png",
+      "prompt": "Use case: identity-preserve. Create ONE 결혼식 relationship-stage variant of the attached game character 제이든 박. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: espresso-black short wavy bob with COPPER curl streak, asymmetric S-shaped curly forelocks, SQUARE clear glasses, cheerful crescent eyes. Change outfit, prop, expression and modest hand pose as follows: ivory bridal gown with modest rounded neckline and short sleeves, square glasses retained, tiny leaf hairclip behind unchanged black-and-copper S curls, green-white bouquet, joyful crescent-eye smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    },
+    {
+      "id": "heroine15_wife",
+      "heroine": "heroine15",
+      "name": "제이든 박",
+      "stage": "배우자",
+      "ref": "C:/1/baseball-life/images/heroine15.png",
+      "target": "images/heroine15_wife.png",
+      "prompt": "Use case: identity-preserve. Create ONE 배우자 relationship-stage variant of the attached game character 제이든 박. Input is the approved identity and pixel-style reference. STRICT STYLE LOCK: exactly preserve the reference's cute fine-pixel chibi RPG style, big head approximately 38% of full character height, short body and limbs, stepped pixel outlines and shading, same face shape and eyes. Do not lengthen proportions or change to realistic/smooth painted art. Identity to preserve: espresso-black short wavy bob with COPPER curl streak, asymmetric S-shaped curly forelocks, SQUARE clear glasses, cheerful crescent eyes. Change outfit, prop, expression and modest hand pose as follows: mint overshirt over cream tee and jeans, unchanged curly bangs copper streak and square glasses, tote with local vegetables and phone at waist, friendly relaxed smile. This is her future ADULT self age25 or older, drawn in exactly the same chibi proportions, no school uniform. Preserve the accepted front bangs, hair color, eyes and distinctive accessories unless explicitly replaced above. Single full-body character centered, all hair and shoes or gown hem visible with margins. 1024x1536 portrait PNG with TRUE TRANSPARENT alpha background. No other characters, no scene, no floor shadow, no glow or halo, no text or logos."
+    }
+  ]
+}
