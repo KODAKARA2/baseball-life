@@ -61,6 +61,20 @@
     var x = v * E.looksMult(kind), n = Math.floor(x);
     return n + (Math.random() < x - n ? 1 : 0);
   };
+  E.passiveAffectionGain = function () {
+    var looks = cfg().외모, level = S.외모 || 5;
+    var kind = level >= looks.미남 ? "미남" : level <= looks.추남 ? "추남" : "평범";
+    return cfg().연애.매카드외모상승[kind];
+  };
+  E.growHeroineAffection = function () {
+    var gain = E.passiveAffectionGain(), seen = {};
+    if (!gain) return;
+    [S.히로인, S.히로인2].concat(S.알아가는인연 || []).forEach(function (h) {
+      if (!h || seen[h.아이디]) return;
+      seen[h.아이디] = true;
+      h.애정도 = clamp(h.애정도 + gain, 0, 100);
+    });
+  };
 
   // ---------------- 카드 목록 만들기 ----------------
   var CARDS = [];

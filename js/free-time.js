@@ -104,6 +104,7 @@
       if (slump) r.알림.push("슬럼프 회복 · " + slump + " → " + s.슬럼프 + "턴");
     } else { s.자유시간 = { 화면: "메뉴" }; done = false; r.결과 = "상황이 달라졌다. 가능한 활동을 다시 골라 보자."; }
     if (done) {
+      E.growHeroineAffection();
       s.총턴++; s.다음자유나이 = nextAge(); delete s.자유시간;
       r.알림.push("다음 자유행동: " + s.다음자유나이 + "세 무렵");
     }
