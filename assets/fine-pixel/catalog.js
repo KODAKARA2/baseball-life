@@ -391,65 +391,254 @@ const CHARACTERS = [
   },
   {
     "id": "heroine7",
-    "label": "한지우 · 대표",
+    "label": "한지우 · 첫 만남",
     "group": "히로인",
     "new": true,
     "target": "images/heroine7.png"
   },
   {
+    "id": "heroine7_lover",
+    "label": "한지우 · 연인",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine7_lover.png"
+  },
+  {
+    "id": "heroine7_wedding",
+    "label": "한지우 · 결혼식",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine7_wedding.png"
+  },
+  {
+    "id": "heroine7_wife",
+    "label": "한지우 · 배우자",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine7_wife.png"
+  },
+  {
     "id": "heroine8",
-    "label": "서미래 · 대표",
+    "label": "서미래 · 첫 만남",
     "group": "히로인",
     "new": true,
     "target": "images/heroine8.png"
   },
   {
+    "id": "heroine8_lover",
+    "label": "서미래 · 연인",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine8_lover.png"
+  },
+  {
+    "id": "heroine8_wedding",
+    "label": "서미래 · 결혼식",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine8_wedding.png"
+  },
+  {
+    "id": "heroine8_wife",
+    "label": "서미래 · 배우자",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine8_wife.png"
+  },
+  {
     "id": "heroine9",
-    "label": "윤채아 · 대표",
+    "label": "윤채아 · 첫 만남",
     "group": "히로인",
     "new": true,
     "target": "images/heroine9.png"
   },
   {
+    "id": "heroine9_lover",
+    "label": "윤채아 · 연인",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine9_lover.png"
+  },
+  {
+    "id": "heroine9_wedding",
+    "label": "윤채아 · 결혼식",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine9_wedding.png"
+  },
+  {
+    "id": "heroine9_wife",
+    "label": "윤채아 · 배우자",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine9_wife.png"
+  },
+  {
     "id": "heroine10",
-    "label": "강민서 · 대표",
+    "label": "강민서 · 첫 만남",
     "group": "히로인",
     "new": true,
     "target": "images/heroine10.png"
   },
   {
+    "id": "heroine10_lover",
+    "label": "강민서 · 연인",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine10_lover.png"
+  },
+  {
+    "id": "heroine10_wedding",
+    "label": "강민서 · 결혼식",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine10_wedding.png"
+  },
+  {
+    "id": "heroine10_wife",
+    "label": "강민서 · 배우자",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine10_wife.png"
+  },
+  {
     "id": "heroine11",
-    "label": "백소율 · 대표",
+    "label": "백소율 · 첫 만남",
     "group": "히로인",
     "new": true,
     "target": "images/heroine11.png"
   },
   {
+    "id": "heroine11_lover",
+    "label": "백소율 · 연인",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine11_lover.png"
+  },
+  {
+    "id": "heroine11_wedding",
+    "label": "백소율 · 결혼식",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine11_wedding.png"
+  },
+  {
+    "id": "heroine11_wife",
+    "label": "백소율 · 배우자",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine11_wife.png"
+  },
+  {
     "id": "heroine12",
-    "label": "오하린 · 대표",
+    "label": "오하린 · 첫 만남",
     "group": "히로인",
     "new": true,
     "target": "images/heroine12.png"
   },
   {
+    "id": "heroine12_lover",
+    "label": "오하린 · 연인",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine12_lover.png"
+  },
+  {
+    "id": "heroine12_wedding",
+    "label": "오하린 · 결혼식",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine12_wedding.png"
+  },
+  {
+    "id": "heroine12_wife",
+    "label": "오하린 · 배우자",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine12_wife.png"
+  },
+  {
     "id": "heroine13",
-    "label": "정예린 · 대표",
+    "label": "정예린 · 첫 만남",
     "group": "히로인",
     "new": true,
     "target": "images/heroine13.png"
   },
   {
+    "id": "heroine13_lover",
+    "label": "정예린 · 연인",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine13_lover.png"
+  },
+  {
+    "id": "heroine13_wedding",
+    "label": "정예린 · 결혼식",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine13_wedding.png"
+  },
+  {
+    "id": "heroine13_wife",
+    "label": "정예린 · 배우자",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine13_wife.png"
+  },
+  {
     "id": "heroine14",
-    "label": "에밀리 워커 · 대표",
+    "label": "에밀리 워커 · 첫 만남",
     "group": "히로인",
     "new": true,
     "target": "images/heroine14.png"
   },
   {
+    "id": "heroine14_lover",
+    "label": "에밀리 워커 · 연인",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine14_lover.png"
+  },
+  {
+    "id": "heroine14_wedding",
+    "label": "에밀리 워커 · 결혼식",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine14_wedding.png"
+  },
+  {
+    "id": "heroine14_wife",
+    "label": "에밀리 워커 · 배우자",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine14_wife.png"
+  },
+  {
     "id": "heroine15",
-    "label": "제이든 박 · 대표",
+    "label": "제이든 박 · 첫 만남",
     "group": "히로인",
     "new": true,
     "target": "images/heroine15.png"
+  },
+  {
+    "id": "heroine15_lover",
+    "label": "제이든 박 · 연인",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine15_lover.png"
+  },
+  {
+    "id": "heroine15_wedding",
+    "label": "제이든 박 · 결혼식",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine15_wedding.png"
+  },
+  {
+    "id": "heroine15_wife",
+    "label": "제이든 박 · 배우자",
+    "group": "히로인",
+    "new": true,
+    "target": "images/heroine15_wife.png"
   }
 ];

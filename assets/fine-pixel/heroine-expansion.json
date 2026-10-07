@@ -94,6 +94,11 @@
           "date": "2026-10-07",
           "description": "앞머리 구분: 모자 아래 뒤로 넘긴 앞머리",
           "prompt": "Edit ONLY front bangs / fringe hairstyle of this exact attached character. The user says too many characters have identical V-shaped pointed bangs. Make the specified bang silhouette clearly different at thumbnail size. STYLE AND IDENTITY LOCK: preserve EXACTLY the attached cute 2.5-head-tall fine-pixel RPG illustration, head/body scale, pixel texture, shading, face shape, eyes, expression, pose, outfit, accessories, props, hair color and back hairstyle. Never lengthen body, never change to realistic or smooth art. Keep strawberry-blonde high ponytail, backwards baseball cap and all props. REMOVE every long pointed fringe lock below the cap. Tuck the front hair BACK UNDER THE CAP, exposing full forehead and both eyebrows with natural clean rounded hairline and only two very short fine baby-hair marks at temples. No side-swept bangs, no center lock. Backwards cap with front adjustable strap remains exactly in place, ponytail stays. Full body, same 1024x1536 canvas, true transparent alpha background. Fully clothed nonsexual design. No text, no new objects, no scene. Hair edits only."
+        },
+        {
+          "date": "2026-10-07",
+          "description": "사용자 선택으로 앞머리를 내린 버전 복원. 이후 관계 차분의 기준 그림.",
+          "restoredFrom": "134efbb"
         }
       ]
     },

@@ -22,13 +22,29 @@ fs.mkdirSync(out,{recursive:true});
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
       await page.screenshot({path:path.join(out,'heroine'+n+'-meet.png'),fullPage:true,animations:'disabled'});
     }
+    // 관계 카드와 결혼 결과가 첫 만남 그림으로 되돌아가지 않는지 확인합니다.
+    for(let n=7;n<=15;n++){
+      for(const [rel,suffix] of [['연인','lover'],['배우자','wife']]){
+        await page.evaluate(({id,rel})=>{
+          E.newGame('강민준','유격수','수비',{외모:5});
+          const s=E.state();s.시기=E.heroDef(id).만나는시기[0];s.나이=s.진입나이=30;
+          E._internal.attachHeroine(id);s.히로인.관계=rel;
+          s.현재카드=E._internal.CARDS().find(c=>c.히로인===id&&[].concat(c.조건?.관계).includes(rel));
+          s.단계='카드';s.결과=null;E.refreshOptions();U.showGame();
+        },{id:'heroine'+n,rel});
+        await loadedImages();assert.ok(await page.locator('#app img[src="images/heroine'+n+'_'+suffix+'.png"]').count());
+      }
+      await page.evaluate(id=>{const h=E.heroDef(id);document.querySelector('#table').innerHTML=U.resultHTML({효과:{},결과:'함께할 내일을 약속했다.',결혼그림:{키:[h.그림.결혼,h.그림.만남],이름:h.이름}});},'heroine'+n);
+      await loadedImages();assert.ok(await page.locator('#table img[src="images/heroine'+n+'_wedding.png"]').count());
+      if(n===14)await page.screenshot({path:path.join(out,'emily-wedding-result.png'),fullPage:true,animations:'disabled'});
+    }
     await page.setViewportSize({width:1120,height:900});
     await page.goto(pathToFileURL(path.join(root,'assets/fine-pixel/index.html')).href+'?group='+encodeURIComponent('신규'));
     await page.locator('#gallery img').evaluateAll(imgs=>imgs.forEach(i=>i.loading='eager'));
     await page.waitForFunction(()=>[...document.querySelectorAll('#gallery img')].every(i=>i.complete&&i.naturalWidth===1024));
-    assert.equal(await page.locator('#gallery figure').count(),9);
+    assert.equal(await page.locator('#gallery figure').count(),36);
     await page.screenshot({path:path.join(out,'new-heroines-gallery.png'),fullPage:true});
     await page.setViewportSize({width:320,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-    assert.deepEqual(errors,[]);console.log('PASS: 9명 첫 만남 그림 로딩·선택·재시작 저장 / 3시기 후보 / 320·390·1280px / 갤러리 9장');
+    assert.deepEqual(errors,[]);console.log('PASS: 9명 첫 만남 그림 로딩·선택·재시작 저장 / 3시기 후보 / 320·390·1280px / 갤러리 36장');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
