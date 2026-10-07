@@ -109,6 +109,7 @@
     if (lim != null && out.애정도 > lim && s.히로인) { s.히로인.애정도 -= out.애정도 - lim; out.애정도 = lim; }   // 외모 보너스가 있어도 한계까지만
     if (fx.만남확률) { s.만남버프 = { 값: fx.만남확률 / 100, 남은: e.item.지속 || (cfg().상점 || {}).버프지속 || 10 }; out.만남확률 = fx.만남확률; }
     if (e.item.기록) s.순간.push({ 나이: s.나이, 글: E.tpl(e.item.기록) });
+    if (s.단계 === "카드" && s.현재카드 && s.현재카드.자유행동 && s.자유시간) s.현재카드 = E.freeTimeCard();
     E.refreshOptions(); E.save();
     return { 결과: E.tpl(e.item.결과 || ""), 효과: out };
   };

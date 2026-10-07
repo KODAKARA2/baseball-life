@@ -116,4 +116,33 @@ for(let level=1;level<=10;level++){
   const s=setup();I.attachHeroine('heroine1');s.히로인.관계='연인';s.외모=1;const bond=JSON.stringify(s.히로인);show('찾기');choose('탐색');assert.equal(JSON.stringify(s.히로인),bond);
   const empty=setup('중학교');show('찾기');empty.현재카드.선택지=[{글:'옛 탐색',자유선택:'탐색'}];E.refreshOptions();choose('탐색');assert.equal(empty.총턴,100);assert.ok(empty.자유시간);
 }
-console.log('PASS: 자유행동·시기·관계·회복·저장 / 외모 1~10 확률 경계 / 무작위 후보 전체 / 실패 소모·중복 방지 / 옛 지정 만남 호환');
+// 상점 보너스는 외모 1에도 더해지고, 실제 구매·저장·만료·자유행동 소모를 공유합니다.
+const cosmetics='올리브영 남자화장품 세트',styling='퍼스널 스타일링';
+for(const [stage,item] of [['고등학교',cosmetics],['대학',cosmetics],['프로',styling],['군복무',styling],['메이저리그',styling]]){
+ const s=setup(stage);s.외모=1;s.돈=1000;I.attachHeroine('heroine1');show('찾기');
+ assert.equal(E.freeTimeMeetingChance(),0);const turn=s.총턴,money=s.돈,price=stage==='고등학교'||stage==='대학'?4:100;
+ assert.ok(E.buy(item));assert.equal(s.돈,money-price);assert.equal(s.총턴,turn);assert.equal(E.freeTimeMeetingChance(),0.3);assert.equal(s.만남버프.남은,10);
+ assert.equal(E.buy(item),null);assert.equal(s.돈,money-price); // 재구매 대기 시간
+ if(E.freeTimeCandidates().length)assert.match(s.현재카드.선택지[0].글,/30%/);
+ E.save();E.load();assert.equal(E.freeTimeMeetingChance(),0.3);assert.equal(E.state().만남버프.남은,10);
+}
+for(const [value,success] of [[0.299999,true],[0.3,false]]){
+ const s=setup();s.외모=1;s.돈=4;show('찾기');E.buy(cosmetics);s.만남버프.남은=1;
+ rolls=[value,0];choose('탐색');rolls=[];assert.equal(!!s.히로인,success);assert.equal(s.만남버프.남은,0);assert.equal(E.freeTimeMeetingChance(),0);
+ E.save();E.load();assert.equal(E.state().만남버프.남은,0);assert.equal(E.freeTimeMeetingChance(),0);
+}
+{
+ const s=setup();s.돈=4;show('찾기');E.buy(cosmetics);assert.equal(E.freeTimeMeetingChance(),0.8);
+ for(const look of [8,9,10]){s.외모=look;assert.equal(E.freeTimeMeetingChance(),1);}
+ choose('이동');E.next();assert.equal(s.만남버프.남은,10); // 돌아가기/다시 그리기는 소모 없음
+ show('메뉴');choose('휴식');assert.equal(s.만남버프.남은,9);
+ E.choose(0);assert.equal(s.만남버프.남은,9);
+ for(let n=0;n<9;n++)I.flowHelpers.tick({},{});assert.equal(s.만남버프.남은,0);
+ s.외모=1;assert.equal(E.freeTimeMeetingChance(),0);
+}
+{
+ const s=setup();s.돈=3;assert.equal(E.buy(cosmetics),null);assert.equal(s.만남버프,undefined);assert.equal(s.돈,3);
+ s.돈=1000;assert.equal(E.buy(styling),null);s.시기='프로';assert.equal(E.buy(cosmetics),null);
+ s.돈=99;assert.equal(E.buy(styling),null);assert.equal(s.만남버프,undefined);
+}
+console.log('PASS: 자유행동·관계·저장 / 외모 확률 경계 / 무작위 추첨 / 상점 구매·시기·돈·대기 / 보너스 가산·상한·만료·소모 / 중복·저장');

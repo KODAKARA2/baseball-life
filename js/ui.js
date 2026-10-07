@@ -207,7 +207,7 @@
       var v = eff[k];
       if (k === "돈") return '<span class="fx money">💰 ' + (v > 0 ? "+" : "") + E.money(v) + "</span>";
       if (k === "부상감소" || k === "슬럼프감소") return '<span class="fx up">' + k.replace("감소", "") + " 기간 -" + v + "%</span>";
-      if (k === "만남확률") return '<span class="fx up">💗 만남 확률 +' + v + "%</span>";
+      if (k === "만남확률") return '<span class="fx up">💗 만남 확률 보너스 +' + v + "%p</span>";
       if (k === "부상" || k === "슬럼프") return '<span class="fx bad">' + k + (v > 0 ? " " + v + "장" : " 회복") + "</span>";
       var label = k === "애정도" && E.state().히로인 && E.state().히로인.관계 === "만남" ? "호감" : k;
       return '<span class="fx ' + (v > 0 ? "up" : "down") + '">' + label + " " + (v > 0 ? "+" : "") + v + "</span>";

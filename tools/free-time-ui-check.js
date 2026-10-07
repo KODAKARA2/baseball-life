@@ -52,6 +52,19 @@ const out = process.argv[2] || fs.mkdtempSync(path.join(os.tmpdir(),'baseball-fr
     assert.equal(await page.evaluate(()=>E.acquaintances().length),1);assert.equal(await page.evaluate(()=>E.state().자유시간),undefined);
     assert.match(await page.locator('.back').innerText(),/만나지 못했다/);
     await page.screenshot({path:path.join(out,'search-failure.png'),fullPage:true});
+    for(const [stage,item,price] of [['고등학교','올리브영 남자화장품 세트',4],['프로','퍼스널 스타일링',100]]){
+      await start('만남');await page.evaluate(stage=>{const s=E.state();s.시기=stage;s.나이=s.진입나이=stage==='고등학교'?17:25;s.외모=1;s.돈=1000;},stage);
+      await button('데이트').click();await button('새로운 인연').click();assert.match(await page.locator('#actions').innerText(),/확률 0%/);
+      await page.evaluate(()=>U.openShop());await page.locator('button[data-n="'+item+'"]').click();
+      assert.equal(await page.evaluate(()=>E.state().돈),1000-price);
+      assert.match(await page.locator('#actions').innerText(),/확률 30%/);
+      await page.getByRole('button',{name:'상점 나가기',exact:true}).click();
+      await page.reload();await page.evaluate(()=>{Math.random=()=>0;E.load();U.showGame();});
+      assert.match(await page.locator('#actions').innerText(),/확률 30%/);
+      await page.setViewportSize({width:390,height:844});await page.screenshot({path:path.join(out,stage==='프로'?'styling-bonus.png':'cosmetics-bonus.png'),fullPage:true});
+      await button('새 인연을 찾아본다').click();await page.waitForTimeout(800);
+      assert.equal(await page.evaluate(()=>E.acquaintances().length),2);assert.equal(await page.evaluate(()=>E.state().만남버프.남은),9);
+    }
     for(const action of ['연습','취미활동','휴식']) {
       await start(); await page.evaluate(()=>{E.state().부상=3;E.state().슬럼프=2;});
       await button(action).click(); await page.waitForTimeout(800);

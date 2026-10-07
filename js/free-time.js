@@ -24,8 +24,9 @@
     });
   };
   E.freeTimeMeetingChance = function () {
-    var level = I.clamp(Math.floor(E.state().외모 || 5), 1, 10);
-    return rules().새인연확률[level - 1];
+    var s = E.state(), level = I.clamp(Math.floor(s.외모 || 5), 1, 10);
+    var bonus = s.만남버프 && s.만남버프.남은 > 0 ? s.만남버프.값 : 0;
+    return I.clamp(rules().새인연확률[level - 1] + bonus, 0, 1);
   };
   function option(text, action, extra) { return Object.assign({ 글: text, 자유선택: action }, extra || {}); }
   function back(screen) { return option("← 돌아가기", "이동", { 화면: screen }); }
@@ -105,6 +106,7 @@
     } else { s.자유시간 = { 화면: "메뉴" }; done = false; r.결과 = "상황이 달라졌다. 가능한 활동을 다시 골라 보자."; }
     if (done) {
       E.growHeroineAffection();
+      if (s.만남버프 && s.만남버프.남은 > 0) s.만남버프.남은--;
       s.총턴++; s.다음자유나이 = nextAge(); delete s.자유시간;
       r.알림.push("다음 자유행동: " + s.다음자유나이 + "세 무렵");
     }
