@@ -59,9 +59,25 @@ for (const rel of ['만남','연인','배우자']) {
   const s = setup(); I.attachHeroine('heroine1'); s.히로인.관계=rel; s.히로인.애정도=30; const before=calendar(s); show('데이트');
   choose('데이트'); assert.ok(s.히로인.애정도>30); assert.equal(s.히로인.관계,rel); assert.equal(s.히로인.교류횟수,rel==='만남'?1:0); assert.equal(calendar(s),before);
   const happy=s.행복도, mental=s.능력치.멘탈; show('만남','heroine5'); E.choose(1); E.next(); assert.equal(s.히로인.아이디,'heroine1');
-  show('만남','heroine5'); choose('만남','heroine5'); assert.equal(s.히로인.관계,'만남'); assert.equal(s.히로인.아이디,'heroine5');
-  assert.equal(s.행복도,rel==='만남'?happy:Math.max(0,happy-20)); assert.equal(s.능력치.멘탈,rel==='만남'?mental:Math.max(0,mental-15));
-  assert.equal(s.지난히로인.length,1); assert.equal(s.히로인.교류횟수,0);
+  show('만남','heroine5'); choose('만남','heroine5'); assert.equal(s.히로인.관계,rel); assert.equal(s.히로인.아이디,rel==='만남'?'heroine5':'heroine1');
+  assert.equal(s.행복도,happy); assert.equal(s.능력치.멘탈,mental); assert.equal(s.지난히로인.length,0); assert.ok(!s.히로인2);
+  assert.equal(E.acquaintances().find(h=>h.아이디==='heroine5').교류횟수,0);
+  show('데이트'); choose('데이트','heroine5'); assert.equal(E.acquaintances().find(h=>h.아이디==='heroine5').교류횟수,1);
+  if(rel!=='만남') assert.equal(s.히로인.아이디,'heroine1');
+}
+{
+  const s=setup(); I.attachHeroine('heroine1'); s.히로인.애정도=60;s.히로인.교류횟수=2;
+  I.attachHeroine('heroine4'); I.attachHeroine('heroine5');
+  assert.equal(E.acquaintances().length,3); assert.equal(s.지난히로인.length,0); assert.equal(E.check({양다리:true}),false);
+  show('데이트'); choose('데이트','heroine1'); assert.equal(s.히로인.아이디,'heroine1'); assert.equal(s.히로인.교류횟수,3);
+  s.총턴+=4; assert.equal(E.canConfess(),true);
+  E.save(); E.load(); assert.equal(E.acquaintances().length,3); assert.equal(E.state().히로인.교류횟수,3);
+  I.setRelation('연인'); assert.equal(E.acquaintances().length,2); assert.ok(!E.state().히로인2);
+  assert.equal(E.state().지난히로인.length,0);
+}
+{
+  const s=setup('메이저리그'); I.attachHeroine('heroine6'); I.attachHeroine('heroine3');
+  E.enterStage('프로'); assert.equal(E.acquaintances().some(h=>h.아이디==='heroine6'),false);
 }
 {
   const s=setup('프로'); assert.equal(E.freeTimeCandidates().length,0); s.일군=true; assert.equal(E.freeTimeCandidates()[0].아이디,'heroine2');

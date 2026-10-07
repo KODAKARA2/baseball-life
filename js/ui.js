@@ -171,6 +171,7 @@
       her = '<button class="mini heroine-mini ' + (animateHeroine ? "attach" : "") + '" onclick="U.openHeroine()" aria-label="인연과 애정도 보기">' +
         U.art(U.heroineKeys(h.아이디, rel), "💗", "<b>" + esc(h.이름) + "</b><small>" + esc(rel === "만남" ? "알아가는 중" : rel) + "</small>", "card-art") +
         '<div class="aff">' + (rel === "만남" ? "호감 " : "❤ ") + s.히로인.애정도 + bar(s.히로인.애정도, "love") + "</div>" +
+        ((s.알아가는인연 || []).length ? '<div class="aff2">🌱 알아가는 인연 ' + E.acquaintances().length + '명</div>' : '') +
         (s.히로인2 ? '<div class="aff2">🤫 ' + esc(E.heroDef(s.히로인2.아이디).이름) + " ❤" + s.히로인2.애정도 + "</div>" : "") + "</button>";
     } else her = '<button class="mini empty" onclick="U.openHeroine()" aria-label="인연 안내 보기"><span>💗</span><small>아직 쓰지 않은<br>인연의 이야기</small></button>';
     $("#life").innerHTML = hero + mid + her;

@@ -33,11 +33,17 @@ const out = process.argv[2] || fs.mkdtempSync(path.join(os.tmpdir(),'baseball-fr
     assert.equal(await page.evaluate(()=>E.state().자유시간.대상),'heroine4');
     await button('먼저 인사한다').click(); await page.waitForTimeout(800);
     assert.equal(await page.evaluate(()=>E.state().히로인.관계),'만남'); assert.equal(await page.evaluate(()=>E.state().총턴),101);
-    await start('연인'); await button('데이트').click(); await button('다른 히로인').click(); await button('유하린').click();
-    assert.match(await page.locator('.front').innerText(),/관계를 먼저 끝낸다/); await layout('relationship-choice');
+    await start('만남'); await button('데이트').click(); await button('다른 히로인').click(); await button('유하린').click();
+    assert.doesNotMatch(await page.locator('.front').innerText(),/관계를 먼저 끝낸다|호감 30|대화 0회|고백해야/); await layout('relationship-choice');
     await button('돌아가기').click(); assert.equal(await page.evaluate(()=>E.state().히로인.아이디),'heroine1');
-    await button('유하린').click(); await button('현재 인연을 정리').click(); await page.waitForTimeout(800);
+    await button('유하린').click(); await button('먼저 인사한다').click(); await page.waitForTimeout(800);
     assert.equal(await page.evaluate(()=>E.state().히로인.아이디),'heroine4');
+    assert.equal(await page.evaluate(()=>E.acquaintances().length),2); assert.equal(await page.evaluate(()=>!!E.state().히로인2),false);
+    await page.evaluate(()=>{E.state().자유시간={화면:'데이트'};E.next();U.renderAll();});
+    await layout('multiple-acquaintances');
+    assert.match(await page.locator('#actions').innerText(),/윤하나/); assert.match(await page.locator('#actions').innerText(),/유하린/);
+    await button('윤하나').click(); await page.waitForTimeout(800); assert.equal(await page.evaluate(()=>E.state().히로인.아이디),'heroine1');
+    assert.equal(await page.evaluate(()=>E.acquaintances().length),2);
     for(const action of ['연습','취미활동','휴식']) {
       await start(); await page.evaluate(()=>{E.state().부상=3;E.state().슬럼프=2;});
       await button(action).click(); await page.waitForTimeout(800);

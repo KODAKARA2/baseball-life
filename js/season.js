@@ -150,6 +150,7 @@
     var titles = GD.직업엔딩.filter(function (e) { return e.종류 === "칭호" && E.check(e.조건); });
     var job = GD.직업엔딩.find(function (e) { return e.종류 !== "칭호" && E.check(e.조건); });
     var heroines = s.지난히로인.slice();
+    (s.알아가는인연 || []).forEach(function (person) { heroines.push({ 아이디: person.아이디, 이름: E.heroDef(person.아이디).이름, 관계: "만남", 결말: "알아가던 인연" }); });
     if (s.히로인) { var h = E.heroDef(); heroines.push({ 아이디: h.아이디, 이름: h.이름, 관계: s.히로인.관계, 결말: s.히로인.관계 === "배우자" ? "평생의 반려자" : "함께" }); }
     if (s.히로인2) { var h2 = E.heroDef(s.히로인2.아이디); heroines.push({ 아이디: h2.아이디, 이름: h2.이름, 관계: "연인", 결말: "끝까지 비밀이었던 연인" }); }
     var special = (GD.특별엔딩 || []).find(function (e) { return E.check(e.조건); });
@@ -169,6 +170,7 @@
       var s = JSON.parse(raw); if (!s || s.버전 !== 1) return null;
       // 이전 버전 저장 파일에 없는 항목 채우기
       s.돈 = s.돈 || 0; s.총수입 = s.총수입 || 0; s.구매 = s.구매 || {}; s.본뉴스 = s.본뉴스 || {};
+      s.알아가는인연 = s.알아가는인연 || [];
       if (!s.외모) s.외모 = 1 + Math.floor(Math.random() * 10);
       if (s.히로인 && s.히로인.관계 === "만남") {
         if (s.히로인.만남턴 == null) s.히로인.만남턴 = s.총턴;
@@ -177,6 +179,7 @@
       I.buildCards(); I.S = s;
       E.initFreeTime();
       // 이전 저장의 고백·커플 카드나 즉시 교제 선택지를 그대로 실행하지 않도록 갱신합니다.
+      if (s.단계 === "카드" && s.현재카드 && s.현재카드.자유행동 && s.자유시간) { s.현재카드 = E.freeTimeCard(); E.refreshOptions(); }
       if (s.단계 === "카드" && s.현재카드 && !s.현재카드.자유행동 && (s.현재카드._끼어들기 || (s.히로인 && s.히로인.관계 === "만남" && s.현재카드.히로인))) {
         var current = I.CARDS().find(function (c) { return c._id === s.현재카드._id; });
         if (current && I.eligible(current)) { s.현재카드 = I.clone(current); E.refreshOptions(); }

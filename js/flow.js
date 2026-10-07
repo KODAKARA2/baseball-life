@@ -20,7 +20,7 @@
       버전: 1, 이름: name, 포지션: posName, 특기: specName, 능력치: {}, 행복도: C.행복도, 성적: 0, 부상: 0, 슬럼프: 0,
       시기: null, 시기턴: 0, 진입나이: 10, 나이: 10, 은퇴나이: null, 연차: 0, 올해카드: 0, 올해부상카드: 0,
       팀: null, 원래팀: null, 국내팀: null, 지명팀: null, 해외팀: null, 팀이동: 0, 일군: false, 드래프트: null,
-      플래그: {}, 본카드: {}, 총턴: 0, 히로인: null, 지난히로인: [], 만난히로인: [], 자녀: 0,
+      플래그: {}, 본카드: {}, 총턴: 0, 히로인: null, 알아가는인연: [], 지난히로인: [], 만난히로인: [], 자녀: 0,
       기록: [], 수상: [], 순간: [], 대기열: [], 돈: 0, 총수입: 0, 구매: {}, 본뉴스: {}, 단계: "카드", 현재카드: null, 현재옵션: [], 결과: null, 엔딩: null
     };
     I.S = s;
@@ -76,6 +76,11 @@
         // 외국인 히로인은 한국으로 따라오지 않음: 몰래 만나던 사람은 바로 떠나고, 연인·배우자는 작별 카드가 바로 나옴
         if (s.히로인2 && E.heroDef(s.히로인2.아이디).외국인) { leave(s.히로인2, "국내 복귀로 이별"); s.히로인2 = null; }
         if (s.히로인 && E.heroDef().외국인) s.플래그.외국인작별 = true;
+        s.알아가는인연 = (s.알아가는인연 || []).filter(function (h) {
+          var d = E.heroDef(h.아이디);
+          if (!d.외국인) return true;
+          s.지난히로인.push({ 아이디: h.아이디, 이름: d.이름, 관계: "만남", 결말: "국내 복귀 후 연락이 뜸해짐" }); return false;
+        });
       }
       else if (!s.팀) { s.팀 = s.지명팀 || I.pick(cfg().국내팀); s.원래팀 = s.팀; s.일군 = false; }
     }
@@ -109,7 +114,7 @@
     }
     var L = cfg().연애;
     if (s.히로인) {
-      var hc = all.filter(function (c) { return c.히로인 || c._끼어들기; });
+      var hc = all.filter(function (c) { return c.히로인 || c._끼어들기 || (s.히로인.관계 === "만남" && c._만남); });
       if (hc.length && rnd() < L.히로인카드확률) return I.weighted(hc);
     } else {
       var mc = all.filter(function (c) { return c._만남; });

@@ -28,6 +28,18 @@
   E.cap = function () { return sdef(S.시기).능력치상한 || 99; };
   E.heroDef = function (id) { return GD.히로인.find(function (h) { return h.아이디 === (id || (S.히로인 && S.히로인.아이디)); }); };
   E.state = function () { return S; };
+  E.acquaintances = function () {
+    return (S.히로인 && S.히로인.관계 === "만남" ? [S.히로인] : []).concat(S.알아가는인연 || []);
+  };
+  E.focusAcquaintance = function (id) {
+    if (S.히로인 && S.히로인.관계 !== "만남") return false;
+    if (S.히로인 && S.히로인.아이디 === id) return true;
+    var list = S.알아가는인연 || [], index = list.findIndex(function (h) { return h.아이디 === id; });
+    if (index < 0) return false;
+    var next = list.splice(index, 1)[0];
+    if (S.히로인) list.push(S.히로인);
+    S.히로인 = next; S.알아가는인연 = list; return true;
+  };
   E.canConfess = function () {
     var h = S.히로인, L = cfg().연애;
     return !!h && h.관계 === "만남" && !S.플래그.외국인작별 && h.애정도 >= L.연인기준 &&
@@ -138,7 +150,7 @@
     if (c._끼어들기 && !c.교제제안 && S.새인연) return false;
     // 고백 전에는 알아가기·고백·연락 정리 카드만 허용합니다.
     if (c.히로인 && S.히로인 && S.히로인.관계 === "만남" && !c.알아가기 && !c.고백카드 && !c.인연정리) return false;
-    if (c._만남 && (S.히로인 || S.만난히로인.indexOf(c._만남) >= 0)) return false;
+    if (c._만남 && ((S.히로인 && S.히로인.관계 !== "만남") || S.만난히로인.indexOf(c._만남) >= 0)) return false;
     var last = S.본카드[c._id];
     if (last != null && (!c.반복 || S.총턴 - last < (c.간격 || 4))) return false;
     return check(c.조건);
@@ -200,9 +212,14 @@
 
   // ---------------- 히로인 ----------------
   function attachHeroine(id) {
-    S.히로인 = { 아이디: id, 관계: "만남", 애정도: cfg().연애.시작애정도, 만난시기: S.시기, 만남턴: S.총턴, 교류횟수: 0 };
+    if (E.acquaintances().some(function (h) { return h.아이디 === id; })) { E.focusAcquaintance(id); return; }
+    var next = { 아이디: id, 관계: "만남", 애정도: cfg().연애.시작애정도, 만난시기: S.시기, 만남턴: S.총턴, 교류횟수: 0 };
+    S.알아가는인연 = S.알아가는인연 || [];
+    if (S.히로인 && S.히로인.관계 !== "만남") S.알아가는인연.push(next);
+    else { if (S.히로인) S.알아가는인연.push(S.히로인); S.히로인 = next; }
+    if (S.만난히로인.indexOf(id) < 0) S.만난히로인.push(id);
+    if (S.히로인.관계 !== "만남") return;
     delete S.플래그.장거리; delete S.플래그.동행결정; delete S.새인연;
-    S.만난히로인.push(id);
   }
   function setRelation(r) {
     if (!S.히로인) return;
