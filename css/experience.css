@@ -223,3 +223,8 @@ button.mini { padding: 0; background: transparent; color: inherit; text-align: l
   .mg-big, .pf-mitt.pop { animation: none; }
   .mg-ball, .mg-ball span { animation: none; }
 }
+/* Short baseball-only picture inside the existing resolved-result interval. */
+.baseball-art-host{position:relative}
+.baseball-result-art{position:absolute;left:50%;top:50%;width:min(86%,240px);aspect-ratio:1354/1161;max-height:82%;transform:translate(-50%,-50%);z-index:9;border:2px solid #fff0c5;border-radius:12px;overflow:hidden;background:#173e36;pointer-events:none}
+.baseball-result-art img{display:block;width:100%;height:100%;object-fit:contain}.baseball-result-art strong{position:absolute;left:6%;top:7%;max-width:88%;font-size:clamp(18px,4vw,26px);color:#fff5b3;text-shadow:1px 2px #153951,0 0 4px #153951;line-height:1.15}
+html[data-reduced-motion="true"] .baseball-result-art{display:none}

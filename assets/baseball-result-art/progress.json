@@ -1,0 +1,81 @@
+{
+  "base": "e55c66b09d04b3df62850958965f19a026dc33f6",
+  "planned": [
+    "hit",
+    "pitch",
+    "throw",
+    "steal",
+    "signs"
+  ],
+  "completed": [
+    {
+      "name": "hit",
+      "source": "/workspace/generated_images/exec-dc5ab1af-b168-4fef-9034-e9f38ef037ba.png",
+      "file": "images/minigames/result-hit.png",
+      "bytes": 2331348,
+      "sha256": "604f514b933b64faa25c348050cc621eacd4ea254b6e760a18cde2eff163d818",
+      "dimensions": [
+        1355,
+        1161
+      ],
+      "prompt": "A right-handed blue-uniform baseball batter wearing a batting helmet makes clean powerful contact with a pitched small stitched baseball using a wooden bat, ball just leaving the bat toward open outfield. Full body, entire bat including tip, both hands gripping correctly, face visible. Dynamic swing suitable for either a hit or home-run result; no score claims or celebration.",
+      "pixelQA": "primary face/contact/baseball and equipment inspected"
+    },
+    {
+      "name": "pitch",
+      "source": "/workspace/generated_images/exec-decbc64f-5b25-4fc1-8b5c-655f2ca8119b.png",
+      "file": "images/minigames/result-pitch.png",
+      "bytes": 2398045,
+      "sha256": "3c65f6bf5568b87b01f99fd2995e96a9e1b929d38a170b262951d34d41e81099",
+      "dimensions": [
+        1355,
+        1161
+      ],
+      "prompt": "A blue-uniform catcher in protective chest guard and helmet mask receives a small white red-stitched baseball squarely in his open brown catcher's mitt at the strike zone, ball clearly inside mitt pocket, centered well-placed pitch. Catcher's eyes visible through mask, blue pitcher finishing throw in background on mound. Full glove and face within frame.",
+      "pixelQA": "primary face/contact/baseball and equipment inspected"
+    },
+    {
+      "name": "throw",
+      "source": "/workspace/generated_images/exec-ae66f7e5-ac0c-427c-9b09-3e5766c8dcf6.png",
+      "file": "images/minigames/result-throw.png",
+      "bytes": 2194015,
+      "sha256": "852e75fb42631a86fa0ab0fa199a6157a3d6ede644d850574154340d8508524d",
+      "dimensions": [
+        1355,
+        1161
+      ],
+      "prompt": "Successful accurate infield throw arriving at first base: blue-uniform first baseman catches small white red-stitched baseball in brown glove while one boot stays clearly on the first-base bag. Entire outstretched glove, ball, body and feet in frame. Blue infielder who threw stands distant on dirt. No umpire call text, no logos.",
+      "pixelQA": "primary face/contact/baseball and equipment inspected"
+    },
+    {
+      "name": "steal",
+      "source": "/workspace/generated_images/exec-8c0110ea-cfe7-46d7-b238-818ae323b2fe.png",
+      "file": "images/minigames/result-steal.png",
+      "bytes": 2176605,
+      "sha256": "f3dfcee79ba1c4eaaf1b83e800f5ccf47242aaaaa06c6df55682076b05af30bb",
+      "dimensions": [
+        1355,
+        1161
+      ],
+      "prompt": "A blue-uniform baseball baserunner in helmet slides headfirst safely toward second base, fingertips touching the white bag, red opponent reaching with a glove too late. Small white stitched baseball visible near the late glove, runner face and both hands clear. Entire primary runner safely within canvas. Dirt spray, dynamic but no injury.",
+      "pixelQA": "primary face/contact/baseball and equipment inspected"
+    },
+    {
+      "name": "signs",
+      "source": "/workspace/generated_images/exec-cb78b7bb-7f36-4426-b9df-56cc72c5955b.png",
+      "file": "images/minigames/result-signs.png",
+      "bytes": 2115273,
+      "sha256": "51c8657871fafb0c9a475287116b39b4f888f2143a4741404157dc5e180239a4",
+      "dimensions": [
+        1355,
+        1161
+      ],
+      "prompt": "A blue-uniform baseball pitcher on mound focuses attentively on his blue-uniform catcher giving a discreet pitching hand sign in a protective crouch behind home plate. Show both teammates, catcher mask/chest guard/glove and signaling fingers visible, pitcher nodding with glove held calmly. Clear synchronized communication, no text, no numbers, no celebration or game score.",
+      "pixelQA": "primary face/contact/baseball and equipment inspected"
+    }
+  ],
+  "scope": "User approved this Baseball change for PR, merge and existing Pages deployment after validation",
+  "generator": "built-in imagegen",
+  "style": "original blue/white baseball team, red/gray opponents, pixel art; no football assets",
+  "validation": "19 regression jobs passed; new art browser check rerun passed after replacing unstable animated-button locator tap with touchscreen coordinates"
+}
