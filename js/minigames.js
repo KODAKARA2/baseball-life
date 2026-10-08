@@ -18,7 +18,7 @@
         function frame() {
           if (done || !m.isConnected) return;
           update(performance.now());
-          if (!done && m.isConnected) frameId = requestAnimationFrame(frame);
+          if (!done && m.isConnected) frameId = Feedback.frame(m, frame);
         }
         frame();
       },
@@ -27,7 +27,7 @@
         done = true; cancelAnimationFrame(frameId);
         H.end(m, title, level < 2, message, probability(level), title, cb);
       },
-      cancel: function () { done = true; cancelAnimationFrame(frameId); m.remove(); }
+      cancel: function () { done = true; cancelAnimationFrame(frameId); Feedback.clear(m); m.remove(); }
     };
   }
 
@@ -95,6 +95,7 @@
       }
       var d = Math.hypot(x - tx, y - ty), level = grade(d, C), ball = m.querySelector(".throw-ball");
       ball.style.left = x * 100 + "%"; ball.style.top = y * 100 + "%"; ball.classList.add("thrown");
+      if (level > 0) Feedback.play("catch");
       life.end(level, ["악송구!", "힘겨운 포구", "안정적인 송구!", "정확한 송구!"][level], "목표에서 " + Math.round(d * 100) + "% 벗어났어요.");
     });
     return life.cancel;

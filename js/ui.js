@@ -84,13 +84,14 @@
 
   // ---------------- 시작 화면 ----------------
   U.showSetup = function () {
+    Feedback.clearAll(); busy = false;
     var sel = { pos: null, spec: null };
     $("#app").className = "is-setup";
     $("#app").innerHTML =
       '<section class="setup"><div class="setup-intro"><span class="eyebrow">BASEBALL LIFE · 나만의 야구 이야기</span><h1>야구는 기록으로,<br>인생은 <em>선택으로.</em></h1>' +
       '<p class="sub">첫 글러브부터 마지막 은퇴 경기까지.<br>어떤 선수가 되고, 누구와 함께할까요?</p>' +
       '<div class="journey-art" aria-hidden="true"><div><img src="images/hero_elementary.png" alt=""><span>첫 글러브</span></div><div><img src="images/hero_high.png" alt=""><span>커지는 꿈</span></div><div><img src="images/hero_pro.png" alt=""><span>나만의 전성기</span></div></div>' +
-      '<div class="setup-links"><button onclick="U.openPractice()">⚾ 미니게임 연습장 <span>먼저 체험하기 →</span></button><button onclick="U.openCollection()">📖 엔딩 도감 <span>모아 온 이야기 →</span></button></div>' +
+      '<div class="setup-links"><button onclick="Feedback.settings()">소리·움직임 설정</button><button onclick="U.openPractice()">⚾ 미니게임 연습장 <span>먼저 체험하기 →</span></button><button onclick="U.openCollection()">📖 엔딩 도감 <span>모아 온 이야기 →</span></button></div>' +
       '<p class="intro-note">잘하는 야구와 행복한 인생 사이, 정답은 하나가 아닙니다.</p></div>' +
       '<div class="setup-form"><span class="eyebrow">NEW PLAYER</span><h2>나의 선수 만들기</h2><p class="form-note">이름, 포지션, 특기를 고르면 이야기가 시작됩니다.</p>' +
       '<label>주인공 이름<input id="nm" maxlength="8" placeholder="예: 강민준" autocomplete="off"></label>' +
@@ -128,6 +129,7 @@
 
   // ---------------- 게임 화면 ----------------
   U.showGame = function () {
+    Feedback.clearAll(); busy = false;
     $("#app").className = "is-game";
     $("#app").innerHTML = '<header class="top" id="top"></header><section class="life" id="life"></section>' +
       '<aside class="chapter" id="chapter"></aside><div class="story-column"><section class="table" id="table"></section><nav class="actions" id="actions" aria-label="이야기의 선택지"></nav></div>';
@@ -260,7 +262,15 @@
     choices = choices.filter(function (key) { return key !== blocked; });
     var key = choices[Math.floor(Math.random() * choices.length)];
     mgLast = [key].concat(mgLast.slice(0, 1));
-    return U[key](cb);
+    var closed = false, cancel;
+    function finish(result) { if (closed) return; closed = true; document.removeEventListener("keydown", escape); cb(result); }
+    function stop() { if (closed) return; cancel(); finish({ 취소: true }); }
+    function escape(e) { if (e.key === "Escape") { e.preventDefault(); stop(); } }
+    cancel = U[key](finish);
+    var active = document.querySelector(".mg-wrap"), quit = document.createElement("button");
+    quit.className = "practice-stop"; quit.textContent = "선택으로 돌아가기 · Esc"; quit.onclick = stop; active.appendChild(quit);
+    document.addEventListener("keydown", escape);
+    return stop;
   };
 
   // 시계 게임: 5초부터 줄어드는 시계를 목표 시간에 가깝게 멈출수록 성공 확률이 높음
@@ -281,20 +291,21 @@
     function left() { return Math.max(0, start - (performance.now() - t0) / 1000); }
     // 시간 초과(0초까지 안 누름)는 헛스윙 → 최저 확률
     function finish(t, timeout) {
-      if (done) return; done = true;
+      if (done || !m.isConnected) return; done = true;
       var diff = Math.abs(t - target), p = timeout ? M.최저확률 || 0.05 : Math.max(M.최저확률 || 0.05, Math.min(top, top - diff * (M.감소 || 0.7)));
+      Feedback.cue(p >= .9 ? "great" : p >= .5 ? "good" : "bad", m.querySelector(".mg"), p >= .9);
       timeEl.textContent = t.toFixed(2); m.querySelector(".mg-ball").classList.add(pit ? "throw" : "hit");
       m.querySelector(".mg-result").innerHTML = (timeout ? "⏰ 시간 초과! 공을 그냥 보냈다" : diff <= 0.05 ? "🎯 퍼펙트 타이밍!" : diff <= 0.2 ? "👍 좋은 타이밍!" : diff <= 0.5 ? "😅 조금 빗나갔다" : "😱 타이밍이 크게 어긋났다") +
         " <b>성공 확률 " + Math.round(p * 100) + "%</b>";
-      setTimeout(function () { if (!m.isConnected) return; m.remove(); cb({ 확률: p, 타이밍: Math.round(t * 100) / 100, 목표: target }); }, 1200);
+      Feedback.later(m, function () { if (!m.isConnected) return; m.remove(); cb({ 확률: p, 타이밍: Math.round(t * 100) / 100, 목표: target }); }, 1200);
     }
     (function frame() {
       if (done || !m.isConnected) return; var t = left();
       timeEl.textContent = t.toFixed(2); fill.style.width = ((start - t) / start * 100) + "%";
-      if (t <= 0) finish(0, true); else requestAnimationFrame(frame);
+      if (t <= 0) finish(0, true); else Feedback.frame(m, frame);
     })();
     mgInput(m, function () { finish(left()); }, ".mg-ball");
-    return function () { done = true; m.remove(); };
+    return function () { done = true; Feedback.clear(m); m.remove(); };
   };
 
   // 마우스·터치·키보드로 같은 동작을 실행합니다. 종료 버튼은 게임 입력 영역 밖에 둡니다.
@@ -315,9 +326,11 @@
   }
   // 결과를 보여 준 뒤 창을 닫고 성공 확률을 돌려줌
   function mgEnd(m, big, bad, msg, p, show, cb) {   // big: 놀이판에 크게 띄우는 글 (bad면 붉은색)
+    if (!m.isConnected || m.dataset.judged) return; m.dataset.judged = "true";
+    Feedback.cue(p >= .9 ? "great" : p >= .5 ? "good" : "bad", m.querySelector(".mg"), p >= .9);
     if (big) { var b = document.createElement("div"); b.className = "mg-big" + (bad ? " bad" : ""); b.textContent = big; m.querySelector(".mgf").appendChild(b); }
     m.querySelector(".mg-result").innerHTML = msg + " <b>성공 확률 " + Math.round(p * 100) + "%</b>";
-    setTimeout(function () { if (!m.isConnected) return; m.remove(); cb({ 확률: p, 표시: show }); }, 1600);
+    Feedback.later(m, function () { if (!m.isConnected) return; m.remove(); cb({ 확률: p, 표시: show }); }, 1600);
   }
   // 누른 순간의 시각 (이벤트에 찍힌 시각을 써서 화면 프레임 오차를 줄임)
   function tapTime(e) { var n = performance.now(), t = e && e.timeStamp; return t && Math.abs(n - t) < 1000 ? t : n; }
@@ -352,10 +365,10 @@
       var u = (performance.now() - t0) / (T * 1000);
       if (u >= 0 && !thrown) { thrown = true; label.textContent = kind + " " + kmh + "km"; }
       var p = at(u); move(ball, p.x, p.y, p.s, 0);
-      if (u > end) finish(null); else requestAnimationFrame(frame);   // 끝까지 안 휘두르면 루킹 스트라이크
+      if (u > end) finish(null); else Feedback.frame(m, frame);   // 끝까지 안 휘두르면 루킹 스트라이크
     })();
     function finish(tt) {
-      if (done) return; done = true;
+      if (done || !m.isConnected) return; done = true;
       var now = performance.now(), u = (now - t0) / (T * 1000), last = at(end), rest = Math.max(0.15, (end - Math.max(0, u)) * T);
       var p = low, big = "헛스윙!", bad = true, flew = false, show, msg;
       if (tt == null) { big = "스트라이크!"; show = "🏏 루킹 스트라이크"; msg = "⏰ 공을 그냥 보냈다"; }
@@ -369,11 +382,12 @@
         else if (a <= (B.빗맞음 || 0.16)) { p = B.빗맞음확률 || 0.3; big = "파울!"; flew = true; show = "🏏 빗맞음" + when; msg = "😅 빗맞았다… 파울"; move(ball, d < 0 ? -W * 0.15 : W * 1.15, H * 0.62, 0.5, 0.6, 0); }
         else { show = "🏏 헛스윙" + when; msg = "😱 타이밍이 크게 어긋났다"; if (u < end) move(ball, last.x, last.y, last.s, rest); }
       }
-      if (!flew) setTimeout(function () { ball.style.opacity = 0; }, tt == null ? 0 : rest * 1000);
+      if (flew) Feedback.play("bat");
+      if (!flew) Feedback.later(m, function () { ball.style.opacity = 0; }, tt == null ? 0 : rest * 1000);
       mgEnd(m, big, bad, msg, p, show, cb);
     }
     mgInput(m, function (e) { finish(tapTime(e)); });
-    return function () { done = true; m.remove(); };
+    return function () { done = true; Feedback.clear(m); m.remove(); };
   };
 
   // 투구 게임 (투수): 움직이는 빨간 조준점이 포수 미트에 겹칠 때 화면을 누르면 그곳으로 공을 던짐
@@ -396,10 +410,10 @@
     (function frame() {
       if (done || !m.isConnected) return;
       var now = performance.now(); put(pos(now)); bar.style.width = Math.max(0, 1 - (now - t0) / lim) * 100 + "%";
-      if (now - t0 >= lim) finish(null); else requestAnimationFrame(frame);
+      if (now - t0 >= lim) finish(null); else Feedback.frame(m, frame);
     })();
     function finish(tt) {
-      if (done) return; done = true;
+      if (done || !m.isConnected) return; done = true;
       if (tt == null) return mgEnd(m, "시간 초과!", true, "⏰ 공을 던지지 못했다", low, "🎯 시간 초과", cb);
       var q = pos(tt), d = Math.sqrt((q.x - mx) * (q.x - mx) + (q.y - my) * (q.y - my)) / zw;
       var inZone = q.x >= zl && q.x <= zl + zw && q.y >= zt && q.y <= zt + zh, p = low, big = "볼!", bad = true, show, msg;
@@ -408,10 +422,10 @@
       else if (d <= (P.좋음 || 0.25)) { p = P.좋음확률 || 0.7; big = "스트라이크!"; bad = false; show = "🎯 좋은 코스"; msg = "👍 좋은 코스! 타자가 꼼짝 못 했다"; }
       else if (inZone) { p = P.존안확률 || 0.3; big = "실투!"; show = "🎯 실투"; msg = "😅 미트에서 벗어났다… 타자가 노리고 있었다"; }
       else { show = "🎯 볼"; msg = "😱 스트라이크존을 크게 벗어났다"; }
-      setTimeout(function () { if (!m.isConnected) return; if (!bad) mitt.classList.add("pop"); mgEnd(m, big, bad, msg, p, show, cb); }, 350);
+      Feedback.later(m, function () { if (!m.isConnected) return; if (!bad) { mitt.classList.add("pop"); Feedback.play("catch"); } mgEnd(m, big, bad, msg, p, show, cb); }, 350);
     }
     mgInput(m, function (e) { finish(tapTime(e)); });
-    return function () { done = true; m.remove(); };
+    return function () { done = true; Feedback.clear(m); m.remove(); };
   };
 
   // 연습은 미니게임 화면만 실행하며 선수 상태·저장·보너스를 변경하지 않습니다.
@@ -479,7 +493,8 @@
   };
 
   U.choose = function (i) {
-    if (busy) return;
+    if (busy || E.state().단계 !== "카드" || E.state().현재옵션[i] == null) return;
+    Feedback.cue("select", document.querySelectorAll("#actions .opt")[i]);
     var s = E.state(), o = s.현재카드.선택지[s.현재옵션[i]];
     if (s.현재카드.자유행동 && o.자유선택 === "이동") {
       E.choose(i); E.next(); U.renderAll(); return;
@@ -494,14 +509,16 @@
     var after = E.state().히로인 && E.state().히로인.아이디;
     var card = $("#card"); card.querySelector(".back").innerHTML = U.resultHTML(r);
     card.classList.remove("deal"); card.classList.add("flipped");
+    if (typeof r.성공 === "boolean") Feedback.later(card, function () { Feedback.cue(r.성공 ? "result" : "fail", document.querySelector("#table")); }, 330);
     card.querySelector(".front").inert = true; card.querySelector(".back").inert = false;
     if (before && !after) { var m = document.querySelector(".heroine-mini"); if (m) m.classList.add("detach"); }
-    setTimeout(function () { U.renderTop(); if (!(before && !after)) U.renderLife(!before && after); U.renderActions(); busy = false; }, before && !after ? 700 : 350);
-    if (before && !after) setTimeout(function () { U.renderLife(); }, 750);
+    Feedback.later($("#app"), function () { U.renderTop(); if (!(before && !after)) U.renderLife(!before && after); U.renderActions(); busy = false; }, before && !after ? 700 : 350);
+    if (before && !after) Feedback.later($("#app"), function () { U.renderLife(); }, 750);
   }
   U.next = function () {
     if (busy) return; busy = true;
+    Feedback.clearAll();
     $("#card").classList.add("discard");
-    setTimeout(function () { E.next(); busy = false; U.renderAll(true); window.scrollTo(0, 0); }, 320);
+    Feedback.later($("#app"), function () { E.next(); busy = false; U.renderAll(true); window.scrollTo(0, 0); }, 320);
   };
 })();
