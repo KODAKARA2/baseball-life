@@ -179,7 +179,7 @@
 
   U.cardArtKeys = function (card) {
     var s = E.state();
-    if (card._끼어들기) { var hi = E.heroDef(card._끼어들기); return { keys: U.heroineKeys(hi.아이디, "만남"), icon: "💗", label: "<b>" + esc(hi.이름) + "</b><small>끼어든 인연</small>" }; }
+    if (card._끼어들기) { var hi = E.heroDef(card._끼어들기); return { keys: U.heroineKeys(hi.아이디, "만남"), icon: "💗", label: "<b>" + esc(hi.이름) + "</b><small>" + (card.인연교제제안 ? "먼저 전한 마음" : "끼어든 인연") + "</small>" }; }
     if (card.히로인 === "양다리" && s.히로인2) { var hs = E.heroDef(s.히로인2.아이디); return { keys: U.heroineKeys(hs.아이디, "연인"), icon: "🤫", label: "<b>" + esc(hs.이름) + "</b><small>비밀 연인 · ❤ " + s.히로인2.애정도 + "</small>" }; }
     if (card._만남) return { keys: U.heroineKeys(card._만남, "만남"), icon: "💗", label: "<b>" + esc(E.heroDef(card._만남).이름) + "</b><small>첫 만남</small>" };
     if (card.히로인 && s.히로인) { var h = E.heroDef(); return { keys: U.heroineKeys(h.아이디, s.히로인.관계), icon: "💗", label: "<b>" + esc(h.이름) + "</b><small>" + (s.히로인.관계 === "만남" ? "알아가는 중 · 호감 " : esc(s.히로인.관계) + " · ❤ ") + s.히로인.애정도 + "</small>" }; }

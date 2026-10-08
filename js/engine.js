@@ -159,9 +159,18 @@
     if (c.히로인 === "누구나" && !S.히로인) return false;
     if (c.히로인 === "양다리" && !S.히로인2) return false;
     if (c.히로인 && c.히로인 !== "누구나" && c.히로인 !== "양다리" && (!S.히로인 || S.히로인.아이디 !== c.히로인)) return false;
-    if (c._끼어들기 && (!S.히로인 || S.히로인.관계 !== "연인" || S.히로인2 || S.히로인.아이디 === c._끼어들기 || S.만난히로인.indexOf(c._끼어들기) >= 0)) return false;
-    if (c._끼어들기 && c.교제제안 && (!S.새인연 || S.새인연.아이디 !== c._끼어들기 || S.새인연.기존인연 !== S.히로인.아이디 || S.총턴 - S.새인연.등장턴 < cfg().연애.고백최소간격)) return false;
-    if (c._끼어들기 && !c.교제제안 && S.새인연) return false;
+    if (c._끼어들기) {
+      if (!S.히로인 || S.히로인.관계 !== "연인" || S.히로인2 || S.히로인.아이디 === c._끼어들기 || S.플래그.외국인작별) return false;
+      if (c.인연교제제안) {
+        var friend = E.acquaintances().find(function (h) { return h.아이디 === c._끼어들기 && h.관계 === "만남"; });
+        if (!friend || friend.애정도 < cfg().연애.연인기준 || friend.만남턴 == null || S.총턴 - friend.만남턴 < cfg().연애.고백최소간격) return false;
+        if (E.heroDef(c._끼어들기).외국인 && S.시기 !== "메이저리그") return false;
+      } else {
+        if (S.만난히로인.indexOf(c._끼어들기) >= 0) return false;
+        if (c.교제제안 && (!S.새인연 || S.새인연.아이디 !== c._끼어들기 || S.새인연.기존인연 !== S.히로인.아이디 || S.총턴 - S.새인연.등장턴 < cfg().연애.고백최소간격)) return false;
+        if (!c.교제제안 && S.새인연) return false;
+      }
+    }
     // 고백 전에는 알아가기·고백·연락 정리 카드만 허용합니다.
     if (c.히로인 && S.히로인 && S.히로인.관계 === "만남" && !c.알아가기 && !c.고백카드 && !c.인연정리) return false;
     if (c._만남 && ((S.히로인 && S.히로인.관계 !== "만남") || S.만난히로인.indexOf(c._만남) >= 0)) return false;

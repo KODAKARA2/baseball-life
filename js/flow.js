@@ -143,7 +143,11 @@
   E.allowance = allowance;
   // ---------------- 양다리 ----------------
   function startAffair(id) {
-    var s = S(); s.히로인2 = { 아이디: id, 관계: "연인", 애정도: cfg().연애.양다리시작애정도 || 40, 만난시기: s.시기 }; s.만난히로인.push(id);
+    var s = S(), friend = E.acquaintances().find(function (h) { return h.아이디 === id; });
+    s.히로인2 = Object.assign({}, friend || { 아이디: id, 만난시기: s.시기 }, { 관계: "연인", 애정도: cfg().연애.양다리시작애정도 || 40 });
+    s.알아가는인연 = (s.알아가는인연 || []).filter(function (h) { return h.아이디 !== id; });
+    if (s.만난히로인.indexOf(id) < 0) s.만난히로인.push(id);
+    delete s.새인연;
   }
   function leave(h, why) { var d = E.heroDef(h.아이디); S().지난히로인.push({ 아이디: d.아이디, 이름: d.이름, 관계: h.관계, 결말: why }); return d.이름; }
   function resolveAffair(mode) {
@@ -216,7 +220,7 @@
     if (out.인연시작 && card._만남) { I.attachHeroine(card._만남); res.알림.push("🌱 " + E.heroDef().이름 + "와(과) 알아가는 중 · 대화를 쌓으면 고백할 수 있습니다"); }
     if (card.알아가기 && out.교류 && s.히로인 && s.히로인.관계 === "만남") s.히로인.교류횟수 = (s.히로인.교류횟수 || 0) + 1;
     if (out.새인연연락 && card._끼어들기) s.새인연 = { 아이디: card._끼어들기, 기존인연: s.히로인.아이디, 등장턴: s.총턴 };
-    if (card.교제제안) delete s.새인연;
+    if (card.교제제안 && (!card.인연교제제안 || (s.새인연 && s.새인연.아이디 === card._끼어들기))) delete s.새인연;
     if (out.양다리시작 && card._끼어들기) { startAffair(card._끼어들기); res.알림.push("🤫 " + E.heroDef(card._끼어들기).이름 + " 카드가 몰래 붙었다 (양다리)"); }
     if (out.갈아타기 && card._끼어들기) {
       var oldName = s.히로인 ? E.heroDef().이름 : "";
