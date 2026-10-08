@@ -4,3 +4,5 @@
 .baseball-playball-panel img{display:block;width:100%;height:auto;object-fit:contain}
 .baseball-playball-panel strong{display:block;font-size:clamp(26px,7vw,42px);color:#ffe49b;margin:8px}
 .baseball-playball-panel button{margin:6px;min-height:44px;padding:8px 18px;border:1px solid #ffe49b;border-radius:8px;background:#ffe49b;color:#153e35;font:inherit;font-weight:700}
+
+.baseball-playball-panel img[hidden]{display:none}
