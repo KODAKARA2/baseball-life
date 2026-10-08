@@ -19,7 +19,7 @@ for(const name of ['miniTimer','miniBat','miniPitch','miniSteal','miniThrow','mi
 // Failure to load art still permits starting; no synthetic sound is added by the intro.
 await page.route('**/playball-generated.png',r=>r.abort());
 await page.evaluate(()=>{window.sfx=0;Feedback.play=()=>sfx++;Feedback.cue=()=>sfx++;});
-await gate();await page.waitForFunction(()=>document.querySelector('.baseball-playball img').hidden);await page.clock.runFor(530);assert.equal(await page.evaluate(()=>started),1);assert.equal(await page.evaluate(()=>sfx),0);
+await gate();await page.waitForFunction(()=>document.querySelector('.baseball-playball img').hidden);assert.equal(await page.locator('.baseball-playball img').evaluate(i=>getComputedStyle(i).display),'none');await page.clock.runFor(530);assert.equal(await page.evaluate(()=>started),1);assert.equal(await page.evaluate(()=>sfx),0);
 // Cancel from the practice gate restores practice without scoring a round.
 await page.evaluate(()=>U.openPractice());await page.locator('.practice-start').click();await page.keyboard.press('Escape');
 assert(await page.locator('.practice-start').isVisible());assert.match(await page.locator('.practice-score').innerText(),/첫 연습/);
