@@ -1,0 +1,11 @@
+# Playball start cutin
+
+The originally requested Library image could not be transferred. The user then explicitly approved a NEW umpire illustration with sunglasses and a dramatic Isono-inspired start declaration. `assets/baseball-playball/progress.json` records its source, hash and inspection. This is not the original image.
+
+All six minigames (timer, batting, pitching, steal, throw, signs) display the same static, quiet umpire panel once per entry. The normal duration is 850ms (350ms with reduced motion), followed by a 180ms input-release guard. Only then is the original game created: no game timer, random target, input handler or reward runs during the intro. Space/Enter/touch can skip it; held/repeated inputs are absorbed until release. Escape/close, removal and hidden tab cancel the pending intro. Practice returns without scoring; a story card remains selectable. The cancellation check also fixes the prior story callback passing a canceled minigame to card resolution.
+
+The complete generated PNG is displayed using contain, with separate UI text `플레이볼!`. Failed image loads hide the image and preserve the text/start controls. No additional audio is emitted; existing mute/volume/reduced preferences and result artwork remain in use. No probability, reward, story data or save schema is changed.
+
+Validation: `node tools/run-checks.js /tmp/baseball-playball-tests` runs 20 jobs including the new integrated gate test, existing result-art, minigame, audio, UI, data and simulations. Existing timing-sensitive tests explicitly wait for the intro before exercising the original game clock. Gate tests cover 320/390/1280, touch/key, held/repeated inputs, cancellation/removal/restart/hidden tab, reduced motion, image failure, actual six-game deferral, practice restoration and unchanged story state on cancellation. Audio tests verify playback calls/settings and synthesized waveform levels, not human listening.
+
+All 20 jobs passed on 2026-10-08. The old UI test initially failed because its immediate game-input and game-DOM assertions preceded the new intro; those steps now explicitly wait for the intro and the rerun passed. The new integrated gate check also passed after adding story cancellation/state, image-error and practice restoration assertions. CNAME, .nojekyll and local entrypoint assets were verified.
