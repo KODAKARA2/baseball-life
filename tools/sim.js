@@ -17,8 +17,8 @@ for (let g = 0; g < N; g++) {
     const S = E.state(); let t = 0;
     while (S.단계 !== "엔딩" && t < 600) { if (S.현재카드.레어) rare++; E.choose(Math.floor(Math.random() * S.현재옵션.length)); E.next(); t++; }
     if (S.단계 !== "엔딩") throw new Error("끝나지 않는 인생 (" + t + "장)");
+    if (!S.진로확정) throw new Error("은퇴 진로를 선택하지 않고 엔딩에 도달");
     E.recordLife();
-    if (GD.진로.length) E.chooseCareer(GD.진로[Math.floor(Math.random() * GD.진로.length)].아이디);
     const en = S.엔딩, k = en.기본.이름; ends[k] = (ends[k] || 0) + 1;
     if (S.히로인 && S.히로인.관계 === "배우자") married++;
     if (S.자녀 > 0) kids++;
@@ -26,3 +26,4 @@ for (let g = 0; g < N; g++) {
 }
 console.log("판수", N, "| 오류", errs, "| 레어/판", (rare / N).toFixed(2), "| 결혼", Math.round(married / N * 100) + "%", "| 자녀", Math.round(kids / N * 100) + "%");
 console.log("엔딩", JSON.stringify(Object.entries(ends).sort((a, b) => b[1] - a[1])));
+if (errs) process.exitCode = 1;

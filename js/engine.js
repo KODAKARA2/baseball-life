@@ -81,6 +81,13 @@
   function buildCards() {
     CARDS = []; var seen = {};
     function add(c) {
+      if (c.진로선택) {
+        c = clone(c);
+        c.선택지 = GD.진로.map(function (career) {
+          return { 글: career.아이콘 + " " + career.이름, 진로선택: career.아이디,
+            결과: career.설명 + "\n\n" + career.이름 + "의 길을 선택했다. 선수 생활에서 쌓아 온 경험과 마음으로 새로운 하루를 시작한다." };
+        });
+      }
       var id = c.제목 || "카드"; if (seen[id]) id += "#" + (++seen[id]); else seen[id] = 1;
       c._id = id; CARDS.push(c);
     }
@@ -155,6 +162,7 @@
   };
 
   function eligible(c) {
+    if (c.진로선택 && S.진로확정) return false;
     if (c.시기 && arr(c.시기).indexOf(S.시기) < 0) return false;
     if (c.히로인 === "누구나" && !S.히로인) return false;
     if (c.히로인 === "양다리" && !S.히로인2) return false;
@@ -175,7 +183,7 @@
     if (c.히로인 && S.히로인 && S.히로인.관계 === "만남" && !c.알아가기 && !c.고백카드 && !c.인연정리) return false;
     if (c._만남 && ((S.히로인 && S.히로인.관계 !== "만남") || S.만난히로인.indexOf(c._만남) >= 0)) return false;
     var last = S.본카드[c._id];
-    if (last != null && (!c.반복 || S.총턴 - last < (c.간격 || 4))) return false;
+    if (!c.진로선택 && last != null && (!c.반복 || S.총턴 - last < (c.간격 || 4))) return false;
     return check(c.조건);
   }
 

@@ -235,6 +235,10 @@
     $("#actions").innerHTML = '<div class="choice-heading">이번에는 어떤 선택을 할까요?</div>' + s.현재옵션.map(function (oi, i) {
       var o = c.선택지[oi];
       var hints = [];
+      if (o.진로선택) {
+        var career = GD.진로.find(function (p) { return p.아이디 === o.진로선택; });
+        hints.push(career.설명, "잘 풀리는 조건: " + career.성공안내);
+      }
       if (o.미니게임 && o.확률결과) hints.push("승부의 순간");
       else if (o.확률결과) hints.push("결과가 달라질 수 있어요");
       if (o.관계 === "이별") hints.push("신뢰를 잃을 수 있어요");

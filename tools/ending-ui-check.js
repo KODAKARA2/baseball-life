@@ -13,6 +13,7 @@ const out = process.argv[2] || fs.mkdtempSync(path.join(os.tmpdir(), "baseball-e
         E.newGame("강민준", "유격수", "수비");
         const s = E.state(); s.시기 = "은퇴"; s.단계 = "엔딩"; s.성적 = 980; s.행복도 = 85; s.나이 = 42; s.연차 = 16;
         s.플래그.진로_지도자 = true; s.엔딩 = E.computeEnding(); U.showEnding();
+        s.능력치.멘탈 = s.능력치.인기 = 100; s.돈 = 100000;
       });
     }
     await ending();

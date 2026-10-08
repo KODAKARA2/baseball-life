@@ -180,6 +180,14 @@
       });
       I.buildCards(); I.S = s;
       E.initFreeTime();
+      // 예전 4개/2개 진로 선택 카드도 현재의 10개 선택지로 갱신합니다.
+      if (s.단계 === "카드" && s.시기 === "은퇴" && s.현재카드) {
+        var careerCard = I.CARDS().find(function (c) { return c.진로선택 && c.제목 === s.현재카드.제목; });
+        if (careerCard) {
+          if (s.진로확정) E.next();
+          else { s.현재카드 = I.clone(careerCard); E.refreshOptions(); }
+        }
+      }
       // 이전 저장의 고백·커플 카드나 즉시 교제 선택지를 그대로 실행하지 않도록 갱신합니다.
       if (s.단계 === "카드" && s.현재카드 && s.현재카드.자유행동 && s.자유시간) { s.현재카드 = E.freeTimeCard(); E.refreshOptions(); }
       if (s.단계 === "카드" && s.현재카드 && !s.현재카드.자유행동 && (s.현재카드._끼어들기 || (s.히로인 && s.히로인.관계 === "만남" && s.현재카드.히로인))) {
@@ -227,14 +235,17 @@
     return fresh;
   };
 
-  // 엔딩에서 한 번만 진로 확정. 인생 수나 기존 엔딩의 획득 횟수는 다시 올리지 않습니다.
+  // 은퇴 카드에서 한 번만 확정. 예전 엔딩의 미확정 저장은 엔딩 화면에서 한 번 선택 가능.
   E.chooseCareer = function (id) {
-    var s = S(); if (!s || s.단계 !== "엔딩" || s.진로확정) return false;
+    var s = S(); if (!s || s.진로확정) return false;
+    var retiring = s.시기 === "은퇴" && s.단계 === "카드" && s.현재카드 && s.현재카드.진로선택;
+    if (s.단계 !== "엔딩" && !retiring) return false;
     var career = GD.진로.find(function (c) { return c.아이디 === id; });
     if (!career) return false;
-    E.recordLife();
+    if (!retiring) E.recordLife();
     Object.keys(s.플래그).forEach(function (key) { if (key.indexOf("진로_") === 0) delete s.플래그[key]; });
     s.플래그[career.플래그] = true; s.진로확정 = id;
+    if (retiring) return true;
     var ending = E.computeEnding();
     if (s.엔딩) s.엔딩.직업 = ending.직업; else s.엔딩 = ending;
     var collection = E.collection(), fresh = [];
