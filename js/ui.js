@@ -266,9 +266,11 @@
     function finish(result) { if (closed) return; closed = true; document.removeEventListener("keydown", escape); cb(result); }
     function stop() { if (closed) return; cancel(); finish({ 취소: true }); }
     function escape(e) { if (e.key === "Escape") { e.preventDefault(); stop(); } }
-    cancel = U[key](finish);
+    cancel = U[key](finish, attachQuit, stop);
+    function attachQuit() {
     var active = document.querySelector(".mg-wrap"), quit = document.createElement("button");
     quit.className = "practice-stop"; quit.textContent = "선택으로 돌아가기 · Esc"; quit.onclick = stop; active.appendChild(quit);
+    }
     document.addEventListener("keydown", escape);
     return stop;
   };
@@ -476,9 +478,11 @@
         if (closed) return; cancel = null; history[selected].push(r);
         last = (r.표시 || "⏱ " + r.타이밍.toFixed(2) + "초 / 목표 " + r.목표.toFixed(1) + "초") + " · 성공 확률 " + Math.round(r.확률 * 100) + "%";
         m.hidden = false; draw(); m.querySelector(".practice-start").focus();
-      });
+      }, attachQuit, stop);
+      function attachQuit() {
       var active = document.querySelector(".mg-wrap"), quit = document.createElement("button");
       quit.className = "practice-stop"; quit.textContent = "연습 그만하기 · Esc"; quit.onclick = stop; active.appendChild(quit);
+      }
     }
     function keys(e) {
       if (e.key === "Escape") { e.preventDefault(); if (cancel) stop(); else close(); return; }
@@ -502,7 +506,7 @@
     if (s.현재카드.자유행동 && o.자유선택 === "이동") {
       E.choose(i); E.next(); U.renderAll(); return;
     }
-    if (o.미니게임 && o.확률결과) { busy = true; return U.miniGame(function (mg) { busy = false; doChoose(i, mg); }); }
+    if (o.미니게임 && o.확률결과) { busy = true; return U.miniGame(function (mg) { busy = false; if (mg && mg.취소) return; doChoose(i, mg); }); }
     doChoose(i);
   };
   function doChoose(i, mg) {
