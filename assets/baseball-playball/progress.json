@@ -1,0 +1,14 @@
+{
+  "generator": "built-in imagegen",
+  "source": "/workspace/generated_images/exec-65f527e9-1079-4671-8b9f-5fc02d7a6542.png",
+  "file": "images/minigames/playball-generated.png",
+  "bytes": 1888762,
+  "dimensions": [
+    1448,
+    1086
+  ],
+  "sha256": "4593a65a9d19ab589be465ef8904a84c60c35d637ac8b49218b7a98bcb4fe885",
+  "provenance": "New image explicitly approved by user; not the inaccessible Library original",
+  "artDirection": "Adult male baseball umpire; slicked-back hair, black sunglasses, dramatic raised-arm declaration pose evoking Isono Duel commence, black chest protector and baseball mask; colorful anime/pixel style; no text/logo",
+  "pixelQA": "Face, raised five-finger hand, mask, sunglasses and chest protector inspected; entire image displayed with contain; 320/390/1280 screenshots reviewed"
+}

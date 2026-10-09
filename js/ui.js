@@ -270,9 +270,11 @@
     function finish(result) { if (closed) return; closed = true; document.removeEventListener("keydown", escape); cb(result); }
     function stop() { if (closed) return; cancel(); finish({ 취소: true }); }
     function escape(e) { if (e.key === "Escape") { e.preventDefault(); stop(); } }
-    cancel = U[key](finish);
+    cancel = U[key](finish, attachQuit, stop);
+    function attachQuit() {
     var active = document.querySelector(".mg-wrap"), quit = document.createElement("button");
     quit.className = "practice-stop"; quit.textContent = "선택으로 돌아가기 · Esc"; quit.onclick = stop; active.appendChild(quit);
+    }
     document.addEventListener("keydown", escape);
     return stop;
   };
@@ -291,6 +293,7 @@
       '<div class="mg-track"><i class="mg-fill"></i><b class="mg-target" data-t="' + target.toFixed(1) + '" style="left:' + (100 - target / start * 100) + '%"></b></div>' +
       '<button class="mg-ball">' + BALL + "<span>" + (pit ? "투구!" : "스윙!") + '</span></button><div class="mg-result"></div></div>';
     document.body.appendChild(m);
+    if(window.BaseballResultArt)BaseballResultArt.prepare(m,pit?"timer-pitch":"timer-hit");
     var t0 = performance.now(), done = false, timeEl = m.querySelector(".mg-time"), fill = m.querySelector(".mg-fill");
     function left() { return Math.max(0, start - (performance.now() - t0) / 1000); }
     // 시간 초과(0초까지 안 누름)는 헛스윙 → 최저 확률
@@ -298,6 +301,7 @@
       if (done || !m.isConnected) return; done = true;
       var diff = Math.abs(t - target), p = timeout ? M.최저확률 || 0.05 : Math.max(M.최저확률 || 0.05, Math.min(top, top - diff * (M.감소 || 0.7)));
       Feedback.cue(p >= .9 ? "great" : p >= .5 ? "good" : "bad", m.querySelector(".mg"), p >= .9);
+      if(window.BaseballResultArt)BaseballResultArt.show(m,"좋은 타이밍!",timeout||diff>0.2);
       timeEl.textContent = t.toFixed(2); m.querySelector(".mg-ball").classList.add(pit ? "throw" : "hit");
       m.querySelector(".mg-result").innerHTML = (timeout ? "⏰ 시간 초과! 공을 그냥 보냈다" : diff <= 0.05 ? "🎯 퍼펙트 타이밍!" : diff <= 0.2 ? "👍 좋은 타이밍!" : diff <= 0.5 ? "😅 조금 빗나갔다" : "😱 타이밍이 크게 어긋났다") +
         " <b>성공 확률 " + Math.round(p * 100) + "%</b>";
@@ -326,11 +330,12 @@
     var m = document.createElement("div"); m.className = "modal mg-wrap";
     m.innerHTML = '<div class="mg"><div class="mg-title">' + title + '</div><div class="mg-sub">' + sub + "</div>" +
       '<div class="mgf ' + (cls || "") + '">' + field + '</div><div class="mg-result"></div></div>';
-    document.body.appendChild(m); return m;
+    document.body.appendChild(m); if(window.BaseballResultArt)BaseballResultArt.prepare(m,cls); return m;
   }
   // 결과를 보여 준 뒤 창을 닫고 성공 확률을 돌려줌
   function mgEnd(m, big, bad, msg, p, show, cb) {   // big: 놀이판에 크게 띄우는 글 (bad면 붉은색)
     if (!m.isConnected || m.dataset.judged) return; m.dataset.judged = "true";
+    if(window.BaseballResultArt)BaseballResultArt.show(m,big,bad);
     Feedback.cue(p >= .9 ? "great" : p >= .5 ? "good" : "bad", m.querySelector(".mg"), p >= .9);
     if (big) { var b = document.createElement("div"); b.className = "mg-big" + (bad ? " bad" : ""); b.textContent = big; m.querySelector(".mgf").appendChild(b); }
     m.querySelector(".mg-result").innerHTML = msg + " <b>성공 확률 " + Math.round(p * 100) + "%</b>";
@@ -477,9 +482,11 @@
         if (closed) return; cancel = null; history[selected].push(r);
         last = (r.표시 || "⏱ " + r.타이밍.toFixed(2) + "초 / 목표 " + r.목표.toFixed(1) + "초") + " · 성공 확률 " + Math.round(r.확률 * 100) + "%";
         m.hidden = false; draw(); m.querySelector(".practice-start").focus();
-      });
+      }, attachQuit, stop);
+      function attachQuit() {
       var active = document.querySelector(".mg-wrap"), quit = document.createElement("button");
       quit.className = "practice-stop"; quit.textContent = "연습 그만하기 · Esc"; quit.onclick = stop; active.appendChild(quit);
+      }
     }
     function keys(e) {
       if (e.key === "Escape") { e.preventDefault(); if (cancel) stop(); else close(); return; }
@@ -503,7 +510,7 @@
     if (s.현재카드.자유행동 && o.자유선택 === "이동") {
       E.choose(i); E.next(); U.renderAll(); return;
     }
-    if (o.미니게임 && o.확률결과) { busy = true; return U.miniGame(function (mg) { busy = false; doChoose(i, mg); }); }
+    if (o.미니게임 && o.확률결과) { busy = true; return U.miniGame(function (mg) { busy = false; if (mg && mg.취소) return; doChoose(i, mg); }); }
     doChoose(i);
   };
   function doChoose(i, mg) {

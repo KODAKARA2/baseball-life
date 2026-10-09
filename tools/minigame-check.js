@@ -10,11 +10,11 @@ fs.mkdirSync(out, { recursive: true });
     const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
     const errors = []; page.on("pageerror", e => errors.push(e.message));
     await page.goto(pathToFileURL(path.join(__dirname, "../index.html")).href);
-    await page.clock.install();
-    const start = async name => page.evaluate(name => {
+    await page.clock.install(); await page.clock.pauseAt(await page.evaluate(()=>Date.now()));
+    const start = async name => { await page.evaluate(name => {
       window.results = []; Math.random = () => 0.5;
       window.cancelMini = U[name](r => window.results.push(r));
-    }, name);
+    }, name); await page.clock.runFor(720); };
     const tap = async () => page.evaluate(() => {
       const e = new PointerEvent("pointerdown", { bubbles: true, button: 0, isPrimary: true });
       Object.defineProperty(e, "timeStamp", { value: performance.now() });
@@ -83,14 +83,14 @@ fs.mkdirSync(out, { recursive: true });
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
       for (const key of ["steal", "throw", "signs"]) {
         await page.locator(`[data-game="${key}"]`).click();
-        await page.locator(".practice-start").click();
+        await page.locator(".practice-start").click(); await page.clock.runFor(720);
         assert.equal(await page.locator(".mg").evaluate(el => el.scrollWidth > el.clientWidth), false);
         if (width === 390) await page.screenshot({ path: path.join(out, key + ".png"), animations: "disabled" });
         await page.keyboard.press("Escape"); await page.clock.runFor(10000);
         assert.equal(await page.locator(".mg-wrap").count(), 0);
       }
     }
-    await page.locator('[data-game="signs"]').click(); await page.locator(".practice-start").click();
+    await page.locator('[data-game="signs"]').click(); await page.locator(".practice-start").click(); await page.clock.runFor(720);
     await page.clock.runFor(2450); for (let i = 0; i < 3; i++) await page.keyboard.press("2");
     await page.clock.runFor(1700);
     assert.match(await page.locator(".practice-score").innerText(), /1회/);
