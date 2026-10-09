@@ -1,0 +1,34 @@
+.more-controls { display:flex; gap:10px; margin:12px 0 4px; }
+.more-controls button { flex:1; min-width:0; min-height:48px; padding:12px 8px; border:1px solid #97b9a1; border-radius:12px; background:#e8f2db; color:#173c2d; font:inherit; font-weight:700; touch-action:none; user-select:none; }
+.more-controls button:active,.more-controls button.charging { background:#f5d16b; color:#142f24; }
+.more-controls button:focus-visible { outline:3px solid #ffdc74; outline-offset:3px; }
+.more-controls button:disabled { opacity:.5; }
+.more-controls small { display:inline-block; margin-right:6px; opacity:.65; }
+.fly-field,.bunt-field,.eye-field,.defense-field { background:repeating-linear-gradient(90deg,#27684d 0%,#27684d 16%,#2e7154 16%,#2e7154 32%); border:1px solid #51785c; color:#fff9dd; }
+.fly-field .pf-time,.bunt-field .pf-time,.eye-field .pf-time,.defense-field .pf-time { bottom:4px; }
+.fly-fence { position:absolute; inset:0 0 auto; height:32px; border-bottom:5px solid #f4ce6a; background:repeating-linear-gradient(90deg,#174c40 0px,#174c40 24px,#316b58 25px,#316b58 27px); }
+.fly-shadow { position:absolute; top:80%; width:46px; height:20px; border:3px dashed #ffe57d; border-radius:50%; background:#fff5b020; transform:translate(-50%,-50%); }
+.fly-glove { position:absolute; top:79%; width:46px; height:46px; transform:translate(-50%,-50%); filter:drop-shadow(0 3px 2px #102b26); }
+.fly-ball { position:absolute; width:30px; height:30px; z-index:2; }
+.fly-ball svg,.bunt-ball svg,.eye-ball svg { width:100%;height:100%; }
+.fly-label { position:absolute; bottom:14px; width:100%; text-align:center; font-size:12px; letter-spacing:2px; }
+.bunt-line { position:absolute; top:10%; bottom:38%; left:50%; border-left:3px solid #fff6d3; transform:rotate(35deg); }
+.bunt-ball { position:absolute; top:46%; left:40%; width:25px; height:25px; transition:transform .25s; }
+.bunt-bat { position:absolute; top:48%; left:38%; width:90px; height:12px; border-radius:8px; background:linear-gradient(90deg,#252e2a 0 20%,#e9b66a 20%); transform:rotate(-25deg); border:2px solid #734e29; }
+.bunt-meter { position:absolute; left:8%; right:8%; bottom:62px; height:28px; border:2px solid #dddbb7; border-radius:5px; background:#183f33; overflow:hidden; }
+.bunt-fill { position:absolute; inset:0 auto 0 0; background:#e9c45b; width:0; }
+.bunt-zone { position:absolute; top:0; bottom:0; border:2px solid #abffe3; background:#83ffb75c; }
+.bunt-tick { position:absolute; top:0; bottom:0; border-left:2px solid white; }
+.bunt-status { position:absolute; bottom:22px; width:100%; text-align:center; font-size:13px; }
+.eye-zone { position:absolute; left:30%; top:24%; width:40%; height:48%; border:3px solid #fff4ce; background:linear-gradient(90deg,transparent 32%,#ffffff30 33%,transparent 34%,transparent 65%,#ffffff30 66%,transparent 67%),linear-gradient(transparent 32%,#ffffff30 33%,transparent 34%,transparent 65%,#ffffff30 66%,transparent 67%); }
+.eye-zone span { position:absolute; width:160%; left:-30%; top:-28px; text-align:center; font-size:12px; color:#f2e9c9; }
+.eye-ball { position:absolute; width:22px; height:22px; transform:translate(-50%,-50%); filter:drop-shadow(0 3px 2px #072e29); }
+.round-status { position:absolute; bottom:16px; left:3%; width:94%; text-align:center; font-size:13px; line-height:1.4; min-height:34px; display:grid; place-items:center; }
+.defense-diamond { position:absolute; width:100px; height:100px; left:50%; top:41%; transform:translate(-50%,-50%) rotate(45deg); background:#a7794f; border:2px solid #d3c7a0; }
+.defense-base { position:absolute; width:37px; height:30px; border:2px solid #e8e0c6; border-radius:5px; color:#1b402f; background:#f2edda; text-align:center; font-size:12px; line-height:26px; transform:translate(-50%,-50%); }
+.defense-base.occupied { background:#ffe077; border-color:#c89b27; box-shadow:0 0 0 4px #ffe07740; font-weight:800; }
+.base-first { left:calc(50% + 71px); top:41%; }.base-second { left:50%; top:calc(41% - 71px); }.base-third { left:calc(50% - 71px); top:41%; }.base-home { left:50%; top:calc(41% + 71px); }
+.defense-situation { position:absolute; top:37%; left:0; width:100%; text-align:center; color:#fff; text-shadow:0 1px 4px #362313; font-size:13px; font-weight:800; }
+@media(max-width:360px){.more-controls{gap:6px}.more-controls button{font-size:13px;padding:12px 5px}.round-status{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.bunt-ball{transition:none}}
+html[data-reduced-motion="true"] .bunt-ball{transition:none}

@@ -63,7 +63,7 @@
     return cancel;
   }
   window.BaseballPlayball = {run: run};
-  ['miniTimer', 'miniBat', 'miniPitch', 'miniSteal', 'miniThrow', 'miniSigns'].forEach(function (name) {
+  ['miniTimer', 'miniBat', 'miniPitch', 'miniSteal', 'miniThrow', 'miniSigns', 'miniFly', 'miniBunt', 'miniDiscipline', 'miniDefense'].forEach(function (name) {
     var play = U[name];
     U[name] = function (cb, ready, abort) {
       return run(function () { var cancel = play(cb); if (ready) ready(); return cancel; }, abort);
