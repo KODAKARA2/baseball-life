@@ -67,6 +67,8 @@
       var good=answer===questions[index].answer;if(good)correct++;
       phase='gap';at=performance.now();enable(false);box.focus({preventScroll:true});status.textContent=(good?'좋은 판단!':'아쉬운 판단')+' · '+questions[index].reason;
       Feedback.play(good?'catch':'select');
+      // 마지막 입력 직후 컷인만 먼저 표시합니다. 기존 판정·결과 대기 시간은 유지합니다.
+      if(index===questions.length-1 && window.BaseballResultArt)BaseballResultArt.show(m,labels[correct],correct<2);
     }
     buttons.forEach(function(b){b.onclick=function(){settle(Number(b.dataset.answer));};});
     box.addEventListener('keydown',function(e){if(/^[123]$/.test(e.key)&&!e.repeat){e.preventDefault();settle(Number(e.key)-1);}});
