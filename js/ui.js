@@ -166,7 +166,7 @@
       '<div class="row common"><span>' + U.looksTag() + '</span><span>멘탈 <b>' + s.능력치.멘탈 + "</b></span><span>인기 <b>" + s.능력치.인기 + "</b></span><span>컨디션 <b>" + s.능력치.컨디션 + "</b></span>" +
       (s.시기 === "메이저리그" ? "<span>적응 <b>" + s.능력치.적응 + "</b></span>" : "") + "</div>" +
       '<div class="row"><span>행복 <b>' + s.행복도 + '</b>' + bar(s.행복도, "happy") + "</span><span>성적 <b>" + s.성적 + "</b></span>" + status + "</div>" +
-      '<div class="row"><button class="money" onclick="U.openShop()">💰 ' + E.money(s.돈) + ' · 상점</button></div></div>';
+      '<div class="row"><button class="money" onclick="U.openShop()">💰 ' + E.money(s.돈) + ' · 상점</button><button class="money" onclick="U.openPlayerJournal()">📓 선수 수첩</button></div></div>';
     var her = "";
     if (s.히로인) {
       var h = E.heroDef(), rel = s.히로인.관계;
@@ -181,6 +181,7 @@
 
   U.cardArtKeys = function (card) {
     var s = E.state();
+    if (card.선수서사 === "memory" && card.그림) { var memoryHero = E.heroDef(card.그림); return {keys:U.heroineKeys(memoryHero.아이디,"만남"),icon:"💗",label:"<b>"+esc(memoryHero.이름)+"</b><small>우리의 기억</small>"}; }
     if (card._끼어들기) { var hi = E.heroDef(card._끼어들기); return { keys: U.heroineKeys(hi.아이디, "만남"), icon: "💗", label: "<b>" + esc(hi.이름) + "</b><small>" + (card.인연교제제안 ? "먼저 전한 마음" : "끼어든 인연") + "</small>" }; }
     if (card.히로인 === "양다리" && s.히로인2) { var hs = E.heroDef(s.히로인2.아이디); return { keys: U.heroineKeys(hs.아이디, "연인"), icon: "🤫", label: "<b>" + esc(hs.이름) + "</b><small>비밀 연인 · ❤ " + s.히로인2.애정도 + "</small>" }; }
     if (card._만남) return { keys: U.heroineKeys(card._만남, "만남"), icon: "💗", label: "<b>" + esc(E.heroDef(card._만남).이름) + "</b><small>첫 만남</small>" };
@@ -235,6 +236,11 @@
     $("#actions").innerHTML = '<div class="choice-heading">이번에는 어떤 선택을 할까요?</div>' + s.현재옵션.map(function (oi, i) {
       var o = c.선택지[oi];
       var hints = [];
+      if (o.안내) hints.push(esc(o.안내));
+      if (o.진로선택) {
+        var career = GD.진로.find(function (p) { return p.아이디 === o.진로선택; });
+        hints.push(career.설명, "잘 풀리는 조건: " + career.성공안내);
+      }
       if (o.미니게임 && o.확률결과) hints.push("승부의 순간");
       else if (o.확률결과) hints.push("결과가 달라질 수 있어요");
       if (o.관계 === "이별") hints.push("신뢰를 잃을 수 있어요");

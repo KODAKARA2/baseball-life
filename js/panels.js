@@ -13,12 +13,17 @@
   }
   U.closeModals = function () { Feedback.stop(); [].forEach.call(document.querySelectorAll(".modal"), function (m) { m.remove(); }); };
 
+  U.openPlayerJournal = function () {
+    modal('<h2>선수 수첩</h2><p class="hint">어떤 선수로 뛰었고, 누구와 어떤 시간을 보냈는지.</p>' + E.story.summary().map(function(line){return '<section class="journal-entry"><p>'+br(line)+'</p></section>';}).join(''));
+  };
+
   U.openMenu = function () {
     modal('<h2>메뉴</h2><div class="menu-list">' +
       '<button onclick="Feedback.settings()">소리·움직임 설정</button>' +
       '<button onclick="U.closeModals();U.openHero()">🧢 내 인생 카드 · 능력치</button>' +
       '<button onclick="U.closeModals();U.openHeroine()">💗 히로인 카드 · 애정도</button>' +
       '<button onclick="U.closeModals();U.openCareer()">📊 커리어 기록</button>' +
+      '<button onclick="U.closeModals();U.openPlayerJournal()">📓 선수 수첩 · 목표와 기억</button>' +
       '<button onclick="U.closeModals();U.openShop()">💰 지갑 · 상점</button>' +
       '<button onclick="U.closeModals();U.openCollection()">📖 엔딩 도감 · 업적</button>' +
       '<button onclick="U.closeModals();U.openPractice()">⚾ 미니게임 연습장</button>' +
@@ -156,7 +161,7 @@
       (he ? '<div class="he-end">' + U.art(U.heroineKeys(he.아이디, "배우자"), "💍", null, "card-art") + '<div><div class="he-title">' + he.아이콘 + " " + esc(he.이름) +
         "</div><small>" + esc(he.히로인) + " 전용 엔딩</small><p>" + br(E.tpl(he.내용)) + "</p></div></div>" : "") +
       en.칭호.map(function (t) { return '<div class="badge">' + t.아이콘 + " " + esc(t.이름) + "<small>" + esc(E.tpl(t.내용)) + "</small></div>"; }).join("") +
-      (s.진로확정 && en.직업 ? '<div class="badge job career-summary" tabindex="-1"><span class="eyebrow">내가 선택한 다음 장</span>' + en.직업.아이콘 + " " + esc(en.직업.이름) + "<small>" + esc(E.tpl(en.직업.내용)) + "</small></div>" :
+      (s.진로확정 && en.직업 ? '<div class="badge job career-summary" tabindex="-1"><span class="eyebrow">' + (en.직업.결말유형 === "좋음" ? "잘 풀린 다음 장" : en.직업.결말유형 === "아쉬움" ? "아쉬움이 남은 다음 장" : "내가 선택한 다음 장") + '</span>' + en.직업.아이콘 + " " + esc(en.직업.이름) + "<small>" + esc(E.tpl(en.직업.내용)) + "</small></div>" :
         '<div class="career-invite"><h3>다음 장은 어떤 모습일까요?</h3><p>선수 생활은 끝났지만 이야기는 계속됩니다. 10가지 진로 중 하나를 고르면, 후일담과 도감에 남습니다.</p><button class="big" onclick="U.openCareer()">은퇴 후 진로 선택하기 →</button><small>한 인생에서 한 번 확정합니다. 성적과 행복도는 바뀌지 않습니다.</small></div>') +
       "<h3>통산 기록</h3>" + totalsHTML() + '<p class="kv">💰 통산 수입 ' + E.money(s.총수입) + " · 은퇴 때 자산 " + E.money(s.돈) + "</p><h3>수상</h3>" + awardsHTML() +
       "<h3>결정적 순간들</h3>" + momentsHTML(12) + '<h3>함께했던 히로인들</h3><div class="heroines">' + hs + "</div>" + seasonsHTML() +
@@ -172,10 +177,10 @@
 
   U.openCareer = function () {
     var s = E.state(); if (!s || s.단계 !== "엔딩" || s.진로확정) return;
-    var m = modal('<h2>나의 다음 진로</h2><p class="hint">어떤 길이든 처음부터 배워 갈 수 있습니다. 한 가지를 선택하면 그 길의 후일담이 열립니다.</p><div class="career-grid">' +
+    var m = modal('<h2>나의 다음 진로</h2><p class="hint">한 가지를 선택하면 은퇴 때의 기록과 마음에 따라 그 길의 후일담이 열립니다.</p><div class="career-grid">' +
       GD.진로.map(function (c) {
         return '<button class="career-choice" data-career="' + esc(c.아이디) + '"><span class="career-icon" aria-hidden="true">' + c.아이콘 + '</span><b>' + esc(c.이름) + '</b><small>' + esc(c.설명) +
-          '</small>' + (s.플래그[c.플래그] ? '<em>은퇴 때 관심을 둔 길</em>' : '') + '<span class="career-pick">이 진로로 시작 →</span></button>';
+          '</small><small>잘 풀리는 조건: ' + esc(c.성공안내) + '</small><span class="career-pick">이 진로로 시작 →</span></button>';
       }).join("") + '</div><p class="hint">진로는 확정 후 바꿀 수 없습니다. 다음 인생에서는 다른 길을 선택할 수 있습니다.</p>', "조금 더 생각하기");
     m.querySelectorAll("[data-career]").forEach(function (button) {
       button.onclick = function () {
@@ -233,7 +238,7 @@
       "<h3>✨ 레어 카드</h3>" + rares.map(function (x) { return row(c.레어[x.제목], "✨", x.제목, ""); }).join("") +
       "<h3>🌈 인생 유형</h3>" + GD.기본엔딩.map(function (e) { return row(got["기본:" + e.이름], e.아이콘, e.이름, e.판정안내 || "성적 " + e.성적 + " · 행복도 " + e.행복도); }).join("") +
       "<h3>🎖️ 칭호 · 은퇴 후 직업</h3>" + GD.직업엔딩.map(function (e) { var ch = e.종류 === "칭호", g = got[(ch ? "칭호:" : "직업:") + e.이름];
-        return row(g, e.아이콘, e.이름, sub(ch ? "칭호" : "은퇴 후 직업", g ? "" : hint(e.조건))); }).join("") +
+        return row(g, e.아이콘, e.이름, sub(ch ? "칭호" : (e.결말유형 === "좋음" ? "진로 · 잘 풀린 결말" : "진로 · 아쉬운 결말"), g ? "" : e.판정안내 || hint(e.조건))); }).join("") +
       '<p class="hint">도감은 이 기기(브라우저)에 저장되어, 새 인생을 시작해도 사라지지 않습니다.</p>');
   };
 

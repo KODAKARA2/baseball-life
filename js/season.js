@@ -20,6 +20,7 @@
     if (!playing) return null;
     var q = perf(), p = E.pos(), A = s.능력치;
     var gf = clamp(1 - 0.5 * s.올해부상카드 / (sdef(s.시기).한해카드수 || 2), 0.3, 1);
+    if (E.story) gf *= E.story.playtime();
     var L = { 연도: year(), 나이: s.나이, 팀: s.팀, 메이저: s.시기 === "메이저리그", 경기력: Math.round(q) };
     if (p.분류 === "투수") {
       L.평균자책점 = clamp(7.2 - (q - 40) * 0.09, 1.2, 9);
@@ -39,6 +40,8 @@
       L.도루 = Math.round(clamp((A.주루 - 40) * 0.9, 0, 60) * gf);
       L.타점 = Math.round(L.홈런 * 2.3 + L.안타 * 0.22);
     }
+    L.출전비율 = gf;
+    if (E.story) E.story.adjustLine(L,gf);
     L.가치 = Math.max(0, Math.round((q - cfg().시즌.기준선) * cfg().시즌.점수배율 * gf));
     return L;
   }
@@ -79,7 +82,7 @@
     if (s._연봉연도 === s.나이) return s._연봉;
     if (s.시기 === "프로") pay = L ? (M.일군기본 || 0) + Math.max(0, L.경기력 - 50) * (M.경기력당 || 0) : (M.이군 || 0);
     else if (s.시기 === "메이저리그") pay = L ? (M.메이저기본 || 0) + Math.max(0, L.경기력 - 60) * (M.메이저경기력당 || 0) : (M.마이너 || 0);
-    pay = Math.round(pay); s.돈 = (s.돈 || 0) + pay; s.총수입 = (s.총수입 || 0) + pay;
+    pay = E.story ? E.story.salary(pay) : Math.round(pay); s.돈 = (s.돈 || 0) + pay; s.총수입 = (s.총수입 || 0) + pay;
     s._연봉연도 = s.나이; s._연봉 = pay; return pay;
   }
   E.money = function (n) {
@@ -114,17 +117,23 @@
     return { 결과: E.tpl(e.item.결과 || ""), 효과: out };
   };
 
-  E.endYear = function () {
+  E.endYear = function (partial) {
     var s = S(), L = seasonLine();
+    var storyLines = E.story ? E.story.endYear(L,partial) : [];
     if (L) {
       s.기록.push(L); s.성적 += E.looksGain(L.가치, "성적행복");
       var got = awards(L);
       var lines = [s.팀 + " · " + (L.메이저 ? "메이저리그" : "1군"), fmtLine(L), "💰 연봉 " + E.money(salary(L))];
       if (got.length) lines.push("🏅 " + got.join(", "));
+      if (L.선수유형) lines.push("선수 유형 · " + L.선수유형 + " · 출전량 " + Math.round(L.출전비율*100) + "%");
+      lines = lines.concat(storyLines);
       s.대기열.unshift({ 시스템: true, 제목: L.연도 + " 시즌 결산", 내용: lines.join("\n"), 그림: got.length ? "hero_victory" : null,
         선택지: [{ 글: "다음 시즌으로" }] });
     }
-    if (!L) salary(null);
+    if (!L) {
+      var pay = salary(null);
+      if (storyLines.length) s.대기열.unshift({시스템:true,제목:year()+" 시즌 결산",내용:["올해는 1군 기록이 없었다.","💰 연봉 "+E.money(pay)].concat(storyLines).join("\n"),선택지:[{글:"다음 시즌으로"}]});
+    }
     if (s.시기 === "프로") s.연차++;
     s.나이++; s.올해카드 = 0; s.올해부상카드 = 0;
   };
@@ -180,6 +189,15 @@
       });
       I.buildCards(); I.S = s;
       E.initFreeTime();
+      if (E.story) E.story.init();
+      // 예전 4개/2개 진로 선택 카드도 현재의 10개 선택지로 갱신합니다.
+      if (s.단계 === "카드" && s.시기 === "은퇴" && s.현재카드) {
+        var careerCard = I.CARDS().find(function (c) { return c.진로선택 && c.제목 === s.현재카드.제목; });
+        if (careerCard) {
+          if (s.진로확정) E.next();
+          else { s.현재카드 = I.clone(careerCard); E.refreshOptions(); }
+        }
+      }
       // 이전 저장의 고백·커플 카드나 즉시 교제 선택지를 그대로 실행하지 않도록 갱신합니다.
       if (s.단계 === "카드" && s.현재카드 && s.현재카드.자유행동 && s.자유시간) { s.현재카드 = E.freeTimeCard(); E.refreshOptions(); }
       if (s.단계 === "카드" && s.현재카드 && !s.현재카드.자유행동 && (s.현재카드._끼어들기 || (s.히로인 && s.히로인.관계 === "만남" && s.현재카드.히로인))) {
@@ -227,14 +245,17 @@
     return fresh;
   };
 
-  // 엔딩에서 한 번만 진로 확정. 인생 수나 기존 엔딩의 획득 횟수는 다시 올리지 않습니다.
+  // 은퇴 카드에서 한 번만 확정. 예전 엔딩의 미확정 저장은 엔딩 화면에서 한 번 선택 가능.
   E.chooseCareer = function (id) {
-    var s = S(); if (!s || s.단계 !== "엔딩" || s.진로확정) return false;
+    var s = S(); if (!s || s.진로확정) return false;
+    var retiring = s.시기 === "은퇴" && s.단계 === "카드" && s.현재카드 && s.현재카드.진로선택;
+    if (s.단계 !== "엔딩" && !retiring) return false;
     var career = GD.진로.find(function (c) { return c.아이디 === id; });
     if (!career) return false;
-    E.recordLife();
+    if (!retiring) E.recordLife();
     Object.keys(s.플래그).forEach(function (key) { if (key.indexOf("진로_") === 0) delete s.플래그[key]; });
     s.플래그[career.플래그] = true; s.진로확정 = id;
+    if (retiring) return true;
     var ending = E.computeEnding();
     if (s.엔딩) s.엔딩.직업 = ending.직업; else s.엔딩 = ending;
     var collection = E.collection(), fresh = [];

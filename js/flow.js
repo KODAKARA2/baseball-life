@@ -56,13 +56,14 @@
     if (prev) {
       if (pd.끝나면플래그) s.플래그[pd.끝나면플래그] = true;
       arr(pd.끝나면해제).forEach(function (f) { delete s.플래그[f]; });
-      if (I.YEARLY[prev]) { if (s.올해카드 > 0) E.endYear(); }
+      if (I.YEARLY[prev]) { if (s.올해카드 > 0) E.endYear(true); }
       else if (!sdef(name).시작나이) s.나이 += 1;
     }
     if (name === "엔딩") { s.엔딩 = E.computeEnding(); return; }
     var nd = sdef(name);
     if (nd.시작나이) s.나이 = nd.시작나이;
     s.시기 = name; s.시기턴 = 0; s.진입나이 = s.나이; s.올해카드 = 0; s.올해부상카드 = 0;
+    if (E.story) E.story.stage(prev,name);
     if (s.새인연 && arr(E.heroDef(s.새인연.아이디).만나는시기).indexOf(name) < 0) delete s.새인연;
     if (nd.시작플래그) s.플래그[nd.시작플래그] = true;
     if (name === "드래프트" || name === "대학드래프트") {
@@ -95,6 +96,11 @@
   function prio(c) { return c.우선 === true ? 1 : (c.우선 || 0); }
   function drawCard() {
     var s = S();
+    // 마지막 은퇴 카드에서는 우선 사건·대기열보다 진로 확정을 먼저 보장합니다.
+    if (s.시기 === "은퇴" && !s.진로확정 && s.시기턴 >= (sdef("은퇴").카드수 || 3) - 1) {
+      var career = I.CARDS().find(function (c) { return c.진로선택 && I.eligible(c); });
+      if (career) return career;
+    }
     while (s.대기열.length) {
       var q = s.대기열.shift();
       if (typeof q === "object") return q;
@@ -112,6 +118,8 @@
       var must = all.filter(function (c) { return c.필수; });
       if (must.length && sd.카드수 - s.시기턴 <= must.length) return I.pick(must);
     }
+    var story = E.story && E.story.card();
+    if (story) return story;
     var L = cfg().연애;
     if (s.히로인) {
       var hc = all.filter(function (c) { return c.히로인 || c._끼어들기 || (s.히로인.관계 === "만남" && c._만남); });
@@ -198,6 +206,7 @@
     if (S().단계 !== "카드" || !S().현재카드 || S().현재옵션[i] == null) return S().결과;
     if (S().현재카드.자유행동) return E.chooseFreeTime(i);
     var s = S(), card = s.현재카드, o = card.선택지[s.현재옵션[i]];
+    if (o.진로선택 && !E.chooseCareer(o.진로선택)) return s.결과;
     var res = { 효과: {}, 결과: o.결과 || "", 그림: o.그림변경 || null, 알림: [] };
     var out = o;
     if (o.비용) { s.돈 = Math.max(0, (s.돈 || 0) - o.비용); res.효과.돈 = -o.비용; }
@@ -249,6 +258,7 @@
 
     if (card._id) s.본카드[card._id] = s.총턴;
     if (!card.시스템) { res.알림 = res.알림.concat(tick(out, card)); res.뉴스 = pickNews(); }
+    if (E.story) E.story.onChoose(card,out,res);
     E.growHeroineAffection();
     s.총턴++;
 
