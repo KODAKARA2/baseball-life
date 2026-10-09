@@ -153,4 +153,5 @@
       signs: { title: "사인 기억", icon: "🧠", play: U.miniSigns, help: "구종 사인 3개를 기억한 뒤 같은 순서로 고르세요. 구종 버튼 또는 숫자 1·2·3으로 입력합니다.", levels: "3개 / 2개 / 1개 / 0개 정답 순서: " + levels, keys: "터치·클릭 또는 숫자 1·2·3" }
     };
   };
+  Object.assign(H, { lifecycle: lifecycle, probability: probability, grade: grade });
 })();

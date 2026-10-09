@@ -77,7 +77,7 @@ fs.mkdirSync(out, { recursive: true });
     // 연습장에서 6종 선택, 화면 크기별 표시, 저장 보존과 Esc 중단.
     const before = await page.evaluate(() => JSON.stringify({ state: E.state(), storage: { ...localStorage } }));
     await page.evaluate(() => U.openPractice());
-    assert.equal(await page.locator("[data-game]").count(), 6);
+    assert.equal(await page.locator("[data-game]").count(), 10);
     for (const width of [320, 390, 1280]) {
       await page.setViewportSize({ width, height: 844 });
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
@@ -99,7 +99,7 @@ fs.mkdirSync(out, { recursive: true });
     assert.equal(await page.evaluate(() => JSON.stringify({ state: E.state(), storage: { ...localStorage } })), before);
     // 실제 추첨이 포지션을 지키며 모든 종류에 도달하고 3연속을 막는지 확인.
     const draws = await page.evaluate(() => {
-      const names = ["miniTimer", "miniBat", "miniPitch", "miniSteal", "miniThrow", "miniSigns"];
+      const names = ["miniTimer", "miniBat", "miniPitch", "miniSteal", "miniThrow", "miniSigns", "miniFly", "miniBunt", "miniDiscipline", "miniDefense"];
       const originals = {}; let picked, seed = 123;
       names.forEach(n => { originals[n] = U[n]; U[n] = () => { picked = n; const m = document.createElement("div"); m.className = "mg-wrap"; document.body.appendChild(m); return () => m.remove(); }; });
       Math.random = () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296);
@@ -112,7 +112,7 @@ fs.mkdirSync(out, { recursive: true });
       return output;
     });
     for (const [pos, list] of Object.entries(draws)) {
-      assert.deepEqual([...new Set(list)].sort(), (pos === "유격수" ? ["miniTimer", "miniBat", "miniSteal", "miniThrow"] : ["miniTimer", "miniPitch", "miniThrow", "miniSigns"]).sort());
+      assert.deepEqual([...new Set(list)].sort(), (pos === "유격수" ? ["miniTimer", "miniBat", "miniSteal", "miniThrow", "miniFly", "miniBunt", "miniDiscipline", "miniDefense"] : ["miniTimer", "miniPitch", "miniThrow", "miniSigns", "miniFly", "miniDefense"]).sort());
       assert.ok(list.every((v, i) => i < 2 || v !== list[i - 1] || v !== list[i - 2]));
     }
     // 새 게임이 본편의 선택 결과까지 정확히 한 번 전달되는지 확인.
@@ -129,7 +129,7 @@ fs.mkdirSync(out, { recursive: true });
       assert.equal(await page.evaluate(() => E.state().결과.미니게임.확률), .05);
     }
     assert.deepEqual(errors, []);
-    console.log("PASS: 새 3종 판정·시간 초과·중복 입력·중단 / 6종 연습·저장 보존 / 포지션 추첨·3연속 방지 / 본편 결과 / 모바일·PC");
+    console.log("PASS: 기존 3종 판정·시간 초과·중복 입력·중단 / 10종 연습·저장 보존 / 포지션 추첨·3연속 방지 / 본편 결과 / 모바일·PC");
     console.log("스크린샷: " + out);
   } finally { await browser.close(); }
 })().catch(e => { console.error(e); process.exitCode = 1; });

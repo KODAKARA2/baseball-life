@@ -262,7 +262,7 @@
   var mgLast = [];
   U.miniGame = function (cb) {
     var M = GD.설정.미니게임 || {}, alt = Math.random() < (M.새게임확률 == null ? 0.5 : M.새게임확률);
-    var pool = E.pos().분류 === "투수" ? ["miniPitch", "miniThrow", "miniSigns"] : ["miniBat", "miniSteal", "miniThrow"];
+    var pool = (M.포지션게임 || {})[E.pos().분류] || (E.pos().분류 === "투수" ? ["miniPitch", "miniThrow", "miniSigns"] : ["miniBat", "miniSteal", "miniThrow"]);
     var blocked = mgLast.length === 2 && mgLast[0] === mgLast[1] ? mgLast[0] : null;
     var choices = alt || blocked === "miniTimer" ? pool : ["miniTimer"];
     choices = choices.filter(function (key) { return key !== blocked; });

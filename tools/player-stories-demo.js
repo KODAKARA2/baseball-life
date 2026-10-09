@@ -4,10 +4,11 @@
     var panel=document.createElement('details');panel.className='story-demo';panel.open=true;
     panel.innerHTML='<summary>선수 생활 업데이트 · 체험 메뉴</summary><p>이 주소의 저장은 실제 서비스와 별개입니다. 아래 버튼은 현재 테스트 인생을 새 장면으로 바꿉니다.</p><div class="demo-buttons"></div>';
     var style=document.createElement('style');style.textContent='.story-demo{box-sizing:border-box;max-width:920px;margin:16px auto;padding:14px 18px;border:1px solid #728e85;border-radius:14px;background:#163e38;color:#f4efdf;font:14px/1.6 sans-serif}.story-demo summary{cursor:pointer;font-weight:bold}.story-demo p{margin:8px 0}.demo-buttons{display:flex;flex-wrap:wrap;gap:8px}.demo-buttons button{padding:9px 12px;border:1px solid #849e94;border-radius:9px;background:#f0ebd9;color:#163e38;cursor:pointer;font:inherit}@media(max-width:600px){.story-demo{margin:10px}.demo-buttons button{flex:1 1 40%}}';document.head.appendChild(style);document.body.prepend(panel);
-    var choices=[['처음부터 플레이','full'],['선수 유형','type'],['올해의 목표','goal'],['주전 경쟁','role'],['부상과 복귀','rehab'],['라이벌과의 관계','rival'],['인연과의 약속','memory'],['새 계약 제안','contract'],['투수의 선택','pitcher']];
+    var choices=[['미니게임 10종','practice'],['처음부터 플레이','full'],['선수 유형','type'],['올해의 목표','goal'],['주전 경쟁','role'],['부상과 복귀','rehab'],['라이벌과의 관계','rival'],['인연과의 약속','memory'],['새 계약 제안','contract'],['투수의 선택','pitcher']];
     choices.forEach(function(item){var b=document.createElement('button');b.textContent=item[0];b.dataset.demo=item[1];b.onclick=function(){start(item[1]);};panel.querySelector('.demo-buttons').appendChild(b);});
     function start(kind){
       U.closeModals();
+      if(kind==='practice'){U.openPractice();panel.open=false;return;}
       if(kind==='full'){E.reset();U.showSetup();panel.open=false;return;}
       var pitcher=kind==='pitcher',p=GD.포지션.find(function(p){return p.분류==='투수';}),sp=GD.특기.find(function(t){return t.분류==='투수';});
       E.newGame('강민준',pitcher?p.이름:'유격수',pitcher?sp.이름:'수비',{외모:5});
@@ -26,5 +27,6 @@
       s.현재카드=c;s.단계='카드';s.결과=null;E.refreshOptions();E.save();U.showGame();
       panel.open=false;
     }
+    if(new URLSearchParams(location.search).get('practice')==='1'){panel.open=false;U.openPractice();}
   });
 })();
