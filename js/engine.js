@@ -162,6 +162,7 @@
   };
 
   function eligible(c) {
+    if (E.story && !E.story.eligible(c)) return false;
     if (c.진로선택 && S.진로확정) return false;
     if (c.시기 && arr(c.시기).indexOf(S.시기) < 0) return false;
     if (c.히로인 === "누구나" && !S.히로인) return false;

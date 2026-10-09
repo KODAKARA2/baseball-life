@@ -56,13 +56,14 @@
     if (prev) {
       if (pd.끝나면플래그) s.플래그[pd.끝나면플래그] = true;
       arr(pd.끝나면해제).forEach(function (f) { delete s.플래그[f]; });
-      if (I.YEARLY[prev]) { if (s.올해카드 > 0) E.endYear(); }
+      if (I.YEARLY[prev]) { if (s.올해카드 > 0) E.endYear(true); }
       else if (!sdef(name).시작나이) s.나이 += 1;
     }
     if (name === "엔딩") { s.엔딩 = E.computeEnding(); return; }
     var nd = sdef(name);
     if (nd.시작나이) s.나이 = nd.시작나이;
     s.시기 = name; s.시기턴 = 0; s.진입나이 = s.나이; s.올해카드 = 0; s.올해부상카드 = 0;
+    if (E.story) E.story.stage(prev,name);
     if (s.새인연 && arr(E.heroDef(s.새인연.아이디).만나는시기).indexOf(name) < 0) delete s.새인연;
     if (nd.시작플래그) s.플래그[nd.시작플래그] = true;
     if (name === "드래프트" || name === "대학드래프트") {
@@ -117,6 +118,8 @@
       var must = all.filter(function (c) { return c.필수; });
       if (must.length && sd.카드수 - s.시기턴 <= must.length) return I.pick(must);
     }
+    var story = E.story && E.story.card();
+    if (story) return story;
     var L = cfg().연애;
     if (s.히로인) {
       var hc = all.filter(function (c) { return c.히로인 || c._끼어들기 || (s.히로인.관계 === "만남" && c._만남); });
@@ -255,6 +258,7 @@
 
     if (card._id) s.본카드[card._id] = s.총턴;
     if (!card.시스템) { res.알림 = res.알림.concat(tick(out, card)); res.뉴스 = pickNews(); }
+    if (E.story) E.story.onChoose(card,out,res);
     E.growHeroineAffection();
     s.총턴++;
 

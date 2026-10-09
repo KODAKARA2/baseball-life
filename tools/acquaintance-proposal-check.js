@@ -77,6 +77,8 @@ for (const choice of [0,1,2]) {
 // 실제 카드 추첨에서도 새 제안을 뽑는지 확인 (선택 실행 없이 동일 시점에서 반복 추첨).
 {
   const {s} = setup(); s.시기 = '고등학교'; s.나이 = s.진입나이 = 17; s.시기턴 = 0;
+  // 선수 방향을 먼저 정한 뒤, 같은 시점의 일반 카드 추첨을 검사합니다.
+  show(E.story.profileCard()); E.choose(0);
   let seed = 12345; math.random = () => ((seed = (Math.imul(seed,1664525)+1013904223)>>>0)/4294967296);
   let drawn = false;
   for (let i=0;i<300;i++) { E.next(); if (s.현재카드.인연교제제안) { drawn=true; break; } }
