@@ -66,6 +66,7 @@
   E.chooseFreeTime = function (index) {
     var s = E.state(), c = s.현재카드, o = c.선택지[s.현재옵션[index]], L = rules();
     if (s.단계 !== "카드" || !s.자유시간 || !o) return s.결과;
+    var outcomeBefore = E.beginOutcome();
     var r = { 결과: "", 효과: {}, 알림: [] }, done = true;
     function apply(fx) { E.applyEffects(fx, r.효과); }
     if (o.자유선택 === "이동") {
@@ -120,6 +121,7 @@
       s.총턴++; s.다음자유나이 = nextAge(); delete s.자유시간;
       r.알림.push("다음 자유행동: " + s.다음자유나이 + "세 무렵");
     }
+    E.finishOutcome(r, outcomeBefore);
     s.결과 = r; s.단계 = "결과"; E.save(); return r;
   };
 })();

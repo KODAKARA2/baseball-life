@@ -14,7 +14,7 @@
   U.closeModals = function () { Feedback.stop(); [].forEach.call(document.querySelectorAll(".modal"), function (m) { m.remove(); }); };
 
   U.openPlayerJournal = function () {
-    modal('<h2>선수 수첩</h2><p class="hint">어떤 선수로 뛰었고, 누구와 어떤 시간을 보냈는지.</p>' + E.story.summary().map(function(line){return '<section class="journal-entry"><p>'+br(line)+'</p></section>';}).join(''));
+    modal('<h2>선수 수첩</h2><details class="career-progress" open><summary>다음 출전·계약 준비</summary>'+E.careerProgress().map(function(line){return '<p>'+br(line)+'</p>';}).join('')+'</details><p class="hint">어떤 선수로 뛰었고, 누구와 어떤 시간을 보냈는지.</p>' + E.story.summary().map(function(line){return '<section class="journal-entry"><p>'+br(line)+'</p></section>';}).join(''));
   };
 
   U.openMenu = function () {

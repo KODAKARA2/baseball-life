@@ -92,6 +92,7 @@ fs.mkdirSync(out, { recursive: true });
       }, pos);
       await page.clock.runFor(600);
       await page.locator(".opt").first().click();
+      if(await page.locator(".guide-start").count()) await page.locator(".guide-start").click();
       await page.clock.runFor(720);
       await page.evaluate(() => { Math.random = window._testRandom; });
       assert.equal(await page.locator(pos === "선발투수" ? ".pf" : ".bf").count(), 1);

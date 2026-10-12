@@ -4,7 +4,7 @@ const out=process.argv[2]||'/tmp/baseball-qol-ui';fs.mkdirSync(out,{recursive:tr
  const page=await browser.newPage({viewport:{width:390,height:844},hasTouch:true}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(await H.url());
  await page.evaluate(()=>{E.newGame('파일 선수','유격수','수비',{외모:5});E.story.init().라이벌승=2;localStorage.setItem('baseball-life-bonus-looks','10');U.showGame();});
  const state=await page.evaluate(()=>JSON.stringify(E.state())),raw=await page.evaluate(()=>E.exportSave());
- const upload=async(text=raw)=>page.locator('.import-save').setInputFiles({name:'career.json',mimeType:'application/json',buffer:Buffer.from(text)});
+ const upload=async(text=raw)=>{await page.locator('.import-save').setInputFiles({name:'career.json',mimeType:'application/json',buffer:Buffer.from(text)});if(text===raw)await page.locator('.save-preview button').first().waitFor();else await page.waitForFunction(()=>document.querySelector('.save-status').textContent.includes('실패'));};
  for(const width of [320,390,1280]){
   await page.setViewportSize({width,height:844});await page.evaluate(()=>U.openSave());await upload();
   assert.match(await page.locator('.save-preview').innerText(),/파일 선수.*유격수/);

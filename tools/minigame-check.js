@@ -100,7 +100,7 @@ fs.mkdirSync(out, { recursive: true });
     // 실제 추첨이 포지션을 지키며 모든 종류에 도달하고 3연속을 막는지 확인.
     const draws = await page.evaluate(() => {
       const names = ["miniTimer", "miniBat", "miniPitch", "miniSteal", "miniThrow", "miniSigns", "miniFly", "miniBunt", "miniDiscipline", "miniDefense"];
-      const originals = {}; let picked, seed = 123;
+      const originals = {}, guide=U.guideMini; U.guideMini=(name,start)=>start(); let picked, seed = 123;
       names.forEach(n => { originals[n] = U[n]; U[n] = () => { picked = n; const m = document.createElement("div"); m.className = "mg-wrap"; document.body.appendChild(m); return () => m.remove(); }; });
       Math.random = () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296);
       const output = {};
@@ -109,7 +109,7 @@ fs.mkdirSync(out, { recursive: true });
         output[pos] = Array.from({ length: 200 }, () => { U.miniGame(() => {})(); return picked; });
       }
       names.forEach(n => { U[n] = originals[n]; });
-      return output;
+      U.guideMini=guide; return output;
     });
     for (const [pos, list] of Object.entries(draws)) {
       assert.deepEqual([...new Set(list)].sort(), (pos === "유격수" ? ["miniTimer", "miniBat", "miniSteal", "miniThrow", "miniFly", "miniBunt", "miniDiscipline", "miniDefense"] : ["miniTimer", "miniPitch", "miniThrow", "miniSigns", "miniFly", "miniDefense"]).sort());

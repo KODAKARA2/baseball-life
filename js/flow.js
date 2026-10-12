@@ -207,6 +207,7 @@
     if (S().현재카드.자유행동) return E.chooseFreeTime(i);
     var s = S(), card = s.현재카드, o = card.선택지[s.현재옵션[i]];
     if (o.진로선택 && !E.chooseCareer(o.진로선택)) return s.결과;
+    var outcomeBefore = E.beginOutcome();
     var res = { 효과: {}, 결과: o.결과 || "", 그림: o.그림변경 || null, 알림: [] };
     var out = o;
     if (o.비용) { s.돈 = Math.max(0, (s.돈 || 0) - o.비용); res.효과.돈 = -o.비용; }
@@ -275,6 +276,7 @@
     }
     var al = allowance(); if (al) res.알림.push("💰 용돈 " + E.money(al) + "을 받았다");
     res.결과 = E.tpl(res.결과);
+    E.finishOutcome(res, outcomeBefore);
     s.결과 = res; s.단계 = "결과";
     E.save();
     return res;

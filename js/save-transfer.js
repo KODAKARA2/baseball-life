@@ -61,6 +61,8 @@
     if(s.단계==='결과') {
       var r=s.결과;
       if(!object(r)||(r.알림!=null&&!Array.isArray(r.알림)))fail('결과 구조 오류');
+      if(r.실제변화!=null && (!Array.isArray(r.실제변화)||!r.실제변화.every(function(d){return object(d)&&typeof d.키==='string'&&typeof d.이름==='string'&&(d.이전===null||number(d.이전,-1e12,1e12))&&(d.이후===null||number(d.이후,-1e12,1e12));})))fail('실제 변화 구조 오류');
+      if(r.상한안내!=null && (!Array.isArray(r.상한안내)||!r.상한안내.every(function(d){return object(d)&&typeof d.이름==='string'&&number(d.요청,0,1e12)&&number(d.반영,0,1e12);})))fail('상한 안내 구조 오류');
       if(r.미니게임 && (!object(r.미니게임)||!number(r.미니게임.확률,0,1)||(!r.미니게임.표시&&!number(r.미니게임.타이밍,0,100))))fail('미니게임 결과 오류');
     }
     if(s.단계==='엔딩'&&!s.엔딩)fail('엔딩이 없습니다.');

@@ -136,12 +136,23 @@
       option("동료에게 맡기고 다음 기회를 준비한다",{종류:"special"},{컨디션:3},"오늘은 동료를 믿었다. 오래 뛰기 위해 힘을 아끼는 것도 선택이다.")],"special",false);
   };
   // 그리기와 저장 복원은 시간을 진행시키지 않습니다. 일반 카드 선택 때만 간격을 셉니다.
+  P.contractRequirements = function () {
+    var s=state(),d=s.선수생활||{다음제안:25},c=d.계약;
+    var active=c&&c.팀===s.팀&&c.시기===s.시기&&s.나이<c.끝나이;
+    return [
+      {label:"프로·메이저리그 무대",met:pro()},
+      {label:"기존 계약 종료"+(active?" · "+(c.끝나이-s.나이)+"시즌 남음":""),met:!active},
+      {label:s.시기==="메이저리그"?"빅리거 등록":"1군 등록",met:!!playing()},
+      {label:"제안 나이 "+s.나이+" / "+d.다음제안+"세",met:s.나이>=d.다음제안},
+      {label:s.시기==="메이저리그"?"해외 계약 · 국내 연차 제한 없음":"프로 연차 "+s.연차+" / 4년",met:s.시기==="메이저리그"||s.연차>=4}
+    ];
+  };
   P.card = function () {
     var s=state(),d=P.init();
     if(["고등학교","대학","프로","메이저리그"].indexOf(s.시기)<0)return null;
     if(!type() || (pro() && s.나이>=d.유형변경나이))return P.profileCard();
     if(!pro())return null;
-    if(!P.contract() && playing() && s.나이>=d.다음제안 && (s.시기==="메이저리그" || s.연차>=4))return P.contractCard();
+    if(P.contractRequirements().every(function(r){return r.met;}))return P.contractCard();
     if(!d.목표 || d.목표.scope!==scope())return P.goalCard();
     if(d.일반턴-d.마지막서사<R.서사간격)return null;
     var r=d.진행;
