@@ -67,7 +67,9 @@ const out = process.argv[2] || fs.mkdtempSync(path.join(os.tmpdir(),'baseball-fr
     }
     for(const action of ['연습','취미활동','휴식']) {
       await start(); await page.evaluate(()=>{E.state().부상=3;E.state().슬럼프=2;});
-      await button(action).click(); await page.waitForTimeout(800);
+      await button(action).click();
+      if(action==='연습') await page.locator('#actions .opt').first().click();
+      await page.waitForTimeout(800);
       assert.equal(await page.evaluate(()=>E.state().자유시간),undefined);
       assert.equal(await page.evaluate(()=>E.state().나이),17);
       if(action==='휴식') assert.deepEqual(await page.evaluate(()=>[E.state().부상,E.state().슬럼프]),[2,1]);

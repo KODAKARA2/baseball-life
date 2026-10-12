@@ -19,7 +19,7 @@
 
   U.openMenu = function () {
     modal('<h2>메뉴</h2><div class="menu-list">' +
-      '<button onclick="Feedback.settings()">소리·움직임 설정</button>' +
+      '<button onclick="U.openSave()">저장 이동·복구</button><button onclick="Feedback.settings()">소리·움직임 설정</button>' +
       '<button onclick="U.closeModals();U.openHero()">🧢 내 인생 카드 · 능력치</button>' +
       '<button onclick="U.closeModals();U.openHeroine()">💗 히로인 카드 · 애정도</button>' +
       '<button onclick="U.closeModals();U.openCareer()">📊 커리어 기록</button>' +
