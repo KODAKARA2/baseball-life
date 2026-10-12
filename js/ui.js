@@ -91,7 +91,7 @@
       '<section class="setup"><div class="setup-intro"><span class="eyebrow">BASEBALL LIFE · 나만의 야구 이야기</span><h1>야구는 기록으로,<br>인생은 <em>선택으로.</em></h1>' +
       '<p class="sub">첫 글러브부터 마지막 은퇴 경기까지.<br>어떤 선수가 되고, 누구와 함께할까요?</p>' +
       '<div class="journey-art" aria-hidden="true"><div><img src="images/hero_elementary.png" alt=""><span>첫 글러브</span></div><div><img src="images/hero_high.png" alt=""><span>커지는 꿈</span></div><div><img src="images/hero_pro.png" alt=""><span>나만의 전성기</span></div></div>' +
-      '<div class="setup-links"><button onclick="Feedback.settings()">소리·움직임 설정</button><button onclick="U.openPractice()">⚾ 미니게임 연습장 <span>먼저 체험하기 →</span></button><button onclick="U.openCollection()">📖 엔딩 도감 <span>모아 온 이야기 →</span></button></div>' +
+      '<div class="setup-links"><button onclick="U.openSave()">저장 이동·복구</button><button onclick="Feedback.settings()">소리·움직임 설정</button><button onclick="U.openPractice()">⚾ 미니게임 연습장 <span>먼저 체험하기 →</span></button><button onclick="U.openCollection()">📖 엔딩 도감 <span>모아 온 이야기 →</span></button></div>' +
       '<p class="intro-note">잘하는 야구와 행복한 인생 사이, 정답은 하나가 아닙니다.</p></div>' +
       '<div class="setup-form"><span class="eyebrow">NEW PLAYER</span><h2>나의 선수 만들기</h2><p class="form-note">이름, 포지션, 특기를 고르면 이야기가 시작됩니다.</p>' +
       '<label>주인공 이름<input id="nm" maxlength="8" placeholder="예: 강민준" autocomplete="off"></label>' +
@@ -219,13 +219,23 @@
 
   U.resultHTML = function (r) {
     var chips = U.chips(r.효과);
+    var actual = Array.isArray(r.실제변화) ? '<section class="outcome"><h3>이번 행동의 실제 변화</h3><p class="hint">선택 효과와 성장·회복·관계 변화·정산을 모두 반영했습니다.</p>' +
+      (r.실제변화.length ? r.실제변화.map(function(d){
+        function value(v){return v==null?'없음':d.키==='돈'?E.money(v):String(v);}
+        var diff=d.이전!=null&&d.이후!=null?d.이후-d.이전:null;
+        return '<div class="outcome-row"><b>'+esc(d.이름)+(d.키.indexOf('인연:')===0?' · 호감·애정':'')+'</b><span>'+esc(value(d.이전))+' → '+esc(value(d.이후))+
+          (diff==null?'':' ('+(diff>0?'+':'')+esc(d.키==='돈'?E.money(diff):String(diff))+')')+
+          (d.키.indexOf('인연:')===0?'<small>'+esc(d.이전관계||'인연 없음')+' → '+esc(d.이후관계||'현재 인연에서 제외')+'</small>':'')+'</span></div>';
+      }).join('') : '<p>수치 변화 없음</p>')+
+      (r.상한안내||[]).map(function(c){return '<p class="hint">'+esc(c.이름)+' · 상한 적용: 상승 '+c.요청+' 중 '+c.반영+' 반영</p>';}).join('')+'</section>' : '';
+
     var pic = r.결혼그림 ? U.art(r.결혼그림.키, "💍", "<b>" + esc(r.결혼그림.이름) + "</b><small>결혼식</small>", "banner", "bg_hall.jpg")
       : r.만남그림 ? U.art(r.만남그림.키, "💗", "<b>" + esc(r.만남그림.이름) + "</b><small>새로운 인연</small>", "banner", "bg_street.png")
       : r.그림 ? U.art([r.그림].concat(U.heroKeys()), U.icon(), "<b>" + esc(E.state().이름) + "</b>", "banner small", U.bgOf(E.state().현재카드)) : "";
     var g = r.미니게임, mg = g ? '<div class="tag">' + (g.표시 ? esc(g.표시) : "⏱ " + g.타이밍.toFixed(2) + "초" + (g.목표 != null ? " (목표 " + g.목표.toFixed(1) + "초)" : "")) +
       " · 성공 확률 " + Math.round(g.확률 * 100) + "%</div> " : "";
     return pic + '<div class="txt">' + mg + (r.성공 === true ? '<div class="tag ok">성공!</div>' : r.성공 === false ? '<div class="tag ng">실패…</div>' : "") +
-      "<p>" + br(r.결과 || "…") + '</p><div class="fxs">' + chips + "</div>" +
+      "<p>" + br(r.결과 || "…") + '</p>' + actual + '<details class="direct-effects"><summary>선택의 직접 효과</summary><div class="fxs">' + chips + '</div></details>' +
       (r.알림 || []).map(function (n) { return '<div class="note">' + esc(n) + "</div>"; }).join("") +
       (r.뉴스 ? '<div class="news"><b>📰 야구 소식</b>' + esc(r.뉴스) + "</div>" : "") + "</div>";
   };
@@ -272,7 +282,7 @@
     function finish(result) { if (closed) return; closed = true; document.removeEventListener("keydown", escape); cb(result); }
     function stop() { if (closed) return; cancel(); finish({ 취소: true }); }
     function escape(e) { if (e.key === "Escape") { e.preventDefault(); stop(); } }
-    cancel = U[key](finish, attachQuit, stop);
+    cancel = U.guideMini ? U.guideMini(key, function () { return U[key](finish, attachQuit, stop); }, stop) : U[key](finish, attachQuit, stop);
     function attachQuit() {
     var active = document.querySelector(".mg-wrap"), quit = document.createElement("button");
     quit.className = "practice-stop"; quit.textContent = "선택으로 돌아가기 · Esc"; quit.onclick = stop; active.appendChild(quit);
@@ -440,12 +450,8 @@
   };
 
   // 연습은 미니게임 화면만 실행하며 선수 상태·저장·보너스를 변경하지 않습니다.
-  U.openPractice = function () {
-    if (document.querySelector(".practice-modal, .mg-wrap")) return;
-    var opener = document.activeElement, selected = "bat", cancel = null, closed = false, last = null;
-    var app = $("#app"), wasInert = app.inert, oldOverflow = document.body.style.overflow;
-    app.inert = true; document.body.style.overflow = "hidden";
-    var history = { bat: [], pitch: [], timer: [] }, M = GD.설정.미니게임 || {}, B = M.타격 || {}, P = M.투구 || {};
+  U.practiceGames = function () {
+    var M = GD.설정.미니게임 || {}, B = M.타격 || {}, P = M.투구 || {};
     function pct(v) { return Math.round(v * 100) + "%"; }
     var games = {
       bat: { title: "타격", icon: "🏏", play: U.miniBat, help: "공이 노란 점선에 닿는 순간 눌러, 아래에서 위로 스윙하세요.", levels: "홈런 " + pct(M.최고확률 || 0.95) + " · 안타 " + pct(B.좋음확률 || 0.7) + " · 파울 " + pct(B.빗맞음확률 || 0.3) + " · 헛스윙 " + pct(M.최저확률 || 0.05) },
@@ -453,6 +459,14 @@
       timer: { title: "타이밍", icon: "⏱", play: U.miniTimer, help: "줄어드는 시계가 매번 정해지는 목표 시간에 가까워질 때 공을 누르세요.", levels: "목표 시간에 가까울수록 성공 확률이 높아집니다." }
     };
     Object.assign(games, U.extraPracticeGames());
+    return games;
+  };
+  U.openPractice = function () {
+    if (document.querySelector(".practice-modal, .mg-wrap")) return;
+    var opener = document.activeElement, selected = "bat", cancel = null, closed = false, last = null;
+    var app = $("#app"), wasInert = app.inert, oldOverflow = document.body.style.overflow;
+    app.inert = true; document.body.style.overflow = "hidden";
+    var history = {}, games = U.practiceGames();
     Object.keys(games).forEach(function (key) { if (!history[key]) history[key] = []; });
     var m = document.createElement("div"); m.className = "modal practice-modal"; m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true"); m.setAttribute("aria-label", "미니게임 연습장");
     document.body.appendChild(m);
@@ -510,7 +524,11 @@
     Feedback.cue("select", document.querySelectorAll("#actions .opt")[i]);
     var s = E.state(), o = s.현재카드.선택지[s.현재옵션[i]];
     if (s.현재카드.자유행동 && o.자유선택 === "이동") {
-      E.choose(i); E.next(); U.renderAll(); return;
+      busy = true; E.choose(i); E.next(); U.renderAll();
+      var actions = document.querySelectorAll("#actions button");
+      actions.forEach(function (b) { b.disabled = true; });
+      Feedback.later($("#app"), function () { busy = false; actions.forEach(function (b) { b.disabled = false; }); }, 220);
+      return;
     }
     if (o.미니게임 && o.확률결과) { busy = true; return U.miniGame(function (mg) { busy = false; if (mg && mg.취소) return; doChoose(i, mg); }); }
     doChoose(i);

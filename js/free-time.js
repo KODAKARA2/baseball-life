@@ -35,6 +35,12 @@
   }
   E.freeTimeCard = function () {
     var s = E.state(), f = s.자유시간, L = rules();
+    if (f.화면 === "연습") {
+      var stats = E.posStats().filter(function (k) { return s.능력치[k] < E.cap(); });
+      var choices = stats.map(function (k) { return option(k + " " + s.능력치[k] + " → " + (s.능력치[k] + 1), "연습", { 훈련능력: k }); });
+      if (!stats.length && s.능력치.멘탈 < 100) choices.push(option("이미지 트레이닝 · 멘탈 +1", "연습", { 훈련능력: "멘탈" }));
+      return card("오늘 다듬을 기본기", "올릴 능력치를 직접 고르세요. 한 가지 능력만 +1, 현재 상한 " + E.cap() + "을 유지합니다. 모두 상한이면 멘탈을 다잡을 수 있습니다. 돌아가기는 자유시간을 쓰지 않습니다.", choices.concat([back("메뉴")]));
+    }
     if (f.화면 === "데이트") {
       var opts = [];
       if (s.히로인 && s.히로인.관계 !== "만남") opts.push(option(E.heroDef().이름 + " · 데이트", "데이트", { 대상: s.히로인.아이디 }));
@@ -51,7 +57,7 @@
       return card("새로운 인연을 찾아서", text, search.concat([back("데이트")]));
     }
     return card("나를 위한 자유시간", (s.시기 === "군복무" ? "모처럼 받은 휴가. " : "모처럼 비워 둔 일정. ") + "이번에는 무엇을 할까? 자유행동은 1~2년에 한 번 찾아오며, 한 가지 활동을 마치면 일상으로 돌아간다.", [
-      option("⚾ 연습 · 능력치 하나 +1", "연습"),
+      option("⚾ 연습 · 올릴 능력치 선택", "이동", { 화면: "연습" }),
       option("💗 데이트 · 현재 인연 / 새로운 만남", "이동", { 화면: "데이트" }),
       option("🎣 취미활동 · 무작위 취미로 행복 충전", "취미"),
       option("🛌 휴식 · 부상·슬럼프 1턴씩 회복", "휴식")
@@ -60,6 +66,7 @@
   E.chooseFreeTime = function (index) {
     var s = E.state(), c = s.현재카드, o = c.선택지[s.현재옵션[index]], L = rules();
     if (s.단계 !== "카드" || !s.자유시간 || !o) return s.결과;
+    var outcomeBefore = E.beginOutcome();
     var r = { 결과: "", 효과: {}, 알림: [] }, done = true;
     function apply(fx) { E.applyEffects(fx, r.효과); }
     if (o.자유선택 === "이동") {
@@ -67,8 +74,12 @@
       r.결과 = "천천히 골라도 괜찮다. 활동을 마칠 때까지 자유시간은 남아 있다.";
     } else if (o.자유선택 === "연습") {
       var stats = E.posStats().filter(function (k) { return s.능력치[k] < E.cap(); });
-      if (stats.length) { var stat = I.pick(stats); s.능력치[stat]++; r.효과[stat] = 1; r.결과 = "기본 동작을 차분히 반복했다. " + stat + " 감각이 조금 더 좋아졌다."; }
-      else { apply({ 멘탈: 1 }); r.결과 = "현재 실력의 한계에 도달해 이미지 트레이닝으로 마음을 다잡았다."; }
+      // Old in-memory cards retain their random +1; loaded cards are rebuilt by E.load.
+      var stat = o.훈련능력 || (stats.length ? I.pick(stats) : "멘탈");
+      if (stats.indexOf(stat) >= 0 || (stat === "멘탈" && !stats.length && s.능력치.멘탈 < 100)) {
+        var before = s.능력치[stat]; s.능력치[stat] = Math.min(stat === "멘탈" ? 100 : E.cap(), before + 1);
+        r.효과[stat] = s.능력치[stat] - before; r.결과 = stat + " 기본기를 차분히 다듬었다.";
+      } else { s.자유시간 = { 화면: "연습" }; done = false; r.결과 = "현재 훈련할 수 있는 능력을 다시 골라 보자."; }
     } else if (o.자유선택 === "데이트" && !s.플래그.외국인작별 &&
         ((s.히로인 && s.히로인.아이디 === o.대상) || E.acquaintances().some(function (h) { return h.아이디 === o.대상; }))) {
       var person = E.acquaintances().find(function (h) { return h.아이디 === o.대상; });
@@ -110,6 +121,7 @@
       s.총턴++; s.다음자유나이 = nextAge(); delete s.자유시간;
       r.알림.push("다음 자유행동: " + s.다음자유나이 + "세 무렵");
     }
+    E.finishOutcome(r, outcomeBefore);
     s.결과 = r; s.단계 = "결과"; E.save(); return r;
   };
 })();

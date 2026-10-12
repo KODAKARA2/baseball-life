@@ -35,6 +35,8 @@ const out = process.argv[2] || fs.mkdtempSync(path.join(os.tmpdir(), 'baseball-r
         s.현재카드 = I.clone(I.CARDS().find(c => c.제목 === title)); s.단계 = '카드'; E.refreshOptions(); U.renderAll();
       }, title);
       await page.locator('#actions button').first().click(); await page.waitForTimeout(800);
+      assert.match(await page.locator('.outcome').innerText(), /호감·애정/);
+      await page.locator('.direct-effects summary').click();
       assert.match(await page.locator('.fxs').innerText(), /호감/);
     }
     assert.equal(await page.evaluate(() => E.canConfess()), true);

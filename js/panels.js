@@ -14,12 +14,12 @@
   U.closeModals = function () { Feedback.stop(); [].forEach.call(document.querySelectorAll(".modal"), function (m) { m.remove(); }); };
 
   U.openPlayerJournal = function () {
-    modal('<h2>선수 수첩</h2><p class="hint">어떤 선수로 뛰었고, 누구와 어떤 시간을 보냈는지.</p>' + E.story.summary().map(function(line){return '<section class="journal-entry"><p>'+br(line)+'</p></section>';}).join(''));
+    modal('<h2>선수 수첩</h2><details class="career-progress" open><summary>다음 출전·계약 준비</summary>'+E.careerProgress().map(function(line){return '<p>'+br(line)+'</p>';}).join('')+'</details><p class="hint">어떤 선수로 뛰었고, 누구와 어떤 시간을 보냈는지.</p>' + E.story.summary().map(function(line){return '<section class="journal-entry"><p>'+br(line)+'</p></section>';}).join(''));
   };
 
   U.openMenu = function () {
     modal('<h2>메뉴</h2><div class="menu-list">' +
-      '<button onclick="Feedback.settings()">소리·움직임 설정</button>' +
+      '<button onclick="U.openSave()">저장 이동·복구</button><button onclick="Feedback.settings()">소리·움직임 설정</button>' +
       '<button onclick="U.closeModals();U.openHero()">🧢 내 인생 카드 · 능력치</button>' +
       '<button onclick="U.closeModals();U.openHeroine()">💗 히로인 카드 · 애정도</button>' +
       '<button onclick="U.closeModals();U.openCareer()">📊 커리어 기록</button>' +

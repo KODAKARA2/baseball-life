@@ -1,0 +1,17 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),cp=require('node:child_process'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),cache={};
+function load(ref){let seed=427,math=Object.create(Math);math.random=()=>((seed=(seed*1664525+1013904223)>>>0)/4294967296);const store={},c={console,JSON,Date,Math:math,localStorage:{getItem:k=>store[k]||null,setItem:(k,v)=>store[k]=String(v),removeItem:k=>delete store[k]}};c.window=c;vm.createContext(c);const read=f=>ref?(cache[f]??=cp.execFileSync('git',['show',ref+':'+f],{cwd:root,encoding:'utf8'})):fs.readFileSync(path.join(root,f),'utf8');for(const [,f]of read('index.html').matchAll(/src="([^"]+\.js)"/g))if(!/ui\.js|panels\.js/.test(f))vm.runInContext(read(f),c,{filename:f});return c;}
+const c=load(),E=c.E;
+function fresh(){E.newGame('변화 검사','유격수','수비',{외모:5});return E.state();}
+function card(choice){const s=E.state();s.현재카드={제목:'검사',시스템:true,선택지:[{글:'선택',결과:'확인',...choice}]};s.단계='카드';E.refreshOptions();}
+let s=fresh();s.능력치.수비=E.cap();s.행복도=99;card({효과:{수비:10,행복도:20,컨디션:-12},비용:3});let before=s.돈,r=E.choose(0);assert.ok(r.상한안내.some(x=>x.이름==='수비'&&x.반영===0));assert.ok(r.상한안내.some(x=>x.이름==='행복도'&&x.반영===1));assert.equal(r.실제변화.find(x=>x.키==='돈').이후,s.돈);assert.equal(r.실제변화.find(x=>x.키==='돈').이전,before);assert.equal(r.실제변화.find(x=>x.키==='컨디션').이후,s.능력치.컨디션);const done=JSON.stringify(s);E.choose(0);assert.equal(JSON.stringify(s),done);E.load();assert.equal(JSON.stringify(E.state()),done);E.previewImport(E.exportSave());
+s=fresh();E._internal.attachHeroine('heroine1');s.히로인.관계='연인';s.히로인.애정도=30;card({관계:'이별'});r=E.choose(0);assert.equal(r.실제변화.find(x=>x.키==='인연:heroine1').이후,null);
+// Contract display and the exact predicate used by the engine agree at every boundary.
+for(const stage of ['프로','메이저리그'])for(const age of [24,25,26])for(const tenure of [3,4])for(const playing of [false,true]){
+ s=fresh();s.시기=stage;s.나이=age;s.연차=tenure;s.일군=playing;s.플래그.빅리거=playing;E.story.init();const expected=playing&&age>=25&&(stage==='메이저리그'||tenure>=4);assert.equal(E.story.contractRequirements().every(x=>x.met),expected);const snapshot=JSON.stringify(s),random=c.Math.random;c.Math.random=()=>{throw Error('display consumed randomness');};E.careerProgress();c.Math.random=random;assert.equal(JSON.stringify(s),snapshot);
+}
+s=fresh();s.시기='프로';s.일군=false;E.posStats().forEach(k=>s.능력치[k]=47);assert.match(E.careerProgress().join('\n'),/평균 47 \/ 48/);E.posStats().forEach(k=>s.능력치[k]=48);assert.match(E.careerProgress().join('\n'),/✓ 평균 48 \/ 48/);assert.match(E.careerProgress().join('\n'),/보장하지/);
+// Same RNG stream and decisions as the approved previous commit: observation changes no game rules.
+const old=load('4dee395'),current=load();function clean(s){return JSON.parse(JSON.stringify(s,(k,v)=>['실제변화','상한안내'].includes(k)?undefined:v));}
+for(let g=0;g<10;g++){old.E.newGame('동일 진행','유격수','수비',{외모:5});current.E.newGame('동일 진행','유격수','수비',{외모:5});for(let t=0;t<600&&old.E.state().단계!=='엔딩';t++){const i=(g+t)%old.E.state().현재옵션.length;old.E.choose(i);current.E.choose(i);assert.deepEqual(clean(current.E.state()),clean(old.E.state()),g+':'+t);old.E.next();current.E.next();}assert.deepEqual(clean(current.E.state()),clean(old.E.state()));}
+console.log('PASS actual resolved deltas/caps/relationships/save/duplicate, real eligibility boundaries, no-random/no-mutation hints, 10 seeded careers identical to 4dee395');

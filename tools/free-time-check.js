@@ -15,7 +15,9 @@ function show(screen = '메뉴', target) {
   const s = E.state(); s.자유시간 = { 화면: screen, 대상: target }; s.현재카드 = E.freeTimeCard(); s.단계 = '카드'; E.refreshOptions();
 }
 function choose(action, target) {
-  const s = E.state(), ix = s.현재옵션.findIndex(i => s.현재카드.선택지[i].자유선택 === action && (!target || s.현재카드.선택지[i].대상 === target));
+  const s = E.state();
+  if (action === '연습' && s.자유시간.화면 !== '연습') { const at=s.현재옵션.findIndex(i=>s.현재카드.선택지[i].화면==='연습'); E.choose(at); E.next(); }
+  const ix = s.현재옵션.findIndex(i => s.현재카드.선택지[i].자유선택 === action && (!target || s.현재카드.선택지[i].대상 === target));
   assert.ok(ix >= 0, action + ':' + target); return E.choose(ix);
 }
 function calendar(s) { return JSON.stringify([s.나이,s.시기턴,s.올해카드,s.올해부상카드,s.기록,s.돈,s.성적]); }
@@ -47,7 +49,7 @@ for (const action of ['연습','취미','휴식']) {
 }
 {
   const s = setup(); show(); const turn = s.총턴, next = s.다음자유나이;
-  for (let n=0;n<6;n++) { choose('이동'); E.next(); assert.equal(s.자유시간.화면,'데이트'); E.choose(s.현재옵션.length-1); E.next(); }
+  for (let n=0;n<6;n++) { E.choose(s.현재옵션.findIndex(i=>s.현재카드.선택지[i].화면==='데이트')); E.next(); assert.equal(s.자유시간.화면,'데이트'); E.choose(s.현재옵션.length-1); E.next(); }
   assert.equal(s.총턴,turn); assert.equal(s.다음자유나이,next);
   show('찾기'); assert.deepEqual(Array.from(E.freeTimeCandidates(),h=>h.아이디),['heroine1','heroine4','heroine5','heroine7','heroine8','heroine9','heroine10','heroine11']);
   assert.ok(s.현재카드.선택지.every(o=>!o.대상));

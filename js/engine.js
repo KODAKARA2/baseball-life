@@ -220,6 +220,7 @@
     if (E.posStats().indexOf(k) >= 0 && v > 0) v = E.looksGain(v, "능력치");
     if (E.posStats().indexOf(k) >= 0) nv = v > 0 ? (cur >= E.cap() ? cur : Math.min(E.cap(), cur + v)) : Math.max(1, cur + v);
     else nv = clamp(cur + v, 0, 100);
+    if (E.noteCap) E.noteCap(k, v, nv - cur);
     S.능력치[k] = nv; if (out && nv !== cur) out[k] = (out[k] || 0) + (nv - cur);
   }
   function applyEffects(eff, out, mult) {
@@ -232,9 +233,9 @@
       else if (k === "부상감소") { S.부상 = Math.floor(S.부상 * (100 - v) / 100); out.부상감소 = v; }
       else if (k === "슬럼프감소") { S.슬럼프 = Math.floor(S.슬럼프 * (100 - v) / 100); out.슬럼프감소 = v; }
       else if (k === "슬럼프") { S.슬럼프 = v <= 0 ? 0 : Math.max(S.슬럼프, v); out.슬럼프 = v; }
-      else if (k === "애정도2") { v = E.looksGain(v, "이성"); if (S.히로인2) { var o2 = S.히로인2.애정도; S.히로인2.애정도 = clamp(o2 + v, 0, 100); out.애정도2 = S.히로인2.애정도 - o2; } }
-      else if (k === "애정도") { v = E.looksGain(v, "이성"); if (S.히로인) { var o = S.히로인.애정도; S.히로인.애정도 = clamp(o + v, 0, 100); out.애정도 = S.히로인.애정도 - o; } }
-      else if (k === "행복도") { v = E.looksGain(v, "성적행복"); var h = S.행복도; S.행복도 = clamp(h + v, 0, 100); out.행복도 = S.행복도 - h; }
+      else if (k === "애정도2") { v = E.looksGain(v, "이성"); if (S.히로인2) { var o2 = S.히로인2.애정도; S.히로인2.애정도 = clamp(o2 + v, 0, 100); out.애정도2 = S.히로인2.애정도 - o2; if(E.noteCap)E.noteCap(E.heroDef(S.히로인2.아이디).이름+" 애정도",v,out.애정도2); } }
+      else if (k === "애정도") { v = E.looksGain(v, "이성"); if (S.히로인) { var o = S.히로인.애정도; S.히로인.애정도 = clamp(o + v, 0, 100); out.애정도 = S.히로인.애정도 - o; if(E.noteCap)E.noteCap(E.heroDef().이름+" 호감·애정",v,out.애정도); } }
+      else if (k === "행복도") { v = E.looksGain(v, "성적행복"); var h = S.행복도; S.행복도 = clamp(h + v, 0, 100); out.행복도 = S.행복도 - h; if(E.noteCap)E.noteCap("행복도",v,out.행복도); }
       else if (k === "성적") { v = E.looksGain(v, "성적행복"); S.성적 = Math.max(0, S.성적 + v); out.성적 = v; }
       else if (k === "돈") { S.돈 = Math.max(0, (S.돈 || 0) + v); if (v > 0) S.총수입 = (S.총수입 || 0) + v; out.돈 = (out.돈 || 0) + v; }
       else addStat(k, v, out, mult);
@@ -275,7 +276,7 @@
 
   E._internal = {
     get S() { return S; }, set S(v) { S = v; }, cfg: cfg, sdef: sdef, rnd: rnd, clamp: clamp, arr: arr, pick: pick, clone: clone,
-    weighted: weighted, eligible: eligible, CARDS: function () { return CARDS; }, buildCards: buildCards,
+    val: val, weighted: weighted, eligible: eligible, CARDS: function () { return CARDS; }, buildCards: buildCards,
     applyEffects: applyEffects, attachHeroine: attachHeroine, setRelation: setRelation, addAward: addAward,
     randomTeam: randomTeam, changeTeam: changeTeam, POS_STATS: POS_STATS, COMMON: COMMON, YEARLY: YEARLY, SAVE_KEY: SAVE_KEY
   };

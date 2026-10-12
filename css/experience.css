@@ -230,3 +230,21 @@ button.mini { padding: 0; background: transparent; color: inherit; text-align: l
 html[data-reduced-motion="true"] .baseball-result-art{display:none}
 .journal-entry { padding: 12px 16px; margin: 10px 0; border: 1px solid #37504c; border-radius: 12px; background: #ffffff05; }
 .journal-entry p { margin: 0; line-height: 1.8; overflow-wrap: anywhere; }
+
+/* Save transfer controls remain reachable on narrow phones. */
+.save-modal .sheet { width: min(100%, 540px); overflow-wrap: anywhere; }
+.save-modal button, .save-file { display: block; width: 100%; min-height: 48px; margin: 10px 0; }
+.save-file input { display: block; max-width: 100%; margin-top: 8px; }
+.save-preview:not(:empty) { border: 1px solid var(--line, #ccd3cc); border-radius: 12px; padding: 12px; }
+#save-error { position: fixed; bottom: max(12px, env(safe-area-inset-bottom)); left: 12px; right: 12px; z-index: 100; padding: 12px; border-radius: 12px; background: #722d25; color: white; pointer-events: none; }
+
+.save-transition { position: fixed; inset: 0; z-index: 10000; }
+
+.outcome { border-top: 1px solid #d6dfd8; margin-top: 16px; padding-top: 8px; }
+.outcome h3 { font-size: 16px; }
+.outcome-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; padding: 5px 0; }
+.outcome-row small { display: block; font-size: 12px; }
+.direct-effects { margin-top: 12px; }
+.career-progress { padding: 12px; border-radius: 12px; background: #f0f3ec; overflow-wrap: anywhere; }
+.mini-guide .sheet { width: min(100%, 520px); overflow-wrap: anywhere; }
+.mini-guide button { display: block; width: 100%; min-height: 48px; margin-top: 12px; }
